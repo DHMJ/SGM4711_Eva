@@ -1,0 +1,4 @@
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\DMDongle\bin\x86\Debug\DMDongle.dll
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\DMDongle\bin\x86\Debug\DMDongle.pdb
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\DMDongle\obj\x86\Debug\DMDongle.dll
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\DMDongle\obj\x86\Debug\DMDongle.pdb

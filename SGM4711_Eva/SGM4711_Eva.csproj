@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE739822-A4D1-43CD-8E3E-D5465C86993C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SGM4711_Eva</RootNamespace>
+    <AssemblyName>SGM4711_Eva</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GUI\EQCurveCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\EQCurveCtrl.designer.cs">
+      <DependentUpon>EQCurveCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FilterSettingCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\FilterSettingCtrl.designer.cs">
+      <DependentUpon>FilterSettingCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormDongle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormDongle.designer.cs">
+      <DependentUpon>FormDongle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form_backup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form_backup.designer.cs">
+      <DependentUpon>Form_backup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormScript.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\FormScript.designer.cs">
+      <DependentUpon>FormScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FreeRegRWCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\FreeRegRWCtrl.Designer.cs">
+      <DependentUpon>FreeRegRWCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MDDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\MDRegisterView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\MDRegisterView.designer.cs">
+      <DependentUpon>MDRegisterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MDRegisterViewTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\MDRegisterViewTab.designer.cs">
+      <DependentUpon>MDRegisterViewTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ParameterEQCtrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ParameterEQCtrl.designer.cs">
+      <DependentUpon>ParameterEQCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RegSettingCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\RegSettingCtrl.Designer.cs">
+      <DependentUpon>RegSettingCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDCommon\DGVMerge.cs" />
+    <Compile Include="MDCommon\Filter\Complex.cs" />
+    <Compile Include="MDCommon\Filter\EQCurveColor.cs" />
+    <Compile Include="MDCommon\Filter\Filter.cs" />
+    <Compile Include="MDCommon\Filter\TransferFunctions.cs" />
+    <Compile Include="MDCommon\RegisterDefine.cs" />
+    <Compile Include="MDCommon\RegisterProperty.cs" />
+    <Compile Include="MDCommon\RegProperty.cs" />
+    <Compile Include="GUI\RegTable_backup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\RegTable_backup.Designer.cs">
+      <DependentUpon>RegTable_backup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDCommon\TestCreateEvent.cs" />
+    <Compile Include="MDDataBase\MDDataProcess.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\EQCurveCtrl.resx">
+      <DependentUpon>EQCurveCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FilterSettingCtrl.resx">
+      <DependentUpon>FilterSettingCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormDongle.resx">
+      <DependentUpon>FormDongle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form_backup.resx">
+      <DependentUpon>Form_backup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormScript.resx">
+      <DependentUpon>FormScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FreeRegRWCtrl.resx">
+      <DependentUpon>FreeRegRWCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MDRegisterView.resx">
+      <DependentUpon>MDRegisterView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MDRegisterViewTab.resx">
+      <DependentUpon>MDRegisterViewTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ParameterEQCtrl.resx">
+      <DependentUpon>ParameterEQCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\RegSettingCtrl.resx">
+      <DependentUpon>RegSettingCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\RegTable_backup.resx">
+      <DependentUpon>RegTable_backup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\BlockDiagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DMDongle\DMDongle.csproj">
+      <Project>{5426FF81-F369-4709-8C8E-A4A87D7F3C51}</Project>
+      <Name>DMDongle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDImportExcel\MDRegisterTool.csproj">
+      <Project>{04C6C533-2DF0-4138-9C1C-60769E234DFA}</Project>
+      <Name>MDRegisterTool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
