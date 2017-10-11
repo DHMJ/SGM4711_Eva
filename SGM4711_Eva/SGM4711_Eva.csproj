@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\DRCCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DRCCtrl.Designer.cs">
+      <DependentUpon>DRCCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\EQCurveCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
