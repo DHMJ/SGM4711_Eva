@@ -11,21 +11,26 @@ namespace SGM4711_Eva.MDCommon.Filter
         #region Coefficents
         FilterType filterType = FilterType.Peaking;
 
-        double[] a = new double[2];
-        double[] b = new double[2];
-        double f0;
+        double[] p = new double[3];
+        double[] d = new double[2];
+        int[] reg_b = new int[3];
+        int[] reg_a = new int[2];
+        double fc;
         double fs = 48000;      //Default 48KHz
         double gain_dB;
         double gain_linear;
-        double bandwidth;
+        double bw;
         double q_factor;
+        double k;
+        double alpha;
+        double beta;
         
         double w0;
         #endregion Coefficents
 
         public Filter()
         {
-            w0 = 2 * Math.PI * f0 / fs;
+            w0 = 2 * Math.PI * fc / fs;
             gain_linear = Math.Pow(10.0, gain_dB / 20.0);
         }
 
@@ -35,6 +40,7 @@ namespace SGM4711_Eva.MDCommon.Filter
             switch (this.filterType)
             {
                 case FilterType.Peaking:
+                    CoeffCalc_Peaking();
                     break;
                 case FilterType.Shelving:
                     break;
@@ -45,20 +51,75 @@ namespace SGM4711_Eva.MDCommon.Filter
             } 
         }
 
+        /// <summary>
+        /// H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
+        /// fs as the input signal sampling frequency, 
+        /// fc as the required peak filter center frequency, 
+        /// BW as the bandwidth, 
+        /// G (dB) as the gain, 
+        /// use the following steps for coefficient calculation:
+        /// </summary>
+        void CoeffCalc_Peaking()
+        {
+            /*******************************************
+            * 1. Transfer the gain in decibels (dB) to decimal domain.
+            ********************************************/
+            k = Math.Pow(10, gain_dB / 20.0);
+
+            /*******************************************
+             * 2. Calculate the double precision coefficients
+             * 
+             * alpha = (1-sin(BW/fs * 2pi))/cos(BW/fs * 2pi)
+             * beta = cos(fc/fs * 2pi)
+             * p0 = ((1+k) + (1-k)*alpha)/2
+             * p1 = -(1+alpha)*beta
+             * p2 = ((1-k) + (1+k)*alpha)/2
+             * d1 = (1 + alpha) * beta
+             * d2 = - alpha
+            ********************************************/
+            alpha = (1 - Math.Sin(bw * 2 * Math.PI / fs)) / Math.Cos(bw * 2 * Math.PI / fs);
+            beta = Math.Cos(fc * 2 * Math.PI / fs);
+            p[0] = ((1 + k) + (1 - k) * alpha) / 2;
+            p[1] = -(1 + alpha) * beta;
+            p[2] = ((1 - k) + (1 + k) * alpha) / 2;
+            d[1] = (1 + alpha) * beta;
+            d[2] = -alpha;
+
+            /*******************************************
+             * 3. Transfer the double precision coefficients 
+             * to integer values represented by registers.
+             * 
+             * b0 = round(p0 × 2^23)
+             * b1 = round(p1 × 2^23)
+             * b2 = round(p2 × 2^23)
+             * a1 = round(d1 × 2^23)
+             * a2 = round(d2 × 2^23)
+            ********************************************/
+            reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
+            reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
+            reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
+            reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
+            reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+
+            /*******************************************
+             * 4. Transfer the decimal integer values 
+             * to 26-bit, twos complement hex values.
+            ********************************************/
+        }
         #endregion Coefficents Calculation
 
 
         #region Properties
         public double[] A
         {
-            set { a = value; }
-            get { return a; }
+            set { p = value; }
+            get { return p; }
         }
 
         public double[] B
         {
-            set { b = value; }
-            get { return b; }
+            set { d = value; }
+            get { return d; }
         }
 
         public double FS
@@ -69,8 +130,8 @@ namespace SGM4711_Eva.MDCommon.Filter
 
         public double F0
         {
-            set { f0 = value; }
-            get { return f0; }
+            set { fc = value; }
+            get { return fc; }
         }
 
         public double Gain_dB

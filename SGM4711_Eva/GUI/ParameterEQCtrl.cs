@@ -32,7 +32,7 @@ namespace SGM4711_Eva.GUI
 
         private void filterSetting_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Test Successed");
+            //MessageBox.Show("Test Successed");
         }
 
         private void button1_Click(object sender, EventArgs e)

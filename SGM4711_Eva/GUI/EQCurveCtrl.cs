@@ -19,6 +19,8 @@ namespace SGM4711_Eva.GUI
         }
 
         #region Params
+        int[][] filterPamras;
+
         int xAxis_Shift = 30;
         int yAxis_Shift = 30;
 
@@ -35,7 +37,6 @@ namespace SGM4711_Eva.GUI
 
         /* Settings: No. Type SubType Frequency Gain BandWidth QFactor View Bypass Color */
         List<FilterSetting> settings = new List<FilterSetting> { };
-        int filterCount = 1;
         #endregion Params
         
         #region Methods
@@ -306,6 +307,12 @@ namespace SGM4711_Eva.GUI
             }
         }
 
+        private void FilterResponseCalc(FilterSetting fset)
+        {
+            //FilterTF(double[] num, double[] den, int num_order, int den_order,
+            //double[] x_out, double[] y_out, double[] freqs, int sign)
+ 
+        }
         #endregion Methods
 
         private void EQ_CurvePanel_Paint(object sender, PaintEventArgs e)
@@ -402,6 +409,11 @@ namespace SGM4711_Eva.GUI
                     break;
 
             }
+        }
+
+        private void btn_Download_EQParam_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

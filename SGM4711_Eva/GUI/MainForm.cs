@@ -12,11 +12,11 @@ using GeneralRegConfigPlatform.MDDataBase;
 using MD.MDCommon;
 using GeneralRegConfigPlatform.MDGUI;
 using DMCommunication;
-using MDRegTool;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using SGM4711_Eva.GUI;
+using SGM4711_Eva.MDUserCtrls;
 
 namespace SGM4711_Eva
 {
@@ -710,6 +710,57 @@ namespace SGM4711_Eva
             ShowModeChanging(blockDiagramMode);
         }
         #endregion Menu Event
+
+        //#region 
+        private void numUP_OpVoltage_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmb_ModeConfig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmb_InterfaceConfig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ClearStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_RefreshStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_InputMux_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_AudioEngine_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trb_MasterVolume_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chb_MuteMasterVolume_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_OutputMux_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 
