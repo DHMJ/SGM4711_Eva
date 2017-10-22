@@ -58,6 +58,10 @@ namespace SGM4711_Eva
             freeRegCtrl = new FreeRegRWCtrl();
             freeRegCtrl.Dock = DockStyle.Fill;
             this.tabP_RegRW.Controls.Add(freeRegCtrl);
+
+            // init Mian GUI commbox
+            this.cmb_ModeConfig.SelectedIndex = 0;
+            this.cmb_InterfaceConfig.SelectedIndex = 0;
         }
 
         private void CreateTabs(DataSet _ds)
@@ -128,6 +132,19 @@ namespace SGM4711_Eva
             //Transfer regmap to other classes
             this.singleRegCtrl.UpdateRegMap(regMap);
             this.freeRegCtrl.UpdateRegMap(regMap);
+        }
+
+        private void ReadAllAndUpdateGUI()
+        {
+            if (regMap != null && myDongle.IsOpen)
+            {
+                foreach(Register tempReg in regMap.RegList)
+                {
+                    myDongle.readRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
+                }                                
+            }
+
+            // Update GUI
         }
 
         #endregion Funcs
@@ -711,35 +728,240 @@ namespace SGM4711_Eva
         }
         #endregion Menu Event
 
-        //#region 
+        #region Main GUI Tab
+        List<Register> regAddrList = new List<Register> { };
         private void numUP_OpVoltage_ValueChanged(object sender, EventArgs e)
         {
-
+            /* *****************************************
+             * Reg0x0C bit[3:2] Operation Voltage[1:0] 
+             * operation voltage
+             * 00:24V(default)
+             * 01:18V
+             * 10:12V
+             * 11:8V
+             * *****************************************/
+            byte tempAddr = 0x0C;
+            byte tempData = 0;
+            if(regMap != null)
+            {
+                tempData = (byte)this.numUP_OpVoltage.Value;
+                tempData = (byte)((tempData >= 24) ? 0x0 : ((tempData >= 18) ? 0x01 :
+                    ((tempData >= 12) ? 0x02 : 0x03)));
+                regMap[tempAddr]["Operation Voltage[1:0]"].BFValue = tempData;
+                if(myDongle.IsOpen)
+                    myDongle.writeRegSingle(0x0C, tempData);
+            }
         }
 
         private void cmb_ModeConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /* **********************************************************************************
+             * 2.0: reg05 [2]=0; reg20 byte1[7] = 1; reg20 byte1[3] = 1; reg1A [7] = 1; 
+             * reg11=0xb8;reg12=0x60;reg13=0xa0;reg14=0x48;
+             * 
+             * 2.1: reg05 [2]=1; reg05 [3]=1; reg1A [7] = 1; reg11=0xb8;reg12=0x60;reg13=0xa0;reg14=0x48;
+             * 
+             * PBTL: reg05 [2]=0; reg20 byte1[7] = 1; reg20 byte1[3] = 1; reg1A [7] = 1; 
+             * eg11=0xb8;reg12=0x60;reg13=0xa0;reg14=0x48;
+             * **********************************************************************************/
+            if (regMap == null)
+                return;
 
+            regAddrList.Clear();
+            Register tempReg;
+            switch (this.cmb_ModeConfig.SelectedIndex)
+            {
+                case 0:
+                    #region 2.0
+                    tempReg = regMap[0x05];
+                    tempReg["MODE_SEL"].BFValue = 0x0;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x20];
+                    tempReg["???"].BFValue = 0x01;          // ?? need confirm
+                    tempReg["CH2_MOD"].BFValue = 0x01;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x1A];
+                    tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x11];
+                    tempReg.RegValue = 0xB8;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x12];
+                    tempReg.RegValue = 0x60;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x13];
+                    tempReg.RegValue = 0xA0;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x14];
+                    tempReg.RegValue = 0x48;
+                    regAddrList.Add(tempReg);
+                    #endregion
+                    break;
+
+                case 1:
+                    #region 2.1
+                    tempReg = regMap[0x05];
+                    tempReg["MODE_SEL"].BFValue = 0x1;
+                    tempReg["SUB_CH_MOD"].BFValue = 0x1;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x1A];
+                    tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x11];
+                    tempReg.RegValue = 0xB8;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x12];
+                    tempReg.RegValue = 0x60;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x13];
+                    tempReg.RegValue = 0xA0;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x14];
+                    tempReg.RegValue = 0x48;
+                    regAddrList.Add(tempReg);
+                    #endregion
+
+                    break;
+
+                case 2:
+                    #region PBTL
+                    tempReg = regMap[0x05];
+                    tempReg["MODE_SEL"].BFValue = 0x0;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x20];
+                    tempReg["???"].BFValue = 0x01;          // ?? need confirm
+                    tempReg["CH2_MOD"].BFValue = 0x01;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x1A];
+                    tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x11];
+                    tempReg.RegValue = 0xB8;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x12];
+                    tempReg.RegValue = 0x60;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x13];
+                    tempReg.RegValue = 0xA0;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x14];
+                    tempReg.RegValue = 0x48;
+                    regAddrList.Add(tempReg);
+                    #endregion
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (myDongle.IsOpen)
+            {
+                for (int ix = 0; ix < regAddrList.Count; ix++)
+                {
+                    tempReg = regAddrList[ix];
+                    myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
+                }
+            }
         }
 
         private void cmb_InterfaceConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /* *****************************************
+             * Reg0x04 bit[3:0] AIF_FORMAT[3:0]
+             * *****************************************/
+            if (regMap == null)
+                return;
+
+            Register tempReg = regMap[0x04];
+            tempReg["AIF_FORMAT[3:0]"].BFValue = (uint)this.cmb_InterfaceConfig.SelectedIndex;
+            if(myDongle.IsOpen)
+                myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
 
         }
 
         private void btn_ClearStatus_Click(object sender, EventArgs e)
         {
-
+            /* Reg0x02 write 0x00 */
+            Register tempReg = regMap[0x02];
+            tempReg.RegValue = 0x00;
+            if (myDongle.IsOpen)
+                myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
         }
 
         private void btn_RefreshStatus_Click(object sender, EventArgs e)
         {
+            /* Read Reg0x02 */
+            if (regMap == null)
+                return;
 
+            if (myDongle.IsOpen)
+            {
+                Register tempReg = regMap[0x02];
+                myDongle.readRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
+
+                // Update indicators
+                UpdateIndicator((byte)tempReg.RegValue);
+            }
+        }
+
+        private void UpdateIndicator(byte regValue)
+        {
+            /* ********
+             * MCLK_ERR
+             * PLL_LOCK_ERR
+             * BCLK_ERR
+             * WS_ERR
+             * FRAME_SLIP
+             * CLIP_INDICATOR
+             * OC_OT_OV_UV
+             * OTW
+             * ********/
+            this.indicator_OTW.IndicatorValue = ((regValue & 0x01) > 0) ?               true : false;
+            this.indicator_PSG.IndicatorValue = (((regValue >> 1) & 0x01) > 0) ?        true : false;
+            this.indicator_Clip.IndicatorValue = (((regValue >> 2) & 0x01) > 0) ?       true : false;
+            this.indicator_FrameSlip.IndicatorValue = (((regValue >> 3) & 0x01) > 0) ?  true : false;
+            this.indicator_WS.IndicatorValue = (((regValue >> 4) & 0x01) > 0) ?         true : false;
+            this.indicator_BCLK.IndicatorValue = (((regValue >> 5) & 0x01) > 0) ?       true : false;
+            this.indicator_PLLLock.IndicatorValue = (((regValue >> 6) & 0x01) > 0) ?    true : false;
+            this.indicator_MCLK.IndicatorValue = (((regValue >> 7) & 0x01) > 0) ?       true : false;
         }
 
         private void btn_InputMux_Click(object sender, EventArgs e)
         {
+            /* 0x20 byte1[6:4], 0x20 byte1[2:0], 0x21 */
+            UpdateRegSettingSource(0x20, new string[] { "SDIN_TO_CH1", "SDIN_TO_CH2" });
+            UpdateRegSettingSource(0x21, new string[] { "CH4_SOURCE_SEL" }, true);
+        }
 
+        private void btn_InputMux_GUI_Click(object sender, EventArgs e)
+        {
+            InputMux inputConfig = new InputMux();
+            inputConfig.FormClosed += new FormClosedEventHandler(inputConfig_FormClosed);
+            inputConfig.ShowDialog();
+        }
+
+        private void inputConfig_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // update register table displaying
+            btn_InputMux_Click(sender, e);
         }
 
         private void btn_AudioEngine_Click(object sender, EventArgs e)
@@ -747,21 +969,98 @@ namespace SGM4711_Eva
 
         }
 
+        private void btn_AudioEngine_GUI_Click(object sender, EventArgs e)
+        {
+            this.tabCtrl_MainGUI.SelectedIndex = 1;
+        }
+
         private void trb_MasterVolume_Scroll(object sender, EventArgs e)
         {
-
+            /* 0x07 */
+            if (regMap != null)
+            {
+                regMap[0x07].RegValue = (uint)this.trb_MasterVolume.Value;
+                UpdateRegSettingSource(0x07);
+            }
         }
 
         private void chb_MuteMasterVolume_CheckedChanged(object sender, EventArgs e)
         {
-
+            /* write 0xFF to 0x07 */
+            if (regMap != null)
+            {
+                regMap[0x07].RegValue = 0xFF;
+                UpdateRegSettingSource(0x07);
+            }
         }
 
         private void btn_OutputMux_Click(object sender, EventArgs e)
         {
-
+            /* 0x25 */
+            UpdateRegSettingSource(0x25, new string[] { "MUX_TO_OUT_A", "MUX_TO_OUT_B",
+                "MUX_TO_OUT_C", "MUX_TO_OUT_D"});
+        }
+        
+        private void btn_OutputMux_GUI_Click(object sender, EventArgs e)
+        {
+            Output_Mux outputMux = new Output_Mux(this.regMap, this.cmb_ModeConfig.SelectedIndex);
+            outputMux.FormClosed += new FormClosedEventHandler(outputMux_FormClosed);
+            outputMux.ShowDialog();
         }
 
+        private void outputMux_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            btn_OutputMux_Click(sender, e);
+        }
+
+        #endregion Main GUI Tab
+
+
+        private void cmbx_DropDownResize(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            int width = comboBox.DropDownWidth;
+            Graphics g = comboBox.CreateGraphics();
+            Font font = comboBox.Font;
+            int vertScrollBarWidth = 0;
+            if (comboBox.Items.Count > comboBox.MaxDropDownItems)
+            {
+                vertScrollBarWidth = SystemInformation.VerticalScrollBarWidth;
+            }
+            int newWidth;
+            foreach (object item in ((ComboBox)sender).Items)
+            {
+                string s = comboBox.GetItemText(item);
+                newWidth = (int)g.MeasureString(s, font).Width + vertScrollBarWidth;
+                if (width < newWidth)
+                {
+                    width = newWidth;
+                }
+            }
+            comboBox.DropDownWidth = width;
+        }
+
+        private void btn_Enable_Click(object sender, EventArgs e)
+        {
+            /* reg 0x05  bit6*/
+            if (regMap == null)
+                return;
+
+            regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
+            UpdateRegSettingSource(0x05, new string[] { "ALL_CH_PD" });
+        }
+
+        private void btn_backToDefault_Click(object sender, EventArgs e)
+        {
+            /* write 0 to reg 0xFF */
+            if (regMap == null)
+                return;
+
+            regMap[0xFF].RegValue = 0x0;
+            UpdateRegSettingSource(0x00);
+
+            ReadAllAndUpdateGUI();
+        }
 
 
 

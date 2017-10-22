@@ -24,23 +24,23 @@ namespace SGM4711_Eva.MDUserCtrls
          *  ReadOnlyAttribute	    该值为某个属性值是否在property控件中只读
          *  DefaultValueAttribute	每个属性的默认值
          ***************************************************************************************/
-        private bool leftArrow = false;
+        private bool leftOrUpArrow = false;
         [CategoryAttribute("Style Settings"), DescriptionAttribute("If this line has left arrow")]
-        public bool LeftArrow
+        public bool LeftOrUpArrow
         {
-            get { return this.leftArrow; }
-            set { this.leftArrow = value; this.Refresh(); }
+            get { return this.leftOrUpArrow; }
+            set { this.leftOrUpArrow = value; this.Refresh(); }
         }
 
-        private bool rightArrow = false;
+        private bool rightOrBelowArrow = false;
         [CategoryAttribute("Style Settings"), DescriptionAttribute("If this line has right arrow")]
-        public bool RightArrow
+        public bool RightOrBelowArrow
         {
-            get { return this.rightArrow; }
-            set { this.rightArrow = value; this.Refresh(); }
+            get { return this.rightOrBelowArrow; }
+            set { this.rightOrBelowArrow = value; this.Refresh(); }
         }
 
-        private int lineWidth = 1;
+        private int lineWidth = 2;
         [CategoryAttribute("Style Settings"), DescriptionAttribute("How width of this line")]
         public int LineWidth
         {
@@ -48,7 +48,7 @@ namespace SGM4711_Eva.MDUserCtrls
             set 
             {
                 this.lineWidth = (value > this.Width * 0.2) ? (int)(this.Width * 0.2) : 
-                    ((value < 1) ? 2 : value);
+                    ((value < 1) ? 1 : value);
                 this.Refresh();
             }
         }
@@ -60,6 +60,22 @@ namespace SGM4711_Eva.MDUserCtrls
             get { return this.lineColor; }
             set { this.lineColor = value; this.Refresh(); }
         }
+
+        private bool horizontal = true;
+        [CategoryAttribute("Style Settings"), DescriptionAttribute("Is this line vertical or horizontal")]
+        public bool Horizontal
+        {
+            get { return this.horizontal; }
+            set 
+            {
+                this.horizontal = value;
+                int tempLength = this.Width;
+                this.Width = this.Height;
+                this.Height = tempLength;
+                this.Refresh(); 
+            }
+        }
+
 
         private void myPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -79,15 +95,31 @@ namespace SGM4711_Eva.MDUserCtrls
             Brush myBrush = new SolidBrush(lineColor);
 
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            e.Graphics.DrawLine(myPen, new Point(0, this.Height / 2), new Point(this.Width, this.Height / 2));
+            if(horizontal)
+                e.Graphics.DrawLine(myPen, new Point(0, this.Height / 2), new Point(this.Width, this.Height / 2));
+            else
+                e.Graphics.DrawLine(myPen, new Point(this.Width / 2, 0), new Point(this.Width / 2, this.Height));
 
             // Draw arrows
-            if (this.leftArrow)
-                e.Graphics.FillPolygon(myBrush, new Point[] { new Point(0, this.Height / 2), 
-                    new Point(10, 0), new Point(10, this.Height) });
-            if (this.rightArrow)
-                e.Graphics.FillPolygon(myBrush, new Point[] { new Point(this.Width, this.Height / 2), 
-                    new Point(this.Width - 10, 0), new Point(this.Width - 10, this.Height) });
+            if (this.leftOrUpArrow)
+            {
+                if(horizontal) // left
+                    e.Graphics.FillPolygon(myBrush, new Point[] { new Point(0, this.Height / 2), 
+                        new Point(10, 0), new Point(10, this.Height) });
+                else           // up 
+                    e.Graphics.FillPolygon(myBrush, new Point[] { new Point(this.Width / 2, 0), 
+                        new Point(0, 10), new Point(this.Width, 10) });
+            }
+
+            if (this.rightOrBelowArrow)
+            {
+                if(horizontal) // right
+                    e.Graphics.FillPolygon(myBrush, new Point[] { new Point(this.Width, this.Height / 2), 
+                        new Point(this.Width - 10, 0), new Point(this.Width - 10, this.Height) });
+                else           // below
+                    e.Graphics.FillPolygon(myBrush, new Point[] { new Point(this.Width / 2, this.Height), 
+                        new Point(0, this.Height - 10), new Point(this.Width, this.Height - 10) });
+            }
         }
 
         private void Indicator_SizeChanged(object sender, EventArgs e)

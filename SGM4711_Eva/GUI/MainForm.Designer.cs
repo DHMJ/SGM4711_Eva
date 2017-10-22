@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menu_main = new System.Windows.Forms.MenuStrip();
             this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +59,44 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabCtrl_MainGUI = new System.Windows.Forms.TabControl();
             this.tabP_systemConfig = new System.Windows.Forms.TabPage();
+            this.chb_Enable = new System.Windows.Forms.CheckBox();
+            this.btn_backToDefault = new System.Windows.Forms.Button();
+            this.btn_Enable = new System.Windows.Forms.Button();
+            this.btn_OutputMux_GUI = new System.Windows.Forms.Button();
+            this.btn_AudioEngine_GUI = new System.Windows.Forms.Button();
+            this.btn_InputMux_GUI = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.line14 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line13 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line15 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line12 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line10 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line11 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_OutputMux = new System.Windows.Forms.Button();
+            this.chb_MuteMasterVolume = new System.Windows.Forms.CheckBox();
+            this.trb_MasterVolume = new System.Windows.Forms.TrackBar();
+            this.line6 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line7 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line8 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_MasterVolume = new System.Windows.Forms.Button();
+            this.line5 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line3 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line4 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_AudioEngine = new System.Windows.Forms.Button();
+            this.btn_InputMux = new System.Windows.Forms.Button();
+            this.line2 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line1 = new SGM4711_Eva.MDUserCtrls.Line();
             this.grb_OpeStatus = new System.Windows.Forms.GroupBox();
             this.txt_SampleRate = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -68,6 +107,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.indicator_OTW = new SGM4711_Eva.MDUserCtrls.Indicator();
+            this.indicator_PSG = new SGM4711_Eva.MDUserCtrls.Indicator();
+            this.indicator_Clip = new SGM4711_Eva.MDUserCtrls.Indicator();
+            this.indicator_FrameSlip = new SGM4711_Eva.MDUserCtrls.Indicator();
+            this.indicator_WS = new SGM4711_Eva.MDUserCtrls.Indicator();
+            this.indicator_BCLK = new SGM4711_Eva.MDUserCtrls.Indicator();
+            this.indicator_PLLLock = new SGM4711_Eva.MDUserCtrls.Indicator();
+            this.indicator_MCLK = new SGM4711_Eva.MDUserCtrls.Indicator();
             this.btn_RefreshStatus = new System.Windows.Forms.Button();
             this.btn_ClearStatus = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -78,6 +125,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.numUP_OpVoltage = new System.Windows.Forms.NumericUpDown();
+            this.label24 = new System.Windows.Forms.Label();
             this.tabP_AudioEngine = new System.Windows.Forms.TabPage();
             this.pnl_Main = new System.Windows.Forms.Panel();
             this.pl_SubReverb = new System.Windows.Forms.Panel();
@@ -125,47 +173,7 @@
             this.tabP_RegRW = new System.Windows.Forms.TabPage();
             this.tabCtrl_Output = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btn_InputMux = new System.Windows.Forms.Button();
-            this.btn_AudioEngine = new System.Windows.Forms.Button();
-            this.btn_MasterVolume = new System.Windows.Forms.Button();
-            this.trb_MasterVolume = new System.Windows.Forms.TrackBar();
-            this.chb_MuteMasterVolume = new System.Windows.Forms.CheckBox();
-            this.btn_OutputMux = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.line14 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line13 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line15 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line12 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line10 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line11 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line6 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line7 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line8 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line5 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line3 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line4 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line2 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line1 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.indicator_OTW = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.indicator_PSG = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.indicator_Clip = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.indicator_FrameSlip = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.indicator_WS = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.indicator_BCLK = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.indicator_PLLLock = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.indicator_MCLK = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.label16 = new System.Windows.Forms.Label();
+            this.myTips = new System.Windows.Forms.ToolTip(this.components);
             this.menu_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -173,6 +181,7 @@
             this.splitContainer1.SuspendLayout();
             this.tabCtrl_MainGUI.SuspendLayout();
             this.tabP_systemConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trb_MasterVolume)).BeginInit();
             this.grb_OpeStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).BeginInit();
             this.tabP_AudioEngine.SuspendLayout();
@@ -183,7 +192,6 @@
             this.splitContainer2.SuspendLayout();
             this.tabCtrl_SingleRegSetting.SuspendLayout();
             this.tabCtrl_Output.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trb_MasterVolume)).BeginInit();
             this.SuspendLayout();
             // 
             // menu_main
@@ -424,23 +432,31 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(994, 554);
-            this.splitContainer1.SplitterDistance = 400;
+            this.splitContainer1.Size = new System.Drawing.Size(994, 710);
+            this.splitContainer1.SplitterDistance = 460;
             this.splitContainer1.TabIndex = 6;
             // 
             // tabCtrl_MainGUI
             // 
+            this.tabCtrl_MainGUI.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabCtrl_MainGUI.Controls.Add(this.tabP_systemConfig);
             this.tabCtrl_MainGUI.Controls.Add(this.tabP_AudioEngine);
             this.tabCtrl_MainGUI.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCtrl_MainGUI.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl_MainGUI.Name = "tabCtrl_MainGUI";
             this.tabCtrl_MainGUI.SelectedIndex = 0;
-            this.tabCtrl_MainGUI.Size = new System.Drawing.Size(994, 400);
+            this.tabCtrl_MainGUI.Size = new System.Drawing.Size(994, 460);
             this.tabCtrl_MainGUI.TabIndex = 1;
             // 
             // tabP_systemConfig
             // 
+            this.tabP_systemConfig.BackColor = System.Drawing.Color.White;
+            this.tabP_systemConfig.Controls.Add(this.chb_Enable);
+            this.tabP_systemConfig.Controls.Add(this.btn_backToDefault);
+            this.tabP_systemConfig.Controls.Add(this.btn_Enable);
+            this.tabP_systemConfig.Controls.Add(this.btn_OutputMux_GUI);
+            this.tabP_systemConfig.Controls.Add(this.btn_AudioEngine_GUI);
+            this.tabP_systemConfig.Controls.Add(this.btn_InputMux_GUI);
             this.tabP_systemConfig.Controls.Add(this.label16);
             this.tabP_systemConfig.Controls.Add(this.label28);
             this.tabP_systemConfig.Controls.Add(this.label25);
@@ -483,13 +499,496 @@
             this.tabP_systemConfig.Controls.Add(this.numUP_OpVoltage);
             this.tabP_systemConfig.Controls.Add(this.label24);
             this.tabP_systemConfig.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.tabP_systemConfig.Location = new System.Drawing.Point(4, 22);
+            this.tabP_systemConfig.Location = new System.Drawing.Point(4, 25);
             this.tabP_systemConfig.Name = "tabP_systemConfig";
             this.tabP_systemConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabP_systemConfig.Size = new System.Drawing.Size(986, 374);
+            this.tabP_systemConfig.Size = new System.Drawing.Size(986, 431);
             this.tabP_systemConfig.TabIndex = 0;
             this.tabP_systemConfig.Text = "System Configuration";
-            this.tabP_systemConfig.UseVisualStyleBackColor = true;
+            // 
+            // chb_Enable
+            // 
+            this.chb_Enable.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chb_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chb_Enable.Location = new System.Drawing.Point(387, 361);
+            this.chb_Enable.Name = "chb_Enable";
+            this.chb_Enable.Size = new System.Drawing.Size(100, 29);
+            this.chb_Enable.TabIndex = 41;
+            this.chb_Enable.Text = "Enable";
+            this.chb_Enable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chb_Enable.UseVisualStyleBackColor = true;
+            this.chb_Enable.Visible = false;
+            // 
+            // btn_backToDefault
+            // 
+            this.btn_backToDefault.AutoSize = true;
+            this.btn_backToDefault.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_backToDefault.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_backToDefault.Location = new System.Drawing.Point(231, 361);
+            this.btn_backToDefault.Name = "btn_backToDefault";
+            this.btn_backToDefault.Size = new System.Drawing.Size(100, 29);
+            this.btn_backToDefault.TabIndex = 40;
+            this.btn_backToDefault.Text = "Back to Default";
+            this.btn_backToDefault.UseVisualStyleBackColor = true;
+            this.btn_backToDefault.Click += new System.EventHandler(this.btn_backToDefault_Click);
+            // 
+            // btn_Enable
+            // 
+            this.btn_Enable.AutoSize = true;
+            this.btn_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Enable.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_Enable.Location = new System.Drawing.Point(73, 361);
+            this.btn_Enable.Name = "btn_Enable";
+            this.btn_Enable.Size = new System.Drawing.Size(100, 29);
+            this.btn_Enable.TabIndex = 39;
+            this.btn_Enable.Text = "Enable";
+            this.btn_Enable.UseVisualStyleBackColor = true;
+            this.btn_Enable.Click += new System.EventHandler(this.btn_Enable_Click);
+            // 
+            // btn_OutputMux_GUI
+            // 
+            this.btn_OutputMux_GUI.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_OutputMux_GUI.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_OutputMux_GUI.Location = new System.Drawing.Point(723, 263);
+            this.btn_OutputMux_GUI.Name = "btn_OutputMux_GUI";
+            this.btn_OutputMux_GUI.Size = new System.Drawing.Size(62, 23);
+            this.btn_OutputMux_GUI.TabIndex = 38;
+            this.btn_OutputMux_GUI.Text = "Config";
+            this.btn_OutputMux_GUI.UseVisualStyleBackColor = false;
+            this.btn_OutputMux_GUI.Click += new System.EventHandler(this.btn_OutputMux_GUI_Click);
+            // 
+            // btn_AudioEngine_GUI
+            // 
+            this.btn_AudioEngine_GUI.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_AudioEngine_GUI.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_AudioEngine_GUI.Location = new System.Drawing.Point(352, 263);
+            this.btn_AudioEngine_GUI.Name = "btn_AudioEngine_GUI";
+            this.btn_AudioEngine_GUI.Size = new System.Drawing.Size(62, 23);
+            this.btn_AudioEngine_GUI.TabIndex = 37;
+            this.btn_AudioEngine_GUI.Text = "Config";
+            this.btn_AudioEngine_GUI.UseVisualStyleBackColor = false;
+            this.btn_AudioEngine_GUI.Click += new System.EventHandler(this.btn_AudioEngine_GUI_Click);
+            // 
+            // btn_InputMux_GUI
+            // 
+            this.btn_InputMux_GUI.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_InputMux_GUI.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_InputMux_GUI.Location = new System.Drawing.Point(168, 263);
+            this.btn_InputMux_GUI.Name = "btn_InputMux_GUI";
+            this.btn_InputMux_GUI.Size = new System.Drawing.Size(62, 23);
+            this.btn_InputMux_GUI.TabIndex = 36;
+            this.btn_InputMux_GUI.Text = "Config";
+            this.btn_InputMux_GUI.UseVisualStyleBackColor = false;
+            this.btn_InputMux_GUI.Click += new System.EventHandler(this.btn_InputMux_GUI_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label16.Location = new System.Drawing.Point(262, 281);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(57, 14);
+            this.label16.TabIndex = 35;
+            this.label16.Text = "SubCH IN";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label28.Location = new System.Drawing.Point(821, 295);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(46, 14);
+            this.label28.TabIndex = 34;
+            this.label28.Text = "PWM D";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label25.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label25.Location = new System.Drawing.Point(821, 163);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(45, 14);
+            this.label25.TabIndex = 33;
+            this.label25.Text = "PWM A";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label26.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label26.Location = new System.Drawing.Point(821, 207);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(45, 14);
+            this.label26.TabIndex = 32;
+            this.label26.Text = "PWM B";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label27.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label27.Location = new System.Drawing.Point(821, 251);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(45, 14);
+            this.label27.TabIndex = 31;
+            this.label27.Text = "PWM C";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label22.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label22.Location = new System.Drawing.Point(630, 175);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(54, 14);
+            this.label22.TabIndex = 30;
+            this.label22.Text = "CHL OUT";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label23.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label23.Location = new System.Drawing.Point(630, 228);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(55, 14);
+            this.label23.TabIndex = 29;
+            this.label23.Text = "CHR OUT";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label14.Location = new System.Drawing.Point(73, 253);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 14);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "Source R";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label18.Location = new System.Drawing.Point(262, 175);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(43, 14);
+            this.label18.TabIndex = 24;
+            this.label18.Text = "CHL IN";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label17.Location = new System.Drawing.Point(262, 228);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 14);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "CHR IN";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label5.Location = new System.Drawing.Point(73, 191);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 14);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Source L";
+            // 
+            // line14
+            // 
+            this.line14.BackColor = System.Drawing.Color.Transparent;
+            this.line14.Horizontal = true;
+            this.line14.LeftOrUpArrow = false;
+            this.line14.LineColor = System.Drawing.Color.SteelBlue;
+            this.line14.LineWidth = 2;
+            this.line14.Location = new System.Drawing.Point(815, 219);
+            this.line14.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
+            this.line14.Name = "line14";
+            this.line14.RightOrBelowArrow = true;
+            this.line14.Size = new System.Drawing.Size(66, 10);
+            this.line14.TabIndex = 23;
+            // 
+            // line9
+            // 
+            this.line9.BackColor = System.Drawing.Color.Transparent;
+            this.line9.Horizontal = true;
+            this.line9.LeftOrUpArrow = false;
+            this.line9.LineColor = System.Drawing.Color.SteelBlue;
+            this.line9.LineWidth = 2;
+            this.line9.Location = new System.Drawing.Point(629, 240);
+            this.line9.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
+            this.line9.Name = "line9";
+            this.line9.RightOrBelowArrow = true;
+            this.line9.Size = new System.Drawing.Size(66, 10);
+            this.line9.TabIndex = 23;
+            // 
+            // line13
+            // 
+            this.line13.BackColor = System.Drawing.Color.Transparent;
+            this.line13.Horizontal = true;
+            this.line13.LeftOrUpArrow = false;
+            this.line13.LineColor = System.Drawing.Color.SteelBlue;
+            this.line13.LineWidth = 2;
+            this.line13.Location = new System.Drawing.Point(815, 263);
+            this.line13.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
+            this.line13.Name = "line13";
+            this.line13.RightOrBelowArrow = true;
+            this.line13.Size = new System.Drawing.Size(66, 10);
+            this.line13.TabIndex = 22;
+            // 
+            // line15
+            // 
+            this.line15.BackColor = System.Drawing.Color.Transparent;
+            this.line15.Horizontal = true;
+            this.line15.LeftOrUpArrow = false;
+            this.line15.LineColor = System.Drawing.Color.SteelBlue;
+            this.line15.LineWidth = 2;
+            this.line15.Location = new System.Drawing.Point(815, 307);
+            this.line15.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
+            this.line15.Name = "line15";
+            this.line15.RightOrBelowArrow = true;
+            this.line15.Size = new System.Drawing.Size(66, 10);
+            this.line15.TabIndex = 21;
+            // 
+            // line12
+            // 
+            this.line12.BackColor = System.Drawing.Color.Transparent;
+            this.line12.Horizontal = true;
+            this.line12.LeftOrUpArrow = false;
+            this.line12.LineColor = System.Drawing.Color.SteelBlue;
+            this.line12.LineWidth = 2;
+            this.line12.Location = new System.Drawing.Point(815, 175);
+            this.line12.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
+            this.line12.Name = "line12";
+            this.line12.RightOrBelowArrow = true;
+            this.line12.Size = new System.Drawing.Size(66, 10);
+            this.line12.TabIndex = 21;
+            // 
+            // line10
+            // 
+            this.line10.BackColor = System.Drawing.Color.Transparent;
+            this.line10.Horizontal = true;
+            this.line10.LeftOrUpArrow = false;
+            this.line10.LineColor = System.Drawing.Color.SteelBlue;
+            this.line10.LineWidth = 2;
+            this.line10.Location = new System.Drawing.Point(629, 293);
+            this.line10.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
+            this.line10.Name = "line10";
+            this.line10.RightOrBelowArrow = true;
+            this.line10.Size = new System.Drawing.Size(66, 10);
+            this.line10.TabIndex = 22;
+            // 
+            // line11
+            // 
+            this.line11.BackColor = System.Drawing.Color.Transparent;
+            this.line11.Horizontal = true;
+            this.line11.LeftOrUpArrow = false;
+            this.line11.LineColor = System.Drawing.Color.SteelBlue;
+            this.line11.LineWidth = 2;
+            this.line11.Location = new System.Drawing.Point(629, 187);
+            this.line11.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
+            this.line11.Name = "line11";
+            this.line11.RightOrBelowArrow = true;
+            this.line11.Size = new System.Drawing.Size(66, 10);
+            this.line11.TabIndex = 21;
+            // 
+            // btn_OutputMux
+            // 
+            this.btn_OutputMux.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_OutputMux.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_OutputMux.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.btn_OutputMux.Location = new System.Drawing.Point(694, 158);
+            this.btn_OutputMux.Name = "btn_OutputMux";
+            this.btn_OutputMux.Size = new System.Drawing.Size(121, 176);
+            this.btn_OutputMux.TabIndex = 20;
+            this.btn_OutputMux.Text = "Output Mux\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
+            this.btn_OutputMux.UseVisualStyleBackColor = false;
+            this.btn_OutputMux.Click += new System.EventHandler(this.btn_OutputMux_Click);
+            // 
+            // chb_MuteMasterVolume
+            // 
+            this.chb_MuteMasterVolume.AutoSize = true;
+            this.chb_MuteMasterVolume.BackColor = System.Drawing.Color.AliceBlue;
+            this.chb_MuteMasterVolume.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.chb_MuteMasterVolume.Location = new System.Drawing.Point(578, 288);
+            this.chb_MuteMasterVolume.Name = "chb_MuteMasterVolume";
+            this.chb_MuteMasterVolume.Size = new System.Drawing.Size(39, 34);
+            this.chb_MuteMasterVolume.TabIndex = 19;
+            this.chb_MuteMasterVolume.Text = "Mute";
+            this.chb_MuteMasterVolume.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.chb_MuteMasterVolume.UseVisualStyleBackColor = false;
+            this.chb_MuteMasterVolume.CheckedChanged += new System.EventHandler(this.chb_MuteMasterVolume_CheckedChanged);
+            // 
+            // trb_MasterVolume
+            // 
+            this.trb_MasterVolume.BackColor = System.Drawing.Color.AliceBlue;
+            this.trb_MasterVolume.Location = new System.Drawing.Point(527, 182);
+            this.trb_MasterVolume.Maximum = 255;
+            this.trb_MasterVolume.Name = "trb_MasterVolume";
+            this.trb_MasterVolume.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trb_MasterVolume.Size = new System.Drawing.Size(45, 148);
+            this.trb_MasterVolume.TabIndex = 18;
+            this.trb_MasterVolume.TickFrequency = 25;
+            this.trb_MasterVolume.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trb_MasterVolume.Scroll += new System.EventHandler(this.trb_MasterVolume_Scroll);
+            // 
+            // line6
+            // 
+            this.line6.BackColor = System.Drawing.Color.Transparent;
+            this.line6.Horizontal = true;
+            this.line6.LeftOrUpArrow = false;
+            this.line6.LineColor = System.Drawing.Color.SteelBlue;
+            this.line6.LineWidth = 2;
+            this.line6.Location = new System.Drawing.Point(444, 240);
+            this.line6.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
+            this.line6.Name = "line6";
+            this.line6.RightOrBelowArrow = true;
+            this.line6.Size = new System.Drawing.Size(66, 10);
+            this.line6.TabIndex = 17;
+            // 
+            // line7
+            // 
+            this.line7.BackColor = System.Drawing.Color.Transparent;
+            this.line7.Horizontal = true;
+            this.line7.LeftOrUpArrow = false;
+            this.line7.LineColor = System.Drawing.Color.SteelBlue;
+            this.line7.LineWidth = 2;
+            this.line7.Location = new System.Drawing.Point(444, 293);
+            this.line7.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
+            this.line7.Name = "line7";
+            this.line7.RightOrBelowArrow = true;
+            this.line7.Size = new System.Drawing.Size(66, 10);
+            this.line7.TabIndex = 16;
+            // 
+            // line8
+            // 
+            this.line8.BackColor = System.Drawing.Color.Transparent;
+            this.line8.Horizontal = true;
+            this.line8.LeftOrUpArrow = false;
+            this.line8.LineColor = System.Drawing.Color.SteelBlue;
+            this.line8.LineWidth = 2;
+            this.line8.Location = new System.Drawing.Point(444, 187);
+            this.line8.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
+            this.line8.Name = "line8";
+            this.line8.RightOrBelowArrow = true;
+            this.line8.Size = new System.Drawing.Size(66, 10);
+            this.line8.TabIndex = 15;
+            // 
+            // btn_MasterVolume
+            // 
+            this.btn_MasterVolume.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_MasterVolume.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_MasterVolume.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.btn_MasterVolume.Location = new System.Drawing.Point(509, 158);
+            this.btn_MasterVolume.Name = "btn_MasterVolume";
+            this.btn_MasterVolume.Size = new System.Drawing.Size(121, 176);
+            this.btn_MasterVolume.TabIndex = 14;
+            this.btn_MasterVolume.Text = "Master Volume\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
+            this.btn_MasterVolume.UseVisualStyleBackColor = false;
+            // 
+            // line5
+            // 
+            this.line5.BackColor = System.Drawing.Color.Transparent;
+            this.line5.Horizontal = true;
+            this.line5.LeftOrUpArrow = false;
+            this.line5.LineColor = System.Drawing.Color.SteelBlue;
+            this.line5.LineWidth = 2;
+            this.line5.Location = new System.Drawing.Point(259, 240);
+            this.line5.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
+            this.line5.Name = "line5";
+            this.line5.RightOrBelowArrow = true;
+            this.line5.Size = new System.Drawing.Size(66, 10);
+            this.line5.TabIndex = 13;
+            // 
+            // line3
+            // 
+            this.line3.BackColor = System.Drawing.Color.Transparent;
+            this.line3.Horizontal = true;
+            this.line3.LeftOrUpArrow = false;
+            this.line3.LineColor = System.Drawing.Color.SteelBlue;
+            this.line3.LineWidth = 2;
+            this.line3.Location = new System.Drawing.Point(259, 293);
+            this.line3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
+            this.line3.Name = "line3";
+            this.line3.RightOrBelowArrow = true;
+            this.line3.Size = new System.Drawing.Size(66, 10);
+            this.line3.TabIndex = 12;
+            // 
+            // line4
+            // 
+            this.line4.BackColor = System.Drawing.Color.Transparent;
+            this.line4.Horizontal = true;
+            this.line4.LeftOrUpArrow = false;
+            this.line4.LineColor = System.Drawing.Color.SteelBlue;
+            this.line4.LineWidth = 2;
+            this.line4.Location = new System.Drawing.Point(259, 187);
+            this.line4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.line4.Name = "line4";
+            this.line4.RightOrBelowArrow = true;
+            this.line4.Size = new System.Drawing.Size(66, 10);
+            this.line4.TabIndex = 11;
+            // 
+            // btn_AudioEngine
+            // 
+            this.btn_AudioEngine.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_AudioEngine.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_AudioEngine.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.btn_AudioEngine.Location = new System.Drawing.Point(324, 158);
+            this.btn_AudioEngine.Name = "btn_AudioEngine";
+            this.btn_AudioEngine.Size = new System.Drawing.Size(121, 176);
+            this.btn_AudioEngine.TabIndex = 10;
+            this.btn_AudioEngine.Text = "Audio Process\r\nEngine\r\n\r\n\r\n\r\n\r\n\r\n";
+            this.btn_AudioEngine.UseVisualStyleBackColor = false;
+            this.btn_AudioEngine.Click += new System.EventHandler(this.btn_AudioEngine_Click);
+            // 
+            // btn_InputMux
+            // 
+            this.btn_InputMux.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_InputMux.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_InputMux.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.btn_InputMux.Location = new System.Drawing.Point(139, 158);
+            this.btn_InputMux.Name = "btn_InputMux";
+            this.btn_InputMux.Size = new System.Drawing.Size(121, 176);
+            this.btn_InputMux.TabIndex = 9;
+            this.btn_InputMux.Text = "Input Mux\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
+            this.btn_InputMux.UseVisualStyleBackColor = false;
+            this.btn_InputMux.Click += new System.EventHandler(this.btn_InputMux_Click);
+            // 
+            // line2
+            // 
+            this.line2.BackColor = System.Drawing.Color.Transparent;
+            this.line2.Horizontal = true;
+            this.line2.LeftOrUpArrow = false;
+            this.line2.LineColor = System.Drawing.Color.SteelBlue;
+            this.line2.LineWidth = 2;
+            this.line2.Location = new System.Drawing.Point(73, 272);
+            this.line2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.line2.Name = "line2";
+            this.line2.RightOrBelowArrow = true;
+            this.line2.Size = new System.Drawing.Size(66, 10);
+            this.line2.TabIndex = 8;
+            // 
+            // line1
+            // 
+            this.line1.BackColor = System.Drawing.Color.Transparent;
+            this.line1.Horizontal = true;
+            this.line1.LeftOrUpArrow = false;
+            this.line1.LineColor = System.Drawing.Color.SteelBlue;
+            this.line1.LineWidth = 2;
+            this.line1.Location = new System.Drawing.Point(73, 211);
+            this.line1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line1.Name = "line1";
+            this.line1.RightOrBelowArrow = true;
+            this.line1.Size = new System.Drawing.Size(66, 10);
+            this.line1.TabIndex = 8;
             // 
             // grb_OpeStatus
             // 
@@ -619,6 +1118,102 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "MCLK";
             // 
+            // indicator_OTW
+            // 
+            this.indicator_OTW.BackColor = System.Drawing.Color.Transparent;
+            this.indicator_OTW.IndicatorColorReverse = true;
+            this.indicator_OTW.Location = new System.Drawing.Point(481, 62);
+            this.indicator_OTW.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.indicator_OTW.MaximumSize = new System.Drawing.Size(136, 177);
+            this.indicator_OTW.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_OTW.Name = "indicator_OTW";
+            this.indicator_OTW.Size = new System.Drawing.Size(25, 25);
+            this.indicator_OTW.TabIndex = 6;
+            // 
+            // indicator_PSG
+            // 
+            this.indicator_PSG.BackColor = System.Drawing.Color.Transparent;
+            this.indicator_PSG.IndicatorColorReverse = true;
+            this.indicator_PSG.Location = new System.Drawing.Point(430, 62);
+            this.indicator_PSG.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.indicator_PSG.MaximumSize = new System.Drawing.Size(136, 177);
+            this.indicator_PSG.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_PSG.Name = "indicator_PSG";
+            this.indicator_PSG.Size = new System.Drawing.Size(25, 25);
+            this.indicator_PSG.TabIndex = 6;
+            // 
+            // indicator_Clip
+            // 
+            this.indicator_Clip.BackColor = System.Drawing.Color.Transparent;
+            this.indicator_Clip.IndicatorColorReverse = true;
+            this.indicator_Clip.Location = new System.Drawing.Point(379, 62);
+            this.indicator_Clip.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.indicator_Clip.MaximumSize = new System.Drawing.Size(136, 177);
+            this.indicator_Clip.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_Clip.Name = "indicator_Clip";
+            this.indicator_Clip.Size = new System.Drawing.Size(25, 25);
+            this.indicator_Clip.TabIndex = 6;
+            // 
+            // indicator_FrameSlip
+            // 
+            this.indicator_FrameSlip.BackColor = System.Drawing.Color.Transparent;
+            this.indicator_FrameSlip.IndicatorColorReverse = true;
+            this.indicator_FrameSlip.Location = new System.Drawing.Point(328, 62);
+            this.indicator_FrameSlip.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.indicator_FrameSlip.MaximumSize = new System.Drawing.Size(136, 177);
+            this.indicator_FrameSlip.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_FrameSlip.Name = "indicator_FrameSlip";
+            this.indicator_FrameSlip.Size = new System.Drawing.Size(25, 25);
+            this.indicator_FrameSlip.TabIndex = 6;
+            // 
+            // indicator_WS
+            // 
+            this.indicator_WS.BackColor = System.Drawing.Color.Transparent;
+            this.indicator_WS.IndicatorColorReverse = true;
+            this.indicator_WS.Location = new System.Drawing.Point(277, 62);
+            this.indicator_WS.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.indicator_WS.MaximumSize = new System.Drawing.Size(136, 177);
+            this.indicator_WS.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_WS.Name = "indicator_WS";
+            this.indicator_WS.Size = new System.Drawing.Size(25, 25);
+            this.indicator_WS.TabIndex = 6;
+            // 
+            // indicator_BCLK
+            // 
+            this.indicator_BCLK.BackColor = System.Drawing.Color.Transparent;
+            this.indicator_BCLK.IndicatorColorReverse = true;
+            this.indicator_BCLK.Location = new System.Drawing.Point(226, 62);
+            this.indicator_BCLK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.indicator_BCLK.MaximumSize = new System.Drawing.Size(136, 177);
+            this.indicator_BCLK.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_BCLK.Name = "indicator_BCLK";
+            this.indicator_BCLK.Size = new System.Drawing.Size(25, 25);
+            this.indicator_BCLK.TabIndex = 6;
+            // 
+            // indicator_PLLLock
+            // 
+            this.indicator_PLLLock.BackColor = System.Drawing.Color.Transparent;
+            this.indicator_PLLLock.IndicatorColorReverse = true;
+            this.indicator_PLLLock.Location = new System.Drawing.Point(175, 62);
+            this.indicator_PLLLock.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.indicator_PLLLock.MaximumSize = new System.Drawing.Size(136, 177);
+            this.indicator_PLLLock.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_PLLLock.Name = "indicator_PLLLock";
+            this.indicator_PLLLock.Size = new System.Drawing.Size(25, 25);
+            this.indicator_PLLLock.TabIndex = 6;
+            // 
+            // indicator_MCLK
+            // 
+            this.indicator_MCLK.BackColor = System.Drawing.Color.Transparent;
+            this.indicator_MCLK.IndicatorColorReverse = true;
+            this.indicator_MCLK.Location = new System.Drawing.Point(124, 62);
+            this.indicator_MCLK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.indicator_MCLK.MaximumSize = new System.Drawing.Size(117, 133);
+            this.indicator_MCLK.MinimumSize = new System.Drawing.Size(12, 13);
+            this.indicator_MCLK.Name = "indicator_MCLK";
+            this.indicator_MCLK.Size = new System.Drawing.Size(25, 25);
+            this.indicator_MCLK.TabIndex = 6;
+            // 
             // btn_RefreshStatus
             // 
             this.btn_RefreshStatus.AutoSize = true;
@@ -674,6 +1269,7 @@
             this.cmb_InterfaceConfig.Name = "cmb_InterfaceConfig";
             this.cmb_InterfaceConfig.Size = new System.Drawing.Size(101, 33);
             this.cmb_InterfaceConfig.TabIndex = 6;
+            this.cmb_InterfaceConfig.DropDown += new System.EventHandler(this.cmbx_DropDownResize);
             this.cmb_InterfaceConfig.SelectedIndexChanged += new System.EventHandler(this.cmb_InterfaceConfig_SelectedIndexChanged);
             // 
             // cmb_ModeConfig
@@ -753,6 +1349,7 @@
             this.numUP_OpVoltage.Size = new System.Drawing.Size(80, 33);
             this.numUP_OpVoltage.TabIndex = 0;
             this.numUP_OpVoltage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.myTips.SetToolTip(this.numUP_OpVoltage, "b00: 24V(default)\r\nb01: 18V\r\nb10: 12V\r\nb11: 8V");
             this.numUP_OpVoltage.Value = new decimal(new int[] {
             18,
             0,
@@ -760,13 +1357,24 @@
             0});
             this.numUP_OpVoltage.ValueChanged += new System.EventHandler(this.numUP_OpVoltage_ValueChanged);
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label24.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label24.Location = new System.Drawing.Point(630, 281);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(68, 14);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "SubCH OUT";
+            // 
             // tabP_AudioEngine
             // 
             this.tabP_AudioEngine.Controls.Add(this.pnl_Main);
-            this.tabP_AudioEngine.Location = new System.Drawing.Point(4, 22);
+            this.tabP_AudioEngine.Location = new System.Drawing.Point(4, 25);
             this.tabP_AudioEngine.Name = "tabP_AudioEngine";
             this.tabP_AudioEngine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabP_AudioEngine.Size = new System.Drawing.Size(986, 374);
+            this.tabP_AudioEngine.Size = new System.Drawing.Size(986, 431);
             this.tabP_AudioEngine.TabIndex = 1;
             this.tabP_AudioEngine.Text = "Audio Engine";
             this.tabP_AudioEngine.UseVisualStyleBackColor = true;
@@ -819,7 +1427,7 @@
             this.pnl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Main.Location = new System.Drawing.Point(3, 3);
             this.pnl_Main.Name = "pnl_Main";
-            this.pnl_Main.Size = new System.Drawing.Size(980, 368);
+            this.pnl_Main.Size = new System.Drawing.Size(980, 425);
             this.pnl_Main.TabIndex = 0;
             // 
             // pl_SubReverb
@@ -1160,7 +1768,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabCtrl_Output);
-            this.splitContainer2.Size = new System.Drawing.Size(994, 150);
+            this.splitContainer2.Size = new System.Drawing.Size(994, 246);
             this.splitContainer2.SplitterDistance = 462;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -1173,7 +1781,7 @@
             this.tabCtrl_SingleRegSetting.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl_SingleRegSetting.Name = "tabCtrl_SingleRegSetting";
             this.tabCtrl_SingleRegSetting.SelectedIndex = 0;
-            this.tabCtrl_SingleRegSetting.Size = new System.Drawing.Size(462, 150);
+            this.tabCtrl_SingleRegSetting.Size = new System.Drawing.Size(462, 246);
             this.tabCtrl_SingleRegSetting.TabIndex = 0;
             // 
             // tabP_SingleCtrl
@@ -1182,7 +1790,7 @@
             this.tabP_SingleCtrl.Location = new System.Drawing.Point(4, 25);
             this.tabP_SingleCtrl.Name = "tabP_SingleCtrl";
             this.tabP_SingleCtrl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabP_SingleCtrl.Size = new System.Drawing.Size(454, 121);
+            this.tabP_SingleCtrl.Size = new System.Drawing.Size(454, 217);
             this.tabP_SingleCtrl.TabIndex = 0;
             this.tabP_SingleCtrl.Text = "Single Control";
             // 
@@ -1191,7 +1799,7 @@
             this.tabP_RegRW.BackColor = System.Drawing.Color.White;
             this.tabP_RegRW.Location = new System.Drawing.Point(4, 25);
             this.tabP_RegRW.Name = "tabP_RegRW";
-            this.tabP_RegRW.Size = new System.Drawing.Size(454, 121);
+            this.tabP_RegRW.Size = new System.Drawing.Size(454, 217);
             this.tabP_RegRW.TabIndex = 2;
             this.tabP_RegRW.Text = "Register R/W";
             // 
@@ -1203,7 +1811,7 @@
             this.tabCtrl_Output.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl_Output.Name = "tabCtrl_Output";
             this.tabCtrl_Output.SelectedIndex = 0;
-            this.tabCtrl_Output.Size = new System.Drawing.Size(528, 150);
+            this.tabCtrl_Output.Size = new System.Drawing.Size(528, 246);
             this.tabCtrl_Output.TabIndex = 0;
             // 
             // tabPage1
@@ -1212,520 +1820,21 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(520, 121);
+            this.tabPage1.Size = new System.Drawing.Size(520, 217);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
-            // 
-            // btn_InputMux
-            // 
-            this.btn_InputMux.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_InputMux.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_InputMux.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_InputMux.Location = new System.Drawing.Point(139, 158);
-            this.btn_InputMux.Name = "btn_InputMux";
-            this.btn_InputMux.Size = new System.Drawing.Size(121, 176);
-            this.btn_InputMux.TabIndex = 9;
-            this.btn_InputMux.Text = "Input Mux";
-            this.btn_InputMux.UseVisualStyleBackColor = false;
-            this.btn_InputMux.Click += new System.EventHandler(this.btn_InputMux_Click);
-            // 
-            // btn_AudioEngine
-            // 
-            this.btn_AudioEngine.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_AudioEngine.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_AudioEngine.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_AudioEngine.Location = new System.Drawing.Point(324, 158);
-            this.btn_AudioEngine.Name = "btn_AudioEngine";
-            this.btn_AudioEngine.Size = new System.Drawing.Size(121, 176);
-            this.btn_AudioEngine.TabIndex = 10;
-            this.btn_AudioEngine.Text = "Audio Process\r\nEngine";
-            this.btn_AudioEngine.UseVisualStyleBackColor = false;
-            this.btn_AudioEngine.Click += new System.EventHandler(this.btn_AudioEngine_Click);
-            // 
-            // btn_MasterVolume
-            // 
-            this.btn_MasterVolume.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_MasterVolume.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_MasterVolume.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_MasterVolume.Location = new System.Drawing.Point(509, 158);
-            this.btn_MasterVolume.Name = "btn_MasterVolume";
-            this.btn_MasterVolume.Size = new System.Drawing.Size(121, 176);
-            this.btn_MasterVolume.TabIndex = 14;
-            this.btn_MasterVolume.Text = "Master Volume\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
-            this.btn_MasterVolume.UseVisualStyleBackColor = false;
-            // 
-            // trb_MasterVolume
-            // 
-            this.trb_MasterVolume.BackColor = System.Drawing.Color.AliceBlue;
-            this.trb_MasterVolume.Location = new System.Drawing.Point(527, 182);
-            this.trb_MasterVolume.Name = "trb_MasterVolume";
-            this.trb_MasterVolume.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trb_MasterVolume.Size = new System.Drawing.Size(45, 148);
-            this.trb_MasterVolume.TabIndex = 18;
-            this.trb_MasterVolume.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trb_MasterVolume.Scroll += new System.EventHandler(this.trb_MasterVolume_Scroll);
-            // 
-            // chb_MuteMasterVolume
-            // 
-            this.chb_MuteMasterVolume.AutoSize = true;
-            this.chb_MuteMasterVolume.BackColor = System.Drawing.Color.AliceBlue;
-            this.chb_MuteMasterVolume.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.chb_MuteMasterVolume.Location = new System.Drawing.Point(578, 288);
-            this.chb_MuteMasterVolume.Name = "chb_MuteMasterVolume";
-            this.chb_MuteMasterVolume.Size = new System.Drawing.Size(39, 34);
-            this.chb_MuteMasterVolume.TabIndex = 19;
-            this.chb_MuteMasterVolume.Text = "Mute";
-            this.chb_MuteMasterVolume.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.chb_MuteMasterVolume.UseVisualStyleBackColor = false;
-            this.chb_MuteMasterVolume.CheckedChanged += new System.EventHandler(this.chb_MuteMasterVolume_CheckedChanged);
-            // 
-            // btn_OutputMux
-            // 
-            this.btn_OutputMux.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_OutputMux.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_OutputMux.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_OutputMux.Location = new System.Drawing.Point(694, 158);
-            this.btn_OutputMux.Name = "btn_OutputMux";
-            this.btn_OutputMux.Size = new System.Drawing.Size(121, 176);
-            this.btn_OutputMux.TabIndex = 20;
-            this.btn_OutputMux.Text = "Output Mux";
-            this.btn_OutputMux.UseVisualStyleBackColor = false;
-            this.btn_OutputMux.Click += new System.EventHandler(this.btn_OutputMux_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(73, 191);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 14);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Source L";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(73, 253);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(52, 14);
-            this.label14.TabIndex = 24;
-            this.label14.Text = "Source R";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label17.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label17.Location = new System.Drawing.Point(262, 228);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(44, 14);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "CHR IN";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label18.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label18.Location = new System.Drawing.Point(262, 175);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(43, 14);
-            this.label18.TabIndex = 24;
-            this.label18.Text = "CHL IN";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label22.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label22.Location = new System.Drawing.Point(630, 175);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(54, 14);
-            this.label22.TabIndex = 30;
-            this.label22.Text = "CHL OUT";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label23.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label23.Location = new System.Drawing.Point(630, 228);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(55, 14);
-            this.label23.TabIndex = 29;
-            this.label23.Text = "CHR OUT";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label24.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label24.Location = new System.Drawing.Point(630, 281);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(68, 14);
-            this.label24.TabIndex = 28;
-            this.label24.Text = "SubCH OUT";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label25.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label25.Location = new System.Drawing.Point(821, 163);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(45, 14);
-            this.label25.TabIndex = 33;
-            this.label25.Text = "PWM A";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label26.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label26.Location = new System.Drawing.Point(821, 207);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(45, 14);
-            this.label26.TabIndex = 32;
-            this.label26.Text = "PWM B";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label27.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label27.Location = new System.Drawing.Point(821, 251);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(45, 14);
-            this.label27.TabIndex = 31;
-            this.label27.Text = "PWM C";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label28.Location = new System.Drawing.Point(821, 295);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(46, 14);
-            this.label28.TabIndex = 34;
-            this.label28.Text = "PWM D";
-            // 
-            // line14
-            // 
-            this.line14.BackColor = System.Drawing.Color.White;
-            this.line14.LeftArrow = false;
-            this.line14.LineColor = System.Drawing.Color.SteelBlue;
-            this.line14.LineWidth = 2;
-            this.line14.Location = new System.Drawing.Point(815, 219);
-            this.line14.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
-            this.line14.Name = "line14";
-            this.line14.RightArrow = true;
-            this.line14.Size = new System.Drawing.Size(66, 10);
-            this.line14.TabIndex = 23;
-            // 
-            // line9
-            // 
-            this.line9.BackColor = System.Drawing.Color.White;
-            this.line9.LeftArrow = false;
-            this.line9.LineColor = System.Drawing.Color.SteelBlue;
-            this.line9.LineWidth = 2;
-            this.line9.Location = new System.Drawing.Point(629, 240);
-            this.line9.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
-            this.line9.Name = "line9";
-            this.line9.RightArrow = true;
-            this.line9.Size = new System.Drawing.Size(66, 10);
-            this.line9.TabIndex = 23;
-            // 
-            // line13
-            // 
-            this.line13.BackColor = System.Drawing.Color.White;
-            this.line13.LeftArrow = false;
-            this.line13.LineColor = System.Drawing.Color.SteelBlue;
-            this.line13.LineWidth = 2;
-            this.line13.Location = new System.Drawing.Point(815, 263);
-            this.line13.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
-            this.line13.Name = "line13";
-            this.line13.RightArrow = true;
-            this.line13.Size = new System.Drawing.Size(66, 10);
-            this.line13.TabIndex = 22;
-            // 
-            // line15
-            // 
-            this.line15.BackColor = System.Drawing.Color.White;
-            this.line15.LeftArrow = false;
-            this.line15.LineColor = System.Drawing.Color.SteelBlue;
-            this.line15.LineWidth = 2;
-            this.line15.Location = new System.Drawing.Point(815, 307);
-            this.line15.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
-            this.line15.Name = "line15";
-            this.line15.RightArrow = true;
-            this.line15.Size = new System.Drawing.Size(66, 10);
-            this.line15.TabIndex = 21;
-            // 
-            // line12
-            // 
-            this.line12.BackColor = System.Drawing.Color.White;
-            this.line12.LeftArrow = false;
-            this.line12.LineColor = System.Drawing.Color.SteelBlue;
-            this.line12.LineWidth = 2;
-            this.line12.Location = new System.Drawing.Point(815, 175);
-            this.line12.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
-            this.line12.Name = "line12";
-            this.line12.RightArrow = true;
-            this.line12.Size = new System.Drawing.Size(66, 10);
-            this.line12.TabIndex = 21;
-            // 
-            // line10
-            // 
-            this.line10.BackColor = System.Drawing.Color.White;
-            this.line10.LeftArrow = false;
-            this.line10.LineColor = System.Drawing.Color.SteelBlue;
-            this.line10.LineWidth = 2;
-            this.line10.Location = new System.Drawing.Point(629, 293);
-            this.line10.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
-            this.line10.Name = "line10";
-            this.line10.RightArrow = true;
-            this.line10.Size = new System.Drawing.Size(66, 10);
-            this.line10.TabIndex = 22;
-            // 
-            // line11
-            // 
-            this.line11.BackColor = System.Drawing.Color.White;
-            this.line11.LeftArrow = false;
-            this.line11.LineColor = System.Drawing.Color.SteelBlue;
-            this.line11.LineWidth = 2;
-            this.line11.Location = new System.Drawing.Point(629, 187);
-            this.line11.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
-            this.line11.Name = "line11";
-            this.line11.RightArrow = true;
-            this.line11.Size = new System.Drawing.Size(66, 10);
-            this.line11.TabIndex = 21;
-            // 
-            // line6
-            // 
-            this.line6.BackColor = System.Drawing.Color.White;
-            this.line6.LeftArrow = false;
-            this.line6.LineColor = System.Drawing.Color.SteelBlue;
-            this.line6.LineWidth = 2;
-            this.line6.Location = new System.Drawing.Point(444, 240);
-            this.line6.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
-            this.line6.Name = "line6";
-            this.line6.RightArrow = true;
-            this.line6.Size = new System.Drawing.Size(66, 10);
-            this.line6.TabIndex = 17;
-            // 
-            // line7
-            // 
-            this.line7.BackColor = System.Drawing.Color.White;
-            this.line7.LeftArrow = false;
-            this.line7.LineColor = System.Drawing.Color.SteelBlue;
-            this.line7.LineWidth = 2;
-            this.line7.Location = new System.Drawing.Point(444, 293);
-            this.line7.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
-            this.line7.Name = "line7";
-            this.line7.RightArrow = true;
-            this.line7.Size = new System.Drawing.Size(66, 10);
-            this.line7.TabIndex = 16;
-            // 
-            // line8
-            // 
-            this.line8.BackColor = System.Drawing.Color.White;
-            this.line8.LeftArrow = false;
-            this.line8.LineColor = System.Drawing.Color.SteelBlue;
-            this.line8.LineWidth = 2;
-            this.line8.Location = new System.Drawing.Point(444, 187);
-            this.line8.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
-            this.line8.Name = "line8";
-            this.line8.RightArrow = true;
-            this.line8.Size = new System.Drawing.Size(66, 10);
-            this.line8.TabIndex = 15;
-            // 
-            // line5
-            // 
-            this.line5.BackColor = System.Drawing.Color.White;
-            this.line5.LeftArrow = false;
-            this.line5.LineColor = System.Drawing.Color.SteelBlue;
-            this.line5.LineWidth = 2;
-            this.line5.Location = new System.Drawing.Point(259, 240);
-            this.line5.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
-            this.line5.Name = "line5";
-            this.line5.RightArrow = true;
-            this.line5.Size = new System.Drawing.Size(66, 10);
-            this.line5.TabIndex = 13;
-            // 
-            // line3
-            // 
-            this.line3.BackColor = System.Drawing.Color.White;
-            this.line3.LeftArrow = false;
-            this.line3.LineColor = System.Drawing.Color.SteelBlue;
-            this.line3.LineWidth = 2;
-            this.line3.Location = new System.Drawing.Point(259, 293);
-            this.line3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
-            this.line3.Name = "line3";
-            this.line3.RightArrow = true;
-            this.line3.Size = new System.Drawing.Size(66, 10);
-            this.line3.TabIndex = 12;
-            // 
-            // line4
-            // 
-            this.line4.BackColor = System.Drawing.Color.White;
-            this.line4.LeftArrow = false;
-            this.line4.LineColor = System.Drawing.Color.SteelBlue;
-            this.line4.LineWidth = 2;
-            this.line4.Location = new System.Drawing.Point(259, 187);
-            this.line4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.line4.Name = "line4";
-            this.line4.RightArrow = true;
-            this.line4.Size = new System.Drawing.Size(66, 10);
-            this.line4.TabIndex = 11;
-            // 
-            // line2
-            // 
-            this.line2.BackColor = System.Drawing.Color.White;
-            this.line2.LeftArrow = false;
-            this.line2.LineColor = System.Drawing.Color.SteelBlue;
-            this.line2.LineWidth = 2;
-            this.line2.Location = new System.Drawing.Point(73, 272);
-            this.line2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.line2.Name = "line2";
-            this.line2.RightArrow = true;
-            this.line2.Size = new System.Drawing.Size(66, 10);
-            this.line2.TabIndex = 8;
-            // 
-            // line1
-            // 
-            this.line1.BackColor = System.Drawing.Color.White;
-            this.line1.LeftArrow = false;
-            this.line1.LineColor = System.Drawing.Color.SteelBlue;
-            this.line1.LineWidth = 2;
-            this.line1.Location = new System.Drawing.Point(73, 211);
-            this.line1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line1.Name = "line1";
-            this.line1.RightArrow = true;
-            this.line1.Size = new System.Drawing.Size(66, 10);
-            this.line1.TabIndex = 8;
-            // 
-            // indicator_OTW
-            // 
-            this.indicator_OTW.BackColor = System.Drawing.Color.Transparent;
-            this.indicator_OTW.IndicatorColorReverse = true;
-            this.indicator_OTW.Location = new System.Drawing.Point(481, 62);
-            this.indicator_OTW.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.indicator_OTW.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_OTW.MinimumSize = new System.Drawing.Size(14, 17);
-            this.indicator_OTW.Name = "indicator_OTW";
-            this.indicator_OTW.Size = new System.Drawing.Size(25, 25);
-            this.indicator_OTW.TabIndex = 6;
-            // 
-            // indicator_PSG
-            // 
-            this.indicator_PSG.BackColor = System.Drawing.Color.Transparent;
-            this.indicator_PSG.IndicatorColorReverse = true;
-            this.indicator_PSG.Location = new System.Drawing.Point(430, 62);
-            this.indicator_PSG.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.indicator_PSG.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_PSG.MinimumSize = new System.Drawing.Size(14, 17);
-            this.indicator_PSG.Name = "indicator_PSG";
-            this.indicator_PSG.Size = new System.Drawing.Size(25, 25);
-            this.indicator_PSG.TabIndex = 6;
-            // 
-            // indicator_Clip
-            // 
-            this.indicator_Clip.BackColor = System.Drawing.Color.Transparent;
-            this.indicator_Clip.IndicatorColorReverse = true;
-            this.indicator_Clip.Location = new System.Drawing.Point(379, 62);
-            this.indicator_Clip.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.indicator_Clip.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_Clip.MinimumSize = new System.Drawing.Size(14, 17);
-            this.indicator_Clip.Name = "indicator_Clip";
-            this.indicator_Clip.Size = new System.Drawing.Size(25, 25);
-            this.indicator_Clip.TabIndex = 6;
-            // 
-            // indicator_FrameSlip
-            // 
-            this.indicator_FrameSlip.BackColor = System.Drawing.Color.Transparent;
-            this.indicator_FrameSlip.IndicatorColorReverse = true;
-            this.indicator_FrameSlip.Location = new System.Drawing.Point(328, 62);
-            this.indicator_FrameSlip.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.indicator_FrameSlip.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_FrameSlip.MinimumSize = new System.Drawing.Size(14, 17);
-            this.indicator_FrameSlip.Name = "indicator_FrameSlip";
-            this.indicator_FrameSlip.Size = new System.Drawing.Size(25, 25);
-            this.indicator_FrameSlip.TabIndex = 6;
-            // 
-            // indicator_WS
-            // 
-            this.indicator_WS.BackColor = System.Drawing.Color.Transparent;
-            this.indicator_WS.IndicatorColorReverse = true;
-            this.indicator_WS.Location = new System.Drawing.Point(277, 62);
-            this.indicator_WS.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.indicator_WS.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_WS.MinimumSize = new System.Drawing.Size(14, 17);
-            this.indicator_WS.Name = "indicator_WS";
-            this.indicator_WS.Size = new System.Drawing.Size(25, 25);
-            this.indicator_WS.TabIndex = 6;
-            // 
-            // indicator_BCLK
-            // 
-            this.indicator_BCLK.BackColor = System.Drawing.Color.Transparent;
-            this.indicator_BCLK.IndicatorColorReverse = true;
-            this.indicator_BCLK.Location = new System.Drawing.Point(226, 62);
-            this.indicator_BCLK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.indicator_BCLK.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_BCLK.MinimumSize = new System.Drawing.Size(14, 17);
-            this.indicator_BCLK.Name = "indicator_BCLK";
-            this.indicator_BCLK.Size = new System.Drawing.Size(25, 25);
-            this.indicator_BCLK.TabIndex = 6;
-            // 
-            // indicator_PLLLock
-            // 
-            this.indicator_PLLLock.BackColor = System.Drawing.Color.Transparent;
-            this.indicator_PLLLock.IndicatorColorReverse = true;
-            this.indicator_PLLLock.Location = new System.Drawing.Point(175, 62);
-            this.indicator_PLLLock.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.indicator_PLLLock.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_PLLLock.MinimumSize = new System.Drawing.Size(14, 17);
-            this.indicator_PLLLock.Name = "indicator_PLLLock";
-            this.indicator_PLLLock.Size = new System.Drawing.Size(25, 25);
-            this.indicator_PLLLock.TabIndex = 6;
-            // 
-            // indicator_MCLK
-            // 
-            this.indicator_MCLK.BackColor = System.Drawing.Color.Transparent;
-            this.indicator_MCLK.IndicatorColorReverse = true;
-            this.indicator_MCLK.Location = new System.Drawing.Point(124, 62);
-            this.indicator_MCLK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.indicator_MCLK.MaximumSize = new System.Drawing.Size(117, 133);
-            this.indicator_MCLK.MinimumSize = new System.Drawing.Size(12, 13);
-            this.indicator_MCLK.Name = "indicator_MCLK";
-            this.indicator_MCLK.Size = new System.Drawing.Size(25, 25);
-            this.indicator_MCLK.TabIndex = 6;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label16.Location = new System.Drawing.Point(262, 281);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(57, 14);
-            this.label16.TabIndex = 35;
-            this.label16.Text = "SubCH IN";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(994, 578);
+            this.ClientSize = new System.Drawing.Size(994, 734);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 616);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.2";
+            this.Text = "SGM4711 Eva_v0.21";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1735,6 +1844,7 @@
             this.tabCtrl_MainGUI.ResumeLayout(false);
             this.tabP_systemConfig.ResumeLayout(false);
             this.tabP_systemConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trb_MasterVolume)).EndInit();
             this.grb_OpeStatus.ResumeLayout(false);
             this.grb_OpeStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).EndInit();
@@ -1746,7 +1856,6 @@
             this.splitContainer2.ResumeLayout(false);
             this.tabCtrl_SingleRegSetting.ResumeLayout(false);
             this.tabCtrl_Output.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trb_MasterVolume)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1891,6 +2000,13 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ToolTip myTips;
+        private System.Windows.Forms.Button btn_InputMux_GUI;
+        private System.Windows.Forms.Button btn_AudioEngine_GUI;
+        private System.Windows.Forms.Button btn_OutputMux_GUI;
+        private System.Windows.Forms.Button btn_backToDefault;
+        private System.Windows.Forms.Button btn_Enable;
+        private System.Windows.Forms.CheckBox chb_Enable;
 
     }
 }

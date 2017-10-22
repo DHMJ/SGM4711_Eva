@@ -88,6 +88,30 @@
     <Compile Include="GUI\FreeRegRWCtrl.Designer.cs">
       <DependentUpon>FreeRegRWCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\InputMux.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\InputMux.Designer.cs">
+      <DependentUpon>InputMux.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\OutputMux.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\OutputMux.Designer.cs">
+      <DependentUpon>OutputMux.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDUserCtrls\Add.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDUserCtrls\Add.designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDUserCtrls\Circle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDUserCtrls\Circle.designer.cs">
+      <DependentUpon>Circle.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDUserCtrls\Indicator.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,6 +173,12 @@
     <Compile Include="MDUserCtrls\Line.Designer.cs">
       <DependentUpon>Line.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDUserCtrls\Multiply.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDUserCtrls\Multiply.designer.cs">
+      <DependentUpon>Multiply.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\EQCurveCtrl.resx">
@@ -168,6 +198,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FreeRegRWCtrl.resx">
       <DependentUpon>FreeRegRWCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InputMux.resx">
+      <DependentUpon>InputMux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\OutputMux.resx">
+      <DependentUpon>OutputMux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDUserCtrls\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDUserCtrls\Circle.resx">
+      <DependentUpon>Circle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\Indicator.resx">
       <DependentUpon>Indicator.cs</DependentUpon>
@@ -193,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\Line.resx">
       <DependentUpon>Line.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDUserCtrls\Multiply.resx">
+      <DependentUpon>Multiply.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
