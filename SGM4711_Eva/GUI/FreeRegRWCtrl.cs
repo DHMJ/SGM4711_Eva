@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using MD.MDCommon;
 using System.Globalization;
+using DMCommunication;
 
 namespace SGM4711_Eva.GUI
 {
@@ -15,12 +16,14 @@ namespace SGM4711_Eva.GUI
     public partial class FreeRegRWCtrl : UserControl
     {
         RegisterMap regMap;
+        DMDongle dongle;
         List<byte> regAddrList = new List<byte> { };
         List<uint> regDataList = new List<uint> { };
         List<bool> updateEnList = new List<bool> { };
-        public FreeRegRWCtrl()
+        public FreeRegRWCtrl(DMDongle _dongle)
         {
             InitializeComponent();
+            this.dongle = _dongle;
             DataGridViewInit();
             InitGUI();
         }

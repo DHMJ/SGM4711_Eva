@@ -15,6 +15,7 @@ namespace SGM4711_Eva.GUI
         private int filterCount = 1;
         RegisterMap regmap;
         byte[] regAddr;
+        EQCurveCtrl eqCurveCtrl = null;
         public ParameterEQCtrl(int count, RegisterMap _regmap, byte[] _regAddr)
         {
             InitializeComponent();
@@ -26,8 +27,11 @@ namespace SGM4711_Eva.GUI
 
         private void InitGUI(int filterCount)
         {
-            this.eqCurveCtrl1.InitSetting(filterCount);
-            this.eqCurveCtrl1.dgv_filterSetting.CellValueChanged += filterSetting_CellValueChanged;
+            eqCurveCtrl = new EQCurveCtrl();
+            this.Controls.Add(eqCurveCtrl);
+            eqCurveCtrl.Location = new Point(12, 12);
+            this.eqCurveCtrl.InitSetting(filterCount);
+            this.eqCurveCtrl.dgv_filterSetting.CellValueChanged += filterSetting_CellValueChanged;
         }
 
         private void filterSetting_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -59,6 +63,11 @@ namespace SGM4711_Eva.GUI
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eqCurveCtrl1_Load(object sender, EventArgs e)
         {
 
         }

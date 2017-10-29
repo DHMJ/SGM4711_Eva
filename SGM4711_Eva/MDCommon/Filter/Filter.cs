@@ -9,38 +9,50 @@ namespace SGM4711_Eva.MDCommon.Filter
     public class Filter
     {
         #region Coefficents
-        FilterType filterType = FilterType.Peaking;
+        //FilterType filterType = FilterType.Peaking;
+        FilterSetting myFilterSet;
+        List<double> fr_Mag_out = new List<double> { };
+        List<double> fr_Phase_out = new List<double> { };
 
-        double[] p = new double[3];
-        double[] d = new double[2];
+        double[] p = new double[3]; // coefficent a
+        double[] d = new double[2]; // coefficent b
         int[] reg_b = new int[3];
         int[] reg_a = new int[2];
-        double fc;
-        double fs = 48000;      //Default 48KHz
-        double gain_dB;
-        double gain_linear;
-        double bw;
-        double q_factor;
+        //double fc;
+        //double fs = 48000;      //Default 48KHz
+        //double gain_dB;
+        //double gain_linear;
+        //double bw;
+        //double q_factor;
         double k;
         double alpha;
         double beta;
         
-        double w0;
+        //double w0;
         #endregion Coefficents
 
         public Filter()
         {
-            w0 = 2 * Math.PI * fc / fs;
-            gain_linear = Math.Pow(10.0, gain_dB / 20.0);
+            //w0 = 2 * Math.PI * fc / fs;
+            //gain_linear = Math.Pow(10.0, gain_dB / 20.0);
+        }
+
+        public Filter(FilterSetting _set)
+        {
+            //w0 = 2 * Math.PI * fc / fs;
+            //gain_linear = Math.Pow(10.0, gain_dB / 20.0);
+            this.myFilterSet = _set;
         }
 
         #region Coefficents Calculation
-        void UpdateCoefficents()
+        public void UpdateCoefficents(double[] _freqs)
         {
-            switch (this.filterType)
+            switch (myFilterSet.Type)
             {
                 case FilterType.Peaking:
                     CoeffCalc_Peaking();
+                    fr_Mag_out.Clear();
+                    fr_Mag_out.AddRange(FrequenctResponse(_freqs));
                     break;
                 case FilterType.Shelving:
                     break;
@@ -64,7 +76,7 @@ namespace SGM4711_Eva.MDCommon.Filter
             /*******************************************
             * 1. Transfer the gain in decibels (dB) to decimal domain.
             ********************************************/
-            k = Math.Pow(10, gain_dB / 20.0);
+            k = Math.Pow(10, myFilterSet.Gain / 20.0);
 
             /*******************************************
              * 2. Calculate the double precision coefficients
@@ -77,13 +89,13 @@ namespace SGM4711_Eva.MDCommon.Filter
              * d1 = (1 + alpha) * beta
              * d2 = - alpha
             ********************************************/
-            alpha = (1 - Math.Sin(bw * 2 * Math.PI / fs)) / Math.Cos(bw * 2 * Math.PI / fs);
-            beta = Math.Cos(fc * 2 * Math.PI / fs);
+            alpha = (1 - Math.Sin(myFilterSet.BandWidth * 2 * Math.PI / myFilterSet.FS)) / Math.Cos(myFilterSet.BandWidth * 2 * Math.PI / myFilterSet.FS);
+            beta = Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS);
             p[0] = ((1 + k) + (1 - k) * alpha) / 2;
             p[1] = -(1 + alpha) * beta;
             p[2] = ((1 - k) + (1 + k) * alpha) / 2;
-            d[1] = (1 + alpha) * beta;
-            d[2] = -alpha;
+            d[0] = (1 + alpha) * beta;
+            d[1] = -alpha;
 
             /*******************************************
              * 3. Transfer the double precision coefficients 
@@ -98,8 +110,8 @@ namespace SGM4711_Eva.MDCommon.Filter
             reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
             reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
             reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
-            reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
-            reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+            reg_a[0] = (int)Math.Round(d[0] * Math.Pow(2, 23));
+            reg_a[1] = (int)Math.Round(d[1] * Math.Pow(2, 23));
 
             /*******************************************
              * 4. Transfer the decimal integer values 
@@ -108,51 +120,97 @@ namespace SGM4711_Eva.MDCommon.Filter
         }
         #endregion Coefficents Calculation
 
+        #region Frequency Response Calculation
+        private double[] FrequenctResponse(double[] _freqs)
+        {
+            double[] fr_out = new double[_freqs.Length];
+            double[] phase_out = new double[_freqs.Length];
+
+            // 归一化频率点
+            double[] freqs = new double[_freqs.Length];
+            for (int ix = 0; ix < _freqs.Length; ix++)
+            {
+                freqs[ix] = _freqs[ix] / Setting.FS;
+            }
+
+            // 2nd filter transer function: 
+            //H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
+            double[] num = new double[]{p[0], p[1], p[2]};
+            double[] den = new double[]{1, -d[0], -d[1]};
+            int numOrder = 2;
+            int denOrder = 2;
+            int mySign = 2;         // use the db formate, x for FR, y for pahse shifting.
+            TransferFunc.FilterTF(num, den, numOrder, denOrder, fr_out, phase_out, freqs, mySign);
+
+            #region Test code
+            //double[] x_out = new double[200];
+            //double[] y_out = new double[200];
+            //num = new double[] { p[0], p[1], p[2] };
+            //den = new double[] { 1, -d[0], -d[1] };
+            //numOrder = 2;
+            //denOrder = 2;
+            //mySign = 2;         // use the db formate, x for FR, y for pahse shifting.
+            //TransferFunc.FilterTF(num, den, numOrder, denOrder, x_out, y_out, 200, mySign);
+            #endregion 
+
+            return fr_out;
+        }
+        #endregion 
 
         #region Properties
         public double[] A
         {
-            set { p = value; }
+            //set { p = value; }
             get { return p; }
         }
 
         public double[] B
         {
-            set { d = value; }
+            //set { d = value; }
             get { return d; }
         }
 
-        public double FS
+        //public double FS
+        //{
+        //    //set { fs = value; }
+        //    get { return fs; }
+        //}
+
+        //public double F0
+        //{
+        //    //set { fc = value; }
+        //    get { return fc; }
+        //}
+
+        //public double Gain_dB
+        //{
+        //    //set 
+        //    //{
+        //    //    gain_dB = value;
+        //    //    gain_linear = Math.Pow(10.0, gain_dB / 20.0);
+        //    //}
+        //    get { return gain_dB; }
+        //}
+
+        //public double Q_Factor
+        //{
+        //    //set { q_factor = value; }
+        //    get { return q_factor; }
+        //}
+
+        public List<double> FR_Mag_out
         {
-            set { fs = value; }
-            get { return fs; }
+            get { return this.fr_Mag_out; }
         }
 
-        public double F0
+        public FilterSetting Setting
         {
-            set { fc = value; }
-            get { return fc; }
-        }
-
-        public double Gain_dB
-        {
+            get { return this.myFilterSet; }
             set 
             {
-                gain_dB = value;
-                gain_linear = Math.Pow(10.0, gain_dB / 20.0);
+                this.myFilterSet = value;
             }
-            get { return gain_dB; }
         }
-
-        public double Q_Factor
-        {
-            set
-            {
-                q_factor = value;                
-            }
-            get { return q_factor; }
-        }
-        
         #endregion Properties
 
 
@@ -235,7 +293,14 @@ namespace SGM4711_Eva.MDCommon.Filter
             set { this.subType = value; }
         }
 
-        double freq = 1;
+        double fs = 48000;
+        public double FS
+        {
+            get { return this.fs; }
+            set { this.fs = value; }
+        }
+
+        double freq = 20;
         public double Freq
         {
             get { return this.freq; }

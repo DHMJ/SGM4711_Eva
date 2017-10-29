@@ -52,12 +52,17 @@ namespace SGM4711_Eva
         #region Funcs
         private void InitGUI()
         {
-            singleRegCtrl = new RegSettingCtrl();
+            singleRegCtrl = new RegSettingCtrl(myDongle);
             singleRegCtrl.Dock = DockStyle.Fill;
             this.tabP_SingleCtrl.Controls.Add(singleRegCtrl);
-            freeRegCtrl = new FreeRegRWCtrl();
+            
+            freeRegCtrl = new FreeRegRWCtrl(myDongle);
             freeRegCtrl.Dock = DockStyle.Fill;
             this.tabP_RegRW.Controls.Add(freeRegCtrl);
+
+            memoryTool = new I2CMemTool(this.regMap, myDongle);
+            memoryTool.Dock = DockStyle.Fill;
+            this.tabP_IICMemTool.Controls.Add(memoryTool);
 
             // init Mian GUI commbox
             this.cmb_ModeConfig.SelectedIndex = 0;
@@ -176,6 +181,7 @@ namespace SGM4711_Eva
         BindingList<RegProperty> regCtrlList = new BindingList<RegProperty> { };
         RegSettingCtrl singleRegCtrl = null;
         FreeRegRWCtrl freeRegCtrl = null;
+        I2CMemTool memoryTool = null;
         
         private void UpdateRegSettingSource(byte _regAddr)
         {
@@ -498,7 +504,24 @@ namespace SGM4711_Eva
 
         private void pl_DRC1_DoubleClick(object sender, EventArgs e)
         {
+            /* 0x3A-0x3C, 0x40-0x42,0x46[0] */
+            //byte[] regList = new byte[] { 0x3A, 0x3B, 0x3C, 0x40, 0x41, 0x42 };
+            //UpdateRegSettingSource(regList);
+            //UpdateRegSettingSource(0x46, new string[] { "DRC1_EN" }, true);
 
+            List<Register> regList = new List<Register> { };
+            if (regMap != null)
+            {
+                regList.Add(regMap[0x3A]);
+                regList.Add(regMap[0x3B]);
+                regList.Add(regMap[0x3C]);
+
+                regList.Add(regMap[0x40]);
+                regList.Add(regMap[0x41]);
+                regList.Add(regMap[0x42]);
+            }
+            DRCForm myDRCForm = new DRCForm(regList, regMap[0x46]["DRC1_EN"]);
+            myDRCForm.ShowDialog();
         }
 
         private void pl_DRC2_Click(object sender, EventArgs e)
@@ -511,7 +534,20 @@ namespace SGM4711_Eva
 
         private void pl_DRC2_DoubleClick(object sender, EventArgs e)
         {
+            /* 0x3D-0x3F, 0x43-0x45,0x46[1] */
+            List<Register> regList = new List<Register> { };
+            if (regMap != null)
+            {
+                regList.Add(regMap[0x3D]);
+                regList.Add(regMap[0x3E]);
+                regList.Add(regMap[0x3F]);
 
+                regList.Add(regMap[0x43]);
+                regList.Add(regMap[0x44]);
+                regList.Add(regMap[0x45]);
+            }
+            DRCForm myDRCForm = new DRCForm(regList, regMap[0x46]["DRC2_EN"]);
+            myDRCForm.ShowDialog();
         }
 
         private void pl_LOutMixGain_Click(object sender, EventArgs e)

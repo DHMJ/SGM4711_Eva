@@ -46,10 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\DRCCtrl.cs">
+    <Compile Include="GUI\DRCForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DRCForm.Designer.cs">
+      <DependentUpon>DRCForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDUserCtrls\DRCCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\DRCCtrl.Designer.cs">
+    <Compile Include="MDUserCtrls\DRCCtrl.Designer.cs">
       <DependentUpon>DRCCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\EQCurveCtrl.cs">
@@ -111,6 +117,12 @@
     </Compile>
     <Compile Include="MDUserCtrls\Circle.designer.cs">
       <DependentUpon>Circle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDUserCtrls\I2CMemTool.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDUserCtrls\I2CMemTool.Designer.cs">
+      <DependentUpon>I2CMemTool.cs</DependentUpon>
     </Compile>
     <Compile Include="MDUserCtrls\Indicator.cs">
       <SubType>UserControl</SubType>
@@ -181,6 +193,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\DRCForm.resx">
+      <DependentUpon>DRCForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\EQCurveCtrl.resx">
       <DependentUpon>EQCurveCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +225,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\Circle.resx">
       <DependentUpon>Circle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDUserCtrls\DRCCtrl.resx">
+      <DependentUpon>DRCCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDUserCtrls\I2CMemTool.resx">
+      <DependentUpon>I2CMemTool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\Indicator.resx">
       <DependentUpon>Indicator.cs</DependentUpon>

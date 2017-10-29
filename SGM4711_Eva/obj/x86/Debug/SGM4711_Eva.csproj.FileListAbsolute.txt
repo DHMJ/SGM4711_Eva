@@ -51,6 +51,7 @@ C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\bin\Debug\MDRegi
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\bin\Debug\DMDongle.pdb
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\bin\Debug\MDRegisterTool.pdb
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.GUI.DRCForm.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.GUI.EQCurveCtrl.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.GUI.FilterSettingCtrl.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\GeneralRegConfigPlatform.MDGUI.FormDongle.resources
@@ -58,8 +59,10 @@ C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\Ge
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\GeneralRegConfigPlatform.MDGUI.FormScript.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.GUI.FreeRegRWCtrl.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.GUI.InputMux.resources
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.GUI.Output_Mux.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.MDUserCtrls.Add.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.MDUserCtrls.Circle.resources
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.MDUserCtrls.DRCCtrl.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.MDUserCtrls.Indicator.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.MainForm.resources
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\GeneralRegConfigPlatform.MDGUI.MDRegisterView.resources
@@ -73,4 +76,4 @@ C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SG
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.exe
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.pdb
-C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.GUI.Output_Mux.resources
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\x86\Debug\SGM4711_Eva.MDUserCtrls.I2CMemTool.resources

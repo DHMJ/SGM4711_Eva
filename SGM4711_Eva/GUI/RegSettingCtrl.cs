@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MD.MDCommon;
+using DMCommunication;
 
 namespace SGM4711_Eva.GUI
 {
@@ -15,9 +16,11 @@ namespace SGM4711_Eva.GUI
     public partial class RegSettingCtrl : UserControl
     {
         RegisterMap regMap;
-        public RegSettingCtrl()
+        DMDongle dongle;
+        public RegSettingCtrl(DMDongle _dongle)
         {
             InitializeComponent();
+            this.dongle = _dongle;
             DataGridViewInit();
         }
 

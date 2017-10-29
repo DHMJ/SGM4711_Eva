@@ -16,11 +16,11 @@ namespace SGM4711_Eva.GUI
         {
             InitializeComponent();
             InitDVG();
+            //UpdateDrawPoints_Frame();
+            //UpdateFreqPointForFR();
         }
 
         #region Params
-        int[][] filterPamras;
-
         int xAxis_Shift = 30;
         int yAxis_Shift = 30;
 
@@ -30,12 +30,26 @@ namespace SGM4711_Eva.GUI
         int MinMag = -80;
         int MaxMag = 40;
 
+        // Limitation for parameters
+        double MaxGaindB = 30;
+        double MinGaindB = -100;
+
+        double MaxBW = 1000;
+        double MinBW = 10;
+
+        double MaxQFactor = 20;
+        double MinQFactor = 0.05;
+
+        // Frequency response calculation
+        int freqCountPerUnit = 100;     // how many freqs will be calc per unit. e.g. 100 point for 100 - 1000Hz and 1000Hz- 10000Hz...
+
         // Log Axis steps
-        double[] logAxisStep = new double[] {Math.Log(2), Math.Log(3) - Math.Log(2), Math.Log(4) - Math.Log(3),
-            Math.Log(5) - Math.Log(4), Math.Log(6) - Math.Log(5), Math.Log(7) - Math.Log(6),
-            Math.Log(8) - Math.Log(7), Math.Log(9) - Math.Log(8), Math.Log(10) - Math.Log(9)};
+        double[] logAxisStep = new double[] {Math.Log10(2), Math.Log10(3) - Math.Log10(2), Math.Log10(4) - Math.Log10(3),
+            Math.Log10(5) - Math.Log10(4), Math.Log10(6) - Math.Log10(5), Math.Log10(7) - Math.Log10(6),
+            Math.Log10(8) - Math.Log10(7), Math.Log10(9) - Math.Log10(8), Math.Log10(10) - Math.Log10(9)};
 
         /* Settings: No. Type SubType Frequency Gain BandWidth QFactor View Bypass Color */
+        List<Filter> filterList = new List<Filter> { };
         List<FilterSetting> settings = new List<FilterSetting> { };
         #endregion Params
         
@@ -50,6 +64,11 @@ namespace SGM4711_Eva.GUI
         List<string> yAxisString = new List<string> { };
         List<Point> xAxisStringLoca = new List<Point> { };
         List<Point> yAxisStringLoca = new List<Point> { };
+        List<double> freqPointForFR = new List<double> { };     //freq point will be used to calc freq response
+        List<Point> freqPointLocaForFR = new List<Point> { };   //all the locations for freq point has been calc for sum freq response
+        Point[][] freqResponsePointsLoca;                       //stores all the point for each filter's FR.
+        int defaultFRYAxisLoca = 0;
+
         //Pen pen_smallGrid = new Pen(Color.FromArgb(30, 30, 30), 1);
         //Pen pen_largeGrid = new Pen(Color.FromArgb(50, 50, 50), 1);
         Pen pen_smallGrid = new Pen(Color.LightGray, 1);
@@ -70,50 +89,50 @@ namespace SGM4711_Eva.GUI
             e.Graphics.DrawLine(pen_Frame, p2, p4);
             #endregion 画EQ曲线区域，顺序： 上下左右
 
-            #region Paint Freq Grid and Label
+            #region Draw Freq Grid and Label
             // 1. Calcuate Freq points (X Axis), calc how many repeat cycles first and then calc first and last cycles remiand count.
-            double totalLogLen = Math.Log10(MaxFreq) - Math.Log10(MinFreq);
-            double xAxisLogUnitLen = (double)(this.EQ_CurvePanel.Width - xAxis_Shift) / totalLogLen;
-            int xAxisPointCount = (int)Math.Ceiling(totalLogLen * 9);
-            xAxisPoint_1.Clear();
-            xAxisPoint_2.Clear();
-            largGridIx_Freq.Clear();
-            xAxisString.Clear();
-            xAxisStringLoca.Clear();
-            //List<Point> xAxisPoint_1 = new List<Point>{ };
-            //List<Point> xAxisPoint_2 = new List<Point>{ };
-            //List<int> largGridIx_Freq = new List<int> { };
-            int tempFreq = MinFreq;
-            int step,tempX;
+            //double totalLogLen = Math.Log10(MaxFreq) - Math.Log10(MinFreq);
+            //double xAxisLogUnitLen = (double)(this.EQ_CurvePanel.Width - xAxis_Shift) / totalLogLen;
+            //int xAxisPointCount = (int)Math.Ceiling(totalLogLen * 9);
+            //xAxisPoint_1.Clear();
+            //xAxisPoint_2.Clear();
+            //largGridIx_Freq.Clear();
+            //xAxisString.Clear();
+            //xAxisStringLoca.Clear();
+            ////List<Point> xAxisPoint_1 = new List<Point>{ };
+            ////List<Point> xAxisPoint_2 = new List<Point>{ };
+            ////List<int> largGridIx_Freq = new List<int> { };
+            //int tempFreq = MinFreq;
+            //int step,tempX;
             
-            //Add first Freq
-            xAxisString.Add(MinFreq.ToString());
-            SizeF tempSize = e.Graphics.MeasureString(MinFreq.ToString(), this.Font);
-            xAxisStringLoca.Add(new Point( xAxis_Shift - (int)tempSize.Width / 2, this.EQ_CurvePanel.Height - yAxis_Shift + 5));
-            while (tempFreq < MaxFreq)
-            {
-                step = tempFreq < 10 ? 1 : (tempFreq < 100 ? 10 : (tempFreq < 1000 ? 100 : (tempFreq < 10000 ? 1000 : 10000)));
+            ////Add first Freq
+            //xAxisString.Add(MinFreq.ToString());
+            //SizeF tempSize = e.Graphics.MeasureString(MinFreq.ToString(), this.Font);
+            //xAxisStringLoca.Add(new Point( xAxis_Shift - (int)tempSize.Width / 2, this.EQ_CurvePanel.Height - yAxis_Shift + 5));
+            //while (tempFreq < MaxFreq)
+            //{
+            //    step = tempFreq < 10 ? 1 : (tempFreq < 100 ? 10 : (tempFreq < 1000 ? 100 : (tempFreq < 10000 ? 1000 : 10000)));
 
-                while (((tempFreq / step) < 10) && tempFreq <= MaxFreq)
-                {
-                    tempX = xAxis_Shift + (int)((Math.Log10(tempFreq) - Math.Log10(MinFreq)) * xAxisLogUnitLen);
-                    xAxisPoint_1.Add(new Point(tempX, frameWidth));
-                    xAxisPoint_2.Add(new Point(tempX, this.EQ_CurvePanel.Height - yAxis_Shift));
+            //    while (((tempFreq / step) < 10) && tempFreq <= MaxFreq)
+            //    {
+            //        tempX = xAxis_Shift + (int)((Math.Log10(tempFreq) - Math.Log10(MinFreq)) * xAxisLogUnitLen);
+            //        xAxisPoint_1.Add(new Point(tempX, frameWidth));
+            //        xAxisPoint_2.Add(new Point(tempX, this.EQ_CurvePanel.Height - yAxis_Shift));
 
-                    if (tempFreq / step == 1)
-                    {
-                        largGridIx_Freq.Add(xAxisPoint_1.Count - 1);
-                        xAxisString.Add(tempFreq.ToString());
-                        tempSize = e.Graphics.MeasureString(tempFreq.ToString(), this.Font);
-                        xAxisStringLoca.Add(new Point(tempX - (int)tempSize.Width / 2, this.EQ_CurvePanel.Height - yAxis_Shift + 5));
-                    }
+            //        if (tempFreq / step == 1)
+            //        {
+            //            largGridIx_Freq.Add(xAxisPoint_1.Count - 1);
+            //            xAxisString.Add(tempFreq.ToString());
+            //            tempSize = e.Graphics.MeasureString(tempFreq.ToString(), this.Font);
+            //            xAxisStringLoca.Add(new Point(tempX - (int)tempSize.Width / 2, this.EQ_CurvePanel.Height - yAxis_Shift + 5));
+            //        }
 
-                    tempFreq += step;                    
-                }
+            //        tempFreq += step;                    
+            //    }
 
-                if (tempFreq >= MaxFreq)
-                    break;
-            }
+            //    if (tempFreq >= MaxFreq)
+            //        break;
+            //}
 
             // 2.draw small grid, skiped first one which is overlapped with frame
             for (int ix = 1; ix < xAxisPoint_1.Count; ix++)
@@ -134,47 +153,47 @@ namespace SGM4711_Eva.GUI
             }
             #endregion Paint Grid
 
-            #region Paint Magnitude and Label
-            yAxisPoint_1.Clear();
-            yAxisPoint_2.Clear();
-            GridIx_20dBMag.Clear();
-            yAxisString.Clear();
-            yAxisStringLoca.Clear();
-            double magRange = MaxMag - MinMag;
-            double yAxisLogUnitLen = (this.EQ_CurvePanel.Height - yAxis_Shift) / magRange;
-            int tempMag = MaxMag;
-            int magStep_dB = 5;
-            int tempStep_YLen;
-            if (tempMag % magStep_dB != 0)
-            {
-                tempStep_YLen = (int)((tempMag % magStep_dB) * yAxisLogUnitLen);
-                yAxisPoint_1.Add(new Point(xAxis_Shift, tempStep_YLen));
-                yAxisPoint_2.Add(new Point(this.Width - frameWidth, tempStep_YLen));
-                tempMag = tempMag - (tempMag % magStep_dB);
-            }
+            #region Draw Magnitude and Label
+            //yAxisPoint_1.Clear();
+            //yAxisPoint_2.Clear();
+            //GridIx_20dBMag.Clear();
+            //yAxisString.Clear();
+            //yAxisStringLoca.Clear();
+            //double magRange = MaxMag - MinMag;
+            //double yAxisLogUnitLen = (this.EQ_CurvePanel.Height - yAxis_Shift) / magRange;
+            //int tempMag = MaxMag;
+            //int magStep_dB = 5;
+            //int tempStep_YLen;
+            //if (tempMag % magStep_dB != 0)
+            //{
+            //    tempStep_YLen = (int)((tempMag % magStep_dB) * yAxisLogUnitLen);
+            //    yAxisPoint_1.Add(new Point(xAxis_Shift, tempStep_YLen));
+            //    yAxisPoint_2.Add(new Point(this.Width - frameWidth, tempStep_YLen));
+            //    tempMag = tempMag - (tempMag % magStep_dB);
+            //}
             
-            while (tempMag > MinMag)
-            {
-                tempStep_YLen = (int)((MaxMag - tempMag) * yAxisLogUnitLen);
-                yAxisPoint_1.Add(new Point(xAxis_Shift, tempStep_YLen));
-                yAxisPoint_2.Add(new Point(this.Width - frameWidth, tempStep_YLen));
+            //while (tempMag > MinMag)
+            //{
+            //    tempStep_YLen = (int)((MaxMag - tempMag) * yAxisLogUnitLen);
+            //    yAxisPoint_1.Add(new Point(xAxis_Shift, tempStep_YLen));
+            //    yAxisPoint_2.Add(new Point(this.Width - frameWidth, tempStep_YLen));
 
-                if (tempMag % 20 == 0 && tempMag < MaxMag)
-                {
-                    GridIx_20dBMag.Add(yAxisPoint_1.Count - 1);
-                    yAxisString.Add(tempMag.ToString());
-                    tempSize = e.Graphics.MeasureString(tempMag.ToString(), this.Font);
-                    yAxisStringLoca.Add(new Point(xAxis_Shift - (int)tempSize.Width - 5, tempStep_YLen - (int)tempSize.Height / 2));
-                }
+            //    if (tempMag % 20 == 0 && tempMag < MaxMag)
+            //    {
+            //        GridIx_20dBMag.Add(yAxisPoint_1.Count - 1);
+            //        yAxisString.Add(tempMag.ToString());
+            //        tempSize = e.Graphics.MeasureString(tempMag.ToString(), this.Font);
+            //        yAxisStringLoca.Add(new Point(xAxis_Shift - (int)tempSize.Width - 5, tempStep_YLen - (int)tempSize.Height / 2));
+            //    }
 
-                tempMag -= magStep_dB;
-            }
+            //    tempMag -= magStep_dB;
+            //}
 
-            // Add Min Mag
-            yAxisString.Add(MinMag.ToString());
-            tempSize = e.Graphics.MeasureString(MinMag.ToString(), this.Font);
-            yAxisStringLoca.Add(new Point(xAxis_Shift - (int)tempSize.Width - 5, 
-                this.EQ_CurvePanel.Height - yAxis_Shift - (int)tempSize.Height / 2));
+            //// Add Min Mag
+            //yAxisString.Add(MinMag.ToString());
+            //tempSize = e.Graphics.MeasureString(MinMag.ToString(), this.Font);
+            //yAxisStringLoca.Add(new Point(xAxis_Shift - (int)tempSize.Width - 5, 
+            //    this.EQ_CurvePanel.Height - yAxis_Shift - (int)tempSize.Height / 2));
 
             // paint 5dB mark
             for (int ix = 0; ix < yAxisPoint_1.Count; ix++)
@@ -196,6 +215,29 @@ namespace SGM4711_Eva.GUI
                 e.Graphics.DrawString(yAxisString[ix], this.Font, brush_string, yAxisStringLoca[ix]); 
             }
             #endregion Paint Magnitude
+
+            #region Draw Filter FR curve
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            Pen pen_FRCurve;
+            for (int ix = 0; ix < filterList.Count; ix++)
+            {
+                // Draw each filter FR curve
+                if (settings[ix].View)
+                    continue;
+                else
+                {
+                    pen_FRCurve = new Pen(settings[ix].CurveColor, 1);
+                    e.Graphics.DrawPolygon(pen_FRCurve, freqResponsePointsLoca[ix]);
+                }
+            }
+
+            // Draw sum FR curve
+            pen_FRCurve = new Pen(FilterCurveColor.EQCurveColor, 2);
+            e.Graphics.DrawPolygon(pen_FRCurve, freqPointLocaForFR.ToArray());
+
+            // Return the smooth way to default
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            #endregion 
         }
 
         private void InitDVG()
@@ -288,10 +330,18 @@ namespace SGM4711_Eva.GUI
 
         public void InitSetting(int count)
         {
+            freqResponsePointsLoca = new Point[count][];
+            for (int ix = 0; ix < count; ix++)
+            {
+                freqResponsePointsLoca[ix] = new Point[100];
+            }
+
             settings.Clear();
+            filterList.Clear();
             for (int ix = 0; ix < count; ix++)
             {
                 settings.Add(new FilterSetting(ix, FilterCurveColor.FilterCurveColors(ix)));
+                filterList.Add(new Filter(settings[ix]));
             }
 
             this.dgv_filterSetting.Rows.Clear();
@@ -305,64 +355,274 @@ namespace SGM4711_Eva.GUI
                 this.dgv_filterSetting[9, ix].Style.BackColor = settings[ix].CurveColor;
                 this.dgv_filterSetting[9, ix].Style.SelectionBackColor = settings[ix].CurveColor;
             }
+
+            UpdateDrawPoints_Frame();
+            UpdateFreqPointForFR();
+
+            // Update all filters' curve points
+            //UpdateDrawPoints_FR(-1);
         }
 
-        private void FilterResponseCalc(FilterSetting fset)
+        /// <summary>
+        /// This method will generate which frequency will be calcuated for FR curve.
+        /// </summary>
+        private void UpdateFreqPointForFR()
         {
-            //FilterTF(double[] num, double[] den, int num_order, int den_order,
-            //double[] x_out, double[] y_out, double[] freqs, int sign)
- 
+            freqPointForFR.Clear();
+            freqPointLocaForFR.Clear();
+
+            double totalLogLen = Math.Log10(MaxFreq) - Math.Log10(MinFreq);
+            double xAxisLogUnitLen = (double)(this.EQ_CurvePanel.Width - xAxis_Shift) / totalLogLen;
+            double yAxisLogUnitLen = (this.EQ_CurvePanel.Height - yAxis_Shift) / double.Parse((MaxMag - MinMag).ToString());
+            //int defaultFRYAxisLoca = MinMag >= 0 ? this.EQ_CurvePanel.Height - yAxis_Shift : 
+            //    (MaxMag <= 0 ? frameWidth : (int)(yAxisLogUnitLen * MaxMag));
+
+            defaultFRYAxisLoca = (int)(yAxisLogUnitLen * MaxMag);   // can be negative
+
+            int tempFreq = MinFreq;
+            double tempTargetFreq = MinFreq;
+            int tempTargetFreqLoca = xAxis_Shift;
+            int step;
+            double tempLoopCount;
+            double tempFreqIncreaseStep;
+
+            //Add first Freq
+            freqPointForFR.Add(tempFreq);
+            freqPointLocaForFR.Add(new Point(xAxis_Shift, defaultFRYAxisLoca));
+
+            while (tempFreq < MaxFreq)
+            {
+                step = tempFreq < 10 ? 1 : (tempFreq < 100 ? 10 : (tempFreq < 1000 ? 100 : (tempFreq < 10000 ? 1000 : 10000)));
+
+                while (((tempFreq / step) < 10) && tempFreq <= MaxFreq)
+                {
+                    tempTargetFreq = tempFreq;
+                    tempLoopCount = (int)(logAxisStep[(int)(tempFreq / step) - 1] * freqCountPerUnit);
+                    tempFreqIncreaseStep = (double)Math.Round(step / tempLoopCount, 2);
+                    while (tempTargetFreq < tempFreq + step)
+                    {
+                        if (tempTargetFreq > MinFreq && tempTargetFreq < MaxFreq)
+                        {
+                            // if 2 freq too close, then will get 2 different freq with same freq location, then will remove the last one and keep latest one.
+                            tempTargetFreqLoca = xAxis_Shift + (int)((Math.Log10(tempTargetFreq) - Math.Log10(MinFreq)) * xAxisLogUnitLen);
+                            if(freqPointLocaForFR.Count > 0 && tempTargetFreqLoca == freqPointLocaForFR[freqPointLocaForFR.Count - 1].X)
+                            {
+                                freqPointForFR.RemoveAt(freqPointForFR.Count - 1);
+                                freqPointLocaForFR.RemoveAt(freqPointLocaForFR.Count - 1);
+                            }
+
+                            freqPointForFR.Add((double)Math.Round(tempTargetFreq, 2));
+                            freqPointLocaForFR.Add(new Point(tempTargetFreqLoca, defaultFRYAxisLoca));
+                        }
+                        tempTargetFreq += tempFreqIncreaseStep;
+                    }
+
+                    if (tempFreq == MinFreq)
+                    {
+                        // if minFreq is not a integer times of step, then mannually set it to
+                        // eg. if minFreq = 21Hz, then next time will calc/draw 30Hz, not 31Hz
+                        tempFreq += step;
+                        tempFreq -= tempFreq % step;
+                    }
+                    else
+                        tempFreq += step;
+                }
+
+                if (tempFreq >= MaxFreq)
+                    break;
+            }
+
+            //Add last Freq
+            freqPointForFR.Add(MaxFreq);
+            freqPointLocaForFR.Add(new Point(this.EQ_CurvePanel.Width - xAxis_Shift, defaultFRYAxisLoca));
+
+            // Fresh Frequency Point draw point array
+            for (int ix = 0; ix < freqResponsePointsLoca.Length; ix++)
+            {
+                freqResponsePointsLoca[ix] = new Point[freqPointLocaForFR.Count];
+                for (int ix_freqCount = 0; ix_freqCount < freqPointLocaForFR.Count; ix_freqCount++)
+                {
+                    freqResponsePointsLoca[ix][ix_freqCount].X = freqPointLocaForFR[ix_freqCount].X;
+                    freqResponsePointsLoca[ix][ix_freqCount].Y = freqPointLocaForFR[ix_freqCount].Y;
+                }
+            }
         }
+
+        /// <summary>
+        /// This method will re-calculate the frame draw points
+        /// </summary>
+        private void UpdateDrawPoints_Frame()
+        {
+            #region 1. Update Frequency points
+            Graphics tempGraphic = this.EQ_CurvePanel.CreateGraphics();
+
+            double totalLogLen = Math.Log10(MaxFreq) - Math.Log10(MinFreq);
+            double xAxisLogUnitLen = (double)(this.EQ_CurvePanel.Width - xAxis_Shift) / totalLogLen;
+            //int xAxisPointCount = (int)Math.Ceiling(totalLogLen * 9);
+            xAxisPoint_1.Clear();
+            xAxisPoint_2.Clear();
+            largGridIx_Freq.Clear();
+            xAxisString.Clear();
+            xAxisStringLoca.Clear();
+            //List<Point> xAxisPoint_1 = new List<Point>{ };
+            //List<Point> xAxisPoint_2 = new List<Point>{ };
+            //List<int> largGridIx_Freq = new List<int> { };
+            int tempFreq = MinFreq;
+            int step, tempX;
+
+            //Add first Freq
+            xAxisString.Add(MinFreq.ToString());
+            SizeF tempSize = tempGraphic.MeasureString(MinFreq.ToString(), this.Font);
+            xAxisStringLoca.Add(new Point(xAxis_Shift - (int)tempSize.Width / 2, this.EQ_CurvePanel.Height - yAxis_Shift + 5));
+            while (tempFreq < MaxFreq)
+            {
+                step = tempFreq < 10 ? 1 : (tempFreq < 100 ? 10 : (tempFreq < 1000 ? 100 : (tempFreq < 10000 ? 1000 : 10000)));
+
+                while (((tempFreq / step) < 10) && tempFreq <= MaxFreq)
+                {
+                    tempX = xAxis_Shift + (int)((Math.Log10(tempFreq) - Math.Log10(MinFreq)) * xAxisLogUnitLen);
+                    xAxisPoint_1.Add(new Point(tempX, frameWidth));
+                    xAxisPoint_2.Add(new Point(tempX, this.EQ_CurvePanel.Height - yAxis_Shift));
+
+                    if (tempFreq / step == 1)
+                    {
+                        largGridIx_Freq.Add(xAxisPoint_1.Count - 1);
+                        xAxisString.Add(tempFreq.ToString());
+                        tempSize = tempGraphic.MeasureString(tempFreq.ToString(), this.Font);
+                        xAxisStringLoca.Add(new Point(tempX - (int)tempSize.Width / 2, this.EQ_CurvePanel.Height - yAxis_Shift + 5));
+                    }
+
+                    if (tempFreq == MinFreq)
+                    {
+                        // if minFreq is not a integer times of step, then mannually set it to
+                        // eg. if minFreq = 21Hz, then next time will calc/draw 30Hz, not 31Hz
+                        tempFreq += step;
+                        tempFreq -= tempFreq % step;        
+                    }
+                    else
+                        tempFreq += step;
+                }
+
+                if (tempFreq >= MaxFreq)
+                    break;
+            }
+            #endregion 
+
+            #region 2. update Magnitude points
+            yAxisPoint_1.Clear();
+            yAxisPoint_2.Clear();
+            GridIx_20dBMag.Clear();
+            yAxisString.Clear();
+            yAxisStringLoca.Clear();
+            double magRange = MaxMag - MinMag;
+            double yAxisLogUnitLen = (this.EQ_CurvePanel.Height - yAxis_Shift) / magRange;
+            int tempMag = MaxMag;
+            int magStep_dB = 5;
+            int tempStep_YLen;
+            if (tempMag % magStep_dB != 0)
+            {
+                tempStep_YLen = (int)((tempMag % magStep_dB) * yAxisLogUnitLen);
+                yAxisPoint_1.Add(new Point(xAxis_Shift, tempStep_YLen));
+                yAxisPoint_2.Add(new Point(this.Width - frameWidth, tempStep_YLen));
+                tempMag = tempMag - (tempMag % magStep_dB);
+            }
+
+            while (tempMag > MinMag)
+            {
+                tempStep_YLen = (int)((MaxMag - tempMag) * yAxisLogUnitLen);
+                yAxisPoint_1.Add(new Point(xAxis_Shift, tempStep_YLen));
+                yAxisPoint_2.Add(new Point(this.Width - frameWidth, tempStep_YLen));
+
+                if (tempMag % 20 == 0 && tempMag < MaxMag)
+                {
+                    GridIx_20dBMag.Add(yAxisPoint_1.Count - 1);
+                    yAxisString.Add(tempMag.ToString());
+                    tempSize = tempGraphic.MeasureString(tempMag.ToString(), this.Font);
+                    yAxisStringLoca.Add(new Point(xAxis_Shift - (int)tempSize.Width - 5, tempStep_YLen - (int)tempSize.Height / 2));
+                }
+
+                tempMag -= magStep_dB;
+            }
+
+            // Add Min Mag
+            yAxisString.Add(MinMag.ToString());
+            tempSize = tempGraphic.MeasureString(MinMag.ToString(), this.Font);
+            yAxisStringLoca.Add(new Point(xAxis_Shift - (int)tempSize.Width - 5,
+                this.EQ_CurvePanel.Height - yAxis_Shift - (int)tempSize.Height / 2));
+
+            #endregion 
+        }
+
+        /// <summary>
+        /// This method will update all the filter's FR points, including the sum
+        /// <param name="ix_changedFilter"s>this index will decide which filter's FR draw point need to be updated, if -1 will update all</param>
+        /// </summary>
+        private void UpdateDrawPoints_FR(int ix_changedFilter)
+        {
+            int ix_filter, ix_freqCount;
+            int tempSum;
+            Point tempPoint = new Point();
+            if (ix_changedFilter == -1)
+            {
+                for (ix_filter = 0; ix_filter < filterList.Count; ix_filter++)
+                {
+                    for (ix_freqCount = 0; ix_freqCount < freqPointLocaForFR.Count; ix_freqCount++)
+                    {
+                        tempPoint.X = freqPointLocaForFR[ix_freqCount].X;     
+                        tempPoint.Y = CalcYAxisValueFromMagn(filterList[ix_filter].FR_Mag_out[ix_freqCount]);
+                        freqResponsePointsLoca[ix_filter][ix_freqCount] = tempPoint;
+                    }
+                }
+            }
+            else if (ix_changedFilter < filterList.Count)
+            {
+                for (ix_freqCount = 0; ix_freqCount < freqPointLocaForFR.Count; ix_freqCount++)
+                {
+                    tempPoint.X = freqPointLocaForFR[ix_freqCount].X;
+                    tempPoint.Y = CalcYAxisValueFromMagn(filterList[ix_changedFilter].FR_Mag_out[ix_freqCount]);
+                    freqResponsePointsLoca[ix_changedFilter][ix_freqCount] = tempPoint;
+                } 
+            }
+
+            // Update the sum FR curve points location
+            for (ix_freqCount = 0; ix_freqCount < freqPointLocaForFR.Count; ix_freqCount++)
+            {
+                tempSum = defaultFRYAxisLoca;
+                for (ix_filter = 0; ix_filter < filterList.Count; ix_filter++)
+                {
+                    if(!settings[ix_filter].Bypass)
+                        tempSum += (freqResponsePointsLoca[ix_filter][ix_freqCount].Y - defaultFRYAxisLoca);
+                }
+
+                tempPoint.X = freqPointLocaForFR[ix_freqCount].X;
+                tempPoint.Y = tempSum;
+                //tempPoint = freqPointLocaForFR[ix_freqCount];
+                //if (tempSum == 0)
+                //    tempPoint.Y = defaultFRYAxisLoca;
+                //else
+                //    tempPoint.Y = tempSum;
+
+                freqPointLocaForFR[ix_freqCount] = tempPoint;
+            }
+        }
+
+        /// <summary>
+        /// This method is used to calculate the real point y value with magnitude.
+        /// </summary>
+        /// <param name="currentMagValue"></param>
+        /// <returns></returns>
+        private int CalcYAxisValueFromMagn(double currentMagValue)
+        {
+            int yAxisValue = 0;
+            //double
+            double yAxisLogUnitLen = (this.EQ_CurvePanel.Height - yAxis_Shift) / double.Parse((MaxMag - MinMag).ToString());
+
+            yAxisValue = (int)((MaxMag - currentMagValue) * yAxisLogUnitLen);
+
+            return yAxisValue;
+        }
+
         #endregion Methods
-
-        private void EQ_CurvePanel_Paint(object sender, PaintEventArgs e)
-        {
-            // Transfer (0,0) to X Axis and Y Axis cross point
-            //e.Graphics.TranslateTransform(50,10);
-            //e.Graphics.RotateTransform(
-
-            PaintWorkRegion(e);
-        }
-
-        private void numUP_MinFreq_ValueChanged(object sender, EventArgs e)
-        {
-            this.MinFreq = (int)numUP_MinFreq.Value;
-            this.EQ_CurvePanel.Refresh();
-        }
-
-        private void numUP_MaxFreq_ValueChanged(object sender, EventArgs e)
-        {
-            this.MaxFreq = (int)numUP_MaxFreq.Value;
-            this.EQ_CurvePanel.Refresh();
-        }
-
-        private void numUP_MinMagn_ValueChanged(object sender, EventArgs e)
-        {
-            this.MinMag = (int)numUP_MinMagn.Value;
-            this.EQ_CurvePanel.Refresh();
-        }
-
-        private void numUP_MaxMagn_ValueChanged(object sender, EventArgs e)
-        {
-            this.MaxMag = (int)numUP_MaxMagn.Value;
-            this.EQ_CurvePanel.Refresh();
-        }
-
-        private void dgv_filterSetting_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dgv_filterSetting_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            //if ((e.Value == ""))
-            //{
-            //    dgv_regSetting[e.ColumnIndex, e.RowIndex].ReadOnly = true;
-            //    return;
-            //}
-            //else if (e.Value != null && e.ColumnIndex != 1)
-            //    e.Value = "0x" + e.Value.ToString().Replace("0x", "");            
-        }
 
         /* Settings: No. Type SubType Frequency Gain BandWidth QFactor View Bypass Color */
         enum paramIx
@@ -379,6 +639,160 @@ namespace SGM4711_Eva.GUI
             Color = 9
         }
 
+        #region Events
+        private void dgv_filterSetting_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgv_filterSetting.IsCurrentCellDirty)
+            {
+                int colIx = dgv_filterSetting.CurrentCellAddress.X;
+                if(colIx < (int)paramIx.Freq | colIx > (int)paramIx.QFatcor)
+                    dgv_filterSetting.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                //dgv_filterSetting.CurrentCellAddress.X
+                //dgv_filterSetting.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+        
+        private void EQ_CurvePanel_Paint(object sender, PaintEventArgs e)
+        {
+            // Transfer (0,0) to X Axis and Y Axis cross point
+            //e.Graphics.TranslateTransform(50,10);
+            //e.Graphics.RotateTransform(
+
+            PaintWorkRegion(e);
+        }
+
+        private void numUP_MinFreq_ValueChanged(object sender, EventArgs e)
+        {
+            this.MinFreq = (int)numUP_MinFreq.Value;
+            UpdateDrawPoints_Frame();
+            UpdateFreqPointForFR();
+            UpdateDrawPoints_FR(-1);
+            this.EQ_CurvePanel.Refresh();
+        }
+
+        private void numUP_MaxFreq_ValueChanged(object sender, EventArgs e)
+        {
+            this.MaxFreq = (int)numUP_MaxFreq.Value;
+            UpdateDrawPoints_Frame();
+            UpdateFreqPointForFR();
+            UpdateDrawPoints_FR(-1);
+            this.EQ_CurvePanel.Refresh();
+        }
+
+        private void numUP_MinMagn_ValueChanged(object sender, EventArgs e)
+        {
+            this.MinMag = (int)numUP_MinMagn.Value;
+            UpdateDrawPoints_Frame();
+            UpdateFreqPointForFR();
+            UpdateDrawPoints_FR(-1);
+            this.EQ_CurvePanel.Refresh();
+        }
+
+        private void numUP_MaxMagn_ValueChanged(object sender, EventArgs e)
+        {
+            this.MaxMag = (int)numUP_MaxMagn.Value;
+            UpdateDrawPoints_Frame();
+            UpdateFreqPointForFR();
+            UpdateDrawPoints_FR(-1);
+            this.EQ_CurvePanel.Refresh();
+        }
+
+        private void dgv_filterSetting_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            double tempData;
+            bool parseRet = false;
+            if (dgv_filterSetting.Rows.Count == 0)
+                return;
+
+            DataGridViewRow tempRow = dgv_filterSetting.Rows[e.RowIndex];
+
+            switch (e.ColumnIndex)
+            {
+                case (int)paramIx.No:
+                    break;
+
+                case (int)paramIx.Type:
+                    settings[e.RowIndex].Type = (FilterType)Enum.Parse(typeof(FilterType), tempRow.Cells[e.ColumnIndex].Value.ToString());
+                    break;
+
+                case (int)paramIx.SubType:
+                    settings[e.RowIndex].SubType = (FilterSubType)Enum.Parse(typeof(FilterSubType), tempRow.Cells[e.ColumnIndex].Value.ToString());
+                    break;
+
+                case (int)paramIx.Freq:
+                    parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
+                    if (parseRet && (tempData <= MaxFreq) && (tempData >= MinFreq))
+                    {
+                        settings[e.RowIndex].Freq = tempData;
+                    }
+                    else 
+                        MessageBox.Show(String.Format("Wrong Frequency Input in Row[{0}]", e.RowIndex));
+                    break;
+
+                case (int)paramIx.Gain:
+                    parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
+                    if (parseRet && (tempData <= MaxGaindB) && (tempData >= MinGaindB))
+                    {
+                        settings[e.RowIndex].Gain = tempData;
+                    }
+                    else
+                        MessageBox.Show(String.Format("Wrong Gain Input in Row[{0}]", e.RowIndex));
+
+                    break;
+
+                case (int)paramIx.BW:
+                    parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
+                    if (parseRet && (tempData <= MaxBW) && (tempData >= MinBW))
+                    {
+                        settings[e.RowIndex].BandWidth = tempData;
+                    }
+                    else
+                        MessageBox.Show(String.Format("Wrong Band Width Input in Row[{0}]", e.RowIndex));
+
+                    break;
+
+                case (int)paramIx.QFatcor:
+                    parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
+                    if (parseRet && (tempData <= MaxQFactor) && (tempData >= MinQFactor))
+                    {
+                        settings[e.RowIndex].QFactor = tempData;
+                    }
+                    else
+                        MessageBox.Show(String.Format("Wrong Q Factor Input in Row[{0}]", e.RowIndex));
+
+                    break;
+
+                case (int)paramIx.View:
+                    settings[e.RowIndex].View = (bool)tempRow.Cells[e.ColumnIndex].Value;
+                    break;
+
+                case (int)paramIx.Bypass:
+                    settings[e.RowIndex].Bypass = (bool)tempRow.Cells[e.ColumnIndex].Value;
+                    break;
+
+                case (int)paramIx.Color:
+                    break;
+
+                default:
+                    break;
+            }
+            filterList[e.RowIndex].UpdateCoefficents(freqPointForFR.ToArray());
+            UpdateDrawPoints_FR(e.RowIndex);
+
+            this.EQ_CurvePanel.Refresh();
+        }
+
+        private void dgv_filterSetting_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //if ((e.Value == ""))
+            //{
+            //    dgv_regSetting[e.ColumnIndex, e.RowIndex].ReadOnly = true;
+            //    return;
+            //}
+            //else if (e.Value != null && e.ColumnIndex != 1)
+            //    e.Value = "0x" + e.Value.ToString().Replace("0x", "");            
+        }
+
         /// <summary>
         /// This event will be used to verify if inputs in correct formate. 
         /// </summary>
@@ -387,22 +801,57 @@ namespace SGM4711_Eva.GUI
         private void dgv_filterSetting_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             double tempData;
+            bool parseRet = false;
             DataGridViewRow tempRow = dgv_filterSetting.Rows[e.RowIndex];
             if (e.ColumnIndex <= (int)paramIx.No || e.ColumnIndex >= (int)paramIx.Color)
                 return;
 
+            //parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].FormattedValue.ToString(), out tempData);
+            parseRet = double.TryParse(e.FormattedValue.ToString(), out tempData);
             switch (e.ColumnIndex)
             {
                 case (int)paramIx.Freq:
+                    if (parseRet && (tempData <= MaxFreq) && (tempData >= MinFreq))
+                    {
+                        e.Cancel = false;
+                        //settings[e.RowIndex].Freq = tempData;
+                    }
+                    else
+                        e.Cancel = true;
+
                     break;
 
                 case (int)paramIx.Gain:
+                    if (parseRet && (tempData <= MaxGaindB) && (tempData >= MinGaindB))
+                    {
+                        e.Cancel = false;
+                        //settings[e.RowIndex].Gain = tempData;
+                    }
+                    else
+                        e.Cancel = true;
+
                     break;
 
                 case (int)paramIx.BW:
+                    if (parseRet && (tempData <= MaxBW) && (tempData >= MinBW))
+                    {
+                        e.Cancel = false;
+                        //settings[e.RowIndex].BandWidth = tempData;
+                    }
+                    else
+                        e.Cancel = true;
+
                     break;
 
                 case (int)paramIx.QFatcor:
+                    if (parseRet && (tempData <= MaxQFactor) && (tempData >= MinQFactor))
+                    {
+                        e.Cancel = false;
+                        //settings[e.RowIndex].QFactor = tempData;
+                    }
+                    else
+                        e.Cancel = true;
+
                     break;
 
                 default:
@@ -415,6 +864,13 @@ namespace SGM4711_Eva.GUI
         {
 
         }
+
+        private void pnl_EQCurveSetting_SizeChanged(object sender, EventArgs e)
+        {
+            UpdateDrawPoints_Frame();
+        }
+        #endregion 
+
 
     }
 }

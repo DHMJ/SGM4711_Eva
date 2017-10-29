@@ -8,8 +8,8 @@ namespace SGM4711_Eva.MDCommon.Filter
 {
     public static class FilterCurveColor
     {
-        private static Color[] colors = new Color[] { Color.Blue, Color.Cyan, Color.GreenYellow, Color.IndianRed, Color.Green, Color.Purple};
-        private static Color EQDefault = Color.DarkGray;
+        private static Color[] colors = new Color[] { Color.Pink, Color.Cyan, Color.GreenYellow, Color.IndianRed, Color.Green, Color.Purple};
+        private static Color EQDefault = Color.Blue;
 
         public static Color FilterCurveColors(int ix)
         {

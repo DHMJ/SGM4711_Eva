@@ -8,20 +8,23 @@ namespace SGM4711_Eva.MDCommon.Filter
     /// <summary>
     /// Transfer Function calss which will be used to calculate  different kinds of filters. 
     /// </summary>
-    class TransferFunc
+    public class TransferFunc
     {
-        /* 计算数字滤波器的频率响应 
-        * num 是数字滤波器的分子多项式系数 
-        * den 是数字滤波器的分母多项式系数 
-        * num_order 是分子多项式的阶数 
-        * den_order 是分母多项式的阶数 
-        * sign = 0 时，x_out 为频率响应的实部， y_out 为频率响应的虚部 
-        * sign = 1 时，x_out 为频率响应的模， y_out 为频率响应的幅角 
-        * sign = 2 时，x_out 为以 dB 为单位的频率响应， y_out 为频率响应的幅角 
-        * len 为，频率响应的取样点数 
-        * Formula: H(z) = (b0 + b1 * Z-1 + b2 * Z-2 ...) / (a0 + a1 * Z-1 + a2 * Z-2...)
-        */
-        void FilterTF(double[] num, double[] den, int num_order, int den_order,
+        /// <summary>
+        /// 计算数字滤波器的频率响应
+        /// Formula: H(z) = (b0 + b1 * Z-1 + b2 * Z-2 ...) / (a0 + a1 * Z-1 + a2 * Z-2...)
+        /// </summary>
+        /// <param name="num">是数字滤波器的分子多项式系数</param>
+        /// <param name="den">是数字滤波器的分母多项式系数</param>
+        /// <param name="num_order">是分子多项式的阶数</param>
+        /// <param name="den_order">是分母多项式的阶数</param>
+        /// <param name="x_out">sign = 0 时，x_out 为频率响应的实部, 
+        /// sign = 1 时，x_out 为频率响应的模, sign = 2 时，
+        /// x_out 为以 dB 为单位的频率响应</param>
+        /// <param name="y_out">sign = 0 时，y_out 为频率响应的虚部, sign = 1 时，y_out 为频率响应的幅角, sign = 2 时，y_out 为频率响应的幅角</param>
+        /// <param name="len">频率响应的取样点数</param>
+        /// <param name="sign">取值为0， 1 或者 2， 详见x_out/y_out</param>
+        public static void FilterTF(double[] num, double[] den, int num_order, int den_order,
             double[] x_out, double[] y_out, int len, int sign)
         {
             int i, k;
@@ -79,18 +82,21 @@ namespace SGM4711_Eva.MDCommon.Filter
             }
         }
 
-        /* 计算数字滤波器的频率响应 
-        * num 是数字滤波器的分子多项式系数 
-        * den 是数字滤波器的分母多项式系数 
-        * num_order 是分子多项式的阶数 
-        * den_order 是分母多项式的阶数 
-        * sign = 0 时，x_out 为频率响应的实部， y_out 为频率响应的虚部 
-        * sign = 1 时，x_out 为频率响应的模， y_out 为频率响应的幅角 
-        * sign = 2 时，x_out 为以 dB 为单位的频率响应， y_out 为频率响应的幅角 
-        * len 为，频率响应的取样点数 
-        * Formula: H(z) = (b0 + b1 * Z-1 + b2 * Z-2 ...) / (a0 + a1 * Z-1 + a2 * Z-2...)
-        */
-        void FilterTF(double[] num, double[] den, int num_order, int den_order,
+        /// <summary>
+        /// 计算数字滤波器的频率响应
+        /// Formula: H(z) = (b0 + b1 * Z-1 + b2 * Z-2 ...) / (a0 + a1 * Z-1 + a2 * Z-2...)
+        /// </summary>
+        /// <param name="num">是数字滤波器的分子多项式系数</param>
+        /// <param name="den">是数字滤波器的分母多项式系数</param>
+        /// <param name="num_order">是分子多项式的阶数</param>
+        /// <param name="den_order">是分母多项式的阶数</param>
+        /// <param name="x_out">sign = 0 时，x_out 为频率响应的实部, 
+        /// sign = 1 时，x_out 为频率响应的模, sign = 2 时，
+        /// x_out 为以 dB 为单位的频率响应</param>
+        /// <param name="y_out">sign = 0 时，y_out 为频率响应的虚部, sign = 1 时，y_out 为频率响应的幅角, sign = 2 时，y_out 为频率响应的幅角</param>
+        /// <param name="freqs">为频率响应的取样频率点</param>
+        /// <param name="sign">取值为0， 1 或者 2， 详见x_out/y_out</param>
+        public static void FilterTF(double[] num, double[] den, int num_order, int den_order,
             double[] x_out, double[] y_out, double[] freqs, int sign)
         {
             int ix, ix_freqLoop;
@@ -148,13 +154,18 @@ namespace SGM4711_Eva.MDCommon.Filter
             }
         }
 
-
-        double Math_hypot(double x, double y)
+        /// <summary>
+        /// 勾股定理斜边计算
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        static double Math_hypot(double x, double y)
         {
             return Math.Sqrt(x * x + y * y);
         }
 
-        Complex poly_val(double[] p, int n, double omega)  
+        static Complex poly_val(double[] p, int n, double omega)  
         {  
             int i;  
             Complex e_njw, sum;
@@ -167,7 +178,7 @@ namespace SGM4711_Eva.MDCommon.Filter
             return sum;  
         }
 
-        void FilterTF(double[] num, double[] den, int num_size, int den_size, Complex[] output, int n)  
+        static void FilterTF(double[] num, double[] den, int num_size, int den_size, Complex[] output, int n)  
         {  
             double omega;  
             int i;  
