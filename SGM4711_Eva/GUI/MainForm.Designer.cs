@@ -45,6 +45,8 @@
             this.MenuItemFile_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemFile_ExitWithoutSave = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemTools_I2CAddress = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuItemTools_selectDongle = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemTools_ScriptWrite = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemView = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,9 +61,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabCtrl_MainGUI = new System.Windows.Forms.TabControl();
             this.tabP_systemConfig = new System.Windows.Forms.TabPage();
+            this.lbl_MasterVol = new System.Windows.Forms.Label();
             this.chb_Enable = new System.Windows.Forms.CheckBox();
             this.btn_backToDefault = new System.Windows.Forms.Button();
-            this.btn_Enable = new System.Windows.Forms.Button();
+            this.btn_Sync = new System.Windows.Forms.Button();
             this.btn_OutputMux_GUI = new System.Windows.Forms.Button();
             this.btn_AudioEngine_GUI = new System.Windows.Forms.Button();
             this.btn_InputMux_GUI = new System.Windows.Forms.Button();
@@ -79,7 +82,6 @@
             this.btn_OutputMux = new System.Windows.Forms.Button();
             this.chb_MuteMasterVolume = new System.Windows.Forms.CheckBox();
             this.trb_MasterVolume = new System.Windows.Forms.TrackBar();
-            this.btn_MasterVolume = new System.Windows.Forms.Button();
             this.btn_AudioEngine = new System.Windows.Forms.Button();
             this.btn_InputMux = new System.Windows.Forms.Button();
             this.grb_OpeStatus = new System.Windows.Forms.GroupBox();
@@ -103,8 +105,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.numUP_OpVoltage = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
+            this.btn_MasterVolume = new System.Windows.Forms.Button();
             this.tabP_AudioEngine = new System.Windows.Forms.TabPage();
             this.pnl_Main = new System.Windows.Forms.Panel();
+            this.chb_v4Source = new System.Windows.Forms.CheckBox();
             this.pl_SubReverb = new System.Windows.Forms.Panel();
             this.pl_RReverb = new System.Windows.Forms.Panel();
             this.pl_LReverb = new System.Windows.Forms.Panel();
@@ -144,6 +148,7 @@
             this.pl_6EQ_R = new System.Windows.Forms.Panel();
             this.pl_HPF_LIn = new System.Windows.Forms.Panel();
             this.pl_6EQ_L = new System.Windows.Forms.Panel();
+            this.chb_v3Source = new System.Windows.Forms.CheckBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabCtrl_SingleRegSetting = new System.Windows.Forms.TabControl();
             this.tabP_SingleCtrl = new System.Windows.Forms.TabPage();
@@ -158,8 +163,6 @@
             this.statusBar_VID = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar_PID = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar_BoardType = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.MenuItemTools_I2CAddress = new System.Windows.Forms.ToolStripTextBox();
             this.line14 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line13 = new SGM4711_Eva.MDUserCtrls.Line();
@@ -337,6 +340,20 @@
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
+            // MenuItemTools_I2CAddress
+            // 
+            this.MenuItemTools_I2CAddress.Name = "MenuItemTools_I2CAddress";
+            this.MenuItemTools_I2CAddress.Size = new System.Drawing.Size(100, 23);
+            this.MenuItemTools_I2CAddress.Text = "0x1A";
+            this.MenuItemTools_I2CAddress.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MenuItemTools_I2CAddress.ToolTipText = "I2C Device Address";
+            this.MenuItemTools_I2CAddress.TextChanged += new System.EventHandler(this.MenuItemTools_I2CAddress_TextChanged);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
+            // 
             // MenuItemTools_selectDongle
             // 
             this.MenuItemTools_selectDongle.Name = "MenuItemTools_selectDongle";
@@ -464,9 +481,10 @@
             // tabP_systemConfig
             // 
             this.tabP_systemConfig.BackColor = System.Drawing.Color.White;
+            this.tabP_systemConfig.Controls.Add(this.lbl_MasterVol);
             this.tabP_systemConfig.Controls.Add(this.chb_Enable);
             this.tabP_systemConfig.Controls.Add(this.btn_backToDefault);
-            this.tabP_systemConfig.Controls.Add(this.btn_Enable);
+            this.tabP_systemConfig.Controls.Add(this.btn_Sync);
             this.tabP_systemConfig.Controls.Add(this.btn_OutputMux_GUI);
             this.tabP_systemConfig.Controls.Add(this.btn_AudioEngine_GUI);
             this.tabP_systemConfig.Controls.Add(this.btn_InputMux_GUI);
@@ -494,7 +512,6 @@
             this.tabP_systemConfig.Controls.Add(this.line6);
             this.tabP_systemConfig.Controls.Add(this.line7);
             this.tabP_systemConfig.Controls.Add(this.line8);
-            this.tabP_systemConfig.Controls.Add(this.btn_MasterVolume);
             this.tabP_systemConfig.Controls.Add(this.line5);
             this.tabP_systemConfig.Controls.Add(this.line3);
             this.tabP_systemConfig.Controls.Add(this.line4);
@@ -511,6 +528,7 @@
             this.tabP_systemConfig.Controls.Add(this.label1);
             this.tabP_systemConfig.Controls.Add(this.numUP_OpVoltage);
             this.tabP_systemConfig.Controls.Add(this.label24);
+            this.tabP_systemConfig.Controls.Add(this.btn_MasterVolume);
             this.tabP_systemConfig.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.tabP_systemConfig.Location = new System.Drawing.Point(4, 25);
             this.tabP_systemConfig.Name = "tabP_systemConfig";
@@ -519,25 +537,39 @@
             this.tabP_systemConfig.TabIndex = 0;
             this.tabP_systemConfig.Text = "System Configuration";
             // 
+            // lbl_MasterVol
+            // 
+            this.lbl_MasterVol.AutoSize = true;
+            this.lbl_MasterVol.BackColor = System.Drawing.Color.AliceBlue;
+            this.lbl_MasterVol.ForeColor = System.Drawing.Color.Red;
+            this.lbl_MasterVol.Location = new System.Drawing.Point(532, 311);
+            this.lbl_MasterVol.Name = "lbl_MasterVol";
+            this.lbl_MasterVol.Size = new System.Drawing.Size(42, 16);
+            this.lbl_MasterVol.TabIndex = 42;
+            this.lbl_MasterVol.Text = "Muted";
+            // 
             // chb_Enable
             // 
             this.chb_Enable.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chb_Enable.BackColor = System.Drawing.Color.IndianRed;
+            this.chb_Enable.Checked = true;
+            this.chb_Enable.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chb_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chb_Enable.Location = new System.Drawing.Point(387, 361);
+            this.chb_Enable.Location = new System.Drawing.Point(73, 361);
             this.chb_Enable.Name = "chb_Enable";
             this.chb_Enable.Size = new System.Drawing.Size(100, 29);
             this.chb_Enable.TabIndex = 41;
-            this.chb_Enable.Text = "Enable";
+            this.chb_Enable.Text = "Powered Down";
             this.chb_Enable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chb_Enable.UseVisualStyleBackColor = true;
-            this.chb_Enable.Visible = false;
+            this.chb_Enable.UseVisualStyleBackColor = false;
+            this.chb_Enable.CheckedChanged += new System.EventHandler(this.chb_Enable_CheckedChanged);
             // 
             // btn_backToDefault
             // 
             this.btn_backToDefault.AutoSize = true;
             this.btn_backToDefault.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_backToDefault.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_backToDefault.Location = new System.Drawing.Point(231, 361);
+            this.btn_backToDefault.Location = new System.Drawing.Point(351, 361);
             this.btn_backToDefault.Name = "btn_backToDefault";
             this.btn_backToDefault.Size = new System.Drawing.Size(100, 29);
             this.btn_backToDefault.TabIndex = 40;
@@ -545,18 +577,18 @@
             this.btn_backToDefault.UseVisualStyleBackColor = true;
             this.btn_backToDefault.Click += new System.EventHandler(this.btn_backToDefault_Click);
             // 
-            // btn_Enable
+            // btn_Sync
             // 
-            this.btn_Enable.AutoSize = true;
-            this.btn_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Enable.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_Enable.Location = new System.Drawing.Point(73, 361);
-            this.btn_Enable.Name = "btn_Enable";
-            this.btn_Enable.Size = new System.Drawing.Size(100, 29);
-            this.btn_Enable.TabIndex = 39;
-            this.btn_Enable.Text = "Enable";
-            this.btn_Enable.UseVisualStyleBackColor = true;
-            this.btn_Enable.Click += new System.EventHandler(this.btn_Enable_Click);
+            this.btn_Sync.AutoSize = true;
+            this.btn_Sync.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Sync.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_Sync.Location = new System.Drawing.Point(212, 361);
+            this.btn_Sync.Name = "btn_Sync";
+            this.btn_Sync.Size = new System.Drawing.Size(100, 29);
+            this.btn_Sync.TabIndex = 39;
+            this.btn_Sync.Text = "Sync";
+            this.btn_Sync.UseVisualStyleBackColor = true;
+            this.btn_Sync.Click += new System.EventHandler(this.btn_Sync_Click);
             // 
             // btn_OutputMux_GUI
             // 
@@ -733,7 +765,7 @@
             this.chb_MuteMasterVolume.AutoSize = true;
             this.chb_MuteMasterVolume.BackColor = System.Drawing.Color.AliceBlue;
             this.chb_MuteMasterVolume.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.chb_MuteMasterVolume.Location = new System.Drawing.Point(578, 288);
+            this.chb_MuteMasterVolume.Location = new System.Drawing.Point(585, 293);
             this.chb_MuteMasterVolume.Name = "chb_MuteMasterVolume";
             this.chb_MuteMasterVolume.Size = new System.Drawing.Size(39, 34);
             this.chb_MuteMasterVolume.TabIndex = 19;
@@ -749,23 +781,12 @@
             this.trb_MasterVolume.Maximum = 255;
             this.trb_MasterVolume.Name = "trb_MasterVolume";
             this.trb_MasterVolume.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trb_MasterVolume.Size = new System.Drawing.Size(45, 148);
+            this.trb_MasterVolume.Size = new System.Drawing.Size(45, 126);
             this.trb_MasterVolume.TabIndex = 18;
             this.trb_MasterVolume.TickFrequency = 25;
             this.trb_MasterVolume.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trb_MasterVolume.Value = 255;
             this.trb_MasterVolume.Scroll += new System.EventHandler(this.trb_MasterVolume_Scroll);
-            // 
-            // btn_MasterVolume
-            // 
-            this.btn_MasterVolume.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_MasterVolume.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_MasterVolume.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_MasterVolume.Location = new System.Drawing.Point(509, 158);
-            this.btn_MasterVolume.Name = "btn_MasterVolume";
-            this.btn_MasterVolume.Size = new System.Drawing.Size(121, 176);
-            this.btn_MasterVolume.TabIndex = 14;
-            this.btn_MasterVolume.Text = "Master Volume\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
-            this.btn_MasterVolume.UseVisualStyleBackColor = false;
             // 
             // btn_AudioEngine
             // 
@@ -1075,6 +1096,18 @@
             this.label24.TabIndex = 28;
             this.label24.Text = "SubCH OUT";
             // 
+            // btn_MasterVolume
+            // 
+            this.btn_MasterVolume.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_MasterVolume.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_MasterVolume.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.btn_MasterVolume.Location = new System.Drawing.Point(509, 158);
+            this.btn_MasterVolume.Name = "btn_MasterVolume";
+            this.btn_MasterVolume.Size = new System.Drawing.Size(121, 176);
+            this.btn_MasterVolume.TabIndex = 14;
+            this.btn_MasterVolume.Text = "Master Volume\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
+            this.btn_MasterVolume.UseVisualStyleBackColor = false;
+            // 
             // tabP_AudioEngine
             // 
             this.tabP_AudioEngine.Controls.Add(this.pnl_Main);
@@ -1091,6 +1124,7 @@
             this.pnl_Main.BackColor = System.Drawing.Color.Transparent;
             this.pnl_Main.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_Main.BackgroundImage")));
             this.pnl_Main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnl_Main.Controls.Add(this.chb_v4Source);
             this.pnl_Main.Controls.Add(this.pl_SubReverb);
             this.pnl_Main.Controls.Add(this.pl_RReverb);
             this.pnl_Main.Controls.Add(this.pl_LReverb);
@@ -1130,12 +1164,27 @@
             this.pnl_Main.Controls.Add(this.pl_6EQ_R);
             this.pnl_Main.Controls.Add(this.pl_HPF_LIn);
             this.pnl_Main.Controls.Add(this.pl_6EQ_L);
+            this.pnl_Main.Controls.Add(this.chb_v3Source);
             this.pnl_Main.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Main.Location = new System.Drawing.Point(3, 3);
             this.pnl_Main.Name = "pnl_Main";
             this.pnl_Main.Size = new System.Drawing.Size(999, 425);
             this.pnl_Main.TabIndex = 0;
+            // 
+            // chb_v4Source
+            // 
+            this.chb_v4Source.AutoSize = true;
+            this.chb_v4Source.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chb_v4Source.Font = new System.Drawing.Font("SimSun", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chb_v4Source.Location = new System.Drawing.Point(455, 268);
+            this.chb_v4Source.Name = "chb_v4Source";
+            this.chb_v4Source.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chb_v4Source.Size = new System.Drawing.Size(66, 13);
+            this.chb_v4Source.TabIndex = 43;
+            this.chb_v4Source.Text = "From 0x09";
+            this.chb_v4Source.UseVisualStyleBackColor = true;
+            this.chb_v4Source.CheckedChanged += new System.EventHandler(this.chb_v4Source_CheckedChanged);
             // 
             // pl_SubReverb
             // 
@@ -1537,6 +1586,20 @@
             this.pl_6EQ_L.Click += new System.EventHandler(this.pl_6EQ_L_Click);
             this.pl_6EQ_L.DoubleClick += new System.EventHandler(this.pl_6EQ_L_DoubleClick);
             // 
+            // chb_v3Source
+            // 
+            this.chb_v3Source.AutoSize = true;
+            this.chb_v3Source.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chb_v3Source.Font = new System.Drawing.Font("SimSun", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chb_v3Source.Location = new System.Drawing.Point(455, 179);
+            this.chb_v3Source.Name = "chb_v3Source";
+            this.chb_v3Source.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chb_v3Source.Size = new System.Drawing.Size(66, 13);
+            this.chb_v3Source.TabIndex = 42;
+            this.chb_v3Source.Text = "From 0x08";
+            this.chb_v3Source.UseVisualStyleBackColor = true;
+            this.chb_v3Source.CheckedChanged += new System.EventHandler(this.chb_v3Source_CheckedChanged);
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1674,21 +1737,6 @@
             this.statusBar_BoardType.Size = new System.Drawing.Size(131, 19);
             this.statusBar_BoardType.Text = "Board Type: SGM4711";
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
-            // 
-            // MenuItemTools_I2CAddress
-            // 
-            this.MenuItemTools_I2CAddress.Name = "MenuItemTools_I2CAddress";
-            this.MenuItemTools_I2CAddress.Size = new System.Drawing.Size(100, 23);
-            this.MenuItemTools_I2CAddress.Text = "0x1A";
-            this.MenuItemTools_I2CAddress.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MenuItemTools_I2CAddress.ToolTipText = "I2C Device Address";
-            this.MenuItemTools_I2CAddress.Validating += new System.ComponentModel.CancelEventHandler(this.MenuItemTools_I2CAddress_Validating);
-            this.MenuItemTools_I2CAddress.TextChanged += new System.EventHandler(this.MenuItemTools_I2CAddress_TextChanged);
-            // 
             // line14
             // 
             this.line14.BackColor = System.Drawing.Color.Transparent;
@@ -1700,7 +1748,7 @@
             this.line14.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
             this.line14.Name = "line14";
             this.line14.RightOrBelowArrow = true;
-            this.line14.Size = new System.Drawing.Size(66, 10);
+            this.line14.Size = new System.Drawing.Size(66, 11);
             this.line14.TabIndex = 23;
             // 
             // line9
@@ -1714,7 +1762,7 @@
             this.line9.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
             this.line9.Name = "line9";
             this.line9.RightOrBelowArrow = true;
-            this.line9.Size = new System.Drawing.Size(66, 10);
+            this.line9.Size = new System.Drawing.Size(66, 11);
             this.line9.TabIndex = 23;
             // 
             // line13
@@ -1728,7 +1776,7 @@
             this.line13.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
             this.line13.Name = "line13";
             this.line13.RightOrBelowArrow = true;
-            this.line13.Size = new System.Drawing.Size(66, 10);
+            this.line13.Size = new System.Drawing.Size(66, 11);
             this.line13.TabIndex = 22;
             // 
             // line15
@@ -1742,7 +1790,7 @@
             this.line15.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
             this.line15.Name = "line15";
             this.line15.RightOrBelowArrow = true;
-            this.line15.Size = new System.Drawing.Size(66, 10);
+            this.line15.Size = new System.Drawing.Size(66, 11);
             this.line15.TabIndex = 21;
             // 
             // line12
@@ -1756,7 +1804,7 @@
             this.line12.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
             this.line12.Name = "line12";
             this.line12.RightOrBelowArrow = true;
-            this.line12.Size = new System.Drawing.Size(66, 10);
+            this.line12.Size = new System.Drawing.Size(66, 11);
             this.line12.TabIndex = 21;
             // 
             // line10
@@ -1770,7 +1818,7 @@
             this.line10.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
             this.line10.Name = "line10";
             this.line10.RightOrBelowArrow = true;
-            this.line10.Size = new System.Drawing.Size(66, 10);
+            this.line10.Size = new System.Drawing.Size(66, 11);
             this.line10.TabIndex = 22;
             // 
             // line11
@@ -1784,7 +1832,7 @@
             this.line11.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
             this.line11.Name = "line11";
             this.line11.RightOrBelowArrow = true;
-            this.line11.Size = new System.Drawing.Size(66, 10);
+            this.line11.Size = new System.Drawing.Size(66, 11);
             this.line11.TabIndex = 21;
             // 
             // line6
@@ -1798,7 +1846,7 @@
             this.line6.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
             this.line6.Name = "line6";
             this.line6.RightOrBelowArrow = true;
-            this.line6.Size = new System.Drawing.Size(66, 10);
+            this.line6.Size = new System.Drawing.Size(66, 11);
             this.line6.TabIndex = 17;
             // 
             // line7
@@ -1812,7 +1860,7 @@
             this.line7.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
             this.line7.Name = "line7";
             this.line7.RightOrBelowArrow = true;
-            this.line7.Size = new System.Drawing.Size(66, 10);
+            this.line7.Size = new System.Drawing.Size(66, 11);
             this.line7.TabIndex = 16;
             // 
             // line8
@@ -1826,7 +1874,7 @@
             this.line8.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
             this.line8.Name = "line8";
             this.line8.RightOrBelowArrow = true;
-            this.line8.Size = new System.Drawing.Size(66, 10);
+            this.line8.Size = new System.Drawing.Size(66, 11);
             this.line8.TabIndex = 15;
             // 
             // line5
@@ -1840,7 +1888,7 @@
             this.line5.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
             this.line5.Name = "line5";
             this.line5.RightOrBelowArrow = true;
-            this.line5.Size = new System.Drawing.Size(66, 10);
+            this.line5.Size = new System.Drawing.Size(66, 11);
             this.line5.TabIndex = 13;
             // 
             // line3
@@ -1854,7 +1902,7 @@
             this.line3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
             this.line3.Name = "line3";
             this.line3.RightOrBelowArrow = true;
-            this.line3.Size = new System.Drawing.Size(66, 10);
+            this.line3.Size = new System.Drawing.Size(66, 11);
             this.line3.TabIndex = 12;
             // 
             // line4
@@ -1868,7 +1916,7 @@
             this.line4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.line4.Name = "line4";
             this.line4.RightOrBelowArrow = true;
-            this.line4.Size = new System.Drawing.Size(66, 10);
+            this.line4.Size = new System.Drawing.Size(66, 11);
             this.line4.TabIndex = 11;
             // 
             // line2
@@ -1882,7 +1930,7 @@
             this.line2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.line2.Name = "line2";
             this.line2.RightOrBelowArrow = true;
-            this.line2.Size = new System.Drawing.Size(66, 10);
+            this.line2.Size = new System.Drawing.Size(66, 11);
             this.line2.TabIndex = 8;
             // 
             // line1
@@ -1896,7 +1944,7 @@
             this.line1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.line1.Name = "line1";
             this.line1.RightOrBelowArrow = true;
-            this.line1.Size = new System.Drawing.Size(66, 10);
+            this.line1.Size = new System.Drawing.Size(66, 11);
             this.line1.TabIndex = 8;
             // 
             // indicator_OTW
@@ -2006,7 +2054,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.34";
+            this.Text = "SGM4711 Eva_v0.35";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -2022,6 +2070,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).EndInit();
             this.tabP_AudioEngine.ResumeLayout(false);
             this.pnl_Main.ResumeLayout(false);
+            this.pnl_Main.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -2179,7 +2228,7 @@
         private System.Windows.Forms.Button btn_AudioEngine_GUI;
         private System.Windows.Forms.Button btn_OutputMux_GUI;
         private System.Windows.Forms.Button btn_backToDefault;
-        private System.Windows.Forms.Button btn_Enable;
+        private System.Windows.Forms.Button btn_Sync;
         private System.Windows.Forms.CheckBox chb_Enable;
         private System.Windows.Forms.TabPage tabP_IICMemTool;
         private System.Windows.Forms.StatusStrip statusBar;
@@ -2190,6 +2239,9 @@
         private System.Windows.Forms.ToolStripStatusLabel statusBar_BoardType;
         private System.Windows.Forms.ToolStripTextBox MenuItemTools_I2CAddress;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.CheckBox chb_v3Source;
+        private System.Windows.Forms.CheckBox chb_v4Source;
+        private System.Windows.Forms.Label lbl_MasterVol;
 
     }
 }

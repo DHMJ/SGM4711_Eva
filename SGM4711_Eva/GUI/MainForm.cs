@@ -307,9 +307,11 @@ namespace SGM4711_Eva
 
         private void pl_LRMixGain_Sub_Click(object sender, EventArgs e)
         {
+            // will set in input mux control
+
             /* 1. 0x61 BF[31: 16] */
             /* 2. 0x61 BF[15: 0] */
-            UpdateRegSettingSource(0x61, new string[] { "CH4_INPUT_MIXER_1[25:0]", "CH4_INPUT_MIXER_0[25:0]" });
+            //UpdateRegSettingSource(0x61, new string[] { "CH4_INPUT_MIXER_1[25:0]", "CH4_INPUT_MIXER_0[25:0]" });
         }
 
         private void pl_LRPreMixGain_L_Click(object sender, EventArgs e)
@@ -406,6 +408,8 @@ namespace SGM4711_Eva
 
         private void pl_SubReverb_Click(object sender, EventArgs e)
         {
+            // will set in Input Mux control
+
             /* 0x21 bit8 */
             UpdateRegSettingSource(0x21, new string[] { "CH4_SOURCE_SEL" });
         }
@@ -470,21 +474,60 @@ namespace SGM4711_Eva
             UpdateRegSettingSource(0x09);
         }
 
+        private void chb_v3Source_CheckedChanged(object sender, EventArgs e)
+        {
+            /* if(0x0E bit5 == 1) then = 0x0A, else 0x08 */
+            if (regMap == null)
+                return;
+            if (chb_v3Source.Checked)
+            {
+                regMap[0x0E]["CH3_VOL"].BFValue = 1;
+                this.chb_v3Source.Text = "From 0x0A";
+            }
+            else
+            {
+                regMap[0x0E]["CH3_VOL"].BFValue = 0;
+                this.chb_v3Source.Text = "From 0x08";
+            }
+        }
+
         private void pl_VOL3_Click(object sender, EventArgs e)
         {
-            /* if(0x0E bit6 == 1) then = 0x0A, else 0x08 */
-            uint mask = 1 << 6;
-            if ((regMap[0x0E].RegValue & mask) > 0)
+            if (regMap == null)
+                return;
+
+            /* if(0x0E bit5 == 1) then = 0x0A, else 0x08 */
+            if (chb_v3Source.Checked)
                 UpdateRegSettingSource(0x0A);
             else
                 UpdateRegSettingSource(0x08);
         }
 
+        private void chb_v4Source_CheckedChanged(object sender, EventArgs e)
+        {
+            /* if(0x0E bit6 == 1) then = 0x0A, else 0x09 */
+            if (regMap == null)
+                return;
+
+            if (chb_v4Source.Checked)
+            {
+                regMap[0x0E]["CH4_VOL"].BFValue = 1;
+                this.chb_v3Source.Text = "From 0x0A";
+            }
+            else
+            {
+                regMap[0x0E]["CH4_VOL"].BFValue = 0;
+                this.chb_v3Source.Text = "From 0x09";
+            }
+        }
+
         private void pl_VOL4_Click(object sender, EventArgs e)
         {
-            /* if(0x0E bit5 == 1) then = 0x0A, else 0x09 */
-            uint mask = 1 << 5;
-            if ((regMap[0x0E].RegValue & mask) > 0)
+            /* if(0x0E bit6 == 1) then = 0x0A, else 0x09 */
+            if (regMap == null)
+                return;
+
+            if (chb_v4Source.Checked)                
                 UpdateRegSettingSource(0x0A);
             else
                 UpdateRegSettingSource(0x09);
@@ -1102,6 +1145,18 @@ namespace SGM4711_Eva
             {
                 regMap[0x07].RegValue = (uint)this.trb_MasterVolume.Value;
                 UpdateRegSettingSource(0x07);
+
+                if (this.trb_MasterVolume.Value == 0xFF)
+                {
+                    this.lbl_MasterVol.Text = string.Format("Muted");
+                    this.lbl_MasterVol.ForeColor = Color.Red;
+                }
+                else
+                {
+                    double tempdBValue = 24 - trb_MasterVolume.Value * 0.5;
+                    this.lbl_MasterVol.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
+                    this.lbl_MasterVol.ForeColor = Color.Black;
+                }
             }
         }
 
@@ -1110,8 +1165,15 @@ namespace SGM4711_Eva
             /* write 0xFF to 0x07 */
             if (regMap != null)
             {
-                regMap[0x07].RegValue = 0xFF;
-                UpdateRegSettingSource(0x07);
+                if (chb_MuteMasterVolume.Checked)
+                {
+                    regMap[0x07].RegValue = 0xFF;
+                    UpdateRegSettingSource(0x07);
+                }
+                else
+                {
+                    trb_MasterVolume_Scroll(null, null);
+                }
             }
         }
 
@@ -1161,14 +1223,14 @@ namespace SGM4711_Eva
             comboBox.DropDownWidth = width;
         }
 
-        private void btn_Enable_Click(object sender, EventArgs e)
+        private void btn_Sync_Click(object sender, EventArgs e)
         {
             /* reg 0x05  bit6*/
             if (regMap == null)
                 return;
 
-            regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
-            UpdateRegSettingSource(0x05, new string[] { "ALL_CH_PD" });
+            //regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
+            //UpdateRegSettingSource(0x05, new string[] { "ALL_CH_PD" });
         }
 
         private void btn_backToDefault_Click(object sender, EventArgs e)
@@ -1183,22 +1245,27 @@ namespace SGM4711_Eva
             ReadAllAndUpdateGUI();
         }
 
-        private void MenuItemTools_I2CAddress_Validating(object sender, CancelEventArgs e)
+        private void chb_Enable_CheckedChanged(object sender, EventArgs e)
         {
-            string i2cString = this.MenuItemTools_I2CAddress.Text;
-            byte tempDevAddress;
-            bool ifSuccess = byte.TryParse(i2cString.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out tempDevAddress);
+            /* reg 0x05  bit6*/
+            if (regMap == null)
+                return;
 
-            if (!ifSuccess)
+            if (chb_Enable.Checked)
             {
-                //this.chipAddress = tempDevAddress;
-                MessageBox.Show("Wrong Chip Address");
-                e.Cancel = true;
+                regMap[0x05]["ALL_CH_PD"].BFValue = 0x1;
+                this.chb_Enable.Text = "Powered Down";
+                this.chb_Enable.BackColor = Color.IndianRed;
+            }
+            else
+            {
+                regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
+                this.chb_Enable.Text = "Powered ON";
+                this.chb_Enable.BackColor = Color.GreenYellow;
             }
 
+            UpdateRegSettingSource(0x05, new string[] { "ALL_CH_PD" });
         }
-
-
 
 
     }

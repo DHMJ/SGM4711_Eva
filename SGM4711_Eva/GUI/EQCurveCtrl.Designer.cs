@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_EQCurveSetting = new System.Windows.Forms.Panel();
             this.btn_Download_EQParam = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@
             this.Bypass = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CurveColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EQ_CurvePanel = new System.Windows.Forms.Panel();
+            this.chb_EQCurveView = new System.Windows.Forms.CheckBox();
             this.pnl_EQCurveSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MaxMagn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MaxFreq)).BeginInit();
@@ -70,6 +71,7 @@
             // pnl_EQCurveSetting
             // 
             this.pnl_EQCurveSetting.BackColor = System.Drawing.Color.White;
+            this.pnl_EQCurveSetting.Controls.Add(this.chb_EQCurveView);
             this.pnl_EQCurveSetting.Controls.Add(this.btn_Download_EQParam);
             this.pnl_EQCurveSetting.Controls.Add(this.label5);
             this.pnl_EQCurveSetting.Controls.Add(this.label2);
@@ -91,7 +93,7 @@
             // btn_Download_EQParam
             // 
             this.btn_Download_EQParam.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Download_EQParam.Location = new System.Drawing.Point(669, 12);
+            this.btn_Download_EQParam.Location = new System.Drawing.Point(697, 14);
             this.btn_Download_EQParam.Name = "btn_Download_EQParam";
             this.btn_Download_EQParam.Size = new System.Drawing.Size(75, 23);
             this.btn_Download_EQParam.TabIndex = 6;
@@ -275,14 +277,14 @@
             this.dgv_filterSetting.AllowUserToResizeColumns = false;
             this.dgv_filterSetting.AllowUserToResizeRows = false;
             this.dgv_filterSetting.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_filterSetting.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_filterSetting.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgv_filterSetting.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_filterSetting.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
@@ -295,14 +297,14 @@
             this.View,
             this.Bypass,
             this.CurveColor});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_filterSetting.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_filterSetting.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgv_filterSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_filterSetting.Location = new System.Drawing.Point(0, 0);
             this.dgv_filterSetting.MultiSelect = false;
@@ -321,8 +323,8 @@
             // No
             // 
             this.No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.No.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.No.DefaultCellStyle = dataGridViewCellStyle12;
             this.No.HeaderText = "No.";
             this.No.Name = "No";
             this.No.ReadOnly = true;
@@ -331,8 +333,8 @@
             // 
             // Type
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Type.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Type.DefaultCellStyle = dataGridViewCellStyle13;
             this.Type.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Type.HeaderText = "Type";
             this.Type.Items.AddRange(new object[] {
@@ -343,8 +345,8 @@
             // 
             // SubType
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SubType.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SubType.DefaultCellStyle = dataGridViewCellStyle14;
             this.SubType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SubType.HeaderText = "SubType";
             this.SubType.Name = "SubType";
@@ -408,6 +410,19 @@
             this.EQ_CurvePanel.TabIndex = 4;
             this.EQ_CurvePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EQ_CurvePanel_Paint);
             // 
+            // chb_EQCurveView
+            // 
+            this.chb_EQCurveView.AutoSize = true;
+            this.chb_EQCurveView.Checked = true;
+            this.chb_EQCurveView.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chb_EQCurveView.Location = new System.Drawing.Point(613, 17);
+            this.chb_EQCurveView.Name = "chb_EQCurveView";
+            this.chb_EQCurveView.Size = new System.Drawing.Size(66, 16);
+            this.chb_EQCurveView.TabIndex = 8;
+            this.chb_EQCurveView.Text = "EQ View";
+            this.chb_EQCurveView.UseVisualStyleBackColor = true;
+            this.chb_EQCurveView.CheckedChanged += new System.EventHandler(this.chb_EQCurveView_CheckedChanged);
+            // 
             // EQCurveCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -457,6 +472,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Bypass;
         private System.Windows.Forms.DataGridViewTextBoxColumn CurveColor;
         private System.Windows.Forms.Button btn_Download_EQParam;
+        private System.Windows.Forms.CheckBox chb_EQCurveView;
 
     }
 }

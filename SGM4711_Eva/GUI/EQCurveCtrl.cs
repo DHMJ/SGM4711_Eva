@@ -40,6 +40,8 @@ namespace SGM4711_Eva.GUI
         double MaxQFactor = 20;
         double MinQFactor = 0.05;
 
+        bool EQView = true;
+
         // Frequency response calculation
         int freqCountPerUnit = 100;     // how many freqs will be calc per unit. e.g. 100 point for 100 - 1000Hz and 1000Hz- 10000Hz...
 
@@ -233,8 +235,11 @@ namespace SGM4711_Eva.GUI
             }
 
             // Draw sum FR curve
-            pen_FRCurve = new Pen(FilterCurveColor.EQCurveColor, 2);
-            e.Graphics.DrawCurve(pen_FRCurve, freqPointLocaForFR.ToArray());
+            if (EQView)
+            {
+                pen_FRCurve = new Pen(FilterCurveColor.EQCurveColor, 2);
+                e.Graphics.DrawCurve(pen_FRCurve, freqPointLocaForFR.ToArray());
+            }
 
             // Return the smooth way to default
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
@@ -861,6 +866,12 @@ namespace SGM4711_Eva.GUI
             }
         }
 
+        private void chb_EQCurveView_CheckedChanged(object sender, EventArgs e)
+        {
+            EQView = this.chb_EQCurveView.Checked;
+            this.EQ_CurvePanel.Refresh();
+        }
+
         private void btn_Download_EQParam_Click(object sender, EventArgs e)
         {
 
@@ -871,7 +882,6 @@ namespace SGM4711_Eva.GUI
             UpdateDrawPoints_Frame();
         }
         #endregion 
-
 
     }
 }

@@ -29,23 +29,6 @@
         private void InitializeComponent()
         {
             this.grb_2p0 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.line1 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.label1 = new System.Windows.Forms.Label();
-            this.line2 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line3 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line4 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line5 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line6 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line7 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line8 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.cmb_2p0_LP = new System.Windows.Forms.ComboBox();
-            this.cmb_2p0_LN = new System.Windows.Forms.ComboBox();
-            this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line10 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.label2 = new System.Windows.Forms.Label();
-            this.circle1 = new SGM4711_Eva.MDUserCtrls.Circle();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.circle2 = new SGM4711_Eva.MDUserCtrls.Circle();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,7 +36,32 @@
             this.line12 = new SGM4711_Eva.MDUserCtrls.Line();
             this.cmb_2p0_RN = new System.Windows.Forms.ComboBox();
             this.cmb_2p0_RP = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.circle1 = new SGM4711_Eva.MDUserCtrls.Circle();
+            this.label2 = new System.Windows.Forms.Label();
+            this.line10 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.cmb_2p0_LN = new System.Windows.Forms.ComboBox();
+            this.cmb_2p0_LP = new System.Windows.Forms.ComboBox();
+            this.line7 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line8 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line6 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line5 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line2 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line4 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line1 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line3 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.grb_2p1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.line24 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.line20 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.line19 = new SGM4711_Eva.MDUserCtrls.Line();
             this.label7 = new System.Windows.Forms.Label();
             this.circle3 = new SGM4711_Eva.MDUserCtrls.Circle();
             this.label8 = new System.Windows.Forms.Label();
@@ -74,14 +82,6 @@
             this.line23 = new SGM4711_Eva.MDUserCtrls.Line();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.line19 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.line20 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.label16 = new System.Windows.Forms.Label();
-            this.line24 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.label17 = new System.Windows.Forms.Label();
             this.grb_PBTL = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.circle4 = new SGM4711_Eva.MDUserCtrls.Circle();
@@ -104,9 +104,6 @@
             this.line35 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line36 = new SGM4711_Eva.MDUserCtrls.Line();
             this.label23 = new System.Windows.Forms.Label();
-            this.btn_CheckSelections_2p0 = new System.Windows.Forms.Button();
-            this.btn_CheckSelections_2p1 = new System.Windows.Forms.Button();
-            this.btn_CheckSelections_PBTL = new System.Windows.Forms.Button();
             this.grb_2p0.SuspendLayout();
             this.grb_2p1.SuspendLayout();
             this.grb_PBTL.SuspendLayout();
@@ -114,7 +111,6 @@
             // 
             // grb_2p0
             // 
-            this.grb_2p0.Controls.Add(this.btn_CheckSelections_2p0);
             this.grb_2p0.Controls.Add(this.label4);
             this.grb_2p0.Controls.Add(this.circle2);
             this.grb_2p0.Controls.Add(this.label6);
@@ -141,233 +137,10 @@
             this.grb_2p0.Controls.Add(this.label5);
             this.grb_2p0.Location = new System.Drawing.Point(12, 12);
             this.grb_2p0.Name = "grb_2p0";
-            this.grb_2p0.Size = new System.Drawing.Size(468, 193);
+            this.grb_2p0.Size = new System.Drawing.Size(382, 193);
             this.grb_2p0.TabIndex = 0;
             this.grb_2p0.TabStop = false;
             this.grb_2p0.Text = "2.0 Mode";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(37, 49);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 14);
-            this.label5.TabIndex = 30;
-            this.label5.Text = "CH L";
-            // 
-            // line1
-            // 
-            this.line1.BackColor = System.Drawing.Color.Transparent;
-            this.line1.Horizontal = true;
-            this.line1.LeftOrUpArrow = false;
-            this.line1.LineColor = System.Drawing.Color.SteelBlue;
-            this.line1.LineWidth = 1;
-            this.line1.Location = new System.Drawing.Point(69, 49);
-            this.line1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line1.Name = "line1";
-            this.line1.RightOrBelowArrow = false;
-            this.line1.Size = new System.Drawing.Size(41, 14);
-            this.line1.TabIndex = 29;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(37, 136);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 14);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "CH R";
-            // 
-            // line2
-            // 
-            this.line2.BackColor = System.Drawing.Color.Transparent;
-            this.line2.Horizontal = true;
-            this.line2.LeftOrUpArrow = false;
-            this.line2.LineColor = System.Drawing.Color.SteelBlue;
-            this.line2.LineWidth = 1;
-            this.line2.Location = new System.Drawing.Point(69, 137);
-            this.line2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line2.Name = "line2";
-            this.line2.RightOrBelowArrow = false;
-            this.line2.Size = new System.Drawing.Size(41, 12);
-            this.line2.TabIndex = 31;
-            // 
-            // line3
-            // 
-            this.line3.BackColor = System.Drawing.Color.Transparent;
-            this.line3.Horizontal = false;
-            this.line3.LeftOrUpArrow = false;
-            this.line3.LineColor = System.Drawing.Color.SteelBlue;
-            this.line3.LineWidth = 1;
-            this.line3.Location = new System.Drawing.Point(105, 31);
-            this.line3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line3.Name = "line3";
-            this.line3.RightOrBelowArrow = false;
-            this.line3.Size = new System.Drawing.Size(10, 46);
-            this.line3.TabIndex = 33;
-            // 
-            // line4
-            // 
-            this.line4.BackColor = System.Drawing.Color.Transparent;
-            this.line4.Horizontal = false;
-            this.line4.LeftOrUpArrow = false;
-            this.line4.LineColor = System.Drawing.Color.SteelBlue;
-            this.line4.LineWidth = 1;
-            this.line4.Location = new System.Drawing.Point(105, 119);
-            this.line4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line4.Name = "line4";
-            this.line4.RightOrBelowArrow = false;
-            this.line4.Size = new System.Drawing.Size(10, 46);
-            this.line4.TabIndex = 34;
-            // 
-            // line5
-            // 
-            this.line5.BackColor = System.Drawing.Color.Transparent;
-            this.line5.Horizontal = true;
-            this.line5.LeftOrUpArrow = false;
-            this.line5.LineColor = System.Drawing.Color.SteelBlue;
-            this.line5.LineWidth = 1;
-            this.line5.Location = new System.Drawing.Point(111, 25);
-            this.line5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line5.Name = "line5";
-            this.line5.RightOrBelowArrow = false;
-            this.line5.Size = new System.Drawing.Size(66, 10);
-            this.line5.TabIndex = 35;
-            // 
-            // line6
-            // 
-            this.line6.BackColor = System.Drawing.Color.Transparent;
-            this.line6.Horizontal = true;
-            this.line6.LeftOrUpArrow = false;
-            this.line6.LineColor = System.Drawing.Color.SteelBlue;
-            this.line6.LineWidth = 1;
-            this.line6.Location = new System.Drawing.Point(111, 71);
-            this.line6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line6.Name = "line6";
-            this.line6.RightOrBelowArrow = false;
-            this.line6.Size = new System.Drawing.Size(66, 10);
-            this.line6.TabIndex = 36;
-            // 
-            // line7
-            // 
-            this.line7.BackColor = System.Drawing.Color.Transparent;
-            this.line7.Horizontal = true;
-            this.line7.LeftOrUpArrow = false;
-            this.line7.LineColor = System.Drawing.Color.SteelBlue;
-            this.line7.LineWidth = 1;
-            this.line7.Location = new System.Drawing.Point(111, 159);
-            this.line7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line7.Name = "line7";
-            this.line7.RightOrBelowArrow = false;
-            this.line7.Size = new System.Drawing.Size(66, 10);
-            this.line7.TabIndex = 38;
-            // 
-            // line8
-            // 
-            this.line8.BackColor = System.Drawing.Color.Transparent;
-            this.line8.Horizontal = true;
-            this.line8.LeftOrUpArrow = false;
-            this.line8.LineColor = System.Drawing.Color.SteelBlue;
-            this.line8.LineWidth = 1;
-            this.line8.Location = new System.Drawing.Point(111, 113);
-            this.line8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line8.Name = "line8";
-            this.line8.RightOrBelowArrow = false;
-            this.line8.Size = new System.Drawing.Size(66, 10);
-            this.line8.TabIndex = 37;
-            // 
-            // cmb_2p0_LP
-            // 
-            this.cmb_2p0_LP.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p0_LP.FormattingEnabled = true;
-            this.cmb_2p0_LP.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
-            this.cmb_2p0_LP.Location = new System.Drawing.Point(179, 18);
-            this.cmb_2p0_LP.Name = "cmb_2p0_LP";
-            this.cmb_2p0_LP.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p0_LP.TabIndex = 39;
-            // 
-            // cmb_2p0_LN
-            // 
-            this.cmb_2p0_LN.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p0_LN.FormattingEnabled = true;
-            this.cmb_2p0_LN.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
-            this.cmb_2p0_LN.Location = new System.Drawing.Point(179, 64);
-            this.cmb_2p0_LN.Name = "cmb_2p0_LN";
-            this.cmb_2p0_LN.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p0_LN.TabIndex = 39;
-            // 
-            // line9
-            // 
-            this.line9.BackColor = System.Drawing.Color.Transparent;
-            this.line9.Horizontal = true;
-            this.line9.LeftOrUpArrow = false;
-            this.line9.LineColor = System.Drawing.Color.SteelBlue;
-            this.line9.LineWidth = 1;
-            this.line9.Location = new System.Drawing.Point(251, 25);
-            this.line9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line9.Name = "line9";
-            this.line9.RightOrBelowArrow = false;
-            this.line9.Size = new System.Drawing.Size(53, 10);
-            this.line9.TabIndex = 40;
-            // 
-            // line10
-            // 
-            this.line10.BackColor = System.Drawing.Color.Transparent;
-            this.line10.Horizontal = true;
-            this.line10.LeftOrUpArrow = false;
-            this.line10.LineColor = System.Drawing.Color.SteelBlue;
-            this.line10.LineWidth = 1;
-            this.line10.Location = new System.Drawing.Point(251, 71);
-            this.line10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line10.Name = "line10";
-            this.line10.RightOrBelowArrow = false;
-            this.line10.Size = new System.Drawing.Size(53, 10);
-            this.line10.TabIndex = 41;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(310, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 14);
-            this.label2.TabIndex = 42;
-            this.label2.Text = "LP";
-            // 
-            // circle1
-            // 
-            this.circle1.BackColor = System.Drawing.Color.Transparent;
-            this.circle1.CircleColor = System.Drawing.Color.SteelBlue;
-            this.circle1.Location = new System.Drawing.Point(167, 71);
-            this.circle1.MaximumSize = new System.Drawing.Size(100, 100);
-            this.circle1.MinimumSize = new System.Drawing.Size(10, 10);
-            this.circle1.Name = "circle1";
-            this.circle1.Size = new System.Drawing.Size(10, 10);
-            this.circle1.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(310, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(21, 14);
-            this.label3.TabIndex = 43;
-            this.label3.Text = "LN";
             // 
             // label4
             // 
@@ -443,6 +216,7 @@
             this.cmb_2p0_RN.Name = "cmb_2p0_RN";
             this.cmb_2p0_RN.Size = new System.Drawing.Size(71, 24);
             this.cmb_2p0_RN.TabIndex = 45;
+            this.cmb_2p0_RN.SelectedIndexChanged += new System.EventHandler(this.cmb_2p0_RN_SelectedIndexChanged);
             // 
             // cmb_2p0_RP
             // 
@@ -457,10 +231,235 @@
             this.cmb_2p0_RP.Name = "cmb_2p0_RP";
             this.cmb_2p0_RP.Size = new System.Drawing.Size(71, 24);
             this.cmb_2p0_RP.TabIndex = 46;
+            this.cmb_2p0_RP.SelectedIndexChanged += new System.EventHandler(this.cmb_2p0_RP_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Location = new System.Drawing.Point(310, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(21, 14);
+            this.label3.TabIndex = 43;
+            this.label3.Text = "LN";
+            // 
+            // circle1
+            // 
+            this.circle1.BackColor = System.Drawing.Color.Transparent;
+            this.circle1.CircleColor = System.Drawing.Color.SteelBlue;
+            this.circle1.Location = new System.Drawing.Point(167, 71);
+            this.circle1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.circle1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.circle1.Name = "circle1";
+            this.circle1.Size = new System.Drawing.Size(10, 10);
+            this.circle1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(310, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 14);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "LP";
+            // 
+            // line10
+            // 
+            this.line10.BackColor = System.Drawing.Color.Transparent;
+            this.line10.Horizontal = true;
+            this.line10.LeftOrUpArrow = false;
+            this.line10.LineColor = System.Drawing.Color.SteelBlue;
+            this.line10.LineWidth = 1;
+            this.line10.Location = new System.Drawing.Point(251, 71);
+            this.line10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line10.Name = "line10";
+            this.line10.RightOrBelowArrow = false;
+            this.line10.Size = new System.Drawing.Size(53, 10);
+            this.line10.TabIndex = 41;
+            // 
+            // line9
+            // 
+            this.line9.BackColor = System.Drawing.Color.Transparent;
+            this.line9.Horizontal = true;
+            this.line9.LeftOrUpArrow = false;
+            this.line9.LineColor = System.Drawing.Color.SteelBlue;
+            this.line9.LineWidth = 1;
+            this.line9.Location = new System.Drawing.Point(251, 25);
+            this.line9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line9.Name = "line9";
+            this.line9.RightOrBelowArrow = false;
+            this.line9.Size = new System.Drawing.Size(53, 10);
+            this.line9.TabIndex = 40;
+            // 
+            // cmb_2p0_LN
+            // 
+            this.cmb_2p0_LN.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p0_LN.FormattingEnabled = true;
+            this.cmb_2p0_LN.Items.AddRange(new object[] {
+            "PWM A",
+            "PWM B",
+            "PWM C",
+            "PWM D"});
+            this.cmb_2p0_LN.Location = new System.Drawing.Point(179, 64);
+            this.cmb_2p0_LN.Name = "cmb_2p0_LN";
+            this.cmb_2p0_LN.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p0_LN.TabIndex = 39;
+            this.cmb_2p0_LN.SelectedIndexChanged += new System.EventHandler(this.cmb_2p0_LN_SelectedIndexChanged);
+            // 
+            // cmb_2p0_LP
+            // 
+            this.cmb_2p0_LP.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p0_LP.FormattingEnabled = true;
+            this.cmb_2p0_LP.Items.AddRange(new object[] {
+            "PWM A",
+            "PWM B",
+            "PWM C",
+            "PWM D"});
+            this.cmb_2p0_LP.Location = new System.Drawing.Point(179, 18);
+            this.cmb_2p0_LP.Name = "cmb_2p0_LP";
+            this.cmb_2p0_LP.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p0_LP.TabIndex = 39;
+            this.cmb_2p0_LP.SelectedIndexChanged += new System.EventHandler(this.cmb_2p0_LP_SelectedIndexChanged);
+            // 
+            // line7
+            // 
+            this.line7.BackColor = System.Drawing.Color.Transparent;
+            this.line7.Horizontal = true;
+            this.line7.LeftOrUpArrow = false;
+            this.line7.LineColor = System.Drawing.Color.SteelBlue;
+            this.line7.LineWidth = 1;
+            this.line7.Location = new System.Drawing.Point(111, 159);
+            this.line7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line7.Name = "line7";
+            this.line7.RightOrBelowArrow = false;
+            this.line7.Size = new System.Drawing.Size(66, 10);
+            this.line7.TabIndex = 38;
+            // 
+            // line8
+            // 
+            this.line8.BackColor = System.Drawing.Color.Transparent;
+            this.line8.Horizontal = true;
+            this.line8.LeftOrUpArrow = false;
+            this.line8.LineColor = System.Drawing.Color.SteelBlue;
+            this.line8.LineWidth = 1;
+            this.line8.Location = new System.Drawing.Point(111, 113);
+            this.line8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line8.Name = "line8";
+            this.line8.RightOrBelowArrow = false;
+            this.line8.Size = new System.Drawing.Size(66, 10);
+            this.line8.TabIndex = 37;
+            // 
+            // line6
+            // 
+            this.line6.BackColor = System.Drawing.Color.Transparent;
+            this.line6.Horizontal = true;
+            this.line6.LeftOrUpArrow = false;
+            this.line6.LineColor = System.Drawing.Color.SteelBlue;
+            this.line6.LineWidth = 1;
+            this.line6.Location = new System.Drawing.Point(111, 71);
+            this.line6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line6.Name = "line6";
+            this.line6.RightOrBelowArrow = false;
+            this.line6.Size = new System.Drawing.Size(66, 10);
+            this.line6.TabIndex = 36;
+            // 
+            // line5
+            // 
+            this.line5.BackColor = System.Drawing.Color.Transparent;
+            this.line5.Horizontal = true;
+            this.line5.LeftOrUpArrow = false;
+            this.line5.LineColor = System.Drawing.Color.SteelBlue;
+            this.line5.LineWidth = 1;
+            this.line5.Location = new System.Drawing.Point(111, 25);
+            this.line5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line5.Name = "line5";
+            this.line5.RightOrBelowArrow = false;
+            this.line5.Size = new System.Drawing.Size(66, 10);
+            this.line5.TabIndex = 35;
+            // 
+            // line2
+            // 
+            this.line2.BackColor = System.Drawing.Color.Transparent;
+            this.line2.Horizontal = true;
+            this.line2.LeftOrUpArrow = false;
+            this.line2.LineColor = System.Drawing.Color.SteelBlue;
+            this.line2.LineWidth = 1;
+            this.line2.Location = new System.Drawing.Point(69, 137);
+            this.line2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line2.Name = "line2";
+            this.line2.RightOrBelowArrow = false;
+            this.line2.Size = new System.Drawing.Size(41, 12);
+            this.line2.TabIndex = 31;
+            // 
+            // line4
+            // 
+            this.line4.BackColor = System.Drawing.Color.Transparent;
+            this.line4.Horizontal = false;
+            this.line4.LeftOrUpArrow = false;
+            this.line4.LineColor = System.Drawing.Color.SteelBlue;
+            this.line4.LineWidth = 1;
+            this.line4.Location = new System.Drawing.Point(105, 119);
+            this.line4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line4.Name = "line4";
+            this.line4.RightOrBelowArrow = false;
+            this.line4.Size = new System.Drawing.Size(10, 46);
+            this.line4.TabIndex = 34;
+            // 
+            // line1
+            // 
+            this.line1.BackColor = System.Drawing.Color.Transparent;
+            this.line1.Horizontal = true;
+            this.line1.LeftOrUpArrow = false;
+            this.line1.LineColor = System.Drawing.Color.SteelBlue;
+            this.line1.LineWidth = 1;
+            this.line1.Location = new System.Drawing.Point(69, 49);
+            this.line1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line1.Name = "line1";
+            this.line1.RightOrBelowArrow = false;
+            this.line1.Size = new System.Drawing.Size(41, 14);
+            this.line1.TabIndex = 29;
+            // 
+            // line3
+            // 
+            this.line3.BackColor = System.Drawing.Color.Transparent;
+            this.line3.Horizontal = false;
+            this.line3.LeftOrUpArrow = false;
+            this.line3.LineColor = System.Drawing.Color.SteelBlue;
+            this.line3.LineWidth = 1;
+            this.line3.Location = new System.Drawing.Point(105, 31);
+            this.line3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line3.Name = "line3";
+            this.line3.RightOrBelowArrow = false;
+            this.line3.Size = new System.Drawing.Size(10, 46);
+            this.line3.TabIndex = 33;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(37, 136);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 14);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "CH R";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label5.Location = new System.Drawing.Point(37, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 14);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "CH L";
             // 
             // grb_2p1
             // 
-            this.grb_2p1.Controls.Add(this.btn_CheckSelections_2p1);
             this.grb_2p1.Controls.Add(this.label16);
             this.grb_2p1.Controls.Add(this.line24);
             this.grb_2p1.Controls.Add(this.label17);
@@ -492,10 +491,107 @@
             this.grb_2p1.Enabled = false;
             this.grb_2p1.Location = new System.Drawing.Point(12, 228);
             this.grb_2p1.Name = "grb_2p1";
-            this.grb_2p1.Size = new System.Drawing.Size(468, 249);
+            this.grb_2p1.Size = new System.Drawing.Size(382, 249);
             this.grb_2p1.TabIndex = 0;
             this.grb_2p1.TabStop = false;
             this.grb_2p1.Text = "2.1 Mode";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label16.Location = new System.Drawing.Point(310, 108);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(22, 14);
+            this.label16.TabIndex = 55;
+            this.label16.Text = "RN";
+            // 
+            // line24
+            // 
+            this.line24.BackColor = System.Drawing.Color.Transparent;
+            this.line24.Horizontal = true;
+            this.line24.LeftOrUpArrow = false;
+            this.line24.LineColor = System.Drawing.Color.SteelBlue;
+            this.line24.LineWidth = 1;
+            this.line24.Location = new System.Drawing.Point(275, 110);
+            this.line24.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line24.Name = "line24";
+            this.line24.RightOrBelowArrow = false;
+            this.line24.Size = new System.Drawing.Size(29, 12);
+            this.line24.TabIndex = 54;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label17.Location = new System.Drawing.Point(211, 109);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(60, 14);
+            this.label17.TabIndex = 53;
+            this.label17.Text = "1/2 PVDD";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label15.Location = new System.Drawing.Point(310, 43);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(21, 14);
+            this.label15.TabIndex = 52;
+            this.label15.Text = "LN";
+            // 
+            // line20
+            // 
+            this.line20.BackColor = System.Drawing.Color.Transparent;
+            this.line20.Horizontal = true;
+            this.line20.LeftOrUpArrow = false;
+            this.line20.LineColor = System.Drawing.Color.SteelBlue;
+            this.line20.LineWidth = 1;
+            this.line20.Location = new System.Drawing.Point(275, 45);
+            this.line20.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line20.Name = "line20";
+            this.line20.RightOrBelowArrow = false;
+            this.line20.Size = new System.Drawing.Size(29, 12);
+            this.line20.TabIndex = 51;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label14.Location = new System.Drawing.Point(211, 44);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(60, 14);
+            this.label14.TabIndex = 44;
+            this.label14.Text = "1/2 PVDD";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Cambria", 9F);
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label13.Location = new System.Drawing.Point(37, 87);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(32, 14);
+            this.label13.TabIndex = 31;
+            this.label13.Text = "CH R";
+            // 
+            // line19
+            // 
+            this.line19.BackColor = System.Drawing.Color.Transparent;
+            this.line19.Horizontal = true;
+            this.line19.LeftOrUpArrow = false;
+            this.line19.LineColor = System.Drawing.Color.SteelBlue;
+            this.line19.LineWidth = 1;
+            this.line19.Location = new System.Drawing.Point(69, 89);
+            this.line19.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.line19.Name = "line19";
+            this.line19.RightOrBelowArrow = false;
+            this.line19.Size = new System.Drawing.Size(110, 10);
+            this.line19.TabIndex = 30;
             // 
             // label7
             // 
@@ -571,6 +667,7 @@
             this.cmb_2p1_SubN.Name = "cmb_2p1_SubN";
             this.cmb_2p1_SubN.Size = new System.Drawing.Size(71, 24);
             this.cmb_2p1_SubN.TabIndex = 45;
+            this.cmb_2p1_SubN.SelectedIndexChanged += new System.EventHandler(this.cmb_2p1_SubN_SelectedIndexChanged);
             // 
             // cmb_2p1_SubP
             // 
@@ -585,6 +682,7 @@
             this.cmb_2p1_SubP.Name = "cmb_2p1_SubP";
             this.cmb_2p1_SubP.Size = new System.Drawing.Size(71, 24);
             this.cmb_2p1_SubP.TabIndex = 46;
+            this.cmb_2p1_SubP.SelectedIndexChanged += new System.EventHandler(this.cmb_2p1_SubP_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -649,6 +747,7 @@
             this.cmb_2p1_RP.Name = "cmb_2p1_RP";
             this.cmb_2p1_RP.Size = new System.Drawing.Size(71, 24);
             this.cmb_2p1_RP.TabIndex = 39;
+            this.cmb_2p1_RP.SelectedIndexChanged += new System.EventHandler(this.cmb_2p1_RP_SelectedIndexChanged);
             // 
             // cmb_2p1_LP
             // 
@@ -663,6 +762,7 @@
             this.cmb_2p1_LP.Name = "cmb_2p1_LP";
             this.cmb_2p1_LP.Size = new System.Drawing.Size(71, 24);
             this.cmb_2p1_LP.TabIndex = 39;
+            this.cmb_2p1_LP.SelectedIndexChanged += new System.EventHandler(this.cmb_2p1_LP_SelectedIndexChanged);
             // 
             // line17
             // 
@@ -756,106 +856,8 @@
             this.label12.TabIndex = 30;
             this.label12.Text = "CH L";
             // 
-            // line19
-            // 
-            this.line19.BackColor = System.Drawing.Color.Transparent;
-            this.line19.Horizontal = true;
-            this.line19.LeftOrUpArrow = false;
-            this.line19.LineColor = System.Drawing.Color.SteelBlue;
-            this.line19.LineWidth = 1;
-            this.line19.Location = new System.Drawing.Point(69, 89);
-            this.line19.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line19.Name = "line19";
-            this.line19.RightOrBelowArrow = false;
-            this.line19.Size = new System.Drawing.Size(110, 10);
-            this.line19.TabIndex = 30;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label13.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label13.Location = new System.Drawing.Point(37, 87);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(32, 14);
-            this.label13.TabIndex = 31;
-            this.label13.Text = "CH R";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(211, 44);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 14);
-            this.label14.TabIndex = 44;
-            this.label14.Text = "1/2 PVDD";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(310, 43);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(21, 14);
-            this.label15.TabIndex = 52;
-            this.label15.Text = "LN";
-            // 
-            // line20
-            // 
-            this.line20.BackColor = System.Drawing.Color.Transparent;
-            this.line20.Horizontal = true;
-            this.line20.LeftOrUpArrow = false;
-            this.line20.LineColor = System.Drawing.Color.SteelBlue;
-            this.line20.LineWidth = 1;
-            this.line20.Location = new System.Drawing.Point(275, 45);
-            this.line20.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line20.Name = "line20";
-            this.line20.RightOrBelowArrow = false;
-            this.line20.Size = new System.Drawing.Size(29, 12);
-            this.line20.TabIndex = 51;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label16.Location = new System.Drawing.Point(310, 108);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(22, 14);
-            this.label16.TabIndex = 55;
-            this.label16.Text = "RN";
-            // 
-            // line24
-            // 
-            this.line24.BackColor = System.Drawing.Color.Transparent;
-            this.line24.Horizontal = true;
-            this.line24.LeftOrUpArrow = false;
-            this.line24.LineColor = System.Drawing.Color.SteelBlue;
-            this.line24.LineWidth = 1;
-            this.line24.Location = new System.Drawing.Point(275, 110);
-            this.line24.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.line24.Name = "line24";
-            this.line24.RightOrBelowArrow = false;
-            this.line24.Size = new System.Drawing.Size(29, 12);
-            this.line24.TabIndex = 54;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label17.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label17.Location = new System.Drawing.Point(211, 109);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(60, 14);
-            this.label17.TabIndex = 53;
-            this.label17.Text = "1/2 PVDD";
-            // 
             // grb_PBTL
             // 
-            this.grb_PBTL.Controls.Add(this.btn_CheckSelections_PBTL);
             this.grb_PBTL.Controls.Add(this.label18);
             this.grb_PBTL.Controls.Add(this.circle4);
             this.grb_PBTL.Controls.Add(this.label19);
@@ -880,7 +882,7 @@
             this.grb_PBTL.Enabled = false;
             this.grb_PBTL.Location = new System.Drawing.Point(12, 500);
             this.grb_PBTL.Name = "grb_PBTL";
-            this.grb_PBTL.Size = new System.Drawing.Size(468, 193);
+            this.grb_PBTL.Size = new System.Drawing.Size(382, 193);
             this.grb_PBTL.TabIndex = 1;
             this.grb_PBTL.TabStop = false;
             this.grb_PBTL.Text = "PBTL Mode";
@@ -959,6 +961,7 @@
             this.cmb_PBTL_LN1.Name = "cmb_PBTL_LN1";
             this.cmb_PBTL_LN1.Size = new System.Drawing.Size(71, 24);
             this.cmb_PBTL_LN1.TabIndex = 45;
+            this.cmb_PBTL_LN1.SelectedIndexChanged += new System.EventHandler(this.cmb_PBTL_LN1_SelectedIndexChanged);
             // 
             // cmb_PBTL_LN0
             // 
@@ -973,6 +976,7 @@
             this.cmb_PBTL_LN0.Name = "cmb_PBTL_LN0";
             this.cmb_PBTL_LN0.Size = new System.Drawing.Size(71, 24);
             this.cmb_PBTL_LN0.TabIndex = 46;
+            this.cmb_PBTL_LN0.SelectedIndexChanged += new System.EventHandler(this.cmb_PBTL_LN0_SelectedIndexChanged);
             // 
             // label20
             // 
@@ -1048,6 +1052,7 @@
             this.cmb_PBTL_LP1.Name = "cmb_PBTL_LP1";
             this.cmb_PBTL_LP1.Size = new System.Drawing.Size(71, 24);
             this.cmb_PBTL_LP1.TabIndex = 39;
+            this.cmb_PBTL_LP1.SelectedIndexChanged += new System.EventHandler(this.cmb_PBTL_LP1_SelectedIndexChanged);
             // 
             // cmb_PBTL_LP0
             // 
@@ -1062,6 +1067,7 @@
             this.cmb_PBTL_LP0.Name = "cmb_PBTL_LP0";
             this.cmb_PBTL_LP0.Size = new System.Drawing.Size(71, 24);
             this.cmb_PBTL_LP0.TabIndex = 39;
+            this.cmb_PBTL_LP0.SelectedIndexChanged += new System.EventHandler(this.cmb_PBTL_LP0_SelectedIndexChanged);
             // 
             // line29
             // 
@@ -1158,41 +1164,11 @@
             this.label23.TabIndex = 30;
             this.label23.Text = "CH L";
             // 
-            // btn_CheckSelections_2p0
-            // 
-            this.btn_CheckSelections_2p0.Location = new System.Drawing.Point(373, 82);
-            this.btn_CheckSelections_2p0.Name = "btn_CheckSelections_2p0";
-            this.btn_CheckSelections_2p0.Size = new System.Drawing.Size(75, 53);
-            this.btn_CheckSelections_2p0.TabIndex = 2;
-            this.btn_CheckSelections_2p0.Text = "Check Selections";
-            this.btn_CheckSelections_2p0.UseVisualStyleBackColor = true;
-            this.btn_CheckSelections_2p0.Click += new System.EventHandler(this.btn_CheckSelections_2p0_Click);
-            // 
-            // btn_CheckSelections_2p1
-            // 
-            this.btn_CheckSelections_2p1.Location = new System.Drawing.Point(373, 90);
-            this.btn_CheckSelections_2p1.Name = "btn_CheckSelections_2p1";
-            this.btn_CheckSelections_2p1.Size = new System.Drawing.Size(75, 53);
-            this.btn_CheckSelections_2p1.TabIndex = 56;
-            this.btn_CheckSelections_2p1.Text = "Check Selections";
-            this.btn_CheckSelections_2p1.UseVisualStyleBackColor = true;
-            this.btn_CheckSelections_2p1.Click += new System.EventHandler(this.btn_CheckSelections_2p1_Click);
-            // 
-            // btn_CheckSelections_PBTL
-            // 
-            this.btn_CheckSelections_PBTL.Location = new System.Drawing.Point(373, 70);
-            this.btn_CheckSelections_PBTL.Name = "btn_CheckSelections_PBTL";
-            this.btn_CheckSelections_PBTL.Size = new System.Drawing.Size(75, 53);
-            this.btn_CheckSelections_PBTL.TabIndex = 51;
-            this.btn_CheckSelections_PBTL.Text = "Check Selections";
-            this.btn_CheckSelections_PBTL.UseVisualStyleBackColor = true;
-            this.btn_CheckSelections_PBTL.Click += new System.EventHandler(this.btn_CheckSelections_PBTL_Click);
-            // 
             // Output_Mux
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 727);
+            this.ClientSize = new System.Drawing.Size(419, 720);
             this.Controls.Add(this.grb_PBTL);
             this.Controls.Add(this.grb_2p1);
             this.Controls.Add(this.grb_2p0);
@@ -1286,8 +1262,5 @@
         private MDUserCtrls.Line line35;
         private MDUserCtrls.Line line36;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Button btn_CheckSelections_2p0;
-        private System.Windows.Forms.Button btn_CheckSelections_2p1;
-        private System.Windows.Forms.Button btn_CheckSelections_PBTL;
     }
 }
