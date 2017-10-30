@@ -222,18 +222,19 @@ namespace SGM4711_Eva.GUI
             for (int ix = 0; ix < filterList.Count; ix++)
             {
                 // Draw each filter FR curve
-                if (settings[ix].View)
+                if (!settings[ix].View)
                     continue;
                 else
                 {
                     pen_FRCurve = new Pen(settings[ix].CurveColor, 1);
-                    e.Graphics.DrawPolygon(pen_FRCurve, freqResponsePointsLoca[ix]);
+                    e.Graphics.DrawCurve(pen_FRCurve, freqResponsePointsLoca[ix]);
+                    //e.Graphics.DrawPolygon(pen_FRCurve, freqResponsePointsLoca[ix]);
                 }
             }
 
             // Draw sum FR curve
             pen_FRCurve = new Pen(FilterCurveColor.EQCurveColor, 2);
-            e.Graphics.DrawPolygon(pen_FRCurve, freqPointLocaForFR.ToArray());
+            e.Graphics.DrawCurve(pen_FRCurve, freqPointLocaForFR.ToArray());
 
             // Return the smooth way to default
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;

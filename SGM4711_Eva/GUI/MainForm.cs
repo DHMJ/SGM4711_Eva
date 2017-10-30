@@ -17,6 +17,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using SGM4711_Eva.GUI;
 using SGM4711_Eva.MDUserCtrls;
+using System.IO.Ports;
 
 namespace SGM4711_Eva
 {
@@ -36,6 +37,7 @@ namespace SGM4711_Eva
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
         bool blockDiagramMode = true;
+        byte chipAddress = 0x1A;
 
         DataSet DS_Excel;
         MDDataSet DataSet;
@@ -747,6 +749,89 @@ namespace SGM4711_Eva
 
         }
 
+        private void MenuItemTools_I2CAddress_TextChanged(object sender, EventArgs e)
+        {
+           string i2cString = this.MenuItemTools_I2CAddress.Text;
+            byte tempDevAddress;
+            bool ifSuccess = byte.TryParse(i2cString.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out tempDevAddress);
+
+            if (!ifSuccess)
+            {
+                //this.chipAddress = tempDevAddress;
+                MessageBox.Show("Wrong Chip Address");
+            }
+            else
+            {
+                this.chipAddress = tempDevAddress;
+                if(recordHistoryDongleInit != null)
+                    DongleInit(recordHistoryDongleInit.Text, DMDongle.VCPGROUP.I2C, chipAddress, 5);
+            }
+
+        }
+
+        private void MenuItemTools_selectDongle_MouseEnter(object sender, EventArgs e)
+        {
+            this.MenuItemTools_selectDongle.DropDownItems.Clear();
+
+            string[] str = SerialPort.GetPortNames();
+            if (str == null)
+            {
+                //本机没有串口！
+                this.MenuItemTools_selectDongle.DropDownItems.Add("NULL");
+                //this.selectDongleToolStripMenuItem.DropDownItems[0].Select();
+            }
+            else
+            {
+                for (int i = 0; i < str.Length; i++)
+                {
+                    this.MenuItemTools_selectDongle.DropDownItems.Add(str[i]);
+                    //this.MenuItemTools_selectDongle.DropDownItems[i]
+                    this.MenuItemTools_selectDongle.DropDownItems[i].Click += new EventHandler(DongleItem_Click);
+                }
+
+                //this.cbPortName.SelectedIndex = 0;
+            }
+
+        }
+
+        ToolStripDropDownItem recordHistoryDongleInit = null;
+        public void DongleItem_Click(object sender, EventArgs e)
+        {
+            recordHistoryDongleInit = (sender as ToolStripDropDownItem);
+            (sender as ToolStripDropDownItem).Select();
+            //recordHistoryDongleInit.
+
+            DongleInit(recordHistoryDongleInit.Text, DMDongle.VCPGROUP.I2C, chipAddress, 5);
+            //if (myDongle.dongleInit((sender as ToolStripDropDownItem).Text, DMDongle.VCPGROUP.I2C, chipAddress, 5))
+            //{
+            //    statusBar_DeviceConnected.Text = "Dongle Connected";
+            //    statusBar_DeviceConnected.BackColor = Color.Green;
+            //    //MessageBox.Show("Connected");
+            //}
+            //else
+            //{
+            //    statusBar_DeviceConnected.Text = "Dongle Disconnected";
+            //    statusBar_DeviceConnected.BackColor = Color.Red;
+            //    //MessageBox.Show("Connected Failed");
+            //}
+        }
+
+        private void DongleInit(string portName, DMDongle.VCPGROUP protocol, byte devAddress, byte pilot)
+        {
+            if (myDongle.dongleInit(portName, protocol, devAddress, pilot))
+            {
+                statusBar_DeviceConnected.Text = "Dongle Connected";
+                statusBar_DeviceConnected.BackColor = Color.Green;
+                //MessageBox.Show("Connected");
+            }
+            else
+            {
+                statusBar_DeviceConnected.Text = "Dongle Disconnected";
+                statusBar_DeviceConnected.BackColor = Color.Red;
+                //MessageBox.Show("Connected Failed");
+            } 
+        }
+
         private void MenuItemView_RegMap_Click(object sender, EventArgs e)
         {
             blockDiagramMode = false;
@@ -989,7 +1074,7 @@ namespace SGM4711_Eva
 
         private void btn_InputMux_GUI_Click(object sender, EventArgs e)
         {
-            InputMux inputConfig = new InputMux();
+            InputMux inputConfig = new InputMux(regMap);
             inputConfig.FormClosed += new FormClosedEventHandler(inputConfig_FormClosed);
             inputConfig.ShowDialog();
         }
@@ -1097,6 +1182,22 @@ namespace SGM4711_Eva
 
             ReadAllAndUpdateGUI();
         }
+
+        private void MenuItemTools_I2CAddress_Validating(object sender, CancelEventArgs e)
+        {
+            string i2cString = this.MenuItemTools_I2CAddress.Text;
+            byte tempDevAddress;
+            bool ifSuccess = byte.TryParse(i2cString.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out tempDevAddress);
+
+            if (!ifSuccess)
+            {
+                //this.chipAddress = tempDevAddress;
+                MessageBox.Show("Wrong Chip Address");
+                e.Cancel = true;
+            }
+
+        }
+
 
 
 

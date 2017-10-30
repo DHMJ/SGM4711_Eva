@@ -45,8 +45,8 @@
             this.MenuItemFile_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemFile_ExitWithoutSave = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectDongleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptWriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemTools_selectDongle = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemTools_ScriptWrite = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemView = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemView_BD = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemView_RegMap = new System.Windows.Forms.ToolStripMenuItem();
@@ -152,6 +152,14 @@
             this.tabCtrl_Output = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.myTips = new System.Windows.Forms.ToolTip(this.components);
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.statusBar_DeviceConnected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_FWVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_VID = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_PID = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar_BoardType = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuItemTools_I2CAddress = new System.Windows.Forms.ToolStripTextBox();
             this.line14 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line13 = new SGM4711_Eva.MDUserCtrls.Line();
@@ -193,6 +201,7 @@
             this.splitContainer2.SuspendLayout();
             this.tabCtrl_SingleRegSetting.SuspendLayout();
             this.tabCtrl_Output.SuspendLayout();
+            this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu_main
@@ -320,23 +329,26 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectDongleToolStripMenuItem,
-            this.scriptWriteToolStripMenuItem});
+            this.MenuItemTools_I2CAddress,
+            this.toolStripSeparator3,
+            this.MenuItemTools_selectDongle,
+            this.MenuItemTools_ScriptWrite});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
-            // selectDongleToolStripMenuItem
+            // MenuItemTools_selectDongle
             // 
-            this.selectDongleToolStripMenuItem.Name = "selectDongleToolStripMenuItem";
-            this.selectDongleToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-            this.selectDongleToolStripMenuItem.Text = "Select Dongle";
+            this.MenuItemTools_selectDongle.Name = "MenuItemTools_selectDongle";
+            this.MenuItemTools_selectDongle.Size = new System.Drawing.Size(160, 22);
+            this.MenuItemTools_selectDongle.Text = "Select Dongle";
+            this.MenuItemTools_selectDongle.MouseEnter += new System.EventHandler(this.MenuItemTools_selectDongle_MouseEnter);
             // 
-            // scriptWriteToolStripMenuItem
+            // MenuItemTools_ScriptWrite
             // 
-            this.scriptWriteToolStripMenuItem.Name = "scriptWriteToolStripMenuItem";
-            this.scriptWriteToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-            this.scriptWriteToolStripMenuItem.Text = "Script Write";
+            this.MenuItemTools_ScriptWrite.Name = "MenuItemTools_ScriptWrite";
+            this.MenuItemTools_ScriptWrite.Size = new System.Drawing.Size(160, 22);
+            this.MenuItemTools_ScriptWrite.Text = "Script Write";
             // 
             // MenuItemView
             // 
@@ -433,7 +445,7 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1013, 710);
+            this.splitContainer1.Size = new System.Drawing.Size(1013, 734);
             this.splitContainer1.SplitterDistance = 460;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -1539,7 +1551,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabCtrl_Output);
-            this.splitContainer2.Size = new System.Drawing.Size(1013, 246);
+            this.splitContainer2.Size = new System.Drawing.Size(1013, 270);
             this.splitContainer2.SplitterDistance = 470;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -1553,7 +1565,7 @@
             this.tabCtrl_SingleRegSetting.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl_SingleRegSetting.Name = "tabCtrl_SingleRegSetting";
             this.tabCtrl_SingleRegSetting.SelectedIndex = 0;
-            this.tabCtrl_SingleRegSetting.Size = new System.Drawing.Size(470, 246);
+            this.tabCtrl_SingleRegSetting.Size = new System.Drawing.Size(470, 270);
             this.tabCtrl_SingleRegSetting.TabIndex = 0;
             // 
             // tabP_SingleCtrl
@@ -1562,7 +1574,7 @@
             this.tabP_SingleCtrl.Location = new System.Drawing.Point(4, 25);
             this.tabP_SingleCtrl.Name = "tabP_SingleCtrl";
             this.tabP_SingleCtrl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabP_SingleCtrl.Size = new System.Drawing.Size(462, 217);
+            this.tabP_SingleCtrl.Size = new System.Drawing.Size(462, 241);
             this.tabP_SingleCtrl.TabIndex = 0;
             this.tabP_SingleCtrl.Text = "Single Control";
             // 
@@ -1571,7 +1583,7 @@
             this.tabP_RegRW.BackColor = System.Drawing.Color.White;
             this.tabP_RegRW.Location = new System.Drawing.Point(4, 25);
             this.tabP_RegRW.Name = "tabP_RegRW";
-            this.tabP_RegRW.Size = new System.Drawing.Size(462, 217);
+            this.tabP_RegRW.Size = new System.Drawing.Size(462, 241);
             this.tabP_RegRW.TabIndex = 2;
             this.tabP_RegRW.Text = "Register R/W";
             // 
@@ -1580,7 +1592,7 @@
             this.tabP_IICMemTool.BackColor = System.Drawing.Color.White;
             this.tabP_IICMemTool.Location = new System.Drawing.Point(4, 25);
             this.tabP_IICMemTool.Name = "tabP_IICMemTool";
-            this.tabP_IICMemTool.Size = new System.Drawing.Size(462, 217);
+            this.tabP_IICMemTool.Size = new System.Drawing.Size(462, 241);
             this.tabP_IICMemTool.TabIndex = 3;
             this.tabP_IICMemTool.Text = "IIC Memory Tool";
             // 
@@ -1592,7 +1604,7 @@
             this.tabCtrl_Output.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl_Output.Name = "tabCtrl_Output";
             this.tabCtrl_Output.SelectedIndex = 0;
-            this.tabCtrl_Output.Size = new System.Drawing.Size(539, 246);
+            this.tabCtrl_Output.Size = new System.Drawing.Size(539, 270);
             this.tabCtrl_Output.TabIndex = 0;
             // 
             // tabPage1
@@ -1601,9 +1613,81 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(531, 217);
+            this.tabPage1.Size = new System.Drawing.Size(531, 241);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
+            // 
+            // statusBar
+            // 
+            this.statusBar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBar_DeviceConnected,
+            this.statusBar_FWVersion,
+            this.statusBar_VID,
+            this.statusBar_PID,
+            this.statusBar_BoardType});
+            this.statusBar.Location = new System.Drawing.Point(0, 734);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(1013, 24);
+            this.statusBar.TabIndex = 8;
+            this.statusBar.Text = "statusStrip1";
+            // 
+            // statusBar_DeviceConnected
+            // 
+            this.statusBar_DeviceConnected.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.statusBar_DeviceConnected.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.statusBar_DeviceConnected.Name = "statusBar_DeviceConnected";
+            this.statusBar_DeviceConnected.Size = new System.Drawing.Size(127, 19);
+            this.statusBar_DeviceConnected.Text = "Device Disconnected";
+            this.statusBar_DeviceConnected.ToolTipText = "Devices Disconnected or Connected?";
+            // 
+            // statusBar_FWVersion
+            // 
+            this.statusBar_FWVersion.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.statusBar_FWVersion.Name = "statusBar_FWVersion";
+            this.statusBar_FWVersion.Size = new System.Drawing.Size(96, 19);
+            this.statusBar_FWVersion.Text = "FW Version: 1.0";
+            this.statusBar_FWVersion.ToolTipText = "Firmware Version:";
+            // 
+            // statusBar_VID
+            // 
+            this.statusBar_VID.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.statusBar_VID.Name = "statusBar_VID";
+            this.statusBar_VID.Size = new System.Drawing.Size(33, 19);
+            this.statusBar_VID.Text = "VID:";
+            this.statusBar_VID.ToolTipText = "VID";
+            this.statusBar_VID.Visible = false;
+            // 
+            // statusBar_PID
+            // 
+            this.statusBar_PID.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.statusBar_PID.Name = "statusBar_PID";
+            this.statusBar_PID.Size = new System.Drawing.Size(34, 19);
+            this.statusBar_PID.Text = "PID:";
+            this.statusBar_PID.ToolTipText = "PID";
+            this.statusBar_PID.Visible = false;
+            // 
+            // statusBar_BoardType
+            // 
+            this.statusBar_BoardType.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.statusBar_BoardType.Name = "statusBar_BoardType";
+            this.statusBar_BoardType.Size = new System.Drawing.Size(131, 19);
+            this.statusBar_BoardType.Text = "Board Type: SGM4711";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
+            // 
+            // MenuItemTools_I2CAddress
+            // 
+            this.MenuItemTools_I2CAddress.Name = "MenuItemTools_I2CAddress";
+            this.MenuItemTools_I2CAddress.Size = new System.Drawing.Size(100, 23);
+            this.MenuItemTools_I2CAddress.Text = "0x1A";
+            this.MenuItemTools_I2CAddress.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MenuItemTools_I2CAddress.ToolTipText = "I2C Device Address";
+            this.MenuItemTools_I2CAddress.Validating += new System.ComponentModel.CancelEventHandler(this.MenuItemTools_I2CAddress_Validating);
+            this.MenuItemTools_I2CAddress.TextChanged += new System.EventHandler(this.MenuItemTools_I2CAddress_TextChanged);
             // 
             // line14
             // 
@@ -1916,12 +2000,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1013, 734);
+            this.ClientSize = new System.Drawing.Size(1013, 758);
+            this.Controls.Add(this.statusBar);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menu_main);
-            this.MinimumSize = new System.Drawing.Size(1010, 616);
+            this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.32";
+            this.Text = "SGM4711 Eva_v0.34";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1943,6 +2028,8 @@
             this.splitContainer2.ResumeLayout(false);
             this.tabCtrl_SingleRegSetting.ResumeLayout(false);
             this.tabCtrl_Output.ResumeLayout(false);
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1965,8 +2052,8 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemFile_Exit;
         private System.Windows.Forms.ToolStripMenuItem MenuItemFile_ExitWithoutSave;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectDongleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scriptWriteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemTools_selectDongle;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemTools_ScriptWrite;
         private System.Windows.Forms.ToolStripMenuItem MenuItemView;
         private System.Windows.Forms.ToolStripMenuItem MenuItemView_RegMap;
         private System.Windows.Forms.ToolStripMenuItem MenuItemView_BD;
@@ -2095,6 +2182,14 @@
         private System.Windows.Forms.Button btn_Enable;
         private System.Windows.Forms.CheckBox chb_Enable;
         private System.Windows.Forms.TabPage tabP_IICMemTool;
+        private System.Windows.Forms.StatusStrip statusBar;
+        public System.Windows.Forms.ToolStripStatusLabel statusBar_DeviceConnected;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_FWVersion;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_VID;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_PID;
+        private System.Windows.Forms.ToolStripStatusLabel statusBar_BoardType;
+        private System.Windows.Forms.ToolStripTextBox MenuItemTools_I2CAddress;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 
     }
 }
