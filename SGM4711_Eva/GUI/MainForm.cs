@@ -489,6 +489,7 @@ namespace SGM4711_Eva
                 regMap[0x0E]["CH3_VOL"].BFValue = 0;
                 this.chb_v3Source.Text = "From 0x08";
             }
+            pl_VOL3_Click(null, null);
         }
 
         private void pl_VOL3_Click(object sender, EventArgs e)
@@ -511,14 +512,15 @@ namespace SGM4711_Eva
 
             if (chb_v4Source.Checked)
             {
-                regMap[0x0E]["CH4_VOL"].BFValue = 1;
+                regMap[0x0E]["SUB_VOL"].BFValue = 1;
                 this.chb_v3Source.Text = "From 0x0A";
             }
             else
             {
-                regMap[0x0E]["CH4_VOL"].BFValue = 0;
+                regMap[0x0E]["SUB_VOL"].BFValue = 0;
                 this.chb_v3Source.Text = "From 0x09";
             }
+            pl_VOL4_Click(null, null);
         }
 
         private void pl_VOL4_Click(object sender, EventArgs e)
@@ -942,7 +944,7 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x20];
-                    tempReg["???"].BFValue = 0x01;          // ?? need confirm
+                    tempReg["CH1_MOD"].BFValue = 0x01;
                     tempReg["CH2_MOD"].BFValue = 0x01;
                     regAddrList.Add(tempReg);
 
@@ -1005,7 +1007,7 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x20];
-                    tempReg["???"].BFValue = 0x01;          // ?? need confirm
+                    tempReg["CH1_MOD"].BFValue = 0x01;
                     tempReg["CH2_MOD"].BFValue = 0x01;
                     regAddrList.Add(tempReg);
 
@@ -1143,21 +1145,32 @@ namespace SGM4711_Eva
             /* 0x07 */
             if (regMap != null)
             {
-                regMap[0x07].RegValue = (uint)this.trb_MasterVolume.Value;
+                uint tempVlaue = 0xFF - (uint)this.trb_MasterVolume.Value;
+                regMap[0x07].RegValue = tempVlaue;
                 UpdateRegSettingSource(0x07);
 
-                if (this.trb_MasterVolume.Value == 0xFF)
+                if (tempVlaue == 0xFF)
                 {
-                    this.lbl_MasterVol.Text = string.Format("Muted");
-                    this.lbl_MasterVol.ForeColor = Color.Red;
+                    this.txt_MasterVol.Text = string.Format("Muted");
+                    this.txt_MasterVol.ForeColor = Color.Red;
                 }
                 else
                 {
-                    double tempdBValue = 24 - trb_MasterVolume.Value * 0.5;
-                    this.lbl_MasterVol.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
-                    this.lbl_MasterVol.ForeColor = Color.Black;
+                    double tempdBValue = 24 - tempVlaue * 0.5;
+                    this.txt_MasterVol.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
+                    this.txt_MasterVol.ForeColor = Color.Black;
                 }
             }
+        }
+
+        private void txt_MasterVol_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_MasterVol_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
 
         private void chb_MuteMasterVolume_CheckedChanged(object sender, EventArgs e)
@@ -1266,6 +1279,7 @@ namespace SGM4711_Eva
 
             UpdateRegSettingSource(0x05, new string[] { "ALL_CH_PD" });
         }
+
 
 
     }
