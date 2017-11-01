@@ -43,7 +43,7 @@ namespace SGM4711_Eva.GUI
         bool EQView = true;
 
         // Frequency response calculation
-        int freqCountPerUnit = 100;     // how many freqs will be calc per unit. e.g. 100 point for 100 - 1000Hz and 1000Hz- 10000Hz...
+        int freqCountPerUnit = 200;     // how many freqs will be calc per unit. e.g. 100 point for 100 - 1000Hz and 1000Hz- 10000Hz...
 
         // Log Axis steps
         double[] logAxisStep = new double[] {Math.Log10(2), Math.Log10(3) - Math.Log10(2), Math.Log10(4) - Math.Log10(3),
@@ -440,7 +440,7 @@ namespace SGM4711_Eva.GUI
 
             //Add last Freq
             freqPointForFR.Add(MaxFreq);
-            freqPointLocaForFR.Add(new Point(this.EQ_CurvePanel.Width - xAxis_Shift, defaultFRYAxisLoca));
+            freqPointLocaForFR.Add(new Point(this.EQ_CurvePanel.Width, defaultFRYAxisLoca));
 
             // Fresh Frequency Point draw point array
             for (int ix = 0; ix < freqResponsePointsLoca.Length; ix++)
