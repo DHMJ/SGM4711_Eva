@@ -163,6 +163,7 @@
             this.statusBar_VID = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar_PID = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar_BoardType = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txt_MasterVol = new System.Windows.Forms.TextBox();
             this.line14 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line13 = new SGM4711_Eva.MDUserCtrls.Line();
@@ -186,7 +187,6 @@
             this.indicator_BCLK = new SGM4711_Eva.MDUserCtrls.Indicator();
             this.indicator_PLLLock = new SGM4711_Eva.MDUserCtrls.Indicator();
             this.indicator_MCLK = new SGM4711_Eva.MDUserCtrls.Indicator();
-            this.txt_MasterVol = new System.Windows.Forms.TextBox();
             this.menu_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -1115,7 +1115,7 @@
             this.tabP_AudioEngine.Location = new System.Drawing.Point(4, 25);
             this.tabP_AudioEngine.Name = "tabP_AudioEngine";
             this.tabP_AudioEngine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabP_AudioEngine.Size = new System.Drawing.Size(1005, 431);
+            this.tabP_AudioEngine.Size = new System.Drawing.Size(1072, 431);
             this.tabP_AudioEngine.TabIndex = 1;
             this.tabP_AudioEngine.Text = "Audio Engine";
             this.tabP_AudioEngine.UseVisualStyleBackColor = true;
@@ -1170,7 +1170,7 @@
             this.pnl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Main.Location = new System.Drawing.Point(3, 3);
             this.pnl_Main.Name = "pnl_Main";
-            this.pnl_Main.Size = new System.Drawing.Size(999, 425);
+            this.pnl_Main.Size = new System.Drawing.Size(1066, 425);
             this.pnl_Main.TabIndex = 0;
             // 
             // chb_v4Source
@@ -1647,7 +1647,7 @@
             this.tabP_RegRW.BackColor = System.Drawing.Color.White;
             this.tabP_RegRW.Location = new System.Drawing.Point(4, 25);
             this.tabP_RegRW.Name = "tabP_RegRW";
-            this.tabP_RegRW.Size = new System.Drawing.Size(462, 241);
+            this.tabP_RegRW.Size = new System.Drawing.Size(493, 241);
             this.tabP_RegRW.TabIndex = 2;
             this.tabP_RegRW.Text = "Register R/W";
             // 
@@ -1656,7 +1656,7 @@
             this.tabP_IICMemTool.BackColor = System.Drawing.Color.White;
             this.tabP_IICMemTool.Location = new System.Drawing.Point(4, 25);
             this.tabP_IICMemTool.Name = "tabP_IICMemTool";
-            this.tabP_IICMemTool.Size = new System.Drawing.Size(462, 241);
+            this.tabP_IICMemTool.Size = new System.Drawing.Size(493, 241);
             this.tabP_IICMemTool.TabIndex = 3;
             this.tabP_IICMemTool.Text = "IIC Memory Tool";
             // 
@@ -1737,6 +1737,18 @@
             this.statusBar_BoardType.Name = "statusBar_BoardType";
             this.statusBar_BoardType.Size = new System.Drawing.Size(131, 19);
             this.statusBar_BoardType.Text = "Board Type: SGM4711";
+            // 
+            // txt_MasterVol
+            // 
+            this.txt_MasterVol.ForeColor = System.Drawing.Color.Red;
+            this.txt_MasterVol.Location = new System.Drawing.Point(555, 304);
+            this.txt_MasterVol.Name = "txt_MasterVol";
+            this.txt_MasterVol.Size = new System.Drawing.Size(58, 24);
+            this.txt_MasterVol.TabIndex = 43;
+            this.txt_MasterVol.Text = "Muted";
+            this.txt_MasterVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_MasterVol.TextChanged += new System.EventHandler(this.txt_MasterVol_TextChanged);
+            this.txt_MasterVol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_MasterVol_KeyPress);
             // 
             // line14
             // 
@@ -2044,18 +2056,6 @@
             this.indicator_MCLK.Size = new System.Drawing.Size(25, 25);
             this.indicator_MCLK.TabIndex = 6;
             // 
-            // txt_MasterVol
-            // 
-            this.txt_MasterVol.ForeColor = System.Drawing.Color.Red;
-            this.txt_MasterVol.Location = new System.Drawing.Point(555, 304);
-            this.txt_MasterVol.Name = "txt_MasterVol";
-            this.txt_MasterVol.Size = new System.Drawing.Size(58, 24);
-            this.txt_MasterVol.TabIndex = 43;
-            this.txt_MasterVol.Text = "Muted";
-            this.txt_MasterVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txt_MasterVol.TextChanged += new System.EventHandler(this.txt_MasterVol_TextChanged);
-            this.txt_MasterVol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_MasterVol_KeyPress);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2067,7 +2067,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.36";
+            this.Text = "SGM4711 Eva_v0.37";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
