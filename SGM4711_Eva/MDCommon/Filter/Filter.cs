@@ -50,6 +50,12 @@ namespace SGM4711_Eva.MDCommon.Filter
         {
             switch (myFilterSet.Type)
             {
+                case FilterType.AllPass:
+                    CoeffCalc_AllPass();
+                    fr_Mag_out.Clear();
+                    fr_Mag_out.AddRange(FrequenctResponse(_freqs, 1));
+                    break;
+
                 case FilterType.Peaking:
                     CoeffCalc_Peaking();
                     fr_Mag_out.Clear();
@@ -59,7 +65,7 @@ namespace SGM4711_Eva.MDCommon.Filter
                 case FilterType.Shelving:
                     CoeffCalc_Shelving((FilterSubType_Shelving)Enum.Parse(typeof(FilterSubType_Shelving), myFilterSet.SubType.ToString()));
                     fr_Mag_out.Clear();
-                    fr_Mag_out.AddRange(FrequenctResponse(_freqs, 1));
+                    fr_Mag_out.AddRange(FrequenctResponse(_freqs, 2));
                     break;
 
                 case FilterType.LowPass:
@@ -82,6 +88,60 @@ namespace SGM4711_Eva.MDCommon.Filter
                     
                     break;
             } 
+        }
+
+        /// <summary>
+        /// H(Z) = (0 + 1 * Z-1 + 0 * Z-2)/(1 - 0 * Z-1 - 0 * Z-2)
+        /// When all pass, H(Z) = Z-1
+        /// </summary>
+        void CoeffCalc_AllPass()
+        {
+            /*******************************************
+            * 1. Transfer the gain in decibels (dB) to decimal domain.
+            ********************************************/
+
+            /*******************************************
+             * 2. Calculate the double precision coefficients
+             * 
+             * alpha = (1-sin(BW/fs * 2pi))/cos(BW/fs * 2pi)
+             * beta = cos(fc/fs * 2pi)
+             * p0 = ((1+k) + (1-k)*alpha)/2
+             * p1 = -(1+alpha)*beta
+             * p2 = ((1-k) + (1+k)*alpha)/2
+             * d1 = (1 + alpha) * beta
+             * d2 = - alpha
+            ********************************************/
+            p[0] = 0;
+            p[1] = 1;
+            p[2] = 0;
+            d[1] = 0;
+            d[2] = 0;
+
+            /*******************************************
+             * 3. Transfer the double precision coefficients 
+             * to integer values represented by registers.
+             * 
+             * b0 = round(p0 × 2^23)
+             * b1 = round(p1 × 2^23)
+             * b2 = round(p2 × 2^23)
+             * a0 = round(d1 × 2^23)
+             * a1 = round(d2 × 2^23)
+            ********************************************/
+            reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
+            reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
+            reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
+            reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
+            reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+
+            /*******************************************
+             * 4. Transfer the decimal integer values 
+             * to 26-bit, twos complement hex values.
+            ********************************************/
+
+            /*******************************************
+             * 5. Change the p and d to be used for FR calc
+             * H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
+             *******************************************/
         }
 
         /// <summary>
@@ -148,7 +208,7 @@ namespace SGM4711_Eva.MDCommon.Filter
         }
 
         /// <summary>
-        /// H(Z) = (p0 + p1 * Z-1)/(1 - d1 * Z-1), 1 order
+        /// H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
         /// fs as the input signal sampling frequency, 
         /// fc as the required peak filter center frequency, 
         /// G (dB) as the gain, 
@@ -157,39 +217,154 @@ namespace SGM4711_Eva.MDCommon.Filter
         /// </summary>
         void CoeffCalc_Shelving(FilterSubType_Shelving low_high)
         {
+            #region Comment out old 1st order shelving
+            //#region Low pass shelving
+            //if (low_high == FilterSubType_Shelving.Low)
+            //{
+            //    /*******************************************
+            //    * 1. Transfer the gain in decibels (dB) to decimal domain.
+            //    ********************************************/
+            //    k = Math.Pow(10, myFilterSet.Gain / 20.0);
+
+            //    /*******************************************
+            //     * 2. Calculate the double precision coefficients
+            //     * 
+            //     * alpha = (1-sin(fc/fs * 2pi))/cos(fc/fs * 2pi)             
+            //     * p0 = ((1+k) + (1-k)*alpha)/2
+            //     * p1 = ((k-1) + (k+1)*alpha)/2             
+            //     * d1 = alpha
+            //    ********************************************/
+            //    alpha = (1 - Math.Sin(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS)) /
+            //        Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS);
+            //    p[0] = ((1 + k) + (1 - k) * alpha) / 2;
+            //    p[1] = ((k - 1) + (k + 1) * alpha) / 2;
+            //    d[1] = alpha;
+
+            //    /*******************************************
+            //     * 3. Transfer the double precision coefficients 
+            //     * to integer values represented by registers.
+            //     * 
+            //     * b0 = round(p0 × 2^23)
+            //     * b1 = round(p1 × 2^23)
+            //     * a0 = round(d1 × 2^23)             
+            //    ********************************************/
+            //    reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
+            //    reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
+            //    reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
+
+            //    /*******************************************
+            //     * 4. Transfer the decimal integer values 
+            //     * to 26-bit, twos complement hex values.
+            //    ********************************************/
+
+            //    /*******************************************
+            //     * 5. Change the p and d to be used for FR calc
+            //     * H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
+            //     *******************************************/
+            //    d[1] = -d[1];
+            //}
+            //#endregion 
+
+            //#region high pass shelving
+            //else
+            //{
+            //    /*******************************************
+            //    * 1. Transfer the gain in decibels (dB) to decimal domain.
+            //    ********************************************/
+            //    k = Math.Pow(10, myFilterSet.Gain / 20.0);
+
+            //    /*******************************************
+            //     * 2. Calculate the double precision coefficients
+            //     * 
+            //     * alpha = (1-sin(fc/fs * 2pi))/cos(fc/fs * 2pi)             
+            //     * p0 = ((1+k) - (1-k)*alpha)/2
+            //     * p1 = ((1-k) - (1+k)*alpha)/2             
+            //     * d1 = alpha
+            //    ********************************************/
+            //    alpha = (1 - Math.Sin(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS)) /
+            //        Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS);
+            //    p[0] = ((1 + k) - (1 - k) * alpha) / 2;
+            //    p[1] = ((1 - k) - (1 + k) * alpha) / 2;
+            //    d[1] = alpha;
+
+            //    /*******************************************
+            //     * 3. Transfer the double precision coefficients 
+            //     * to integer values represented by registers.
+            //     * 
+            //     * b0 = round(p0 × 2^23)
+            //     * b1 = round(p1 × 2^23)
+            //     * a0 = round(d1 × 2^23)             
+            //    ********************************************/
+            //    reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
+            //    reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
+            //    reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
+
+            //    /*******************************************
+            //     * 4. Transfer the decimal integer values 
+            //     * to 26-bit, twos complement hex values.
+            //    ********************************************/
+
+            //    /*******************************************
+            //     * 5. Change the p and d to be used for FR calc
+            //     * H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
+            //     *******************************************/
+            //    d[1] = -d[1];
+            //}
+            //#endregion 
+            #endregion 
+
             #region Low pass shelving
             if (low_high == FilterSubType_Shelving.Low)
             {
                 /*******************************************
                 * 1. Transfer the gain in decibels (dB) to decimal domain.
                 ********************************************/
-                k = Math.Pow(10, myFilterSet.Gain / 20.0);
+                //k = Math.Pow(10, myFilterSet.Gain / 20.0);
 
                 /*******************************************
                  * 2. Calculate the double precision coefficients
                  * 
-                 * alpha = (1-sin(fc/fs * 2pi))/cos(fc/fs * 2pi)             
-                 * p0 = ((1+k) + (1-k)*alpha)/2
-                 * p1 = ((k-1) + (k+1)*alpha)/2             
-                 * d1 = alpha
+                 * A = sqrt(10^(G/20))
+                 * wc = fc/fs * 2pi
+                 * k = sin(wc)/sqrt(2)
+                 * b0 = A*((A+1)-(A-1)*cos(wc)+2*sqrt(A)*K)
+                 * b1 = 2*A((A-1)-(A+1)*cos(wc))
+                 * b2 = A*((A+1)-(A-1)*cos(wc)-2*sqrt(A)*K)
+                 * a0 = (A+1)+(A-1)*cos(wc)+2*sqrt(A)*K
+                 * a1 = -2*((A-1)+(A+1)*cos(wc))
+                 * a2 = (A+1)+(A-1)*cos(wc)-2*sqrt(A)*K
+                 * 
+                 * p0 = b0/a0
+                 * p1 = b1/a0
+                 * p2 = b2/a0
+                 * d1 = -a1/a0
+                 * d2 = -a2/a0
                 ********************************************/
-                alpha = (1 - Math.Sin(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS)) /
-                    Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS);
-                p[0] = ((1 + k) + (1 - k) * alpha) / 2;
-                p[1] = ((k - 1) + (k + 1) * alpha) / 2;
-                d[1] = alpha;
-
+                double A = Math.Sqrt(Math.Pow(10, myFilterSet.Gain / 20));
+                wc = myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS;
+                k = Math.Sin(wc) / Math.Sqrt(2);
+                double a0 = (A + 1) + (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k;
+                p[0] = (A * ((A + 1) - (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k)) / a0;
+                p[1] = (2 * A * ((A - 1) - (A + 1) * Math.Cos(wc))) / a0;
+                p[2] = (A * ((A + 1) - (A - 1) * Math.Cos(wc) - 2 * Math.Sqrt(A) * k)) / a0;
+                d[1] = (2 * ((A - 1) + (A + 1) * Math.Cos(wc))) / a0;
+                d[2] = -((A + 1) + (A - 1) * Math.Cos(wc) - 2 * Math.Sqrt(A) * k) / a0;
+                
                 /*******************************************
                  * 3. Transfer the double precision coefficients 
                  * to integer values represented by registers.
                  * 
                  * b0 = round(p0 × 2^23)
                  * b1 = round(p1 × 2^23)
-                 * a0 = round(d1 × 2^23)             
+                 * b2 = round(p2 × 2^23)
+                 * a0 = round(d1 × 2^23)
+                 * a1 = round(d2 × 2^23)
                 ********************************************/
                 reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
                 reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
+                reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
                 reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
+                reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
 
                 /*******************************************
                  * 4. Transfer the decimal integer values 
@@ -201,8 +376,19 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
                  *******************************************/
                 d[1] = -d[1];
+                d[2] = -d[2];
+
+                /*******************************************
+                 * example: 
+                 * when fc = 1KHz, g = 6dB, fs = 48KHz
+                 * P0*2^23 = 8661797
+                 * P1*2^23 = -15425281
+                 * P2*2^23 = 6951835
+                 * D1*2^23 = 15472257 
+                 * D2*2^23= -7178048
+                 *******************************************/
             }
-            #endregion 
+            #endregion
 
             #region high pass shelving
             else
@@ -210,21 +396,36 @@ namespace SGM4711_Eva.MDCommon.Filter
                 /*******************************************
                 * 1. Transfer the gain in decibels (dB) to decimal domain.
                 ********************************************/
-                k = Math.Pow(10, myFilterSet.Gain / 20.0);
+                //k = Math.Pow(10, myFilterSet.Gain / 20.0);
 
                 /*******************************************
                  * 2. Calculate the double precision coefficients
                  * 
-                 * alpha = (1-sin(fc/fs * 2pi))/cos(fc/fs * 2pi)             
-                 * p0 = ((1+k) - (1-k)*alpha)/2
-                 * p1 = ((1-k) - (1+k)*alpha)/2             
-                 * d1 = alpha
+                 * A = sqrt(10^(G/20))
+                 * wc = fc/fs * 2pi
+                 * k = sin(wc)/sqrt(2)
+                 * b0 = A*((A+1)+(A-1)*cos(wc)+2*sqrt(A)*K)
+                 * b1 = -2*A*((A-1)+(A+1)*cos(wc))
+                 * b2 = A*((A+1)+(A-1)*cos(wc)-2*sqrt(A)*K)
+                 * a0 = (A+1)+(A-1)*cos(wc)+2*sqrt(A)*K
+                 * a1 = -2*((A-1)+(A+1)*cos(wc))
+                 * a2 = (A+1)+(A-1)*cos(wc)-2*sqrt(A)*K
+                 * 
+                 * p0 = b0/a0
+                 * p1 = b1/a0
+                 * p2 = b2/a0
+                 * d1 = -a1/a0
+                 * d2 = -a2/a0
                 ********************************************/
-                alpha = (1 - Math.Sin(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS)) /
-                    Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS);
-                p[0] = ((1 + k) - (1 - k) * alpha) / 2;
-                p[1] = ((1 - k) - (1 + k) * alpha) / 2;
-                d[1] = alpha;
+                double A = Math.Sqrt(Math.Pow(10, myFilterSet.Gain / 20));
+                wc = myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS;
+                k = Math.Sin(wc) / Math.Sqrt(2);
+                double a0 = (A + 1) + (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k;
+                p[0] = (A * ((A + 1) + (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k)) / a0;
+                p[1] = (-2 * A * ((A - 1) + (A + 1) * Math.Cos(wc))) / a0;
+                p[2] = (A * ((A + 1) + (A - 1) * Math.Cos(wc) - 2 * Math.Sqrt(A) * k)) / a0;
+                d[1] = (-2 * ((A - 1) - (A + 1) * Math.Cos(wc))) / a0;
+                d[2] = -((A + 1) - (A - 1) * Math.Cos(wc) - 2 * Math.Sqrt(A) * k) / a0;
 
                 /*******************************************
                  * 3. Transfer the double precision coefficients 
@@ -232,11 +433,15 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * 
                  * b0 = round(p0 × 2^23)
                  * b1 = round(p1 × 2^23)
-                 * a0 = round(d1 × 2^23)             
+                 * b2 = round(p2 × 2^23)
+                 * a0 = round(d1 × 2^23)
+                 * a1 = round(d2 × 2^23)
                 ********************************************/
                 reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
                 reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
+                reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
                 reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
+                reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
 
                 /*******************************************
                  * 4. Transfer the decimal integer values 
@@ -248,8 +453,20 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
                  *******************************************/
                 d[1] = -d[1];
+                d[2] = -d[2];
+
+                /*******************************************
+                 * example: 
+                 * when fc = 1KHz, g = 6dB, fs = 48KHz
+                 * P0*2^23 = 16209582
+                 * P1*2^23 = --29897549
+                 * P2*2^23 = 13870376
+                 * D1*2^23 = 14938776 
+                 * D2*2^23= -6732577
+                 *******************************************/
             }
             #endregion 
+
         }
 
         /// <summary>
@@ -277,9 +494,9 @@ namespace SGM4711_Eva.MDCommon.Filter
             ********************************************/
             k = (2 * Math.Tan(myFilterSet.BandWidth * Math.PI / myFilterSet.FS)) / (1 + Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS));
             p[0] = 1 / (1 - k);
-            p[1] = (2 * Math.Cos(myFilterSet.Freq * 2 * Math.PI)) / (k - 1);
+            p[1] = (2 * Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS)) / (k - 1);
             p[2] = 1 / (1 - k);
-            d[1] = (-2 * Math.Cos(myFilterSet.Freq * 2 * Math.PI)) / (k - 1);
+            d[1] = (-2 * Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS)) / (k - 1);
             d[2] = -(1 + k) / (1 - k);
 
             /*******************************************
@@ -330,8 +547,8 @@ namespace SGM4711_Eva.MDCommon.Filter
         /// </summary>
         void CoeffCalc_LowPass(FilterSubType_LoHiPass _type)
         {
-            #region general low pass filter
-            if (_type == FilterSubType_LoHiPass.General)
+            #region Butterworth low pass filter
+            if (_type == FilterSubType_LoHiPass.Butterworth)
             {
                 /*******************************************
                 * 1. Transfer the gain in decibels (dB) to decimal domain.
@@ -413,8 +630,8 @@ namespace SGM4711_Eva.MDCommon.Filter
         /// </summary>
         void CoeffCalc_HighPass(FilterSubType_LoHiPass _type)
         {
-            #region general high pass filter
-            if (_type == FilterSubType_LoHiPass.General)
+            #region Butterworth high pass filter
+            if (_type == FilterSubType_LoHiPass.Butterworth)
             {
                 /*******************************************
                 * 1. Transfer the gain in decibels (dB) to decimal domain.

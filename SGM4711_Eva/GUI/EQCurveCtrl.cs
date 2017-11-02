@@ -274,14 +274,14 @@ namespace SGM4711_Eva.GUI
             (dgv_filterSetting.Columns[1] as DataGridViewComboBoxColumn).Items.Add(FilterType.LowPass.ToString());
             (dgv_filterSetting.Columns[1] as DataGridViewComboBoxColumn).Items.Add(FilterType.Peaking.ToString());
             (dgv_filterSetting.Columns[1] as DataGridViewComboBoxColumn).Items.Add(FilterType.Shelving.ToString());
-
-
+            (dgv_filterSetting.Columns[1] as DataGridViewComboBoxColumn).Items.Add(FilterType.Notch.ToString());
 
             // Filter SubType
             dgv_filterSetting.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dgv_filterSetting.Columns[2].Width = 150;
             dgv_filterSetting.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv_filterSetting.Columns[2].HeaderText = "Filter SubType";
+            dgv_filterSetting.Columns[2].ReadOnly = true;
             (dgv_filterSetting.Columns[2] as DataGridViewComboBoxColumn).Items.Clear();
             (dgv_filterSetting.Columns[2] as DataGridViewComboBoxColumn).Items.Add(FilterSubType.None.ToString());
             (dgv_filterSetting.Columns[2] as DataGridViewComboBoxColumn).Items.Add(FilterSubType.Bessel.ToString());
@@ -296,21 +296,25 @@ namespace SGM4711_Eva.GUI
             dgv_filterSetting.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv_filterSetting.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv_filterSetting.Columns[3].HeaderText = "Frequency (Hz)";
+            dgv_filterSetting.Columns[3].ReadOnly = true;
 
             // Gain (dB)
             dgv_filterSetting.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv_filterSetting.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv_filterSetting.Columns[4].HeaderText = "Gain (dB)";
+            dgv_filterSetting.Columns[4].ReadOnly = true;
 
             // BandWidth (Hz)
             dgv_filterSetting.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv_filterSetting.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv_filterSetting.Columns[5].HeaderText = "BandWidth (Hz)";
+            dgv_filterSetting.Columns[5].ReadOnly = true;
 
             // Q Factor
             dgv_filterSetting.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv_filterSetting.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv_filterSetting.Columns[6].HeaderText = "Q Factor";
+            dgv_filterSetting.Columns[6].ReadOnly = true;
 
             // View
             dgv_filterSetting.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -367,6 +371,84 @@ namespace SGM4711_Eva.GUI
 
             // Update all filters' curve points
             //UpdateDrawPoints_FR(-1);
+        }
+
+        private void UpdateFilterSetFeature(int _ixFilter, FilterType _fType)
+        {
+            DataGridViewRow currentRow = dgv_filterSetting.Rows[_ixFilter];
+            switch (_fType)
+            {
+                case FilterType.AllPass:
+                    // Enable/Disable other settings
+                    currentRow.Cells[(int)paramIx.SubType].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.BW].ReadOnly = true;
+                    
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.None.ToString());
+                    currentRow.Cells[2].Value = FilterSubType.None.ToString();
+                    break;
+
+                case FilterType.Peaking:
+                    // Enable/Disable other settings
+                    currentRow.Cells[(int)paramIx.SubType].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.BW].ReadOnly = false;
+
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.None.ToString());
+                    currentRow.Cells[2].Value = FilterSubType.None.ToString();
+                    break;
+
+                case FilterType.HighPass:
+                case FilterType.LowPass:
+                    // Enable/Disable other settings
+                    currentRow.Cells[(int)paramIx.SubType].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.BW].ReadOnly = true;
+
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.Butterworth.ToString());
+                    currentRow.Cells[2].Value = FilterSubType.Butterworth.ToString();
+                    break;
+
+                case FilterType.Notch:
+                    // Enable/Disable other settings
+                    currentRow.Cells[(int)paramIx.SubType].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.BW].ReadOnly = false;
+
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.None.ToString());
+                    currentRow.Cells[2].Value = FilterSubType.None.ToString();
+
+                    break;
+
+                case FilterType.Shelving:
+                    // Enable/Disable other settings
+                    currentRow.Cells[(int)paramIx.SubType].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.BW].ReadOnly = true;
+
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.Low.ToString());
+                    (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.High.ToString());
+                    currentRow.Cells[2].Value = FilterSubType.Low.ToString();
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -710,7 +792,7 @@ namespace SGM4711_Eva.GUI
             if (dgv_filterSetting.Rows.Count == 0)
                 return;
 
-            DataGridViewRow tempRow = dgv_filterSetting.Rows[e.RowIndex];
+            DataGridViewRow currentRow = dgv_filterSetting.Rows[e.RowIndex];
 
             switch (e.ColumnIndex)
             {
@@ -718,25 +800,32 @@ namespace SGM4711_Eva.GUI
                     break;
 
                 case (int)paramIx.Type:
-                    settings[e.RowIndex].Type = (FilterType)Enum.Parse(typeof(FilterType), tempRow.Cells[e.ColumnIndex].Value.ToString());
+                    settings[e.RowIndex].Type = (FilterType)Enum.Parse(typeof(FilterType), currentRow.Cells[e.ColumnIndex].Value.ToString());
+                    UpdateFilterSetFeature(e.RowIndex, settings[e.RowIndex].Type);
                     break;
 
                 case (int)paramIx.SubType:
-                    settings[e.RowIndex].SubType = (FilterSubType)Enum.Parse(typeof(FilterSubType), tempRow.Cells[e.ColumnIndex].Value.ToString());
+                    settings[e.RowIndex].SubType = (FilterSubType)Enum.Parse(typeof(FilterSubType), currentRow.Cells[e.ColumnIndex].Value.ToString());
                     break;
 
                 case (int)paramIx.Freq:
-                    parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
+                    parseRet = double.TryParse(currentRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
                     if (parseRet && (tempData <= MaxFreq) && (tempData >= MinFreq))
                     {
                         settings[e.RowIndex].Freq = tempData;
+                        //Update Q factor
+                        if ((settings[e.RowIndex].Type == FilterType.Peaking) || (settings[e.RowIndex].Type == FilterType.Notch))
+                        {
+                            currentRow.Cells[(int)paramIx.QFatcor].Value =
+                                settings[e.RowIndex].Freq / settings[e.RowIndex].BandWidth;
+                        }
                     }
                     else 
                         MessageBox.Show(String.Format("Wrong Frequency Input in Row[{0}]", e.RowIndex));
                     break;
 
                 case (int)paramIx.Gain:
-                    parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
+                    parseRet = double.TryParse(currentRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
                     if (parseRet && (tempData <= MaxGaindB) && (tempData >= MinGaindB))
                     {
                         settings[e.RowIndex].Gain = tempData;
@@ -747,10 +836,16 @@ namespace SGM4711_Eva.GUI
                     break;
 
                 case (int)paramIx.BW:
-                    parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
+                    parseRet = double.TryParse(currentRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
                     if (parseRet && (tempData <= MaxBW) && (tempData >= MinBW))
                     {
                         settings[e.RowIndex].BandWidth = tempData;
+                        //Update Q factor
+                        if ((settings[e.RowIndex].Type == FilterType.Peaking) || (settings[e.RowIndex].Type == FilterType.Notch))
+                        {
+                            currentRow.Cells[(int)paramIx.QFatcor].Value = 
+                                settings[e.RowIndex].Freq / settings[e.RowIndex].BandWidth;
+                        }
                     }
                     else
                         MessageBox.Show(String.Format("Wrong Band Width Input in Row[{0}]", e.RowIndex));
@@ -758,10 +853,17 @@ namespace SGM4711_Eva.GUI
                     break;
 
                 case (int)paramIx.QFatcor:
-                    parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
+                    parseRet = double.TryParse(currentRow.Cells[e.ColumnIndex].Value.ToString(), out tempData);
                     if (parseRet && (tempData <= MaxQFactor) && (tempData >= MinQFactor))
                     {
                         settings[e.RowIndex].QFactor = tempData;
+                        //Update BW factor
+                        if ((settings[e.RowIndex].Type == FilterType.Peaking) || (settings[e.RowIndex].Type == FilterType.Notch))
+                        {
+                            currentRow.Cells[(int)paramIx.BW].Value =
+                                settings[e.RowIndex].Freq / settings[e.RowIndex].QFactor;
+                        }
+
                     }
                     else
                         MessageBox.Show(String.Format("Wrong Q Factor Input in Row[{0}]", e.RowIndex));
@@ -769,11 +871,11 @@ namespace SGM4711_Eva.GUI
                     break;
 
                 case (int)paramIx.View:
-                    settings[e.RowIndex].View = (bool)tempRow.Cells[e.ColumnIndex].Value;
+                    settings[e.RowIndex].View = (bool)currentRow.Cells[e.ColumnIndex].Value;
                     break;
 
                 case (int)paramIx.Bypass:
-                    settings[e.RowIndex].Bypass = (bool)tempRow.Cells[e.ColumnIndex].Value;
+                    settings[e.RowIndex].Bypass = (bool)currentRow.Cells[e.ColumnIndex].Value;
                     break;
 
                 case (int)paramIx.Color:
