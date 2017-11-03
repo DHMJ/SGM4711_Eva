@@ -68,7 +68,8 @@ namespace SGM4711_Eva
 
             // init Mian GUI commbox
             this.cmb_ModeConfig.SelectedIndex = 0;
-            this.cmb_InterfaceConfig.SelectedIndex = 0;
+            this.cmb_InterfaceConfig.SelectedIndex = 5;
+            this.cmb_SampleRate.SelectedIndex = 3;
         }
 
         private void CreateTabs(DataSet _ds)
@@ -134,6 +135,136 @@ namespace SGM4711_Eva
             //To DO: Add create taps on GUI with dataset
         }
 
+        private bool RegRead(byte _regAddr)
+        {
+            if (myDongle.IsOpen && regMap != null)
+            {
+                byte[] tempRegBytes;
+                Register tempReg = regMap[_regAddr];
+                tempRegBytes = new byte[tempReg.ByteCount];
+                if (myDongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
+                {
+                    for (int ix = 0; ix < tempRegBytes.Length; ix++)
+                        tempReg.ByteValue[ix] = tempRegBytes[ix];
+                    
+                    return true;
+                }
+            }
+
+            MessageBox.Show("Write Register Failed!", "Warning");
+            return false;
+        }
+
+        private bool RegRead(Register _reg)
+        {
+            if (myDongle.IsOpen)
+            {
+                byte[] tempRegBytes;
+                tempRegBytes = new byte[_reg.ByteCount];
+                if(myDongle.readRegBurst(_reg.RegAddress, tempRegBytes, tempRegBytes.Length))
+                {
+                    for(int ix = 0; ix < tempRegBytes.Length; ix++)
+                        _reg.ByteValue[ix] = tempRegBytes[ix];
+
+                    return true;
+                }                
+            }
+            
+            MessageBox.Show("Write Register Failed!", "Warning");
+            return false;
+        }
+
+        private bool RegRead(Register[] _reg)
+        {
+            if (myDongle.IsOpen)
+            {
+                byte[] tempRegBytes;
+                for (int ix_reg = 0; ix_reg < _reg.Length; ix_reg++)
+                {
+                    tempRegBytes = new byte[_reg[ix_reg].ByteCount];
+                    if (myDongle.readRegBurst(_reg[ix_reg].RegAddress, tempRegBytes, tempRegBytes.Length))
+                    {
+                        for (int ix = 0; ix < tempRegBytes.Length; ix++)
+                            _reg[ix_reg].ByteValue[ix] = tempRegBytes[ix];
+                    }
+                    else
+                        return false;
+                }
+            }
+
+            MessageBox.Show("Write Register Failed!", "Warning");
+            return true;
+        }
+
+        private bool RegWrite(byte _regAddr)
+        {
+            if (myDongle.IsOpen && regMap != null)
+            {
+                Register tempReg = regMap[_regAddr];
+                if (myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
+                {
+                    return true;
+                }
+            }
+
+            MessageBox.Show("Write Register Failed!", "Warning");
+            return false;
+        }
+
+        private bool RegWrite(byte[] _regAddr)
+        {
+            bool ret = false;
+            if (myDongle.IsOpen && regMap != null)
+            {
+                Register tempReg;
+                for (int ix = 0; ix < _regAddr.Length; ix++)
+                {
+                    tempReg = regMap[_regAddr[ix]];
+                    if (!myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
+                    {
+                        MessageBox.Show("Write Register Failed!", "Warning");
+                        return false;
+                    }
+                }
+                ret = true;
+            }
+
+            return ret;
+        }
+
+        private bool RegWrite(Register _reg)
+        {
+            if (myDongle.IsOpen)
+            {
+                if (myDongle.writeRegBurst(_reg.RegAddress, _reg.ByteValue, _reg.ByteCount))
+                {
+                    return true;
+                }
+            }
+
+            MessageBox.Show("Write Register Failed!", "Warning");
+            return true;
+        }
+
+        private bool RegWrite(Register[] _reg)
+        {
+            bool ret = false;
+            if (myDongle.IsOpen)
+            {
+                for (int ix = 0; ix < _reg.Length; ix++)
+                {
+                    if (!myDongle.writeRegBurst(_reg[ix].RegAddress, _reg[ix].ByteValue, _reg[ix].ByteCount))
+                    {
+                        MessageBox.Show("Write Register Failed!", "Warning");
+                        return false;
+                    }
+                }
+                ret = true;
+            }
+
+            return ret;
+        }
+
         private void UpdateChildGUI()
         {
             //Transfer regmap to other classes
@@ -145,13 +276,36 @@ namespace SGM4711_Eva
         {
             if (regMap != null && myDongle.IsOpen)
             {
-                foreach(Register tempReg in regMap.RegList)
+                foreach (Register _reg in regMap.RegList)
                 {
-                    myDongle.readRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
-                }                                
+                    RegRead(_reg);
+                }
             }
 
-            // Update GUI
+            #region Update GUI
+            Register tempReg;
+            // Operation Voltage; reg 0x0C
+            tempReg = regMap[0x0C];
+            uint tempBFValue = tempReg["Operation Voltage[1:0]"].BFValue;
+            this.numUP_OpVoltage.Value = tempBFValue == 0 ? 24 : (tempBFValue == 1 ? 18 : (tempBFValue == 2 ? 12 : 8));
+
+            // Mode Config
+
+            // Interface Config
+            tempReg = regMap[0x04];
+            this.cmb_InterfaceConfig.SelectedIndex = (int)tempReg["AIF_FORMAT[3:0]"].BFValue;
+
+            // Status
+            UpdateIndicator((byte)regMap[0x02].RegValue);
+
+            // Sample Rate
+            tempReg = regMap[0x00];
+            this.cmb_SampleRate.SelectedIndex = (int)tempReg["FS_SEL[2:0]"].BFValue;
+
+            // Master Vol
+            tempReg = regMap[0x07];
+            this.trb_MasterVolume.Value = (int)tempReg.RegValue;
+            #endregion 
         }
 
         #endregion Funcs
@@ -161,22 +315,6 @@ namespace SGM4711_Eva
             blockDiagramMode = !blockDiagramMode;
             this.splitContainer1.Panel1Collapsed = blockDiagramMode;
             this.splitContainer2.Panel2Collapsed = blockDiagramMode;
-        }
-
-        private void tabCtrl_RegSetting_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            //SolidBrush lightGray = new SolidBrush(Color.White);
-            //e.Graphics.FillRectangle(lightGray, tabCtrl_RegSetting.GetTabRect(0));
-            //Rectangle rec_tab = new Rectangle(tabCtrl_RegSetting.Location, new Size(tabCtrl_RegSetting.Size.Width, tabCtrl_RegSetting.GetTabRect(0).Size.Height));
-            //e.Graphics.FillRectangle(lightGray, rec_tab);
-            //StringFormat stringFormat = new StringFormat();
-            //stringFormat.Alignment = StringAlignment.Center;
-            //for (int i = 0; i < tabCtrl_RegSetting.TabPages.Count; i++)
-            //{
-            //    Rectangle rec = tabCtrl_RegSetting.GetTabRect(i);
-            //    rec.Y += 5;
-            //    e.Graphics.DrawString(tabCtrl_RegSetting.TabPages[i].Text, new Font("SimSun", 9), new SolidBrush(Color.Black), rec, stringFormat);
-            //}
         }
         
         #region GUI control
@@ -914,8 +1052,8 @@ namespace SGM4711_Eva
                 tempData = (byte)((tempData >= 24) ? 0x0 : ((tempData >= 18) ? 0x01 :
                     ((tempData >= 12) ? 0x02 : 0x03)));
                 regMap[tempAddr]["Operation Voltage[1:0]"].BFValue = tempData;
-                if(myDongle.IsOpen)
-                    myDongle.writeRegSingle(0x0C, tempData);
+
+                RegWrite(tempAddr);
             }
         }
 
@@ -1042,8 +1180,9 @@ namespace SGM4711_Eva
             {
                 for (int ix = 0; ix < regAddrList.Count; ix++)
                 {
-                    tempReg = regAddrList[ix];
-                    myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
+                    RegWrite(regAddrList[ix]);
+                    //tempReg = regAddrList[ix];
+                    //myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
                 }
             }
         }
@@ -1058,34 +1197,33 @@ namespace SGM4711_Eva
 
             Register tempReg = regMap[0x04];
             tempReg["AIF_FORMAT[3:0]"].BFValue = (uint)this.cmb_InterfaceConfig.SelectedIndex;
-            if(myDongle.IsOpen)
-                myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
-
+            RegWrite(tempReg);
         }
 
         private void btn_ClearStatus_Click(object sender, EventArgs e)
         {
             /* Reg0x02 write 0x00 */
-            Register tempReg = regMap[0x02];
-            tempReg.RegValue = 0x00;
-            if (myDongle.IsOpen)
-                myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
+            if (regMap != null)
+            {
+                Register tempReg = regMap[0x02];
+                tempReg.RegValue = 0x00;
+                RegWrite(tempReg);
+            }
         }
 
         private void btn_RefreshStatus_Click(object sender, EventArgs e)
         {
             /* Read Reg0x02 */
-            if (regMap == null)
-                return;
-
-            if (myDongle.IsOpen)
+            if (RegRead(0x02))
             {
-                Register tempReg = regMap[0x02];
-                myDongle.readRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
-
                 // Update indicators
-                UpdateIndicator((byte)tempReg.RegValue);
+                UpdateIndicator((byte)regMap[0x02].RegValue);
             }
+            if (RegRead(0x00))
+            {
+                this.cmb_SampleRate.SelectedIndex = (int)regMap[0x00]["FS_SEL[2:0]"].BFValue;
+            }
+
         }
 
         private void UpdateIndicator(byte regValue)
@@ -1128,6 +1266,9 @@ namespace SGM4711_Eva
         {
             // update register table displaying
             btn_InputMux_Click(sender, e);
+
+            // write to hw
+            RegWrite(new byte[]{0x20, 0x21});
         }
 
         private void btn_AudioEngine_Click(object sender, EventArgs e)
@@ -1160,6 +1301,8 @@ namespace SGM4711_Eva
                     this.txt_MasterVol.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
                     this.txt_MasterVol.ForeColor = Color.Black;
                 }
+
+                RegWrite(0x07);
             }
         }
 
@@ -1182,6 +1325,8 @@ namespace SGM4711_Eva
                 {
                     regMap[0x07].RegValue = 0xFF;
                     UpdateRegSettingSource(0x07);
+
+                    RegWrite(0x07);
                 }
                 else
                 {
@@ -1207,6 +1352,7 @@ namespace SGM4711_Eva
         private void outputMux_FormClosed(object sender, FormClosedEventArgs e)
         {
             btn_OutputMux_Click(sender, e);
+            RegWrite(0x25);
         }
 
         #endregion Main GUI Tab
@@ -1238,12 +1384,7 @@ namespace SGM4711_Eva
 
         private void btn_Sync_Click(object sender, EventArgs e)
         {
-            /* reg 0x05  bit6*/
-            if (regMap == null)
-                return;
-
-            //regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
-            //UpdateRegSettingSource(0x05, new string[] { "ALL_CH_PD" });
+            ReadAllAndUpdateGUI();
         }
 
         private void btn_backToDefault_Click(object sender, EventArgs e)
@@ -1278,6 +1419,7 @@ namespace SGM4711_Eva
             }
 
             UpdateRegSettingSource(0x05, new string[] { "ALL_CH_PD" });
+            RegWrite(0x05);
         }
 
 

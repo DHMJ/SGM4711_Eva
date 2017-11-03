@@ -326,13 +326,19 @@ namespace GeneralRegConfigPlatform.MDGUI
             if (dongle.IsOpen)
             {
                 Register tempReg;
+                byte[] tempRegBytes;
                 for (int ix = 0; ix < regAddrList.Count; ix++)
                 {
                     tempReg = regMap[regAddrList[ix]];
-                    dongle.readRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
-                    
-                    // Update new value to GUI display
-                    UpdateRegValueCell(tempReg);
+                    tempRegBytes = new byte[tempReg.ByteCount];
+                    if (dongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
+                    {
+                        for (int ix_byteCount = 0; ix_byteCount < tempRegBytes.Length; ix_byteCount++)
+                            tempReg.ByteValue = tempRegBytes;
+
+                        // Update new value to GUI display
+                        UpdateRegValueCell(tempReg);
+                    }
                 }
             }
         }
@@ -345,7 +351,8 @@ namespace GeneralRegConfigPlatform.MDGUI
                 for (int ix = 0; ix < regAddrList.Count; ix++)
                 {
                     tempReg = regMap[regAddrList[ix]];
-                    dongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
+                    if (!dongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
+                        MessageBox.Show("Write Register Failed!", "Warning");
                 }
             }
         }
@@ -355,13 +362,19 @@ namespace GeneralRegConfigPlatform.MDGUI
             if (dongle.IsOpen)
             {
                 Register tempReg;
+                byte[] tempRegBytes;
                 for (int ix = 0; ix < selectedRegAddr.Count; ix++)
                 {
                     tempReg = regMap[selectedRegAddr[ix]];
-                    dongle.readRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
+                    tempRegBytes = new byte[tempReg.ByteCount];
+                    if (dongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
+                    {
+                        for (int ix_byteCount = 0; ix_byteCount < tempRegBytes.Length; ix_byteCount++)
+                            tempReg.ByteValue = tempRegBytes;
 
-                    // Update new value to GUI display
-                    UpdateRegValueCell(tempReg);
+                        // Update new value to GUI display
+                        UpdateRegValueCell(tempReg);
+                    }
                 }
             }
         }
@@ -374,7 +387,7 @@ namespace GeneralRegConfigPlatform.MDGUI
                 for (int ix = 0; ix < selectedRegAddr.Count; ix++)
                 {
                     tempReg = regMap[selectedRegAddr[ix]];
-                    if(dongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
+                    if(!dongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
                         MessageBox.Show("Write Register Failed!", "Warning");
                 }
             }

@@ -424,6 +424,30 @@ namespace MD.MDCommon
                 }
                 return regValue_byte; 
             }
+            set
+            {
+                regValue_byte = value;
+                if (byteCount <= 4)
+                {
+                    regValue = 0;
+                    for (int ix = 0; ix < byteCount; ix++)
+                    {
+                        regValue <<= 8;
+                        RegValue += regValue_byte[ix];
+                    }
+                }
+                else
+                {
+                    int ix_dest = 0;
+                    for (int ix_bf = 0; ix_bf < BFCount; ix_bf++)
+                    {
+                        for (int ix = 0; ix < bfList[ix_bf].ByteCount; ix++)
+                        {
+                            bfList[ix].BFValue_byte[ix] = regValue_byte[ix_dest++];
+                        }
+                    }
+                }
+            }
         }
 
         public int BFCount

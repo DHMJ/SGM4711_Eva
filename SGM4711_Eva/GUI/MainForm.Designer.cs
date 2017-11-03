@@ -101,7 +101,7 @@
             this.line2 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line1 = new SGM4711_Eva.MDUserCtrls.Line();
             this.grb_OpeStatus = new System.Windows.Forms.GroupBox();
-            this.txt_SampleRate = new System.Windows.Forms.TextBox();
+            this.cmb_SampleRate = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -1039,7 +1039,7 @@
             // 
             // grb_OpeStatus
             // 
-            this.grb_OpeStatus.Controls.Add(this.txt_SampleRate);
+            this.grb_OpeStatus.Controls.Add(this.cmb_SampleRate);
             this.grb_OpeStatus.Controls.Add(this.label15);
             this.grb_OpeStatus.Controls.Add(this.label13);
             this.grb_OpeStatus.Controls.Add(this.label12);
@@ -1067,15 +1067,25 @@
             this.grb_OpeStatus.TabStop = false;
             this.grb_OpeStatus.Text = "Operation Status";
             // 
-            // txt_SampleRate
+            // cmb_SampleRate
             // 
-            this.txt_SampleRate.Enabled = false;
-            this.txt_SampleRate.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.txt_SampleRate.Location = new System.Drawing.Point(18, 62);
-            this.txt_SampleRate.Name = "txt_SampleRate";
-            this.txt_SampleRate.Size = new System.Drawing.Size(76, 24);
-            this.txt_SampleRate.TabIndex = 8;
-            this.txt_SampleRate.Text = "11.025k/12k";
+            this.cmb_SampleRate.Enabled = false;
+            this.cmb_SampleRate.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_SampleRate.FormattingEnabled = true;
+            this.cmb_SampleRate.Items.AddRange(new object[] {
+            "32k",
+            "192k",
+            "96k",
+            "44.1k/48k",
+            "16k",
+            "22.05k/24k",
+            "8k",
+            "11.025k/12k"});
+            this.cmb_SampleRate.Location = new System.Drawing.Point(10, 62);
+            this.cmb_SampleRate.Name = "cmb_SampleRate";
+            this.cmb_SampleRate.Size = new System.Drawing.Size(93, 24);
+            this.cmb_SampleRate.TabIndex = 44;
+            this.cmb_SampleRate.Text = "11.025k/12k";
             // 
             // label15
             // 
@@ -1172,7 +1182,7 @@
             this.indicator_OTW.Location = new System.Drawing.Point(481, 62);
             this.indicator_OTW.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.indicator_OTW.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_OTW.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_OTW.MinimumSize = new System.Drawing.Size(13, 17);
             this.indicator_OTW.Name = "indicator_OTW";
             this.indicator_OTW.Size = new System.Drawing.Size(25, 25);
             this.indicator_OTW.TabIndex = 6;
@@ -1181,10 +1191,10 @@
             // 
             this.indicator_PSG.BackColor = System.Drawing.Color.Transparent;
             this.indicator_PSG.IndicatorColorReverse = true;
-            this.indicator_PSG.Location = new System.Drawing.Point(430, 62);
+            this.indicator_PSG.Location = new System.Drawing.Point(429, 62);
             this.indicator_PSG.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.indicator_PSG.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_PSG.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_PSG.MinimumSize = new System.Drawing.Size(13, 17);
             this.indicator_PSG.Name = "indicator_PSG";
             this.indicator_PSG.Size = new System.Drawing.Size(25, 25);
             this.indicator_PSG.TabIndex = 6;
@@ -1196,7 +1206,7 @@
             this.indicator_Clip.Location = new System.Drawing.Point(379, 62);
             this.indicator_Clip.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.indicator_Clip.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_Clip.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_Clip.MinimumSize = new System.Drawing.Size(13, 17);
             this.indicator_Clip.Name = "indicator_Clip";
             this.indicator_Clip.Size = new System.Drawing.Size(25, 25);
             this.indicator_Clip.TabIndex = 6;
@@ -1208,7 +1218,7 @@
             this.indicator_FrameSlip.Location = new System.Drawing.Point(328, 62);
             this.indicator_FrameSlip.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.indicator_FrameSlip.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_FrameSlip.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_FrameSlip.MinimumSize = new System.Drawing.Size(13, 17);
             this.indicator_FrameSlip.Name = "indicator_FrameSlip";
             this.indicator_FrameSlip.Size = new System.Drawing.Size(25, 25);
             this.indicator_FrameSlip.TabIndex = 6;
@@ -1220,7 +1230,7 @@
             this.indicator_WS.Location = new System.Drawing.Point(277, 62);
             this.indicator_WS.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.indicator_WS.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_WS.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_WS.MinimumSize = new System.Drawing.Size(13, 17);
             this.indicator_WS.Name = "indicator_WS";
             this.indicator_WS.Size = new System.Drawing.Size(25, 25);
             this.indicator_WS.TabIndex = 6;
@@ -1229,10 +1239,10 @@
             // 
             this.indicator_BCLK.BackColor = System.Drawing.Color.Transparent;
             this.indicator_BCLK.IndicatorColorReverse = true;
-            this.indicator_BCLK.Location = new System.Drawing.Point(226, 62);
+            this.indicator_BCLK.Location = new System.Drawing.Point(227, 62);
             this.indicator_BCLK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.indicator_BCLK.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_BCLK.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_BCLK.MinimumSize = new System.Drawing.Size(13, 17);
             this.indicator_BCLK.Name = "indicator_BCLK";
             this.indicator_BCLK.Size = new System.Drawing.Size(25, 25);
             this.indicator_BCLK.TabIndex = 6;
@@ -1244,7 +1254,7 @@
             this.indicator_PLLLock.Location = new System.Drawing.Point(175, 62);
             this.indicator_PLLLock.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.indicator_PLLLock.MaximumSize = new System.Drawing.Size(136, 177);
-            this.indicator_PLLLock.MinimumSize = new System.Drawing.Size(14, 17);
+            this.indicator_PLLLock.MinimumSize = new System.Drawing.Size(13, 17);
             this.indicator_PLLLock.Name = "indicator_PLLLock";
             this.indicator_PLLLock.Size = new System.Drawing.Size(25, 25);
             this.indicator_PLLLock.TabIndex = 6;
@@ -1254,7 +1264,7 @@
             this.indicator_MCLK.BackColor = System.Drawing.Color.Transparent;
             this.indicator_MCLK.IndicatorColorReverse = true;
             this.indicator_MCLK.Location = new System.Drawing.Point(124, 62);
-            this.indicator_MCLK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.indicator_MCLK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.indicator_MCLK.MaximumSize = new System.Drawing.Size(117, 133);
             this.indicator_MCLK.MinimumSize = new System.Drawing.Size(12, 13);
             this.indicator_MCLK.Name = "indicator_MCLK";
@@ -1398,7 +1408,7 @@
             this.numUP_OpVoltage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.myTips.SetToolTip(this.numUP_OpVoltage, "b00: 24V(default)\r\nb01: 18V\r\nb10: 12V\r\nb11: 8V");
             this.numUP_OpVoltage.Value = new decimal(new int[] {
-            18,
+            24,
             0,
             0,
             0});
@@ -2067,7 +2077,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.38";
+            this.Text = "SGM4711 Eva_v0.39";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -2196,7 +2206,6 @@
         private MDUserCtrls.Indicator indicator_PLLLock;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txt_SampleRate;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
@@ -2256,6 +2265,7 @@
         private System.Windows.Forms.CheckBox chb_v4Source;
         private System.Windows.Forms.Label lbl_MasterVol;
         private System.Windows.Forms.TextBox txt_MasterVol;
+        private System.Windows.Forms.ComboBox cmb_SampleRate;
 
     }
 }
