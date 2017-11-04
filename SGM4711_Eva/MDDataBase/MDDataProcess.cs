@@ -267,6 +267,7 @@ namespace GeneralRegConfigPlatform.MDDataBase
 
                 DataRowCollection drc = desc_DT.Rows;
                 int rowsCount = desc_DT.Rows.Count;
+                int bfAddedCount = 0;
                 Register tempReg = null;
                 BitField tempBF;
                 object[] tempRowItems;
@@ -276,8 +277,20 @@ namespace GeneralRegConfigPlatform.MDDataBase
                     // New reg start from here
                     if (tempRowItems[(int)itemIx_BF_Crazy.regName].ToString() != "")
                     {
-                        tempReg = _regMap[tempRowItems[(int)itemIx_BF_Crazy.regName].ToString()];
+                        // Judge if last register's bf all initialized
+                        if (tempReg != null)
+                        {
+                            if (tempReg.BFCount > bfAddedCount)
+                                MessageBox.Show("Register 0x" + tempReg.RegAddress.ToString("X2")
+                                + " has some bit field doesn't initialized in description sheet");
+                            else if (tempReg.BFCount < bfAddedCount)
+                                MessageBox.Show("Register 0x" + tempReg.RegAddress.ToString("X2")
+                                + " bit field count less than in description sheet");
+                        }
 
+                        bfAddedCount = 0;
+                        tempReg = _regMap[tempRowItems[(int)itemIx_BF_Crazy.regName].ToString()];
+                        
                         // Just for regmap debugging
                         if (tempReg == null)
                         {
@@ -308,7 +321,9 @@ namespace GeneralRegConfigPlatform.MDDataBase
                             + " in register 0x" + tempReg.RegAddress.ToString("X2"));
                         continue;
                     }
+
                     // Initialize bit field
+                    bfAddedCount++;
                     tempBF.InitiBF(tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(),
                         tempRowItems[(int)itemIx_BF_Crazy.Description].ToString().Replace("\n", "\r\n"), tempReg.RegValue.ToString("X2"));
 

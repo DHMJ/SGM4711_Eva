@@ -2013,11 +2013,11 @@
             this.indicator_MCLK.Size = new System.Drawing.Size(25, 25);
             this.indicator_MCLK.TabIndex = 6;
             // 
-            // outPutLogCtrl
+            // outputLogCtrl
             // 
             this.outputLogCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputLogCtrl.Location = new System.Drawing.Point(3, 3);
-            this.outputLogCtrl.Name = "outPutLogCtrl";
+            this.outputLogCtrl.Name = "outputLogCtrl";
             this.outputLogCtrl.Size = new System.Drawing.Size(561, 211);
             this.outputLogCtrl.TabIndex = 0;
             // 
@@ -2032,7 +2032,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.40";
+            this.Text = "SGM4711 Eva_v0.41";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).EndInit();

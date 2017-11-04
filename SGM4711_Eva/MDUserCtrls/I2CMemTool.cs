@@ -67,7 +67,10 @@ namespace SGM4711_Eva.MDUserCtrls
         private void btn_Read_Click(object sender, EventArgs e)
         {
             if (regMap == null)
+            {
+                MessageBox.Show("Pease open excel/proj file first");
                 return;
+            }
 
             outputString.Clear();
             //outputString.AppendLine("All register value in hexadecimal format");
@@ -79,7 +82,7 @@ namespace SGM4711_Eva.MDUserCtrls
                 byte[] regData;
                 while (currentRegAddr <= 0xFF && finishCount < rwCount)
                 {
-                    if(regMap.Contain(currentRegAddr))
+                    if (regMap.Contain(currentRegAddr))
                     {
                         //currentReg = regMap[currentRegAddr];
                         regData = new byte[regMap[currentRegAddr].ByteCount];
@@ -103,13 +106,20 @@ namespace SGM4711_Eva.MDUserCtrls
                     currentRegAddr++;
                 }
             }
+            else
+            {
+                MessageBox.Show("Can't find Dongle");
+            }
             this.txt_Display.Text = outputString.ToString();
         }
 
         private void btn_Write_Click(object sender, EventArgs e)
         {
             if (regMap == null)
+            {
+                MessageBox.Show("Pease open excel/proj file first");
                 return;
+            }
 
             if (myDongle.IsOpen)
             {
@@ -152,6 +162,10 @@ namespace SGM4711_Eva.MDUserCtrls
                     }
                     currentRegAddr++;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Can't find Dongle");
             }
         }
 

@@ -464,7 +464,6 @@ namespace SGM4711_Eva
                     RegRead(_reg);
                 }
             }
-
             #region Update GUI
             Register tempReg;
             // Operation Voltage; reg 0x0C
@@ -1614,7 +1613,9 @@ namespace SGM4711_Eva
 
         private void btn_Sync_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             ReadAllAndUpdateGUI();
+            this.Cursor = Cursors.Default;
         }
 
         private void btn_backToDefault_Click(object sender, EventArgs e)

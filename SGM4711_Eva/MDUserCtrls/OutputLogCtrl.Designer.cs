@@ -42,6 +42,7 @@
             // rtxt_OutputLog
             // 
             this.rtxt_OutputLog.BackColor = System.Drawing.Color.White;
+            this.rtxt_OutputLog.ContextMenuStrip = this.contextMenuStrip;
             this.rtxt_OutputLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtxt_OutputLog.Font = new System.Drawing.Font("Arial", 9F);
             this.rtxt_OutputLog.Location = new System.Drawing.Point(0, 0);
