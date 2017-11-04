@@ -282,7 +282,7 @@ namespace GeneralRegConfigPlatform.MDDataBase
                         {
                             if (tempReg.BFCount > bfAddedCount)
                                 MessageBox.Show("Register 0x" + tempReg.RegAddress.ToString("X2")
-                                + " has some bit field doesn't initialized in description sheet");
+                                + " has some bit fields doesn't initialized in description sheet");
                             else if (tempReg.BFCount < bfAddedCount)
                                 MessageBox.Show("Register 0x" + tempReg.RegAddress.ToString("X2")
                                 + " bit field count less than in description sheet");
