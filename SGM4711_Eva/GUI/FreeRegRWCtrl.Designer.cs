@@ -186,9 +186,9 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_regSetting;
-        private System.Windows.Forms.Button btn_WriteAllReg;
+        public System.Windows.Forms.Button btn_WriteAllReg;
         private System.Windows.Forms.Panel pl_RegOperation;
-        private System.Windows.Forms.Button btn_ReadAllReg;
+        public System.Windows.Forms.Button btn_ReadAllReg;
         private System.Windows.Forms.Label lbl_RowCount;
         private System.Windows.Forms.NumericUpDown numUP_RowCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn regAddrColumn;

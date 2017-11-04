@@ -788,6 +788,27 @@ namespace MD.MDCommon
             return this.RegistersList.Count;
         }
 
+        public bool Contain(string _regName)
+        {
+            foreach (Register reg in RegistersList)
+            {
+                if (reg.RegName.ToLower() == _regName.ToLower())
+                    return true;
+            }
+
+            return false;
+        }
+
+        public bool Contain(byte _regAddress)
+        {
+            foreach (Register reg in RegistersList)
+            {
+                if (reg.RegAddress == _regAddress)
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Get the register by register's address.
         /// </summary>

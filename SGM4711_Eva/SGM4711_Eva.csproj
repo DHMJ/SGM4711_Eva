@@ -211,6 +211,12 @@
     <Compile Include="MDUserCtrls\Multiply.designer.cs">
       <DependentUpon>Multiply.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDUserCtrls\OutputLogCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDUserCtrls\OutputLogCtrl.Designer.cs">
+      <DependentUpon>OutputLogCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\DRCForm.resx">
@@ -279,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\Multiply.resx">
       <DependentUpon>Multiply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDUserCtrls\OutputLogCtrl.resx">
+      <DependentUpon>OutputLogCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

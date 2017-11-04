@@ -19,7 +19,7 @@ namespace SGM4711_Eva.GUI
         DMDongle dongle;
         List<byte> regAddrList = new List<byte> { };
         List<uint> regDataList = new List<uint> { };
-        List<bool> updateEnList = new List<bool> { };
+        List<bool> activedEnList = new List<bool> { };
         public FreeRegRWCtrl(DMDongle _dongle)
         {
             InitializeComponent();
@@ -32,6 +32,16 @@ namespace SGM4711_Eva.GUI
         {
             this.regMap = _regmap;
             UpdateGUI();
+        }
+
+        public List<byte> RegAddrList
+        {
+            get { return this.regAddrList; }
+        }
+
+        public List<bool> ActivedEnList
+        {
+            get { return this.activedEnList; }
         }
 
         private void UpdateGUI()
@@ -144,7 +154,7 @@ namespace SGM4711_Eva.GUI
                 regDataList.Add(tempRegValue);
                 //regDataList[ix] = tempRegValue;
                 dgv_regSetting[2, ix].Value = true;
-                updateEnList.Add(true);
+                activedEnList.Add(true);
                 //updateEnList[ix] = true;
             }
             this.dgv_regSetting.CellValueChanged += new DataGridViewCellEventHandler(dgv_regSetting_CellValueChanged);
@@ -217,7 +227,7 @@ namespace SGM4711_Eva.GUI
                     break;
 
                 case 2:         //Reg Value changed
-                    updateEnList[e.ColumnIndex] = (bool)tempRow.Cells[2].Value;
+                    activedEnList[e.ColumnIndex] = (bool)tempRow.Cells[2].Value;
                     break;
 
                 default:
@@ -276,7 +286,7 @@ namespace SGM4711_Eva.GUI
                     {
                         this.dgv_regSetting[0, ix].Value = regAddrList[ix].ToString("X2");
                         this.dgv_regSetting[1, ix].Value = regDataList[ix].ToString("X");
-                        this.dgv_regSetting[2, ix].Value = updateEnList[ix];
+                        this.dgv_regSetting[2, ix].Value = activedEnList[ix];
                     }
                     else
                     {
@@ -285,7 +295,7 @@ namespace SGM4711_Eva.GUI
                         this.dgv_regSetting[2, ix].Value = true;
                         regAddrList.Add(0);
                         regDataList.Add(0);
-                        updateEnList.Add(true);
+                        activedEnList.Add(true);
                     }
                 }
 

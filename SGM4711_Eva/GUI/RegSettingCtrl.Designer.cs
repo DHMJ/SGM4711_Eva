@@ -134,8 +134,8 @@
         #endregion
 
         private System.Windows.Forms.Panel pl_RegOperation;
-        private System.Windows.Forms.Button btn_WriteReg;
-        private System.Windows.Forms.Button btn_ReadReg;
+        public System.Windows.Forms.Button btn_WriteReg;
+        public System.Windows.Forms.Button btn_ReadReg;
         private System.Windows.Forms.DataGridView dgv_regSetting;
         private System.Windows.Forms.Label lbl_OpUnitName;
 

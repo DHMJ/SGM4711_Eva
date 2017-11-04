@@ -42,7 +42,7 @@ namespace SGM4711_Eva.MDUserCtrls
         public bool IndicatorValue
         {
             get { return this.indicatorValue; }
-            set { this.indicatorValue = value; }
+            set { this.indicatorValue = value; this.Refresh(); }
         }
 
         private void myPanel_Paint(object sender, PaintEventArgs e)

@@ -149,7 +149,7 @@
             this.txt_Display.Location = new System.Drawing.Point(0, 64);
             this.txt_Display.Multiline = true;
             this.txt_Display.Name = "txt_Display";
-            this.txt_Display.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txt_Display.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_Display.Size = new System.Drawing.Size(427, 197);
             this.txt_Display.TabIndex = 12;
             // 

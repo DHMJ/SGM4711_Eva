@@ -17,6 +17,7 @@ namespace SGM4711_Eva.GUI
     {
         RegisterMap regMap;
         DMDongle dongle;
+
         public RegSettingCtrl(DMDongle _dongle)
         {
             InitializeComponent();
@@ -129,7 +130,7 @@ namespace SGM4711_Eva.GUI
 
         private void btn_ReadReg_Click(object sender, EventArgs e)
         {
-
+            //RegSettingCtrl_ReadEvent(
         }
 
         private void btn_WriteReg_Click(object sender, EventArgs e)
