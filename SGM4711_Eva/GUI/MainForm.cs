@@ -36,8 +36,12 @@ namespace SGM4711_Eva
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
+        // Menu Ctrl
         bool blockDiagramMode = true;
         byte chipAddress = 0x1A;
+
+        // Output Log Ctrl
+        Color failedLogColor = Color.Red;
 
         DataSet DS_Excel;
         MDDataSet DataSet;
@@ -57,10 +61,14 @@ namespace SGM4711_Eva
             singleRegCtrl = new RegSettingCtrl(myDongle);
             singleRegCtrl.Dock = DockStyle.Fill;
             this.tabP_SingleCtrl.Controls.Add(singleRegCtrl);
+            this.singleRegCtrl.btn_ReadReg.Click += new EventHandler(btn_ReadReg_RegSetCtrl_Click);
+            this.singleRegCtrl.btn_WriteReg.Click += new EventHandler(btn_WriteReg_RegSetCtrl_Click);
             
             freeRegCtrl = new FreeRegRWCtrl(myDongle);
             freeRegCtrl.Dock = DockStyle.Fill;
             this.tabP_RegRW.Controls.Add(freeRegCtrl);
+            freeRegCtrl.btn_ReadAllReg.Click += new EventHandler(btn_ReadAllReg_FreeRegCtrl_Click);
+            freeRegCtrl.btn_WriteAllReg.Click += new EventHandler(btn_WriteAllReg_FreeRegCtrl_Click);
 
             memoryTool = new I2CMemTool(this.regMap, myDongle);
             memoryTool.Dock = DockStyle.Fill;
@@ -137,6 +145,8 @@ namespace SGM4711_Eva
 
         private bool RegRead(byte _regAddr)
         {
+            bool ret = false;
+            string log = "I2C Read >> \r\n";
             if (myDongle.IsOpen && regMap != null)
             {
                 byte[] tempRegBytes;
@@ -144,38 +154,115 @@ namespace SGM4711_Eva
                 tempRegBytes = new byte[tempReg.ByteCount];
                 if (myDongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
                 {
+                    log += "\tOK\t" + "Address: 0x" + _regAddr.ToString("X2") + "\tData(Hex):";
                     for (int ix = 0; ix < tempRegBytes.Length; ix++)
+                    {
                         tempReg.ByteValue[ix] = tempRegBytes[ix];
+                        log += " " + tempRegBytes[ix].ToString("X2");
+                    }
                     
-                    return true;
+                    ret = true;
                 }
             }
 
-            MessageBox.Show("Write Register Failed!", "Warning");
-            return false;
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + _regAddr.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }    
+        
+            return ret;
+        }
+
+        private bool RegRead(byte[] _regAddr)
+        {
+            bool ret = true;
+            string log = "I2C Read >>";
+            if (myDongle.IsOpen && regMap != null)
+            {
+                byte[] tempRegBytes;
+                Register tempReg;
+                for (int ix_reg = 0; ix_reg < _regAddr.Length; ix_reg++)
+                {
+                    tempReg = regMap[_regAddr[ix_reg]];
+                    tempRegBytes = new byte[tempReg.ByteCount];
+                    if (myDongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
+                    {
+                        log += "\r\n\tOK\t" + "Address: 0x" + _regAddr[ix_reg].ToString("X2") + "\tData(Hex):";
+                        for (int ix = 0; ix < tempRegBytes.Length; ix++)
+                        {
+                            tempReg.ByteValue[ix] = tempRegBytes[ix];
+                            log += " " + tempRegBytes[ix].ToString("X2");
+                        }
+                    }
+                    else
+                    {
+                        // if failed during reading, output succeeded log first and reset log.
+                        this.outputLogCtrl.AppendLog(log);
+                        log = "\tFailed\t" + "Address: 0x" + _regAddr[ix_reg].ToString("X2");
+                        ret = false;
+                        break;
+                    }
+                }
+                //ret = true;
+            }
+            else
+            {
+                ret = false;
+                log += "\r\n\tFailed\t" + "Address: 0x" + _regAddr[0].ToString("X2");
+            }
+
+            if (ret)
+                this.outputLogCtrl.AppendLog(log);
+            else
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+
+            return ret;
         }
 
         private bool RegRead(Register _reg)
         {
+            bool ret = false;
+            string log = "I2C Read >> \r\n";
+
             if (myDongle.IsOpen)
             {
                 byte[] tempRegBytes;
                 tempRegBytes = new byte[_reg.ByteCount];
                 if(myDongle.readRegBurst(_reg.RegAddress, tempRegBytes, tempRegBytes.Length))
                 {
-                    for(int ix = 0; ix < tempRegBytes.Length; ix++)
+                    log += "\tOK\t" + "Address: 0x" + _reg.RegAddress.ToString("X2") + "\tData(Hex):";
+                    for (int ix = 0; ix < tempRegBytes.Length; ix++)
+                    {
                         _reg.ByteValue[ix] = tempRegBytes[ix];
+                        log += " " + tempRegBytes[ix].ToString("X2");
+                    }
 
-                    return true;
+                    ret = true;
                 }                
             }
-            
-            MessageBox.Show("Write Register Failed!", "Warning");
-            return false;
+
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + _reg.RegAddress.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }
+
+            return ret;
         }
 
         private bool RegRead(Register[] _reg)
         {
+            bool ret = true;
+            string log = "I2C Read >>";
             if (myDongle.IsOpen)
             {
                 byte[] tempRegBytes;
@@ -184,83 +271,179 @@ namespace SGM4711_Eva
                     tempRegBytes = new byte[_reg[ix_reg].ByteCount];
                     if (myDongle.readRegBurst(_reg[ix_reg].RegAddress, tempRegBytes, tempRegBytes.Length))
                     {
+                        log += "\r\n\tOK\t" + "Address: 0x" + _reg[ix_reg].RegAddress.ToString("X2") + "\tData(Hex):";
                         for (int ix = 0; ix < tempRegBytes.Length; ix++)
+                        {
                             _reg[ix_reg].ByteValue[ix] = tempRegBytes[ix];
+                            log += " " + tempRegBytes[ix].ToString("X2");
+                        }
                     }
                     else
-                        return false;
+                    {
+                        // if failed during reading, output succeeded log first and reset log.
+                        this.outputLogCtrl.AppendLog(log);
+                        log = "\tFailed\t" + "Address: 0x" + _reg[ix_reg].RegAddress.ToString("X2");
+                        ret = false;
+                        break;
+                    }
                 }
+                //ret = true;
+            }
+            else
+            {
+                ret = false;
+                log += "\r\n\tFailed\t" + "Address: 0x" + _reg[0].RegAddress.ToString("X2");
             }
 
-            MessageBox.Show("Write Register Failed!", "Warning");
-            return true;
+            if (ret)
+                this.outputLogCtrl.AppendLog(log);
+            else
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+
+            return ret;
         }
 
         private bool RegWrite(byte _regAddr)
         {
+            bool ret = false;
+            string log = "I2C Write >> \r\n";
             if (myDongle.IsOpen && regMap != null)
             {
                 Register tempReg = regMap[_regAddr];
                 if (myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
                 {
-                    return true;
+                    log += "\tOK\t" + "Address: 0x" + _regAddr.ToString("X2") + "\tData(Hex):";
+                    for (int ix = 0; ix < tempReg.ByteCount; ix++)
+                    {
+                        log += " " + tempReg.ByteValue[ix].ToString("X2");
+                    }
+
+                    ret = true;
                 }
             }
 
-            MessageBox.Show("Write Register Failed!", "Warning");
-            return false;
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + _regAddr.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }
+            return ret;
         }
 
         private bool RegWrite(byte[] _regAddr)
         {
-            bool ret = false;
+            bool ret = true;
+            string log = "I2C Write >>";
             if (myDongle.IsOpen && regMap != null)
             {
                 Register tempReg;
                 for (int ix = 0; ix < _regAddr.Length; ix++)
                 {
                     tempReg = regMap[_regAddr[ix]];
-                    if (!myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
+                    if (myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
                     {
-                        MessageBox.Show("Write Register Failed!", "Warning");
-                        return false;
+                        log += "\r\n\tOK\t" + "Address: 0x" + tempReg.RegAddress.ToString("X2") + "\tData(Hex):";
+                        for (int ix_byte = 0; ix_byte < tempReg.ByteCount; ix_byte++)
+                        {
+                            log += " " + tempReg.ByteValue[ix_byte].ToString("X2");
+                        }
+                    }
+                    else
+                    {
+                        // if failed during writting, output succeeded log first and reset log.
+                        this.outputLogCtrl.AppendLog(log);
+                        log = "\tFailed\t" + "Address: 0x" + tempReg.RegAddress.ToString("X2");
+                        ret = false;
+                        break;
                     }
                 }
-                ret = true;
+                //ret = true;
+            }
+            else
+            {
+                ret = false;
+                log += "\r\n\tFailed\t" + "Address: 0x" + _regAddr[0].ToString("X2");
             }
 
+            if (ret)
+                this.outputLogCtrl.AppendLog(log);
+            else
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            
             return ret;
         }
 
         private bool RegWrite(Register _reg)
         {
+            bool ret = false;
+            string log = "I2C Write >> \r\n";
             if (myDongle.IsOpen)
             {
                 if (myDongle.writeRegBurst(_reg.RegAddress, _reg.ByteValue, _reg.ByteCount))
                 {
-                    return true;
+                    log += "\tOK\t" + "Address: 0x" + _reg.RegAddress.ToString("X2") + "\tData(Hex):";
+                    for (int ix = 0; ix < _reg.ByteCount; ix++)
+                    {
+                        log += " " + _reg.ByteValue[ix].ToString("X2");
+                    }
+                    ret = true;
                 }
             }
 
-            MessageBox.Show("Write Register Failed!", "Warning");
-            return true;
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + _reg.RegAddress.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }
+
+            return ret;
         }
 
         private bool RegWrite(Register[] _reg)
         {
-            bool ret = false;
+            bool ret = true;
+            string log = "I2C Write >>";
             if (myDongle.IsOpen)
             {
                 for (int ix = 0; ix < _reg.Length; ix++)
                 {
-                    if (!myDongle.writeRegBurst(_reg[ix].RegAddress, _reg[ix].ByteValue, _reg[ix].ByteCount))
+                    if (myDongle.writeRegBurst(_reg[ix].RegAddress, _reg[ix].ByteValue, _reg[ix].ByteCount))
                     {
-                        MessageBox.Show("Write Register Failed!", "Warning");
-                        return false;
+                        log += "\r\n\tOK\t" + "Address: 0x" + _reg[ix].RegAddress.ToString("X2") + "\tData(Hex):";
+                        for (int ix_byte = 0; ix_byte < _reg[ix].ByteCount; ix_byte++)
+                        {
+                            log += " " + _reg[ix].ByteValue[ix_byte].ToString("X2");
+                        }
+                    }
+                    else
+                    {
+                        // if failed during writting, output succeeded log first and reset log.
+                        this.outputLogCtrl.AppendLog(log);
+                        log = "\tFailed\t" + "Address: 0x" + _reg[ix].RegAddress.ToString("X2");
+                        ret = false;
+                        break;
                     }
                 }
-                ret = true;
+               //ret = true;
             }
+            else
+            {
+                ret = false;
+                log += "\r\n\tFailed\t" + "Address: 0x" + _reg[0].RegAddress.ToString("X2");
+            }
+
+            if (ret)
+                this.outputLogCtrl.AppendLog(log);
+            else
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
 
             return ret;
         }
@@ -316,13 +499,53 @@ namespace SGM4711_Eva
             this.splitContainer1.Panel1Collapsed = blockDiagramMode;
             this.splitContainer2.Panel2Collapsed = blockDiagramMode;
         }
-        
+
+        #region Other Child Controls Evnet
+        void btn_WriteReg_RegSetCtrl_Click(object sender, EventArgs e)
+        {
+            RegWrite(this.regCtrl_AddrList.ToArray());
+        }
+
+        void btn_ReadReg_RegSetCtrl_Click(object sender, EventArgs e)
+        {
+            RegRead(this.regCtrl_AddrList.ToArray());
+            UpdateRegSettingSource();
+        }
+
+        void btn_WriteAllReg_FreeRegCtrl_Click(object sender, EventArgs e)
+        {
+            for (int ix = 0; ix < freeRegCtrl.RegAddrList.Count; ix++)
+            {
+                if(freeRegCtrl.ActivedEnList[ix])
+                    RegWrite(freeRegCtrl.RegAddrList[ix]);
+            }
+            //RegWrite(this.freeRegCtrl.RegAddrList.ToArray());
+        }
+
+        void btn_ReadAllReg_FreeRegCtrl_Click(object sender, EventArgs e)
+        {
+            for (int ix = 0; ix < freeRegCtrl.RegAddrList.Count; ix++)
+            {
+                if (freeRegCtrl.ActivedEnList[ix])
+                    RegRead(freeRegCtrl.RegAddrList[ix]);
+            }
+            //RegRead(this.freeRegCtrl.RegAddrList.ToArray());
+        }
+
+        #endregion Other Child Controls Evnet
+
         #region GUI control
-        BindingList<RegProperty> regCtrlList = new BindingList<RegProperty> { };
+        BindingList<RegProperty> regCtrlList = new BindingList<RegProperty> { };    // Will be used to refresh regSettingCtrl display
+        List<byte> regCtrl_AddrList = new List<byte> { };                           // Will be used to get R/W reglist of regSettingCtrl
         RegSettingCtrl singleRegCtrl = null;
         FreeRegRWCtrl freeRegCtrl = null;
         I2CMemTool memoryTool = null;
-        
+
+        private void UpdateRegSettingSource()
+        {
+            this.singleRegCtrl.UpdateDataSource(regCtrlList);
+        }
+
         private void UpdateRegSettingSource(byte _regAddr)
         {
             if (regMap == null)
@@ -332,8 +555,10 @@ namespace SGM4711_Eva
             }
 
             regCtrlList.Clear();
+            regCtrl_AddrList.Clear();
             RegProperty tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValue.ToString("X")) { };
             regCtrlList.Add(tempReg);
+            regCtrl_AddrList.Add(_regAddr);
 
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
@@ -348,11 +573,13 @@ namespace SGM4711_Eva
 
             byte tempAddr = 0;
             regCtrlList.Clear();
+            regCtrl_AddrList.Clear();
             for (int ix = 0; ix < _regList.Length; ix++)
             {
                 tempAddr = _regList[ix];
                 RegProperty tempReg = new RegProperty(tempAddr.ToString("X2"), regMap[tempAddr].RegName, regMap[tempAddr].RegValue.ToString("X")) { };
                 regCtrlList.Add(tempReg);
+                regCtrl_AddrList.Add(_regList[ix]);
             }
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
@@ -366,6 +593,7 @@ namespace SGM4711_Eva
             }
 
             regCtrlList.Clear();
+            regCtrl_AddrList.Clear();
             RegProperty tempReg;
             if(regMap[_regAddr].ByteCount <= 4)
                 tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValue.ToString("X")) { };
@@ -373,6 +601,7 @@ namespace SGM4711_Eva
                 tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, "") { };
 
             regCtrlList.Add(tempReg);
+            regCtrl_AddrList.Add(_regAddr);
 
             for (int ix = 0; ix < bf_nameList.Length; ix++)
             {
@@ -392,8 +621,11 @@ namespace SGM4711_Eva
                 return;
             }
 
-            if(!append)
+            if (!append)
+            {
                 regCtrlList.Clear();
+                regCtrl_AddrList.Clear();
+            }
 
             RegProperty tempReg;
             if (regMap[_regAddr].ByteCount <= 4)
@@ -402,6 +634,7 @@ namespace SGM4711_Eva
                 tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, "") { };
 
             regCtrlList.Add(tempReg);
+            regCtrl_AddrList.Add(_regAddr);
 
             for (int ix = 0; ix < bf_nameList.Length; ix++)
             {
@@ -1355,9 +1588,6 @@ namespace SGM4711_Eva
             RegWrite(0x25);
         }
 
-        #endregion Main GUI Tab
-
-
         private void cmbx_DropDownResize(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
@@ -1422,6 +1652,7 @@ namespace SGM4711_Eva
             RegWrite(0x05);
         }
 
+        #endregion Main GUI Tab
 
 
     }
