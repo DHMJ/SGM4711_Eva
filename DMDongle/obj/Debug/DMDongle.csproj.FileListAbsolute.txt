@@ -2,3 +2,7 @@ C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\DMDongle\bin\Debug\DMDongle.
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\DMDongle\bin\Debug\DMDongle.pdb
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\DMDongle\obj\Debug\DMDongle.dll
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\DMDongle\obj\Debug\DMDongle.pdb
+C:\Users\Work\Documents\Github\SGM4711_Eva\DMDongle\bin\Debug\DMDongle.dll
+C:\Users\Work\Documents\Github\SGM4711_Eva\DMDongle\bin\Debug\DMDongle.pdb
+C:\Users\Work\Documents\Github\SGM4711_Eva\DMDongle\obj\Debug\DMDongle.dll
+C:\Users\Work\Documents\Github\SGM4711_Eva\DMDongle\obj\Debug\DMDongle.pdb

@@ -1376,13 +1376,13 @@ namespace SGM4711_Eva
         {
             if (myDongle.dongleInit(portName, protocol, devAddress, pilot))
             {
-                statusBar_DeviceConnected.Text = "Dongle Connected";
-                statusBar_DeviceConnected.BackColor = Color.Green;
+                statusBar_DeviceConnected.Text = "Dongle Ready";
+                statusBar_DeviceConnected.BackColor = Color.YellowGreen;
                 //MessageBox.Show("Connected");
             }
             else
             {
-                statusBar_DeviceConnected.Text = "Dongle Disconnected";
+                statusBar_DeviceConnected.Text = "No Dongle";
                 statusBar_DeviceConnected.BackColor = Color.Red;
                 //MessageBox.Show("Connected Failed");
             } 

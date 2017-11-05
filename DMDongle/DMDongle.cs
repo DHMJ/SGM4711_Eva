@@ -174,6 +174,8 @@ namespace DMCommunication
             buf[2] = commMode;
             buf[3] = 0x01;         //writesingle
             buf[4] = (byte)count;      //reg addr
+            int returnCount = 5;
+
             for (byte i = 0; i < count; i++)
             {
                 buf[5 + i*2] = data[i*2 + 0];         //length = 1
@@ -184,26 +186,30 @@ namespace DMCommunication
 
             uart.Write(buf, 0, count * 2 + 5);
 
-            System.Threading.Thread.Sleep(300);
+            //System.Threading.Thread.Sleep(300);
 
-            uint timeOutCounter = 100;
+            //uint timeOutCounter = 100;
             //while (uart.BytesToRead == 0 && timeOutCounter > 0)
             //while (uart.BytesToRead < 5 && timeOutCounter > 0)
             //{
             //    timeOutCounter--;
             //    System.Threading.Thread.Sleep(10);
+
+            while (uart.BytesToRead < returnCount)
+            { ; }
+
             //}
 
-            if (timeOutCounter != 0)
+            //if (timeOutCounter != 0)
             {
-                byte[] readBuf = new byte[uart.BytesToRead];
-                uart.Read(readBuf, 0, uart.BytesToRead);
+                byte[] readBuf = new byte[returnCount];
+                uart.Read(readBuf, 0, returnCount);
 
                 if (readBuf[0] != 0xA5 || readBuf[1] != Convert.ToByte(count * 2 + 5) || readBuf[2] != (byte)commMode || readBuf[3] != 0x01 || readBuf[4] != 0xCC)
                     return false;
             }
-            else
-                return false;
+            //else
+            //    return false;
 
             return true;
         }
@@ -232,18 +238,22 @@ namespace DMCommunication
                 buf[5 + i] = addr[i];
             //buf[5] = regaddr;
 
+            int returnCount = 5 + count;
+
             uart.DiscardInBuffer();
             System.Threading.Thread.Sleep(10);
             uart.Write(buf, 0, 5 + count);
 
-            uint timeOutCounter = 200;
+            //uint timeOutCounter = 200;
             //while (uart.BytesToRead == 0 && timeOutCounter > 0)
             //{
             //    timeOutCounter--;
-                System.Threading.Thread.Sleep(DelayBeforeRead + 100);
+            //    System.Threading.Thread.Sleep(DelayBeforeRead + 100);
             //}
+            while (uart.BytesToRead < returnCount)
+            { ; }
 
-            if (timeOutCounter != 0 && uart.BytesToRead != 0)
+            //if (timeOutCounter != 0 && uart.BytesToRead != 0)
             {
                 byte[] readBuf = new byte[uart.BytesToRead];
                 uart.Read(readBuf, 0, uart.BytesToRead);
@@ -256,8 +266,8 @@ namespace DMCommunication
                     return true;
                 }
             }
-            else
-                return false;
+            //else
+            //    return false;
         }
 
         public bool writeRegBurst(byte startregaddr, byte[] data, int count)
@@ -269,7 +279,8 @@ namespace DMCommunication
             buf[3] = 0x03;
             buf[4] = (byte)count;
             buf[5] = startregaddr;
-            //buf[5] = (byte)count;
+
+            int returnCount = 5;
 
             for (int i = 0; i < count; i++)
                 buf[6 + i] = data[i];
@@ -277,22 +288,21 @@ namespace DMCommunication
             uart.DiscardInBuffer();
             uart.Write(buf, 0, 6 + count);
 
-            uint timeOutCounter = 200;
-            //while (uart.BytesToRead == 0 && timeOutCounter > 0)
-            //{
-            //    timeOutCounter--;
-            System.Threading.Thread.Sleep(DelayBeforeRead);
+            //uint timeOutCounter = 200;
+
+            while (uart.BytesToRead < returnCount)
+            { ; }
             //}
 
-            if (timeOutCounter != 0)
+            //if (timeOutCounter != 0)
             {
-                byte[] readBuf = new byte[uart.BytesToRead];
-                uart.Read(readBuf, 0, uart.BytesToRead);
+                byte[] readBuf = new byte[returnCount];
+                uart.Read(readBuf, 0, returnCount);
                 if (readBuf[0] != 0xA5 || readBuf[1] != Convert.ToByte(6 + count) || readBuf[2] != (byte)commMode || readBuf[3] != 0x03 || readBuf[4] != 0xCC)
                     return false;
             }
-            else
-                return false;
+            //else
+            //    return false;
 
             return true;
         }
@@ -306,39 +316,46 @@ namespace DMCommunication
             buf[3] = 0x04;
             buf[4] = (byte)count;
             buf[5] = startregaddr;
-            //buf[5] = (byte)count;
+
+            int returnCount = count + 4;
 
             uart.DiscardInBuffer();
             uart.Write(buf, 0, 6);
 
-            uint timeOutCounter = 200;
+            //uint timeOutCounter = 200;
             //while (uart.BytesToRead == 0 && timeOutCounter > 0)
             //{
             //    timeOutCounter--;
-                System.Threading.Thread.Sleep(DelayBeforeRead + 100);
+                //System.Threading.Thread.Sleep(DelayBeforeRead + 100);
             //}
 
-            int validData = 0;
-            if (count > (byte)(uart.BytesToRead))
-                validData = uart.BytesToRead;
-            else
-                validData = count;
+            //int validData = 0;
+            //if (count > (byte)(uart.BytesToRead))
+            //    validData = uart.BytesToRead;
+            //else
+             //   validData = count + 4;
 
-            if (timeOutCounter != 0 && uart.BytesToRead != 0)
+                while (uart.BytesToRead < returnCount)
+                { ; }
+
+            //if (timeOutCounter != 0 && uart.BytesToRead != 0)
             {
-                byte[] readBuf = new byte[uart.BytesToRead];
-                uart.Read(readBuf, 0, uart.BytesToRead);
+                byte[] readBuf = new byte[returnCount];
+                uart.Read(readBuf, 0, returnCount);
+
+                //byte[] readBuf = new byte[uart.BytesToRead];
+                //uart.Read(readBuf, 0, uart.BytesToRead);
                 if (readBuf[0] != 0xA5 || readBuf[1] != 0x06 || readBuf[2] != (byte)commMode || readBuf[3] != 0x04)
                     return false;
                 else
                 {
-                    for (int i = 0; i < validData; i++)
+                    for (int i = 0; i < count; i++)
                         data[i] = readBuf[i + 4];
                     return true;
                 }
             }
-            else
-                return false;
+            //else
+            //    return false;
         }
 
         //----------------------USER IO FUNCTIONS--------------------------------
