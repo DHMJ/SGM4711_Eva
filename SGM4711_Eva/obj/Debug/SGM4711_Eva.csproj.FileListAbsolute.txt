@@ -32,3 +32,5 @@ C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM471
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.pdb
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\bin\Debug\SGM4711_Eva.pdb
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.MDUserCtrls.OutputLogCtrl.resources
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.MDUserCtrls.LinearGain.resources
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.MDUserCtrls.Dot.resources

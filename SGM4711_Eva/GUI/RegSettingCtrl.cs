@@ -43,7 +43,17 @@ namespace SGM4711_Eva.GUI
 
         public void UpdateDataSource(BindingList<RegProperty> _blist)
         {
-            dgv_regSetting.DataSource = _blist;
+            if (_blist.Count == 0)
+            {
+                this.btn_ReadReg.Enabled = false;
+                this.btn_WriteReg.Enabled = false;
+            }
+            else
+            {
+                this.btn_ReadReg.Enabled = true;
+                this.btn_WriteReg.Enabled = true; 
+            }
+            dgv_regSetting.DataSource = _blist;            
         }
 
         private void DataGridViewInit()

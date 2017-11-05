@@ -63,6 +63,7 @@
             // 
             this.btn_WriteReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_WriteReg.AutoSize = true;
+            this.btn_WriteReg.Enabled = false;
             this.btn_WriteReg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_WriteReg.Location = new System.Drawing.Point(27, 99);
             this.btn_WriteReg.Name = "btn_WriteReg";
@@ -76,6 +77,7 @@
             // 
             this.btn_ReadReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ReadReg.AutoSize = true;
+            this.btn_ReadReg.Enabled = false;
             this.btn_ReadReg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_ReadReg.Location = new System.Drawing.Point(27, 51);
             this.btn_ReadReg.Name = "btn_ReadReg";

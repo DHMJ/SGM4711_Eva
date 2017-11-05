@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menu_main = new System.Windows.Forms.MenuStrip();
             this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemFile_Open = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,46 +115,26 @@
             this.btn_MasterVolume = new System.Windows.Forms.Button();
             this.tabP_AudioEngine = new System.Windows.Forms.TabPage();
             this.pnl_Main = new System.Windows.Forms.Panel();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.chb_PostHPF_EN = new System.Windows.Forms.CheckBox();
+            this.txt_MasterVol_1 = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.chb_MuteMasterVolume_1 = new System.Windows.Forms.CheckBox();
+            this.trb_MasterVolume_1 = new System.Windows.Forms.TrackBar();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rbt_DRCAuto_LP_1_0 = new System.Windows.Forms.RadioButton();
+            this.rbt_DRCAuto_LP_1_1 = new System.Windows.Forms.RadioButton();
+            this.pl_LFBSwitch = new System.Windows.Forms.Panel();
+            this.rbt_DRCAuto_LP_0_0 = new System.Windows.Forms.RadioButton();
+            this.rbt_DRCAuto_LP_0_1 = new System.Windows.Forms.RadioButton();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.chb_PreHPF_EN = new System.Windows.Forms.CheckBox();
             this.chb_v4Source = new System.Windows.Forms.CheckBox();
-            this.pl_SubReverb = new System.Windows.Forms.Panel();
-            this.pl_RReverb = new System.Windows.Forms.Panel();
-            this.pl_LReverb = new System.Windows.Forms.Panel();
-            this.pl_SubOutMixGain = new System.Windows.Forms.Panel();
-            this.pl_ROutMixGain = new System.Windows.Forms.Panel();
-            this.pl_LOutMixGain = new System.Windows.Forms.Panel();
-            this.pl_MidMixGain = new System.Windows.Forms.Panel();
-            this.pl_LRMixGain_Sub = new System.Windows.Forms.Panel();
-            this.pl_LRMixGain_R = new System.Windows.Forms.Panel();
-            this.pl_LRPreMixGain_R = new System.Windows.Forms.Panel();
-            this.pl_LRMixGain_L = new System.Windows.Forms.Panel();
-            this.pl_LRPreMixGain_L = new System.Windows.Forms.Panel();
-            this.pl_GainAfterClipper = new System.Windows.Forms.Panel();
-            this.pl_GainBeforeClipper = new System.Windows.Forms.Panel();
-            this.pl_DRC2 = new System.Windows.Forms.Panel();
-            this.pl_DRC1 = new System.Windows.Forms.Panel();
-            this.pl_MasterVOL = new System.Windows.Forms.Panel();
-            this.pl_VOL4 = new System.Windows.Forms.Panel();
-            this.pl_VOL3 = new System.Windows.Forms.Panel();
-            this.pl_VOL2 = new System.Windows.Forms.Panel();
-            this.pl_VOL1 = new System.Windows.Forms.Panel();
-            this.pl_2BQ = new System.Windows.Forms.Panel();
-            this.pl_1BQ_Sub = new System.Windows.Forms.Panel();
-            this.pl_1BQ_ROut = new System.Windows.Forms.Panel();
-            this.pl_1BQ_LOut = new System.Windows.Forms.Panel();
-            this.pl_1BQ_LRMix_R = new System.Windows.Forms.Panel();
-            this.pl_1BQ_LRMix_L = new System.Windows.Forms.Panel();
-            this.pl_1BQ_RIn = new System.Windows.Forms.Panel();
-            this.pl_1BQ_LIn = new System.Windows.Forms.Panel();
-            this.pl_NGSubOut = new System.Windows.Forms.Panel();
-            this.pl_NGROut = new System.Windows.Forms.Panel();
-            this.pl_NGLOut = new System.Windows.Forms.Panel();
-            this.pl_HPFSubOut = new System.Windows.Forms.Panel();
-            this.pl_HPFROut = new System.Windows.Forms.Panel();
-            this.pl_HPFLOut = new System.Windows.Forms.Panel();
-            this.pl_HPF_RIn = new System.Windows.Forms.Panel();
-            this.pl_6EQ_R = new System.Windows.Forms.Panel();
-            this.pl_HPF_LIn = new System.Windows.Forms.Panel();
-            this.pl_6EQ_L = new System.Windows.Forms.Panel();
             this.chb_v3Source = new System.Windows.Forms.CheckBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabCtrl_SingleRegSetting = new System.Windows.Forms.TabControl();
@@ -187,6 +166,204 @@
             this.indicator_BCLK = new SGM4711_Eva.MDUserCtrls.Indicator();
             this.indicator_PLLLock = new SGM4711_Eva.MDUserCtrls.Indicator();
             this.indicator_MCLK = new SGM4711_Eva.MDUserCtrls.Indicator();
+            this.line147 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line146 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line144 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line145 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line142 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line143 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line140 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line141 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line139 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line138 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_NG = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.M_OutputPostScale_0 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_OutputPostScale_1 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_OutputPreScale_0 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_OutputPreScale_1 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.dot13 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot12 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot11 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot10 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot9 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot8 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot7 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot6 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot5 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot4 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot3 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot2 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.dot1 = new SGM4711_Eva.MDUserCtrls.Dot();
+            this.line137 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line136 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line134 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line135 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line133 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH1_Output_Mix2 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line122 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line120 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line111 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line129 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line132 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line131 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line130 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line128 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line123 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line124 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add10 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line125 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line126 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line127 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH4_Output_Mix0 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_CH4_Output_Mix1 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line121 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line114 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH2_Output_Mix1 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line115 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line116 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add9 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line117 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line118 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line119 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH2_Output_Mix0 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_CH2_Output_Mix2 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line113 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line112 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line110 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line108 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line109 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line107 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line106 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line100 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH1_Output_Mix1 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line101 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line102 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add8 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line103 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line104 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line105 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH1_Output_Mix0 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.btn_DRC2 = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.btn_DRC1 = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line99 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_MasterVOL = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line95 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line98 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_VOL4 = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line97 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_2BQ_Out = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line96 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_VOL3 = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line92 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line94 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line93 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line87 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line76 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line90 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line91 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line89 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line88 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line86 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line83 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line84 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line85 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line82 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line81 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line80 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line79 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line77 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line78 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line26 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line75 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH3_Input_Mix0 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line69 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_1BQ_SubOut = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line70 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line71 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add7 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line72 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line73 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line74 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH3_Input_Mix1 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_CH3_Input_Mix2 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line68 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line67 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line66 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line65 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line64 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line49 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line63 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line42 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line43 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line44 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add4 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line45 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line46 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line47 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line48 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_VOL2 = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.btn_1BQ_ROut = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.linearGain2 = new SGM4711_Eva.MDUserCtrls.LinearGain();
+            this.line50 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_6EQ_R = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line51 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line52 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add5 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line53 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line54 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line55 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH2_Input_Mix0 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_CH2_Input_Mix1 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line56 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_1BQ_LRMix_R = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line57 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line58 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add6 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line59 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line60 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line61 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line62 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH2_Input_Mix2 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_CH2_Input_Mix3 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.line41 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line40 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line39 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add3 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line38 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line37 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line36 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line35 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_VOL1 = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.btn_1BQ_LOut = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.linearGain1 = new SGM4711_Eva.MDUserCtrls.LinearGain();
+            this.line32 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line34 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line33 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.btn_6EQ_L = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line27 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line28 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add2 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line29 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line30 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line31 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH1_Input_Mix0 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_CH1_Input_Mix1 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.btn_1BQ_LRMix_L = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line25 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line21 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.add1 = new SGM4711_Eva.MDUserCtrls.Add();
+            this.line23 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line24 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line22 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line20 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.M_CH1_Input_Mix2 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.M_CH1_Input_Mix3 = new SGM4711_Eva.MDUserCtrls.Multiply();
+            this.btn_1BQ_RIn = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.btn_1BQ_LIn = new SGM4711_Eva.MDUserCtrls.myButton();
+            this.line18 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line19 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line17 = new SGM4711_Eva.MDUserCtrls.Line();
+            this.line16 = new SGM4711_Eva.MDUserCtrls.Line();
             this.outputLogCtrl = new SGM4711_Eva.MDUserCtrls.OutputLogCtrl();
             this.menu_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).BeginInit();
@@ -201,6 +378,9 @@
             this.grb_OpeStatus.SuspendLayout();
             this.tabP_AudioEngine.SuspendLayout();
             this.pnl_Main.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trb_MasterVolume_1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.pl_LFBSwitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -223,7 +403,7 @@
             this.MenuItemHelp});
             this.menu_main.Location = new System.Drawing.Point(0, 0);
             this.menu_main.Name = "menu_main";
-            this.menu_main.Size = new System.Drawing.Size(1080, 24);
+            this.menu_main.Size = new System.Drawing.Size(1124, 24);
             this.menu_main.TabIndex = 5;
             this.menu_main.Text = "menuStrip1";
             // 
@@ -484,7 +664,7 @@
             this.statusBar_BoardType});
             this.statusBar.Location = new System.Drawing.Point(0, 734);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(1080, 24);
+            this.statusBar.Size = new System.Drawing.Size(1124, 24);
             this.statusBar.TabIndex = 8;
             this.statusBar.Text = "statusStrip1";
             // 
@@ -549,7 +729,7 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1080, 710);
+            this.splitContainer1.Size = new System.Drawing.Size(1124, 710);
             this.splitContainer1.SplitterDistance = 460;
             this.splitContainer1.TabIndex = 9;
             // 
@@ -562,7 +742,7 @@
             this.tabCtrl_MainGUI.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl_MainGUI.Name = "tabCtrl_MainGUI";
             this.tabCtrl_MainGUI.SelectedIndex = 0;
-            this.tabCtrl_MainGUI.Size = new System.Drawing.Size(1080, 460);
+            this.tabCtrl_MainGUI.Size = new System.Drawing.Size(1124, 460);
             this.tabCtrl_MainGUI.TabIndex = 1;
             // 
             // tabP_systemConfig
@@ -621,7 +801,7 @@
             this.tabP_systemConfig.Location = new System.Drawing.Point(4, 25);
             this.tabP_systemConfig.Name = "tabP_systemConfig";
             this.tabP_systemConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabP_systemConfig.Size = new System.Drawing.Size(1072, 431);
+            this.tabP_systemConfig.Size = new System.Drawing.Size(1116, 431);
             this.tabP_systemConfig.TabIndex = 0;
             this.tabP_systemConfig.Text = "System Configuration";
             // 
@@ -1193,438 +1373,483 @@
             this.tabP_AudioEngine.Location = new System.Drawing.Point(4, 25);
             this.tabP_AudioEngine.Name = "tabP_AudioEngine";
             this.tabP_AudioEngine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabP_AudioEngine.Size = new System.Drawing.Size(1072, 431);
+            this.tabP_AudioEngine.Size = new System.Drawing.Size(1116, 431);
             this.tabP_AudioEngine.TabIndex = 1;
             this.tabP_AudioEngine.Text = "Audio Engine";
             this.tabP_AudioEngine.UseVisualStyleBackColor = true;
             // 
             // pnl_Main
             // 
-            this.pnl_Main.BackColor = System.Drawing.Color.Transparent;
-            this.pnl_Main.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_Main.BackgroundImage")));
+            this.pnl_Main.BackColor = System.Drawing.Color.White;
             this.pnl_Main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnl_Main.Controls.Add(this.line147);
+            this.pnl_Main.Controls.Add(this.line146);
+            this.pnl_Main.Controls.Add(this.line144);
+            this.pnl_Main.Controls.Add(this.line145);
+            this.pnl_Main.Controls.Add(this.line142);
+            this.pnl_Main.Controls.Add(this.line143);
+            this.pnl_Main.Controls.Add(this.line140);
+            this.pnl_Main.Controls.Add(this.line141);
+            this.pnl_Main.Controls.Add(this.line139);
+            this.pnl_Main.Controls.Add(this.label33);
+            this.pnl_Main.Controls.Add(this.line138);
+            this.pnl_Main.Controls.Add(this.label32);
+            this.pnl_Main.Controls.Add(this.btn_NG);
+            this.pnl_Main.Controls.Add(this.M_OutputPostScale_0);
+            this.pnl_Main.Controls.Add(this.M_OutputPostScale_1);
+            this.pnl_Main.Controls.Add(this.M_OutputPreScale_0);
+            this.pnl_Main.Controls.Add(this.chb_PostHPF_EN);
+            this.pnl_Main.Controls.Add(this.M_OutputPreScale_1);
+            this.pnl_Main.Controls.Add(this.dot13);
+            this.pnl_Main.Controls.Add(this.dot12);
+            this.pnl_Main.Controls.Add(this.dot11);
+            this.pnl_Main.Controls.Add(this.dot10);
+            this.pnl_Main.Controls.Add(this.dot9);
+            this.pnl_Main.Controls.Add(this.dot8);
+            this.pnl_Main.Controls.Add(this.dot7);
+            this.pnl_Main.Controls.Add(this.dot6);
+            this.pnl_Main.Controls.Add(this.dot5);
+            this.pnl_Main.Controls.Add(this.dot4);
+            this.pnl_Main.Controls.Add(this.dot3);
+            this.pnl_Main.Controls.Add(this.dot2);
+            this.pnl_Main.Controls.Add(this.dot1);
+            this.pnl_Main.Controls.Add(this.line137);
+            this.pnl_Main.Controls.Add(this.line136);
+            this.pnl_Main.Controls.Add(this.line134);
+            this.pnl_Main.Controls.Add(this.line135);
+            this.pnl_Main.Controls.Add(this.line133);
+            this.pnl_Main.Controls.Add(this.M_CH1_Output_Mix2);
+            this.pnl_Main.Controls.Add(this.line122);
+            this.pnl_Main.Controls.Add(this.line120);
+            this.pnl_Main.Controls.Add(this.line111);
+            this.pnl_Main.Controls.Add(this.line129);
+            this.pnl_Main.Controls.Add(this.line132);
+            this.pnl_Main.Controls.Add(this.line131);
+            this.pnl_Main.Controls.Add(this.line130);
+            this.pnl_Main.Controls.Add(this.line128);
+            this.pnl_Main.Controls.Add(this.line123);
+            this.pnl_Main.Controls.Add(this.line124);
+            this.pnl_Main.Controls.Add(this.add10);
+            this.pnl_Main.Controls.Add(this.line125);
+            this.pnl_Main.Controls.Add(this.line126);
+            this.pnl_Main.Controls.Add(this.line127);
+            this.pnl_Main.Controls.Add(this.M_CH4_Output_Mix0);
+            this.pnl_Main.Controls.Add(this.M_CH4_Output_Mix1);
+            this.pnl_Main.Controls.Add(this.line121);
+            this.pnl_Main.Controls.Add(this.line114);
+            this.pnl_Main.Controls.Add(this.M_CH2_Output_Mix1);
+            this.pnl_Main.Controls.Add(this.line115);
+            this.pnl_Main.Controls.Add(this.line116);
+            this.pnl_Main.Controls.Add(this.add9);
+            this.pnl_Main.Controls.Add(this.line117);
+            this.pnl_Main.Controls.Add(this.line118);
+            this.pnl_Main.Controls.Add(this.line119);
+            this.pnl_Main.Controls.Add(this.M_CH2_Output_Mix0);
+            this.pnl_Main.Controls.Add(this.M_CH2_Output_Mix2);
+            this.pnl_Main.Controls.Add(this.line113);
+            this.pnl_Main.Controls.Add(this.line112);
+            this.pnl_Main.Controls.Add(this.line110);
+            this.pnl_Main.Controls.Add(this.line108);
+            this.pnl_Main.Controls.Add(this.line109);
+            this.pnl_Main.Controls.Add(this.line107);
+            this.pnl_Main.Controls.Add(this.line106);
+            this.pnl_Main.Controls.Add(this.line100);
+            this.pnl_Main.Controls.Add(this.M_CH1_Output_Mix1);
+            this.pnl_Main.Controls.Add(this.line101);
+            this.pnl_Main.Controls.Add(this.line102);
+            this.pnl_Main.Controls.Add(this.add8);
+            this.pnl_Main.Controls.Add(this.line103);
+            this.pnl_Main.Controls.Add(this.line104);
+            this.pnl_Main.Controls.Add(this.line105);
+            this.pnl_Main.Controls.Add(this.M_CH1_Output_Mix0);
+            this.pnl_Main.Controls.Add(this.btn_DRC2);
+            this.pnl_Main.Controls.Add(this.btn_DRC1);
+            this.pnl_Main.Controls.Add(this.txt_MasterVol_1);
+            this.pnl_Main.Controls.Add(this.label31);
+            this.pnl_Main.Controls.Add(this.chb_MuteMasterVolume_1);
+            this.pnl_Main.Controls.Add(this.trb_MasterVolume_1);
+            this.pnl_Main.Controls.Add(this.label30);
+            this.pnl_Main.Controls.Add(this.line99);
+            this.pnl_Main.Controls.Add(this.btn_MasterVOL);
+            this.pnl_Main.Controls.Add(this.line95);
+            this.pnl_Main.Controls.Add(this.line98);
+            this.pnl_Main.Controls.Add(this.btn_VOL4);
+            this.pnl_Main.Controls.Add(this.line97);
+            this.pnl_Main.Controls.Add(this.btn_2BQ_Out);
+            this.pnl_Main.Controls.Add(this.line96);
+            this.pnl_Main.Controls.Add(this.btn_VOL3);
+            this.pnl_Main.Controls.Add(this.line92);
+            this.pnl_Main.Controls.Add(this.line94);
+            this.pnl_Main.Controls.Add(this.line93);
+            this.pnl_Main.Controls.Add(this.line87);
+            this.pnl_Main.Controls.Add(this.line76);
+            this.pnl_Main.Controls.Add(this.line90);
+            this.pnl_Main.Controls.Add(this.line91);
+            this.pnl_Main.Controls.Add(this.line89);
+            this.pnl_Main.Controls.Add(this.line88);
+            this.pnl_Main.Controls.Add(this.line86);
+            this.pnl_Main.Controls.Add(this.line83);
+            this.pnl_Main.Controls.Add(this.line84);
+            this.pnl_Main.Controls.Add(this.line85);
+            this.pnl_Main.Controls.Add(this.label29);
+            this.pnl_Main.Controls.Add(this.line82);
+            this.pnl_Main.Controls.Add(this.label21);
+            this.pnl_Main.Controls.Add(this.line81);
+            this.pnl_Main.Controls.Add(this.line80);
+            this.pnl_Main.Controls.Add(this.line79);
+            this.pnl_Main.Controls.Add(this.line77);
+            this.pnl_Main.Controls.Add(this.line78);
+            this.pnl_Main.Controls.Add(this.line26);
+            this.pnl_Main.Controls.Add(this.line75);
+            this.pnl_Main.Controls.Add(this.M_CH3_Input_Mix0);
+            this.pnl_Main.Controls.Add(this.line69);
+            this.pnl_Main.Controls.Add(this.btn_1BQ_SubOut);
+            this.pnl_Main.Controls.Add(this.line70);
+            this.pnl_Main.Controls.Add(this.line71);
+            this.pnl_Main.Controls.Add(this.add7);
+            this.pnl_Main.Controls.Add(this.line72);
+            this.pnl_Main.Controls.Add(this.line73);
+            this.pnl_Main.Controls.Add(this.line74);
+            this.pnl_Main.Controls.Add(this.M_CH3_Input_Mix1);
+            this.pnl_Main.Controls.Add(this.M_CH3_Input_Mix2);
+            this.pnl_Main.Controls.Add(this.line68);
+            this.pnl_Main.Controls.Add(this.line67);
+            this.pnl_Main.Controls.Add(this.line66);
+            this.pnl_Main.Controls.Add(this.line65);
+            this.pnl_Main.Controls.Add(this.line64);
+            this.pnl_Main.Controls.Add(this.line49);
+            this.pnl_Main.Controls.Add(this.line63);
+            this.pnl_Main.Controls.Add(this.line42);
+            this.pnl_Main.Controls.Add(this.line43);
+            this.pnl_Main.Controls.Add(this.line44);
+            this.pnl_Main.Controls.Add(this.add4);
+            this.pnl_Main.Controls.Add(this.line45);
+            this.pnl_Main.Controls.Add(this.line46);
+            this.pnl_Main.Controls.Add(this.line47);
+            this.pnl_Main.Controls.Add(this.line48);
+            this.pnl_Main.Controls.Add(this.btn_VOL2);
+            this.pnl_Main.Controls.Add(this.btn_1BQ_ROut);
+            this.pnl_Main.Controls.Add(this.panel1);
+            this.pnl_Main.Controls.Add(this.linearGain2);
+            this.pnl_Main.Controls.Add(this.line50);
+            this.pnl_Main.Controls.Add(this.btn_6EQ_R);
+            this.pnl_Main.Controls.Add(this.line51);
+            this.pnl_Main.Controls.Add(this.line52);
+            this.pnl_Main.Controls.Add(this.add5);
+            this.pnl_Main.Controls.Add(this.line53);
+            this.pnl_Main.Controls.Add(this.line54);
+            this.pnl_Main.Controls.Add(this.line55);
+            this.pnl_Main.Controls.Add(this.M_CH2_Input_Mix0);
+            this.pnl_Main.Controls.Add(this.M_CH2_Input_Mix1);
+            this.pnl_Main.Controls.Add(this.line56);
+            this.pnl_Main.Controls.Add(this.btn_1BQ_LRMix_R);
+            this.pnl_Main.Controls.Add(this.line57);
+            this.pnl_Main.Controls.Add(this.line58);
+            this.pnl_Main.Controls.Add(this.add6);
+            this.pnl_Main.Controls.Add(this.line59);
+            this.pnl_Main.Controls.Add(this.line60);
+            this.pnl_Main.Controls.Add(this.line61);
+            this.pnl_Main.Controls.Add(this.line62);
+            this.pnl_Main.Controls.Add(this.M_CH2_Input_Mix2);
+            this.pnl_Main.Controls.Add(this.M_CH2_Input_Mix3);
+            this.pnl_Main.Controls.Add(this.line41);
+            this.pnl_Main.Controls.Add(this.line40);
+            this.pnl_Main.Controls.Add(this.line39);
+            this.pnl_Main.Controls.Add(this.add3);
+            this.pnl_Main.Controls.Add(this.line38);
+            this.pnl_Main.Controls.Add(this.line37);
+            this.pnl_Main.Controls.Add(this.line36);
+            this.pnl_Main.Controls.Add(this.line35);
+            this.pnl_Main.Controls.Add(this.btn_VOL1);
+            this.pnl_Main.Controls.Add(this.btn_1BQ_LOut);
+            this.pnl_Main.Controls.Add(this.pl_LFBSwitch);
+            this.pnl_Main.Controls.Add(this.linearGain1);
+            this.pnl_Main.Controls.Add(this.line32);
+            this.pnl_Main.Controls.Add(this.line34);
+            this.pnl_Main.Controls.Add(this.line33);
+            this.pnl_Main.Controls.Add(this.btn_6EQ_L);
+            this.pnl_Main.Controls.Add(this.line27);
+            this.pnl_Main.Controls.Add(this.line28);
+            this.pnl_Main.Controls.Add(this.add2);
+            this.pnl_Main.Controls.Add(this.line29);
+            this.pnl_Main.Controls.Add(this.line30);
+            this.pnl_Main.Controls.Add(this.line31);
+            this.pnl_Main.Controls.Add(this.M_CH1_Input_Mix0);
+            this.pnl_Main.Controls.Add(this.M_CH1_Input_Mix1);
+            this.pnl_Main.Controls.Add(this.btn_1BQ_LRMix_L);
+            this.pnl_Main.Controls.Add(this.line25);
+            this.pnl_Main.Controls.Add(this.line21);
+            this.pnl_Main.Controls.Add(this.add1);
+            this.pnl_Main.Controls.Add(this.line23);
+            this.pnl_Main.Controls.Add(this.line24);
+            this.pnl_Main.Controls.Add(this.line22);
+            this.pnl_Main.Controls.Add(this.line20);
+            this.pnl_Main.Controls.Add(this.M_CH1_Input_Mix2);
+            this.pnl_Main.Controls.Add(this.M_CH1_Input_Mix3);
+            this.pnl_Main.Controls.Add(this.btn_1BQ_RIn);
+            this.pnl_Main.Controls.Add(this.btn_1BQ_LIn);
+            this.pnl_Main.Controls.Add(this.line18);
+            this.pnl_Main.Controls.Add(this.line19);
+            this.pnl_Main.Controls.Add(this.label20);
+            this.pnl_Main.Controls.Add(this.label19);
+            this.pnl_Main.Controls.Add(this.chb_PreHPF_EN);
+            this.pnl_Main.Controls.Add(this.line17);
+            this.pnl_Main.Controls.Add(this.line16);
             this.pnl_Main.Controls.Add(this.chb_v4Source);
-            this.pnl_Main.Controls.Add(this.pl_SubReverb);
-            this.pnl_Main.Controls.Add(this.pl_RReverb);
-            this.pnl_Main.Controls.Add(this.pl_LReverb);
-            this.pnl_Main.Controls.Add(this.pl_SubOutMixGain);
-            this.pnl_Main.Controls.Add(this.pl_ROutMixGain);
-            this.pnl_Main.Controls.Add(this.pl_LOutMixGain);
-            this.pnl_Main.Controls.Add(this.pl_MidMixGain);
-            this.pnl_Main.Controls.Add(this.pl_LRMixGain_Sub);
-            this.pnl_Main.Controls.Add(this.pl_LRMixGain_R);
-            this.pnl_Main.Controls.Add(this.pl_LRPreMixGain_R);
-            this.pnl_Main.Controls.Add(this.pl_LRMixGain_L);
-            this.pnl_Main.Controls.Add(this.pl_LRPreMixGain_L);
-            this.pnl_Main.Controls.Add(this.pl_GainAfterClipper);
-            this.pnl_Main.Controls.Add(this.pl_GainBeforeClipper);
-            this.pnl_Main.Controls.Add(this.pl_DRC2);
-            this.pnl_Main.Controls.Add(this.pl_DRC1);
-            this.pnl_Main.Controls.Add(this.pl_MasterVOL);
-            this.pnl_Main.Controls.Add(this.pl_VOL4);
-            this.pnl_Main.Controls.Add(this.pl_VOL3);
-            this.pnl_Main.Controls.Add(this.pl_VOL2);
-            this.pnl_Main.Controls.Add(this.pl_VOL1);
-            this.pnl_Main.Controls.Add(this.pl_2BQ);
-            this.pnl_Main.Controls.Add(this.pl_1BQ_Sub);
-            this.pnl_Main.Controls.Add(this.pl_1BQ_ROut);
-            this.pnl_Main.Controls.Add(this.pl_1BQ_LOut);
-            this.pnl_Main.Controls.Add(this.pl_1BQ_LRMix_R);
-            this.pnl_Main.Controls.Add(this.pl_1BQ_LRMix_L);
-            this.pnl_Main.Controls.Add(this.pl_1BQ_RIn);
-            this.pnl_Main.Controls.Add(this.pl_1BQ_LIn);
-            this.pnl_Main.Controls.Add(this.pl_NGSubOut);
-            this.pnl_Main.Controls.Add(this.pl_NGROut);
-            this.pnl_Main.Controls.Add(this.pl_NGLOut);
-            this.pnl_Main.Controls.Add(this.pl_HPFSubOut);
-            this.pnl_Main.Controls.Add(this.pl_HPFROut);
-            this.pnl_Main.Controls.Add(this.pl_HPFLOut);
-            this.pnl_Main.Controls.Add(this.pl_HPF_RIn);
-            this.pnl_Main.Controls.Add(this.pl_6EQ_R);
-            this.pnl_Main.Controls.Add(this.pl_HPF_LIn);
-            this.pnl_Main.Controls.Add(this.pl_6EQ_L);
             this.pnl_Main.Controls.Add(this.chb_v3Source);
             this.pnl_Main.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Main.Location = new System.Drawing.Point(3, 3);
             this.pnl_Main.Name = "pnl_Main";
-            this.pnl_Main.Size = new System.Drawing.Size(1066, 425);
+            this.pnl_Main.Size = new System.Drawing.Size(1110, 425);
             this.pnl_Main.TabIndex = 0;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label33.Location = new System.Drawing.Point(888, 193);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(38, 12);
+            this.label33.TabIndex = 251;
+            this.label33.Text = "Clipper";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label32.Location = new System.Drawing.Point(888, 75);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(38, 12);
+            this.label32.TabIndex = 249;
+            this.label32.Text = "Clipper";
+            // 
+            // chb_PostHPF_EN
+            // 
+            this.chb_PostHPF_EN.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chb_PostHPF_EN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.chb_PostHPF_EN.Checked = true;
+            this.chb_PostHPF_EN.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chb_PostHPF_EN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chb_PostHPF_EN.Location = new System.Drawing.Point(972, 43);
+            this.chb_PostHPF_EN.Name = "chb_PostHPF_EN";
+            this.chb_PostHPF_EN.Size = new System.Drawing.Size(33, 361);
+            this.chb_PostHPF_EN.TabIndex = 243;
+            this.chb_PostHPF_EN.Text = "HPF";
+            this.chb_PostHPF_EN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chb_PostHPF_EN.UseVisualStyleBackColor = false;
+            this.chb_PostHPF_EN.CheckedChanged += new System.EventHandler(this.chb_PostHPF_EN_CheckedChanged);
+            // 
+            // txt_MasterVol_1
+            // 
+            this.txt_MasterVol_1.ForeColor = System.Drawing.Color.Red;
+            this.txt_MasterVol_1.Location = new System.Drawing.Point(608, 317);
+            this.txt_MasterVol_1.Name = "txt_MasterVol_1";
+            this.txt_MasterVol_1.Size = new System.Drawing.Size(43, 21);
+            this.txt_MasterVol_1.TabIndex = 177;
+            this.txt_MasterVol_1.Text = "-103.5";
+            this.txt_MasterVol_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.LavenderBlush;
+            this.label31.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label31.Location = new System.Drawing.Point(610, 302);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(35, 12);
+            this.label31.TabIndex = 176;
+            this.label31.Text = "In dB";
+            // 
+            // chb_MuteMasterVolume_1
+            // 
+            this.chb_MuteMasterVolume_1.AutoSize = true;
+            this.chb_MuteMasterVolume_1.BackColor = System.Drawing.Color.LavenderBlush;
+            this.chb_MuteMasterVolume_1.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.chb_MuteMasterVolume_1.Location = new System.Drawing.Point(614, 354);
+            this.chb_MuteMasterVolume_1.Name = "chb_MuteMasterVolume_1";
+            this.chb_MuteMasterVolume_1.Size = new System.Drawing.Size(33, 30);
+            this.chb_MuteMasterVolume_1.TabIndex = 175;
+            this.chb_MuteMasterVolume_1.Text = "Mute";
+            this.chb_MuteMasterVolume_1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.chb_MuteMasterVolume_1.UseVisualStyleBackColor = false;
+            this.chb_MuteMasterVolume_1.CheckedChanged += new System.EventHandler(this.chb_MuteMasterVolume_CheckedChanged);
+            // 
+            // trb_MasterVolume_1
+            // 
+            this.trb_MasterVolume_1.BackColor = System.Drawing.Color.LavenderBlush;
+            this.trb_MasterVolume_1.Location = new System.Drawing.Point(608, 45);
+            this.trb_MasterVolume_1.Maximum = 255;
+            this.trb_MasterVolume_1.Name = "trb_MasterVolume_1";
+            this.trb_MasterVolume_1.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trb_MasterVolume_1.Size = new System.Drawing.Size(45, 251);
+            this.trb_MasterVolume_1.TabIndex = 174;
+            this.trb_MasterVolume_1.TickFrequency = 25;
+            this.trb_MasterVolume_1.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trb_MasterVolume_1.Scroll += new System.EventHandler(this.trb_MasterVolume_Scroll);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label30.Location = new System.Drawing.Point(597, 26);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(54, 12);
+            this.label30.TabIndex = 173;
+            this.label30.Text = "Master VOL";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(521, 219);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(11, 12);
+            this.label29.TabIndex = 150;
+            this.label29.Text = "0";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(521, 100);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(11, 12);
+            this.label21.TabIndex = 148;
+            this.label21.Text = "0";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.rbt_DRCAuto_LP_1_0);
+            this.panel1.Controls.Add(this.rbt_DRCAuto_LP_1_1);
+            this.panel1.Location = new System.Drawing.Point(483, 197);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(17, 36);
+            this.panel1.TabIndex = 113;
+            // 
+            // rbt_DRCAuto_LP_1_0
+            // 
+            this.rbt_DRCAuto_LP_1_0.AutoSize = true;
+            this.rbt_DRCAuto_LP_1_0.Checked = true;
+            this.rbt_DRCAuto_LP_1_0.Location = new System.Drawing.Point(2, 20);
+            this.rbt_DRCAuto_LP_1_0.Name = "rbt_DRCAuto_LP_1_0";
+            this.rbt_DRCAuto_LP_1_0.Size = new System.Drawing.Size(14, 13);
+            this.rbt_DRCAuto_LP_1_0.TabIndex = 1;
+            this.rbt_DRCAuto_LP_1_0.TabStop = true;
+            this.rbt_DRCAuto_LP_1_0.UseVisualStyleBackColor = true;
+            // 
+            // rbt_DRCAuto_LP_1_1
+            // 
+            this.rbt_DRCAuto_LP_1_1.AutoSize = true;
+            this.rbt_DRCAuto_LP_1_1.Location = new System.Drawing.Point(2, 2);
+            this.rbt_DRCAuto_LP_1_1.Name = "rbt_DRCAuto_LP_1_1";
+            this.rbt_DRCAuto_LP_1_1.Size = new System.Drawing.Size(14, 13);
+            this.rbt_DRCAuto_LP_1_1.TabIndex = 0;
+            this.rbt_DRCAuto_LP_1_1.UseVisualStyleBackColor = true;
+            this.rbt_DRCAuto_LP_1_1.CheckedChanged += new System.EventHandler(this.rbt_DRCAuto_LP_CheckedChanged);
+            // 
+            // pl_LFBSwitch
+            // 
+            this.pl_LFBSwitch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pl_LFBSwitch.Controls.Add(this.rbt_DRCAuto_LP_0_0);
+            this.pl_LFBSwitch.Controls.Add(this.rbt_DRCAuto_LP_0_1);
+            this.pl_LFBSwitch.Location = new System.Drawing.Point(483, 79);
+            this.pl_LFBSwitch.Name = "pl_LFBSwitch";
+            this.pl_LFBSwitch.Size = new System.Drawing.Size(17, 36);
+            this.pl_LFBSwitch.TabIndex = 78;
+            // 
+            // rbt_DRCAuto_LP_0_0
+            // 
+            this.rbt_DRCAuto_LP_0_0.AutoSize = true;
+            this.rbt_DRCAuto_LP_0_0.Checked = true;
+            this.rbt_DRCAuto_LP_0_0.Location = new System.Drawing.Point(2, 20);
+            this.rbt_DRCAuto_LP_0_0.Name = "rbt_DRCAuto_LP_0_0";
+            this.rbt_DRCAuto_LP_0_0.Size = new System.Drawing.Size(14, 13);
+            this.rbt_DRCAuto_LP_0_0.TabIndex = 1;
+            this.rbt_DRCAuto_LP_0_0.TabStop = true;
+            this.rbt_DRCAuto_LP_0_0.UseVisualStyleBackColor = true;
+            // 
+            // rbt_DRCAuto_LP_0_1
+            // 
+            this.rbt_DRCAuto_LP_0_1.AutoSize = true;
+            this.rbt_DRCAuto_LP_0_1.Location = new System.Drawing.Point(2, 2);
+            this.rbt_DRCAuto_LP_0_1.Name = "rbt_DRCAuto_LP_0_1";
+            this.rbt_DRCAuto_LP_0_1.Size = new System.Drawing.Size(14, 13);
+            this.rbt_DRCAuto_LP_0_1.TabIndex = 0;
+            this.rbt_DRCAuto_LP_0_1.UseVisualStyleBackColor = true;
+            this.rbt_DRCAuto_LP_0_1.CheckedChanged += new System.EventHandler(this.rbt_DRCAuto_LP_CheckedChanged);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label20.Location = new System.Drawing.Point(18, 178);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(11, 12);
+            this.label20.TabIndex = 48;
+            this.label20.Text = "R";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label19.Location = new System.Drawing.Point(18, 63);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(10, 12);
+            this.label19.TabIndex = 47;
+            this.label19.Text = "L";
+            // 
+            // chb_PreHPF_EN
+            // 
+            this.chb_PreHPF_EN.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chb_PreHPF_EN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.chb_PreHPF_EN.Checked = true;
+            this.chb_PreHPF_EN.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chb_PreHPF_EN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chb_PreHPF_EN.Location = new System.Drawing.Point(37, 35);
+            this.chb_PreHPF_EN.Name = "chb_PreHPF_EN";
+            this.chb_PreHPF_EN.Size = new System.Drawing.Size(33, 198);
+            this.chb_PreHPF_EN.TabIndex = 46;
+            this.chb_PreHPF_EN.Text = "HPF";
+            this.chb_PreHPF_EN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chb_PreHPF_EN.UseVisualStyleBackColor = false;
+            this.chb_PreHPF_EN.CheckedChanged += new System.EventHandler(this.chb_PreHPF_EN_CheckedChanged);
             // 
             // chb_v4Source
             // 
             this.chb_v4Source.AutoSize = true;
             this.chb_v4Source.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chb_v4Source.Font = new System.Drawing.Font("SimSun", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chb_v4Source.Location = new System.Drawing.Point(455, 268);
+            this.chb_v4Source.Location = new System.Drawing.Point(526, 356);
             this.chb_v4Source.Name = "chb_v4Source";
             this.chb_v4Source.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chb_v4Source.Size = new System.Drawing.Size(66, 13);
             this.chb_v4Source.TabIndex = 43;
             this.chb_v4Source.Text = "From 0x09";
             this.chb_v4Source.UseVisualStyleBackColor = true;
-            // 
-            // pl_SubReverb
-            // 
-            this.pl_SubReverb.BackColor = System.Drawing.Color.Transparent;
-            this.pl_SubReverb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_SubReverb.Location = new System.Drawing.Point(397, 269);
-            this.pl_SubReverb.Name = "pl_SubReverb";
-            this.pl_SubReverb.Size = new System.Drawing.Size(13, 52);
-            this.pl_SubReverb.TabIndex = 41;
-            // 
-            // pl_RReverb
-            // 
-            this.pl_RReverb.BackColor = System.Drawing.Color.Transparent;
-            this.pl_RReverb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_RReverb.Location = new System.Drawing.Point(420, 141);
-            this.pl_RReverb.Name = "pl_RReverb";
-            this.pl_RReverb.Size = new System.Drawing.Size(14, 26);
-            this.pl_RReverb.TabIndex = 40;
-            // 
-            // pl_LReverb
-            // 
-            this.pl_LReverb.BackColor = System.Drawing.Color.Transparent;
-            this.pl_LReverb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_LReverb.Location = new System.Drawing.Point(418, 56);
-            this.pl_LReverb.Name = "pl_LReverb";
-            this.pl_LReverb.Size = new System.Drawing.Size(14, 26);
-            this.pl_LReverb.TabIndex = 39;
-            // 
-            // pl_SubOutMixGain
-            // 
-            this.pl_SubOutMixGain.BackColor = System.Drawing.Color.Transparent;
-            this.pl_SubOutMixGain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_SubOutMixGain.Location = new System.Drawing.Point(697, 249);
-            this.pl_SubOutMixGain.Name = "pl_SubOutMixGain";
-            this.pl_SubOutMixGain.Size = new System.Drawing.Size(23, 56);
-            this.pl_SubOutMixGain.TabIndex = 38;
-            // 
-            // pl_ROutMixGain
-            // 
-            this.pl_ROutMixGain.BackColor = System.Drawing.Color.Transparent;
-            this.pl_ROutMixGain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_ROutMixGain.Location = new System.Drawing.Point(695, 122);
-            this.pl_ROutMixGain.Name = "pl_ROutMixGain";
-            this.pl_ROutMixGain.Size = new System.Drawing.Size(23, 63);
-            this.pl_ROutMixGain.TabIndex = 37;
-            // 
-            // pl_LOutMixGain
-            // 
-            this.pl_LOutMixGain.BackColor = System.Drawing.Color.Transparent;
-            this.pl_LOutMixGain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_LOutMixGain.Location = new System.Drawing.Point(696, 34);
-            this.pl_LOutMixGain.Name = "pl_LOutMixGain";
-            this.pl_LOutMixGain.Size = new System.Drawing.Size(23, 63);
-            this.pl_LOutMixGain.TabIndex = 36;
-            // 
-            // pl_MidMixGain
-            // 
-            this.pl_MidMixGain.BackColor = System.Drawing.Color.Transparent;
-            this.pl_MidMixGain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_MidMixGain.Location = new System.Drawing.Point(378, 176);
-            this.pl_MidMixGain.Name = "pl_MidMixGain";
-            this.pl_MidMixGain.Size = new System.Drawing.Size(23, 59);
-            this.pl_MidMixGain.TabIndex = 35;
-            // 
-            // pl_LRMixGain_Sub
-            // 
-            this.pl_LRMixGain_Sub.BackColor = System.Drawing.Color.Transparent;
-            this.pl_LRMixGain_Sub.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_LRMixGain_Sub.Location = new System.Drawing.Point(101, 276);
-            this.pl_LRMixGain_Sub.Name = "pl_LRMixGain_Sub";
-            this.pl_LRMixGain_Sub.Size = new System.Drawing.Size(23, 59);
-            this.pl_LRMixGain_Sub.TabIndex = 34;
-            // 
-            // pl_LRMixGain_R
-            // 
-            this.pl_LRMixGain_R.BackColor = System.Drawing.Color.Transparent;
-            this.pl_LRMixGain_R.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_LRMixGain_R.Location = new System.Drawing.Point(253, 107);
-            this.pl_LRMixGain_R.Name = "pl_LRMixGain_R";
-            this.pl_LRMixGain_R.Size = new System.Drawing.Size(23, 59);
-            this.pl_LRMixGain_R.TabIndex = 33;
-            // 
-            // pl_LRPreMixGain_R
-            // 
-            this.pl_LRPreMixGain_R.BackColor = System.Drawing.Color.Transparent;
-            this.pl_LRPreMixGain_R.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_LRPreMixGain_R.Location = new System.Drawing.Point(164, 123);
-            this.pl_LRPreMixGain_R.Name = "pl_LRPreMixGain_R";
-            this.pl_LRPreMixGain_R.Size = new System.Drawing.Size(23, 59);
-            this.pl_LRPreMixGain_R.TabIndex = 32;
-            // 
-            // pl_LRMixGain_L
-            // 
-            this.pl_LRMixGain_L.BackColor = System.Drawing.Color.Transparent;
-            this.pl_LRMixGain_L.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_LRMixGain_L.Location = new System.Drawing.Point(253, 15);
-            this.pl_LRMixGain_L.Name = "pl_LRMixGain_L";
-            this.pl_LRMixGain_L.Size = new System.Drawing.Size(23, 59);
-            this.pl_LRMixGain_L.TabIndex = 31;
-            // 
-            // pl_LRPreMixGain_L
-            // 
-            this.pl_LRPreMixGain_L.BackColor = System.Drawing.Color.Transparent;
-            this.pl_LRPreMixGain_L.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_LRPreMixGain_L.Location = new System.Drawing.Point(162, 31);
-            this.pl_LRPreMixGain_L.Name = "pl_LRPreMixGain_L";
-            this.pl_LRPreMixGain_L.Size = new System.Drawing.Size(23, 59);
-            this.pl_LRPreMixGain_L.TabIndex = 30;
-            // 
-            // pl_GainAfterClipper
-            // 
-            this.pl_GainAfterClipper.BackColor = System.Drawing.Color.Transparent;
-            this.pl_GainAfterClipper.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_GainAfterClipper.Location = new System.Drawing.Point(824, 35);
-            this.pl_GainAfterClipper.Name = "pl_GainAfterClipper";
-            this.pl_GainAfterClipper.Size = new System.Drawing.Size(31, 155);
-            this.pl_GainAfterClipper.TabIndex = 29;
-            // 
-            // pl_GainBeforeClipper
-            // 
-            this.pl_GainBeforeClipper.BackColor = System.Drawing.Color.Transparent;
-            this.pl_GainBeforeClipper.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_GainBeforeClipper.Location = new System.Drawing.Point(741, 34);
-            this.pl_GainBeforeClipper.Name = "pl_GainBeforeClipper";
-            this.pl_GainBeforeClipper.Size = new System.Drawing.Size(31, 155);
-            this.pl_GainBeforeClipper.TabIndex = 28;
-            // 
-            // pl_DRC2
-            // 
-            this.pl_DRC2.BackColor = System.Drawing.Color.Transparent;
-            this.pl_DRC2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_DRC2.Location = new System.Drawing.Point(590, 193);
-            this.pl_DRC2.Name = "pl_DRC2";
-            this.pl_DRC2.Size = new System.Drawing.Size(51, 112);
-            this.pl_DRC2.TabIndex = 27;
-            // 
-            // pl_DRC1
-            // 
-            this.pl_DRC1.BackColor = System.Drawing.Color.Transparent;
-            this.pl_DRC1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_DRC1.Location = new System.Drawing.Point(590, 34);
-            this.pl_DRC1.Name = "pl_DRC1";
-            this.pl_DRC1.Size = new System.Drawing.Size(51, 112);
-            this.pl_DRC1.TabIndex = 26;
-            // 
-            // pl_MasterVOL
-            // 
-            this.pl_MasterVOL.BackColor = System.Drawing.Color.Transparent;
-            this.pl_MasterVOL.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_MasterVOL.Location = new System.Drawing.Point(530, 31);
-            this.pl_MasterVOL.Name = "pl_MasterVOL";
-            this.pl_MasterVOL.Size = new System.Drawing.Size(41, 272);
-            this.pl_MasterVOL.TabIndex = 25;
-            // 
-            // pl_VOL4
-            // 
-            this.pl_VOL4.BackColor = System.Drawing.Color.Transparent;
-            this.pl_VOL4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_VOL4.Location = new System.Drawing.Point(484, 284);
-            this.pl_VOL4.Name = "pl_VOL4";
-            this.pl_VOL4.Size = new System.Drawing.Size(32, 19);
-            this.pl_VOL4.TabIndex = 24;
-            // 
-            // pl_VOL3
-            // 
-            this.pl_VOL3.BackColor = System.Drawing.Color.Transparent;
-            this.pl_VOL3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_VOL3.Location = new System.Drawing.Point(484, 195);
-            this.pl_VOL3.Name = "pl_VOL3";
-            this.pl_VOL3.Size = new System.Drawing.Size(32, 19);
-            this.pl_VOL3.TabIndex = 23;
-            // 
-            // pl_VOL2
-            // 
-            this.pl_VOL2.BackColor = System.Drawing.Color.Transparent;
-            this.pl_VOL2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_VOL2.Location = new System.Drawing.Point(484, 126);
-            this.pl_VOL2.Name = "pl_VOL2";
-            this.pl_VOL2.Size = new System.Drawing.Size(31, 19);
-            this.pl_VOL2.TabIndex = 22;
-            // 
-            // pl_VOL1
-            // 
-            this.pl_VOL1.BackColor = System.Drawing.Color.Transparent;
-            this.pl_VOL1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_VOL1.Location = new System.Drawing.Point(484, 37);
-            this.pl_VOL1.Name = "pl_VOL1";
-            this.pl_VOL1.Size = new System.Drawing.Size(35, 19);
-            this.pl_VOL1.TabIndex = 21;
-            // 
-            // pl_2BQ
-            // 
-            this.pl_2BQ.BackColor = System.Drawing.Color.Transparent;
-            this.pl_2BQ.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_2BQ.Location = new System.Drawing.Point(435, 284);
-            this.pl_2BQ.Name = "pl_2BQ";
-            this.pl_2BQ.Size = new System.Drawing.Size(36, 19);
-            this.pl_2BQ.TabIndex = 20;
-            // 
-            // pl_1BQ_Sub
-            // 
-            this.pl_1BQ_Sub.BackColor = System.Drawing.Color.Transparent;
-            this.pl_1BQ_Sub.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_1BQ_Sub.Location = new System.Drawing.Point(435, 195);
-            this.pl_1BQ_Sub.Name = "pl_1BQ_Sub";
-            this.pl_1BQ_Sub.Size = new System.Drawing.Size(36, 19);
-            this.pl_1BQ_Sub.TabIndex = 19;
-            // 
-            // pl_1BQ_ROut
-            // 
-            this.pl_1BQ_ROut.BackColor = System.Drawing.Color.Transparent;
-            this.pl_1BQ_ROut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_1BQ_ROut.Location = new System.Drawing.Point(435, 127);
-            this.pl_1BQ_ROut.Name = "pl_1BQ_ROut";
-            this.pl_1BQ_ROut.Size = new System.Drawing.Size(36, 19);
-            this.pl_1BQ_ROut.TabIndex = 18;
-            // 
-            // pl_1BQ_LOut
-            // 
-            this.pl_1BQ_LOut.BackColor = System.Drawing.Color.Transparent;
-            this.pl_1BQ_LOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_1BQ_LOut.Location = new System.Drawing.Point(434, 36);
-            this.pl_1BQ_LOut.Name = "pl_1BQ_LOut";
-            this.pl_1BQ_LOut.Size = new System.Drawing.Size(36, 19);
-            this.pl_1BQ_LOut.TabIndex = 17;
-            // 
-            // pl_1BQ_LRMix_R
-            // 
-            this.pl_1BQ_LRMix_R.BackColor = System.Drawing.Color.Transparent;
-            this.pl_1BQ_LRMix_R.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_1BQ_LRMix_R.Location = new System.Drawing.Point(212, 141);
-            this.pl_1BQ_LRMix_R.Name = "pl_1BQ_LRMix_R";
-            this.pl_1BQ_LRMix_R.Size = new System.Drawing.Size(36, 19);
-            this.pl_1BQ_LRMix_R.TabIndex = 16;
-            // 
-            // pl_1BQ_LRMix_L
-            // 
-            this.pl_1BQ_LRMix_L.BackColor = System.Drawing.Color.Transparent;
-            this.pl_1BQ_LRMix_L.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_1BQ_LRMix_L.Location = new System.Drawing.Point(212, 50);
-            this.pl_1BQ_LRMix_L.Name = "pl_1BQ_LRMix_L";
-            this.pl_1BQ_LRMix_L.Size = new System.Drawing.Size(36, 19);
-            this.pl_1BQ_LRMix_L.TabIndex = 15;
-            // 
-            // pl_1BQ_RIn
-            // 
-            this.pl_1BQ_RIn.BackColor = System.Drawing.Color.Transparent;
-            this.pl_1BQ_RIn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_1BQ_RIn.Location = new System.Drawing.Point(96, 127);
-            this.pl_1BQ_RIn.Name = "pl_1BQ_RIn";
-            this.pl_1BQ_RIn.Size = new System.Drawing.Size(36, 19);
-            this.pl_1BQ_RIn.TabIndex = 14;
-            // 
-            // pl_1BQ_LIn
-            // 
-            this.pl_1BQ_LIn.BackColor = System.Drawing.Color.Transparent;
-            this.pl_1BQ_LIn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_1BQ_LIn.Location = new System.Drawing.Point(96, 36);
-            this.pl_1BQ_LIn.Name = "pl_1BQ_LIn";
-            this.pl_1BQ_LIn.Size = new System.Drawing.Size(36, 19);
-            this.pl_1BQ_LIn.TabIndex = 13;
-            // 
-            // pl_NGSubOut
-            // 
-            this.pl_NGSubOut.BackColor = System.Drawing.Color.Transparent;
-            this.pl_NGSubOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_NGSubOut.Location = new System.Drawing.Point(927, 268);
-            this.pl_NGSubOut.Name = "pl_NGSubOut";
-            this.pl_NGSubOut.Size = new System.Drawing.Size(33, 19);
-            this.pl_NGSubOut.TabIndex = 12;
-            // 
-            // pl_NGROut
-            // 
-            this.pl_NGROut.BackColor = System.Drawing.Color.Transparent;
-            this.pl_NGROut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_NGROut.Location = new System.Drawing.Point(931, 145);
-            this.pl_NGROut.Name = "pl_NGROut";
-            this.pl_NGROut.Size = new System.Drawing.Size(33, 19);
-            this.pl_NGROut.TabIndex = 11;
-            // 
-            // pl_NGLOut
-            // 
-            this.pl_NGLOut.BackColor = System.Drawing.Color.Transparent;
-            this.pl_NGLOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_NGLOut.Location = new System.Drawing.Point(931, 57);
-            this.pl_NGLOut.Name = "pl_NGLOut";
-            this.pl_NGLOut.Size = new System.Drawing.Size(33, 19);
-            this.pl_NGLOut.TabIndex = 10;
-            // 
-            // pl_HPFSubOut
-            // 
-            this.pl_HPFSubOut.BackColor = System.Drawing.Color.Transparent;
-            this.pl_HPFSubOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_HPFSubOut.Location = new System.Drawing.Point(872, 268);
-            this.pl_HPFSubOut.Name = "pl_HPFSubOut";
-            this.pl_HPFSubOut.Size = new System.Drawing.Size(33, 19);
-            this.pl_HPFSubOut.TabIndex = 9;
-            // 
-            // pl_HPFROut
-            // 
-            this.pl_HPFROut.BackColor = System.Drawing.Color.Transparent;
-            this.pl_HPFROut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_HPFROut.Location = new System.Drawing.Point(875, 145);
-            this.pl_HPFROut.Name = "pl_HPFROut";
-            this.pl_HPFROut.Size = new System.Drawing.Size(33, 19);
-            this.pl_HPFROut.TabIndex = 8;
-            // 
-            // pl_HPFLOut
-            // 
-            this.pl_HPFLOut.BackColor = System.Drawing.Color.Transparent;
-            this.pl_HPFLOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_HPFLOut.Location = new System.Drawing.Point(875, 57);
-            this.pl_HPFLOut.Name = "pl_HPFLOut";
-            this.pl_HPFLOut.Size = new System.Drawing.Size(33, 19);
-            this.pl_HPFLOut.TabIndex = 7;
-            // 
-            // pl_HPF_RIn
-            // 
-            this.pl_HPF_RIn.BackColor = System.Drawing.Color.Transparent;
-            this.pl_HPF_RIn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_HPF_RIn.Location = new System.Drawing.Point(22, 127);
-            this.pl_HPF_RIn.Name = "pl_HPF_RIn";
-            this.pl_HPF_RIn.Size = new System.Drawing.Size(36, 21);
-            this.pl_HPF_RIn.TabIndex = 3;
-            // 
-            // pl_6EQ_R
-            // 
-            this.pl_6EQ_R.Location = new System.Drawing.Point(315, 126);
-            this.pl_6EQ_R.Name = "pl_6EQ_R";
-            this.pl_6EQ_R.Size = new System.Drawing.Size(35, 20);
-            this.pl_6EQ_R.TabIndex = 2;
-            // 
-            // pl_HPF_LIn
-            // 
-            this.pl_HPF_LIn.BackColor = System.Drawing.Color.Transparent;
-            this.pl_HPF_LIn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_HPF_LIn.Location = new System.Drawing.Point(22, 35);
-            this.pl_HPF_LIn.Name = "pl_HPF_LIn";
-            this.pl_HPF_LIn.Size = new System.Drawing.Size(36, 21);
-            this.pl_HPF_LIn.TabIndex = 1;
-            // 
-            // pl_6EQ_L
-            // 
-            this.pl_6EQ_L.BackColor = System.Drawing.Color.Transparent;
-            this.pl_6EQ_L.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pl_6EQ_L.Location = new System.Drawing.Point(315, 36);
-            this.pl_6EQ_L.Name = "pl_6EQ_L";
-            this.pl_6EQ_L.Size = new System.Drawing.Size(35, 20);
-            this.pl_6EQ_L.TabIndex = 0;
+            this.chb_v4Source.CheckedChanged += new System.EventHandler(this.chb_v4Source_CheckedChanged);
             // 
             // chb_v3Source
             // 
             this.chb_v3Source.AutoSize = true;
             this.chb_v3Source.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chb_v3Source.Font = new System.Drawing.Font("SimSun", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chb_v3Source.Location = new System.Drawing.Point(455, 179);
+            this.chb_v3Source.Location = new System.Drawing.Point(530, 263);
             this.chb_v3Source.Name = "chb_v3Source";
             this.chb_v3Source.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chb_v3Source.Size = new System.Drawing.Size(66, 13);
             this.chb_v3Source.TabIndex = 42;
             this.chb_v3Source.Text = "From 0x08";
             this.chb_v3Source.UseVisualStyleBackColor = true;
+            this.chb_v3Source.CheckedChanged += new System.EventHandler(this.chb_v3Source_CheckedChanged);
             // 
             // splitContainer2
             // 
@@ -1640,8 +1865,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabCtrl_Output);
-            this.splitContainer2.Size = new System.Drawing.Size(1080, 246);
-            this.splitContainer2.SplitterDistance = 501;
+            this.splitContainer2.Size = new System.Drawing.Size(1124, 246);
+            this.splitContainer2.SplitterDistance = 521;
             this.splitContainer2.TabIndex = 0;
             // 
             // tabCtrl_SingleRegSetting
@@ -1654,7 +1879,7 @@
             this.tabCtrl_SingleRegSetting.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl_SingleRegSetting.Name = "tabCtrl_SingleRegSetting";
             this.tabCtrl_SingleRegSetting.SelectedIndex = 0;
-            this.tabCtrl_SingleRegSetting.Size = new System.Drawing.Size(501, 246);
+            this.tabCtrl_SingleRegSetting.Size = new System.Drawing.Size(521, 246);
             this.tabCtrl_SingleRegSetting.TabIndex = 0;
             // 
             // tabP_SingleCtrl
@@ -1663,7 +1888,7 @@
             this.tabP_SingleCtrl.Location = new System.Drawing.Point(4, 25);
             this.tabP_SingleCtrl.Name = "tabP_SingleCtrl";
             this.tabP_SingleCtrl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabP_SingleCtrl.Size = new System.Drawing.Size(493, 217);
+            this.tabP_SingleCtrl.Size = new System.Drawing.Size(513, 217);
             this.tabP_SingleCtrl.TabIndex = 0;
             this.tabP_SingleCtrl.Text = "Single Control";
             // 
@@ -1672,7 +1897,7 @@
             this.tabP_RegRW.BackColor = System.Drawing.Color.White;
             this.tabP_RegRW.Location = new System.Drawing.Point(4, 25);
             this.tabP_RegRW.Name = "tabP_RegRW";
-            this.tabP_RegRW.Size = new System.Drawing.Size(493, 217);
+            this.tabP_RegRW.Size = new System.Drawing.Size(513, 217);
             this.tabP_RegRW.TabIndex = 2;
             this.tabP_RegRW.Text = "Register R/W";
             // 
@@ -1681,7 +1906,7 @@
             this.tabP_IICMemTool.BackColor = System.Drawing.Color.White;
             this.tabP_IICMemTool.Location = new System.Drawing.Point(4, 25);
             this.tabP_IICMemTool.Name = "tabP_IICMemTool";
-            this.tabP_IICMemTool.Size = new System.Drawing.Size(493, 217);
+            this.tabP_IICMemTool.Size = new System.Drawing.Size(513, 217);
             this.tabP_IICMemTool.TabIndex = 3;
             this.tabP_IICMemTool.Text = "IIC Memory Tool";
             // 
@@ -1693,7 +1918,7 @@
             this.tabCtrl_Output.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl_Output.Name = "tabCtrl_Output";
             this.tabCtrl_Output.SelectedIndex = 0;
-            this.tabCtrl_Output.Size = new System.Drawing.Size(575, 246);
+            this.tabCtrl_Output.Size = new System.Drawing.Size(599, 246);
             this.tabCtrl_Output.TabIndex = 0;
             // 
             // tabPage1
@@ -1703,12 +1928,13 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(567, 217);
+            this.tabPage1.Size = new System.Drawing.Size(591, 217);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
             // 
             // line14
             // 
+            this.line14.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line14.BackColor = System.Drawing.Color.Transparent;
             this.line14.Horizontal = true;
             this.line14.LeftOrUpArrow = false;
@@ -1723,6 +1949,7 @@
             // 
             // line9
             // 
+            this.line9.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line9.BackColor = System.Drawing.Color.Transparent;
             this.line9.Horizontal = true;
             this.line9.LeftOrUpArrow = false;
@@ -1737,6 +1964,7 @@
             // 
             // line13
             // 
+            this.line13.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line13.BackColor = System.Drawing.Color.Transparent;
             this.line13.Horizontal = true;
             this.line13.LeftOrUpArrow = false;
@@ -1751,6 +1979,7 @@
             // 
             // line15
             // 
+            this.line15.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line15.BackColor = System.Drawing.Color.Transparent;
             this.line15.Horizontal = true;
             this.line15.LeftOrUpArrow = false;
@@ -1765,6 +1994,7 @@
             // 
             // line12
             // 
+            this.line12.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line12.BackColor = System.Drawing.Color.Transparent;
             this.line12.Horizontal = true;
             this.line12.LeftOrUpArrow = false;
@@ -1779,6 +2009,7 @@
             // 
             // line10
             // 
+            this.line10.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line10.BackColor = System.Drawing.Color.Transparent;
             this.line10.Horizontal = true;
             this.line10.LeftOrUpArrow = false;
@@ -1793,6 +2024,7 @@
             // 
             // line11
             // 
+            this.line11.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line11.BackColor = System.Drawing.Color.Transparent;
             this.line11.Horizontal = true;
             this.line11.LeftOrUpArrow = false;
@@ -1807,6 +2039,7 @@
             // 
             // line6
             // 
+            this.line6.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line6.BackColor = System.Drawing.Color.Transparent;
             this.line6.Horizontal = true;
             this.line6.LeftOrUpArrow = false;
@@ -1821,6 +2054,7 @@
             // 
             // line7
             // 
+            this.line7.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line7.BackColor = System.Drawing.Color.Transparent;
             this.line7.Horizontal = true;
             this.line7.LeftOrUpArrow = false;
@@ -1835,6 +2069,7 @@
             // 
             // line8
             // 
+            this.line8.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line8.BackColor = System.Drawing.Color.Transparent;
             this.line8.Horizontal = true;
             this.line8.LeftOrUpArrow = false;
@@ -1849,6 +2084,7 @@
             // 
             // line5
             // 
+            this.line5.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line5.BackColor = System.Drawing.Color.Transparent;
             this.line5.Horizontal = true;
             this.line5.LeftOrUpArrow = false;
@@ -1863,6 +2099,7 @@
             // 
             // line3
             // 
+            this.line3.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line3.BackColor = System.Drawing.Color.Transparent;
             this.line3.Horizontal = true;
             this.line3.LeftOrUpArrow = false;
@@ -1877,6 +2114,7 @@
             // 
             // line4
             // 
+            this.line4.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line4.BackColor = System.Drawing.Color.Transparent;
             this.line4.Horizontal = true;
             this.line4.LeftOrUpArrow = false;
@@ -1891,6 +2129,7 @@
             // 
             // line2
             // 
+            this.line2.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line2.BackColor = System.Drawing.Color.Transparent;
             this.line2.Horizontal = true;
             this.line2.LeftOrUpArrow = false;
@@ -1905,6 +2144,7 @@
             // 
             // line1
             // 
+            this.line1.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line1.BackColor = System.Drawing.Color.Transparent;
             this.line1.Horizontal = true;
             this.line1.LeftOrUpArrow = false;
@@ -2013,12 +2253,2588 @@
             this.indicator_MCLK.Size = new System.Drawing.Size(25, 25);
             this.indicator_MCLK.TabIndex = 6;
             // 
+            // line147
+            // 
+            this.line147.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line147.BackColor = System.Drawing.Color.Transparent;
+            this.line147.Horizontal = true;
+            this.line147.LeftOrUpArrow = false;
+            this.line147.LineColor = System.Drawing.Color.Black;
+            this.line147.LineWidth = 1;
+            this.line147.Location = new System.Drawing.Point(1059, 348);
+            this.line147.Name = "line147";
+            this.line147.RightOrBelowArrow = true;
+            this.line147.Size = new System.Drawing.Size(19, 10);
+            this.line147.TabIndex = 260;
+            // 
+            // line146
+            // 
+            this.line146.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line146.BackColor = System.Drawing.Color.Transparent;
+            this.line146.Horizontal = true;
+            this.line146.LeftOrUpArrow = false;
+            this.line146.LineColor = System.Drawing.Color.Black;
+            this.line146.LineWidth = 1;
+            this.line146.Location = new System.Drawing.Point(1005, 348);
+            this.line146.Name = "line146";
+            this.line146.RightOrBelowArrow = true;
+            this.line146.Size = new System.Drawing.Size(19, 10);
+            this.line146.TabIndex = 259;
+            // 
+            // line144
+            // 
+            this.line144.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line144.BackColor = System.Drawing.Color.Transparent;
+            this.line144.Horizontal = true;
+            this.line144.LeftOrUpArrow = false;
+            this.line144.LineColor = System.Drawing.Color.Black;
+            this.line144.LineWidth = 1;
+            this.line144.Location = new System.Drawing.Point(1059, 206);
+            this.line144.Name = "line144";
+            this.line144.RightOrBelowArrow = true;
+            this.line144.Size = new System.Drawing.Size(19, 10);
+            this.line144.TabIndex = 258;
+            // 
+            // line145
+            // 
+            this.line145.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line145.BackColor = System.Drawing.Color.Transparent;
+            this.line145.Horizontal = true;
+            this.line145.LeftOrUpArrow = false;
+            this.line145.LineColor = System.Drawing.Color.Black;
+            this.line145.LineWidth = 1;
+            this.line145.Location = new System.Drawing.Point(1059, 88);
+            this.line145.Name = "line145";
+            this.line145.RightOrBelowArrow = true;
+            this.line145.Size = new System.Drawing.Size(19, 10);
+            this.line145.TabIndex = 257;
+            // 
+            // line142
+            // 
+            this.line142.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line142.BackColor = System.Drawing.Color.Transparent;
+            this.line142.Horizontal = true;
+            this.line142.LeftOrUpArrow = false;
+            this.line142.LineColor = System.Drawing.Color.Black;
+            this.line142.LineWidth = 1;
+            this.line142.Location = new System.Drawing.Point(1005, 206);
+            this.line142.Name = "line142";
+            this.line142.RightOrBelowArrow = true;
+            this.line142.Size = new System.Drawing.Size(19, 10);
+            this.line142.TabIndex = 256;
+            // 
+            // line143
+            // 
+            this.line143.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line143.BackColor = System.Drawing.Color.Transparent;
+            this.line143.Horizontal = true;
+            this.line143.LeftOrUpArrow = false;
+            this.line143.LineColor = System.Drawing.Color.Black;
+            this.line143.LineWidth = 1;
+            this.line143.Location = new System.Drawing.Point(1005, 88);
+            this.line143.Name = "line143";
+            this.line143.RightOrBelowArrow = true;
+            this.line143.Size = new System.Drawing.Size(19, 10);
+            this.line143.TabIndex = 255;
+            // 
+            // line140
+            // 
+            this.line140.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line140.BackColor = System.Drawing.Color.Transparent;
+            this.line140.Horizontal = true;
+            this.line140.LeftOrUpArrow = false;
+            this.line140.LineColor = System.Drawing.Color.Black;
+            this.line140.LineWidth = 1;
+            this.line140.Location = new System.Drawing.Point(952, 206);
+            this.line140.Name = "line140";
+            this.line140.RightOrBelowArrow = true;
+            this.line140.Size = new System.Drawing.Size(19, 10);
+            this.line140.TabIndex = 254;
+            // 
+            // line141
+            // 
+            this.line141.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line141.BackColor = System.Drawing.Color.Transparent;
+            this.line141.Horizontal = true;
+            this.line141.LeftOrUpArrow = false;
+            this.line141.LineColor = System.Drawing.Color.Black;
+            this.line141.LineWidth = 1;
+            this.line141.Location = new System.Drawing.Point(952, 88);
+            this.line141.Name = "line141";
+            this.line141.RightOrBelowArrow = true;
+            this.line141.Size = new System.Drawing.Size(19, 10);
+            this.line141.TabIndex = 253;
+            // 
+            // line139
+            // 
+            this.line139.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line139.BackColor = System.Drawing.Color.Transparent;
+            this.line139.Horizontal = true;
+            this.line139.LeftOrUpArrow = false;
+            this.line139.LineColor = System.Drawing.Color.Black;
+            this.line139.LineWidth = 1;
+            this.line139.Location = new System.Drawing.Point(885, 206);
+            this.line139.Name = "line139";
+            this.line139.RightOrBelowArrow = false;
+            this.line139.Size = new System.Drawing.Size(40, 10);
+            this.line139.TabIndex = 252;
+            // 
+            // line138
+            // 
+            this.line138.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line138.BackColor = System.Drawing.Color.Transparent;
+            this.line138.Horizontal = true;
+            this.line138.LeftOrUpArrow = false;
+            this.line138.LineColor = System.Drawing.Color.Black;
+            this.line138.LineWidth = 1;
+            this.line138.Location = new System.Drawing.Point(885, 88);
+            this.line138.Name = "line138";
+            this.line138.RightOrBelowArrow = false;
+            this.line138.Size = new System.Drawing.Size(40, 10);
+            this.line138.TabIndex = 250;
+            // 
+            // btn_NG
+            // 
+            this.btn_NG.BackColor = System.Drawing.Color.LightYellow;
+            this.btn_NG.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_NG.Location = new System.Drawing.Point(1025, 43);
+            this.btn_NG.Name = "btn_NG";
+            this.btn_NG.Size = new System.Drawing.Size(33, 361);
+            this.btn_NG.TabIndex = 248;
+            this.btn_NG.Text = "NG";
+            this.btn_NG.UseVisualStyleBackColor = false;
+            this.btn_NG.Click += new System.EventHandler(this.btn_NGLOut_Click);
+            // 
+            // M_OutputPostScale_0
+            // 
+            this.M_OutputPostScale_0.BackColor = System.Drawing.Color.White;
+            this.M_OutputPostScale_0.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_OutputPostScale_0.Location = new System.Drawing.Point(924, 197);
+            this.M_OutputPostScale_0.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_OutputPostScale_0.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_OutputPostScale_0.Name = "M_OutputPostScale_0";
+            this.M_OutputPostScale_0.Size = new System.Drawing.Size(28, 28);
+            this.M_OutputPostScale_0.TabIndex = 246;
+            this.M_OutputPostScale_0.Click += new System.EventHandler(this.M_OutputPostScale_Click);
+            // 
+            // M_OutputPostScale_1
+            // 
+            this.M_OutputPostScale_1.BackColor = System.Drawing.Color.White;
+            this.M_OutputPostScale_1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_OutputPostScale_1.Location = new System.Drawing.Point(924, 79);
+            this.M_OutputPostScale_1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_OutputPostScale_1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_OutputPostScale_1.Name = "M_OutputPostScale_1";
+            this.M_OutputPostScale_1.Size = new System.Drawing.Size(28, 28);
+            this.M_OutputPostScale_1.TabIndex = 245;
+            this.M_OutputPostScale_1.Click += new System.EventHandler(this.M_OutputPostScale_Click);
+            // 
+            // M_OutputPreScale_0
+            // 
+            this.M_OutputPreScale_0.BackColor = System.Drawing.Color.White;
+            this.M_OutputPreScale_0.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_OutputPreScale_0.Location = new System.Drawing.Point(857, 197);
+            this.M_OutputPreScale_0.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_OutputPreScale_0.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_OutputPreScale_0.Name = "M_OutputPreScale_0";
+            this.M_OutputPreScale_0.Size = new System.Drawing.Size(28, 28);
+            this.M_OutputPreScale_0.TabIndex = 244;
+            this.M_OutputPreScale_0.Click += new System.EventHandler(this.M_OutputPreScale_Click);
+            // 
+            // M_OutputPreScale_1
+            // 
+            this.M_OutputPreScale_1.BackColor = System.Drawing.Color.White;
+            this.M_OutputPreScale_1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_OutputPreScale_1.Location = new System.Drawing.Point(857, 79);
+            this.M_OutputPreScale_1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_OutputPreScale_1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_OutputPreScale_1.Name = "M_OutputPreScale_1";
+            this.M_OutputPreScale_1.Size = new System.Drawing.Size(28, 28);
+            this.M_OutputPreScale_1.TabIndex = 242;
+            this.M_OutputPreScale_1.Click += new System.EventHandler(this.M_OutputPreScale_Click);
+            // 
+            // dot13
+            // 
+            this.dot13.BackColor = System.Drawing.Color.White;
+            this.dot13.Location = new System.Drawing.Point(762, 382);
+            this.dot13.Name = "dot13";
+            this.dot13.Size = new System.Drawing.Size(4, 4);
+            this.dot13.TabIndex = 241;
+            // 
+            // dot12
+            // 
+            this.dot12.BackColor = System.Drawing.Color.White;
+            this.dot12.Location = new System.Drawing.Point(762, 240);
+            this.dot12.Name = "dot12";
+            this.dot12.Size = new System.Drawing.Size(4, 4);
+            this.dot12.TabIndex = 240;
+            // 
+            // dot11
+            // 
+            this.dot11.BackColor = System.Drawing.Color.White;
+            this.dot11.Location = new System.Drawing.Point(730, 178);
+            this.dot11.Name = "dot11";
+            this.dot11.Size = new System.Drawing.Size(4, 4);
+            this.dot11.TabIndex = 239;
+            // 
+            // dot10
+            // 
+            this.dot10.BackColor = System.Drawing.Color.White;
+            this.dot10.Location = new System.Drawing.Point(541, 289);
+            this.dot10.Name = "dot10";
+            this.dot10.Size = new System.Drawing.Size(4, 4);
+            this.dot10.TabIndex = 238;
+            // 
+            // dot9
+            // 
+            this.dot9.BackColor = System.Drawing.Color.White;
+            this.dot9.Location = new System.Drawing.Point(541, 178);
+            this.dot9.Name = "dot9";
+            this.dot9.Size = new System.Drawing.Size(4, 4);
+            this.dot9.TabIndex = 237;
+            // 
+            // dot8
+            // 
+            this.dot8.BackColor = System.Drawing.Color.White;
+            this.dot8.Location = new System.Drawing.Point(541, 60);
+            this.dot8.Name = "dot8";
+            this.dot8.Size = new System.Drawing.Size(4, 4);
+            this.dot8.TabIndex = 236;
+            // 
+            // dot7
+            // 
+            this.dot7.BackColor = System.Drawing.Color.White;
+            this.dot7.Location = new System.Drawing.Point(454, 178);
+            this.dot7.Name = "dot7";
+            this.dot7.Size = new System.Drawing.Size(4, 4);
+            this.dot7.TabIndex = 235;
+            // 
+            // dot6
+            // 
+            this.dot6.BackColor = System.Drawing.Color.White;
+            this.dot6.Location = new System.Drawing.Point(454, 60);
+            this.dot6.Name = "dot6";
+            this.dot6.Size = new System.Drawing.Size(4, 4);
+            this.dot6.TabIndex = 234;
+            // 
+            // dot5
+            // 
+            this.dot5.BackColor = System.Drawing.Color.White;
+            this.dot5.Location = new System.Drawing.Point(176, 240);
+            this.dot5.Name = "dot5";
+            this.dot5.Size = new System.Drawing.Size(4, 4);
+            this.dot5.TabIndex = 233;
+            // 
+            // dot4
+            // 
+            this.dot4.BackColor = System.Drawing.Color.White;
+            this.dot4.Location = new System.Drawing.Point(159, 178);
+            this.dot4.Name = "dot4";
+            this.dot4.Size = new System.Drawing.Size(4, 4);
+            this.dot4.TabIndex = 232;
+            // 
+            // dot3
+            // 
+            this.dot3.BackColor = System.Drawing.Color.White;
+            this.dot3.Location = new System.Drawing.Point(141, 60);
+            this.dot3.Name = "dot3";
+            this.dot3.Size = new System.Drawing.Size(4, 4);
+            this.dot3.TabIndex = 231;
+            // 
+            // dot2
+            // 
+            this.dot2.BackColor = System.Drawing.Color.White;
+            this.dot2.Location = new System.Drawing.Point(81, 178);
+            this.dot2.Name = "dot2";
+            this.dot2.Size = new System.Drawing.Size(4, 4);
+            this.dot2.TabIndex = 230;
+            // 
+            // dot1
+            // 
+            this.dot1.BackColor = System.Drawing.Color.White;
+            this.dot1.Location = new System.Drawing.Point(81, 60);
+            this.dot1.Name = "dot1";
+            this.dot1.Size = new System.Drawing.Size(4, 4);
+            this.dot1.TabIndex = 229;
+            // 
+            // line137
+            // 
+            this.line137.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line137.BackColor = System.Drawing.Color.Transparent;
+            this.line137.Horizontal = true;
+            this.line137.LeftOrUpArrow = false;
+            this.line137.LineColor = System.Drawing.Color.Black;
+            this.line137.LineWidth = 1;
+            this.line137.Location = new System.Drawing.Point(765, 237);
+            this.line137.Name = "line137";
+            this.line137.RightOrBelowArrow = false;
+            this.line137.Size = new System.Drawing.Size(18, 10);
+            this.line137.TabIndex = 228;
+            // 
+            // line136
+            // 
+            this.line136.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line136.BackColor = System.Drawing.Color.Transparent;
+            this.line136.Horizontal = true;
+            this.line136.LeftOrUpArrow = false;
+            this.line136.LineColor = System.Drawing.Color.Black;
+            this.line136.LineWidth = 1;
+            this.line136.Location = new System.Drawing.Point(765, 317);
+            this.line136.Name = "line136";
+            this.line136.RightOrBelowArrow = false;
+            this.line136.Size = new System.Drawing.Size(18, 10);
+            this.line136.TabIndex = 227;
+            // 
+            // line134
+            // 
+            this.line134.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line134.BackColor = System.Drawing.Color.Transparent;
+            this.line134.Horizontal = false;
+            this.line134.LeftOrUpArrow = false;
+            this.line134.LineColor = System.Drawing.Color.Black;
+            this.line134.LineWidth = 1;
+            this.line134.Location = new System.Drawing.Point(759, 125);
+            this.line134.Name = "line134";
+            this.line134.RightOrBelowArrow = false;
+            this.line134.Size = new System.Drawing.Size(10, 55);
+            this.line134.TabIndex = 225;
+            // 
+            // line135
+            // 
+            this.line135.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line135.BackColor = System.Drawing.Color.Transparent;
+            this.line135.Horizontal = true;
+            this.line135.LeftOrUpArrow = false;
+            this.line135.LineColor = System.Drawing.Color.Black;
+            this.line135.LineWidth = 1;
+            this.line135.Location = new System.Drawing.Point(764, 119);
+            this.line135.Name = "line135";
+            this.line135.RightOrBelowArrow = false;
+            this.line135.Size = new System.Drawing.Size(18, 10);
+            this.line135.TabIndex = 226;
+            // 
+            // line133
+            // 
+            this.line133.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line133.BackColor = System.Drawing.Color.Transparent;
+            this.line133.Horizontal = false;
+            this.line133.LeftOrUpArrow = false;
+            this.line133.LineColor = System.Drawing.Color.Black;
+            this.line133.LineWidth = 1;
+            this.line133.Location = new System.Drawing.Point(759, 181);
+            this.line133.Name = "line133";
+            this.line133.RightOrBelowArrow = false;
+            this.line133.Size = new System.Drawing.Size(10, 30);
+            this.line133.TabIndex = 224;
+            // 
+            // M_CH1_Output_Mix2
+            // 
+            this.M_CH1_Output_Mix2.BackColor = System.Drawing.Color.White;
+            this.M_CH1_Output_Mix2.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH1_Output_Mix2.Location = new System.Drawing.Point(782, 52);
+            this.M_CH1_Output_Mix2.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH1_Output_Mix2.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH1_Output_Mix2.Name = "M_CH1_Output_Mix2";
+            this.M_CH1_Output_Mix2.Size = new System.Drawing.Size(20, 20);
+            this.M_CH1_Output_Mix2.TabIndex = 180;
+            this.M_CH1_Output_Mix2.Click += new System.EventHandler(this.M_CH1_Output_Mix2_Click);
+            // 
+            // line122
+            // 
+            this.line122.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line122.BackColor = System.Drawing.Color.Transparent;
+            this.line122.Horizontal = false;
+            this.line122.LeftOrUpArrow = false;
+            this.line122.LineColor = System.Drawing.Color.Black;
+            this.line122.LineWidth = 1;
+            this.line122.Location = new System.Drawing.Point(727, 181);
+            this.line122.Name = "line122";
+            this.line122.RightOrBelowArrow = false;
+            this.line122.Size = new System.Drawing.Size(10, 110);
+            this.line122.TabIndex = 218;
+            // 
+            // line120
+            // 
+            this.line120.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line120.BackColor = System.Drawing.Color.Transparent;
+            this.line120.Horizontal = false;
+            this.line120.LeftOrUpArrow = false;
+            this.line120.LineColor = System.Drawing.Color.Black;
+            this.line120.LineWidth = 1;
+            this.line120.Location = new System.Drawing.Point(727, 94);
+            this.line120.Name = "line120";
+            this.line120.RightOrBelowArrow = false;
+            this.line120.Size = new System.Drawing.Size(10, 86);
+            this.line120.TabIndex = 208;
+            // 
+            // line111
+            // 
+            this.line111.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line111.BackColor = System.Drawing.Color.Transparent;
+            this.line111.Horizontal = true;
+            this.line111.LeftOrUpArrow = false;
+            this.line111.LineColor = System.Drawing.Color.Black;
+            this.line111.LineWidth = 1;
+            this.line111.Location = new System.Drawing.Point(721, 175);
+            this.line111.Name = "line111";
+            this.line111.RightOrBelowArrow = false;
+            this.line111.Size = new System.Drawing.Size(61, 10);
+            this.line111.TabIndex = 195;
+            // 
+            // line129
+            // 
+            this.line129.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line129.BackColor = System.Drawing.Color.Transparent;
+            this.line129.Horizontal = true;
+            this.line129.LeftOrUpArrow = false;
+            this.line129.LineColor = System.Drawing.Color.Black;
+            this.line129.LineWidth = 1;
+            this.line129.Location = new System.Drawing.Point(733, 317);
+            this.line129.Name = "line129";
+            this.line129.RightOrBelowArrow = false;
+            this.line129.Size = new System.Drawing.Size(31, 10);
+            this.line129.TabIndex = 220;
+            // 
+            // line132
+            // 
+            this.line132.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line132.BackColor = System.Drawing.Color.Transparent;
+            this.line132.Horizontal = false;
+            this.line132.LeftOrUpArrow = false;
+            this.line132.LineColor = System.Drawing.Color.Black;
+            this.line132.LineWidth = 1;
+            this.line132.Location = new System.Drawing.Point(759, 212);
+            this.line132.Name = "line132";
+            this.line132.RightOrBelowArrow = false;
+            this.line132.Size = new System.Drawing.Size(10, 172);
+            this.line132.TabIndex = 223;
+            // 
+            // line131
+            // 
+            this.line131.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line131.BackColor = System.Drawing.Color.Transparent;
+            this.line131.Horizontal = true;
+            this.line131.LeftOrUpArrow = false;
+            this.line131.LineColor = System.Drawing.Color.Black;
+            this.line131.LineWidth = 1;
+            this.line131.Location = new System.Drawing.Point(749, 206);
+            this.line131.Name = "line131";
+            this.line131.RightOrBelowArrow = false;
+            this.line131.Size = new System.Drawing.Size(34, 10);
+            this.line131.TabIndex = 222;
+            // 
+            // line130
+            // 
+            this.line130.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line130.BackColor = System.Drawing.Color.Transparent;
+            this.line130.Horizontal = false;
+            this.line130.LeftOrUpArrow = false;
+            this.line130.LineColor = System.Drawing.Color.Black;
+            this.line130.LineWidth = 1;
+            this.line130.Location = new System.Drawing.Point(743, 211);
+            this.line130.Name = "line130";
+            this.line130.RightOrBelowArrow = false;
+            this.line130.Size = new System.Drawing.Size(10, 80);
+            this.line130.TabIndex = 221;
+            // 
+            // line128
+            // 
+            this.line128.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line128.BackColor = System.Drawing.Color.Transparent;
+            this.line128.Horizontal = false;
+            this.line128.LeftOrUpArrow = false;
+            this.line128.LineColor = System.Drawing.Color.Black;
+            this.line128.LineWidth = 1;
+            this.line128.Location = new System.Drawing.Point(727, 292);
+            this.line128.Name = "line128";
+            this.line128.RightOrBelowArrow = false;
+            this.line128.Size = new System.Drawing.Size(10, 31);
+            this.line128.TabIndex = 219;
+            // 
+            // line123
+            // 
+            this.line123.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line123.BackColor = System.Drawing.Color.Transparent;
+            this.line123.Horizontal = true;
+            this.line123.LeftOrUpArrow = false;
+            this.line123.LineColor = System.Drawing.Color.Black;
+            this.line123.LineWidth = 1;
+            this.line123.Location = new System.Drawing.Point(839, 348);
+            this.line123.Name = "line123";
+            this.line123.RightOrBelowArrow = true;
+            this.line123.Size = new System.Drawing.Size(132, 10);
+            this.line123.TabIndex = 217;
+            // 
+            // line124
+            // 
+            this.line124.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line124.BackColor = System.Drawing.Color.Transparent;
+            this.line124.Horizontal = true;
+            this.line124.LeftOrUpArrow = false;
+            this.line124.LineColor = System.Drawing.Color.Black;
+            this.line124.LineWidth = 1;
+            this.line124.Location = new System.Drawing.Point(802, 317);
+            this.line124.Name = "line124";
+            this.line124.RightOrBelowArrow = false;
+            this.line124.Size = new System.Drawing.Size(27, 10);
+            this.line124.TabIndex = 212;
+            // 
+            // add10
+            // 
+            this.add10.BackColor = System.Drawing.Color.Transparent;
+            this.add10.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add10.Location = new System.Drawing.Point(819, 343);
+            this.add10.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add10.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add10.Name = "add10";
+            this.add10.Size = new System.Drawing.Size(20, 20);
+            this.add10.TabIndex = 216;
+            // 
+            // line125
+            // 
+            this.line125.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line125.BackColor = System.Drawing.Color.Transparent;
+            this.line125.Horizontal = false;
+            this.line125.LeftOrUpArrow = true;
+            this.line125.LineColor = System.Drawing.Color.Black;
+            this.line125.LineWidth = 1;
+            this.line125.Location = new System.Drawing.Point(824, 364);
+            this.line125.Name = "line125";
+            this.line125.RightOrBelowArrow = false;
+            this.line125.Size = new System.Drawing.Size(10, 20);
+            this.line125.TabIndex = 215;
+            // 
+            // line126
+            // 
+            this.line126.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line126.BackColor = System.Drawing.Color.Transparent;
+            this.line126.Horizontal = false;
+            this.line126.LeftOrUpArrow = false;
+            this.line126.LineColor = System.Drawing.Color.Black;
+            this.line126.LineWidth = 1;
+            this.line126.Location = new System.Drawing.Point(824, 322);
+            this.line126.Name = "line126";
+            this.line126.RightOrBelowArrow = true;
+            this.line126.Size = new System.Drawing.Size(10, 20);
+            this.line126.TabIndex = 214;
+            // 
+            // line127
+            // 
+            this.line127.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line127.BackColor = System.Drawing.Color.Transparent;
+            this.line127.Horizontal = true;
+            this.line127.LeftOrUpArrow = false;
+            this.line127.LineColor = System.Drawing.Color.Black;
+            this.line127.LineWidth = 1;
+            this.line127.Location = new System.Drawing.Point(802, 379);
+            this.line127.Name = "line127";
+            this.line127.RightOrBelowArrow = false;
+            this.line127.Size = new System.Drawing.Size(28, 10);
+            this.line127.TabIndex = 213;
+            // 
+            // M_CH4_Output_Mix0
+            // 
+            this.M_CH4_Output_Mix0.BackColor = System.Drawing.Color.White;
+            this.M_CH4_Output_Mix0.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH4_Output_Mix0.Location = new System.Drawing.Point(782, 374);
+            this.M_CH4_Output_Mix0.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH4_Output_Mix0.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH4_Output_Mix0.Name = "M_CH4_Output_Mix0";
+            this.M_CH4_Output_Mix0.Size = new System.Drawing.Size(20, 20);
+            this.M_CH4_Output_Mix0.TabIndex = 211;
+            this.M_CH4_Output_Mix0.Click += new System.EventHandler(this.M_CH4_Output_Mix0_Click);
+            // 
+            // M_CH4_Output_Mix1
+            // 
+            this.M_CH4_Output_Mix1.BackColor = System.Drawing.Color.White;
+            this.M_CH4_Output_Mix1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH4_Output_Mix1.Location = new System.Drawing.Point(782, 312);
+            this.M_CH4_Output_Mix1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH4_Output_Mix1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH4_Output_Mix1.Name = "M_CH4_Output_Mix1";
+            this.M_CH4_Output_Mix1.Size = new System.Drawing.Size(20, 20);
+            this.M_CH4_Output_Mix1.TabIndex = 210;
+            this.M_CH4_Output_Mix1.Click += new System.EventHandler(this.M_CH4_Output_Mix1_Click);
+            // 
+            // line121
+            // 
+            this.line121.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line121.BackColor = System.Drawing.Color.Transparent;
+            this.line121.Horizontal = true;
+            this.line121.LeftOrUpArrow = false;
+            this.line121.LineColor = System.Drawing.Color.Black;
+            this.line121.LineWidth = 1;
+            this.line121.Location = new System.Drawing.Point(732, 88);
+            this.line121.Name = "line121";
+            this.line121.RightOrBelowArrow = false;
+            this.line121.Size = new System.Drawing.Size(50, 10);
+            this.line121.TabIndex = 209;
+            // 
+            // line114
+            // 
+            this.line114.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line114.BackColor = System.Drawing.Color.Transparent;
+            this.line114.Horizontal = true;
+            this.line114.LeftOrUpArrow = false;
+            this.line114.LineColor = System.Drawing.Color.Black;
+            this.line114.LineWidth = 1;
+            this.line114.Location = new System.Drawing.Point(802, 206);
+            this.line114.Name = "line114";
+            this.line114.RightOrBelowArrow = true;
+            this.line114.Size = new System.Drawing.Size(18, 10);
+            this.line114.TabIndex = 207;
+            // 
+            // M_CH2_Output_Mix1
+            // 
+            this.M_CH2_Output_Mix1.BackColor = System.Drawing.Color.White;
+            this.M_CH2_Output_Mix1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH2_Output_Mix1.Location = new System.Drawing.Point(782, 201);
+            this.M_CH2_Output_Mix1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH2_Output_Mix1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH2_Output_Mix1.Name = "M_CH2_Output_Mix1";
+            this.M_CH2_Output_Mix1.Size = new System.Drawing.Size(20, 20);
+            this.M_CH2_Output_Mix1.TabIndex = 206;
+            this.M_CH2_Output_Mix1.Click += new System.EventHandler(this.M_CH2_Output_Mix1_Click);
+            // 
+            // line115
+            // 
+            this.line115.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line115.BackColor = System.Drawing.Color.Transparent;
+            this.line115.Horizontal = true;
+            this.line115.LeftOrUpArrow = false;
+            this.line115.LineColor = System.Drawing.Color.Black;
+            this.line115.LineWidth = 1;
+            this.line115.Location = new System.Drawing.Point(839, 206);
+            this.line115.Name = "line115";
+            this.line115.RightOrBelowArrow = true;
+            this.line115.Size = new System.Drawing.Size(18, 10);
+            this.line115.TabIndex = 205;
+            // 
+            // line116
+            // 
+            this.line116.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line116.BackColor = System.Drawing.Color.Transparent;
+            this.line116.Horizontal = true;
+            this.line116.LeftOrUpArrow = false;
+            this.line116.LineColor = System.Drawing.Color.Black;
+            this.line116.LineWidth = 1;
+            this.line116.Location = new System.Drawing.Point(802, 175);
+            this.line116.Name = "line116";
+            this.line116.RightOrBelowArrow = false;
+            this.line116.Size = new System.Drawing.Size(27, 10);
+            this.line116.TabIndex = 200;
+            // 
+            // add9
+            // 
+            this.add9.BackColor = System.Drawing.Color.Transparent;
+            this.add9.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add9.Location = new System.Drawing.Point(819, 201);
+            this.add9.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add9.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add9.Name = "add9";
+            this.add9.Size = new System.Drawing.Size(20, 20);
+            this.add9.TabIndex = 204;
+            // 
+            // line117
+            // 
+            this.line117.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line117.BackColor = System.Drawing.Color.Transparent;
+            this.line117.Horizontal = false;
+            this.line117.LeftOrUpArrow = true;
+            this.line117.LineColor = System.Drawing.Color.Black;
+            this.line117.LineWidth = 1;
+            this.line117.Location = new System.Drawing.Point(824, 222);
+            this.line117.Name = "line117";
+            this.line117.RightOrBelowArrow = false;
+            this.line117.Size = new System.Drawing.Size(10, 20);
+            this.line117.TabIndex = 203;
+            // 
+            // line118
+            // 
+            this.line118.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line118.BackColor = System.Drawing.Color.Transparent;
+            this.line118.Horizontal = false;
+            this.line118.LeftOrUpArrow = false;
+            this.line118.LineColor = System.Drawing.Color.Black;
+            this.line118.LineWidth = 1;
+            this.line118.Location = new System.Drawing.Point(824, 180);
+            this.line118.Name = "line118";
+            this.line118.RightOrBelowArrow = true;
+            this.line118.Size = new System.Drawing.Size(10, 20);
+            this.line118.TabIndex = 202;
+            // 
+            // line119
+            // 
+            this.line119.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line119.BackColor = System.Drawing.Color.Transparent;
+            this.line119.Horizontal = true;
+            this.line119.LeftOrUpArrow = false;
+            this.line119.LineColor = System.Drawing.Color.Black;
+            this.line119.LineWidth = 1;
+            this.line119.Location = new System.Drawing.Point(802, 237);
+            this.line119.Name = "line119";
+            this.line119.RightOrBelowArrow = false;
+            this.line119.Size = new System.Drawing.Size(28, 10);
+            this.line119.TabIndex = 201;
+            // 
+            // M_CH2_Output_Mix0
+            // 
+            this.M_CH2_Output_Mix0.BackColor = System.Drawing.Color.White;
+            this.M_CH2_Output_Mix0.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH2_Output_Mix0.Location = new System.Drawing.Point(782, 232);
+            this.M_CH2_Output_Mix0.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH2_Output_Mix0.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH2_Output_Mix0.Name = "M_CH2_Output_Mix0";
+            this.M_CH2_Output_Mix0.Size = new System.Drawing.Size(20, 20);
+            this.M_CH2_Output_Mix0.TabIndex = 199;
+            this.M_CH2_Output_Mix0.Click += new System.EventHandler(this.M_CH2_Output_Mix0_Click);
+            // 
+            // M_CH2_Output_Mix2
+            // 
+            this.M_CH2_Output_Mix2.BackColor = System.Drawing.Color.White;
+            this.M_CH2_Output_Mix2.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH2_Output_Mix2.Location = new System.Drawing.Point(782, 170);
+            this.M_CH2_Output_Mix2.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH2_Output_Mix2.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH2_Output_Mix2.Name = "M_CH2_Output_Mix2";
+            this.M_CH2_Output_Mix2.Size = new System.Drawing.Size(20, 20);
+            this.M_CH2_Output_Mix2.TabIndex = 198;
+            this.M_CH2_Output_Mix2.Click += new System.EventHandler(this.M_CH2_Output_Mix2_Click);
+            // 
+            // line113
+            // 
+            this.line113.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line113.BackColor = System.Drawing.Color.Transparent;
+            this.line113.Horizontal = true;
+            this.line113.LeftOrUpArrow = false;
+            this.line113.LineColor = System.Drawing.Color.Black;
+            this.line113.LineWidth = 1;
+            this.line113.Location = new System.Drawing.Point(721, 286);
+            this.line113.Name = "line113";
+            this.line113.RightOrBelowArrow = false;
+            this.line113.Size = new System.Drawing.Size(28, 10);
+            this.line113.TabIndex = 197;
+            // 
+            // line112
+            // 
+            this.line112.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line112.BackColor = System.Drawing.Color.Transparent;
+            this.line112.Horizontal = true;
+            this.line112.LeftOrUpArrow = false;
+            this.line112.LineColor = System.Drawing.Color.Black;
+            this.line112.LineWidth = 1;
+            this.line112.Location = new System.Drawing.Point(721, 379);
+            this.line112.Name = "line112";
+            this.line112.RightOrBelowArrow = false;
+            this.line112.Size = new System.Drawing.Size(62, 10);
+            this.line112.TabIndex = 196;
+            // 
+            // line110
+            // 
+            this.line110.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line110.BackColor = System.Drawing.Color.Transparent;
+            this.line110.Horizontal = true;
+            this.line110.LeftOrUpArrow = false;
+            this.line110.LineColor = System.Drawing.Color.Black;
+            this.line110.LineWidth = 1;
+            this.line110.Location = new System.Drawing.Point(721, 57);
+            this.line110.Name = "line110";
+            this.line110.RightOrBelowArrow = false;
+            this.line110.Size = new System.Drawing.Size(61, 10);
+            this.line110.TabIndex = 194;
+            // 
+            // line108
+            // 
+            this.line108.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line108.BackColor = System.Drawing.Color.Transparent;
+            this.line108.Horizontal = true;
+            this.line108.LeftOrUpArrow = false;
+            this.line108.LineColor = System.Drawing.Color.Black;
+            this.line108.LineWidth = 1;
+            this.line108.Location = new System.Drawing.Point(654, 378);
+            this.line108.Name = "line108";
+            this.line108.RightOrBelowArrow = false;
+            this.line108.Size = new System.Drawing.Size(16, 10);
+            this.line108.TabIndex = 193;
+            // 
+            // line109
+            // 
+            this.line109.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line109.BackColor = System.Drawing.Color.Transparent;
+            this.line109.Horizontal = true;
+            this.line109.LeftOrUpArrow = false;
+            this.line109.LineColor = System.Drawing.Color.Black;
+            this.line109.LineWidth = 1;
+            this.line109.Location = new System.Drawing.Point(654, 285);
+            this.line109.Name = "line109";
+            this.line109.RightOrBelowArrow = false;
+            this.line109.Size = new System.Drawing.Size(16, 10);
+            this.line109.TabIndex = 192;
+            // 
+            // line107
+            // 
+            this.line107.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line107.BackColor = System.Drawing.Color.Transparent;
+            this.line107.Horizontal = true;
+            this.line107.LeftOrUpArrow = false;
+            this.line107.LineColor = System.Drawing.Color.Black;
+            this.line107.LineWidth = 1;
+            this.line107.Location = new System.Drawing.Point(654, 175);
+            this.line107.Name = "line107";
+            this.line107.RightOrBelowArrow = false;
+            this.line107.Size = new System.Drawing.Size(16, 10);
+            this.line107.TabIndex = 191;
+            // 
+            // line106
+            // 
+            this.line106.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line106.BackColor = System.Drawing.Color.Transparent;
+            this.line106.Horizontal = true;
+            this.line106.LeftOrUpArrow = false;
+            this.line106.LineColor = System.Drawing.Color.Black;
+            this.line106.LineWidth = 1;
+            this.line106.Location = new System.Drawing.Point(654, 57);
+            this.line106.Name = "line106";
+            this.line106.RightOrBelowArrow = false;
+            this.line106.Size = new System.Drawing.Size(16, 10);
+            this.line106.TabIndex = 190;
+            // 
+            // line100
+            // 
+            this.line100.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line100.BackColor = System.Drawing.Color.Transparent;
+            this.line100.Horizontal = true;
+            this.line100.LeftOrUpArrow = false;
+            this.line100.LineColor = System.Drawing.Color.Black;
+            this.line100.LineWidth = 1;
+            this.line100.Location = new System.Drawing.Point(802, 88);
+            this.line100.Name = "line100";
+            this.line100.RightOrBelowArrow = true;
+            this.line100.Size = new System.Drawing.Size(18, 10);
+            this.line100.TabIndex = 189;
+            // 
+            // M_CH1_Output_Mix1
+            // 
+            this.M_CH1_Output_Mix1.BackColor = System.Drawing.Color.White;
+            this.M_CH1_Output_Mix1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH1_Output_Mix1.Location = new System.Drawing.Point(782, 83);
+            this.M_CH1_Output_Mix1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH1_Output_Mix1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH1_Output_Mix1.Name = "M_CH1_Output_Mix1";
+            this.M_CH1_Output_Mix1.Size = new System.Drawing.Size(20, 20);
+            this.M_CH1_Output_Mix1.TabIndex = 188;
+            this.M_CH1_Output_Mix1.Click += new System.EventHandler(this.M_CH1_Output_Mix1_Click);
+            // 
+            // line101
+            // 
+            this.line101.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line101.BackColor = System.Drawing.Color.Transparent;
+            this.line101.Horizontal = true;
+            this.line101.LeftOrUpArrow = false;
+            this.line101.LineColor = System.Drawing.Color.Black;
+            this.line101.LineWidth = 1;
+            this.line101.Location = new System.Drawing.Point(839, 88);
+            this.line101.Name = "line101";
+            this.line101.RightOrBelowArrow = true;
+            this.line101.Size = new System.Drawing.Size(18, 10);
+            this.line101.TabIndex = 187;
+            // 
+            // line102
+            // 
+            this.line102.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line102.BackColor = System.Drawing.Color.Transparent;
+            this.line102.Horizontal = true;
+            this.line102.LeftOrUpArrow = false;
+            this.line102.LineColor = System.Drawing.Color.Black;
+            this.line102.LineWidth = 1;
+            this.line102.Location = new System.Drawing.Point(802, 57);
+            this.line102.Name = "line102";
+            this.line102.RightOrBelowArrow = false;
+            this.line102.Size = new System.Drawing.Size(27, 10);
+            this.line102.TabIndex = 182;
+            // 
+            // add8
+            // 
+            this.add8.BackColor = System.Drawing.Color.Transparent;
+            this.add8.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add8.Location = new System.Drawing.Point(819, 83);
+            this.add8.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add8.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add8.Name = "add8";
+            this.add8.Size = new System.Drawing.Size(20, 20);
+            this.add8.TabIndex = 186;
+            // 
+            // line103
+            // 
+            this.line103.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line103.BackColor = System.Drawing.Color.Transparent;
+            this.line103.Horizontal = false;
+            this.line103.LeftOrUpArrow = true;
+            this.line103.LineColor = System.Drawing.Color.Black;
+            this.line103.LineWidth = 1;
+            this.line103.Location = new System.Drawing.Point(824, 104);
+            this.line103.Name = "line103";
+            this.line103.RightOrBelowArrow = false;
+            this.line103.Size = new System.Drawing.Size(10, 20);
+            this.line103.TabIndex = 185;
+            // 
+            // line104
+            // 
+            this.line104.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line104.BackColor = System.Drawing.Color.Transparent;
+            this.line104.Horizontal = false;
+            this.line104.LeftOrUpArrow = false;
+            this.line104.LineColor = System.Drawing.Color.Black;
+            this.line104.LineWidth = 1;
+            this.line104.Location = new System.Drawing.Point(824, 62);
+            this.line104.Name = "line104";
+            this.line104.RightOrBelowArrow = true;
+            this.line104.Size = new System.Drawing.Size(10, 20);
+            this.line104.TabIndex = 184;
+            // 
+            // line105
+            // 
+            this.line105.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line105.BackColor = System.Drawing.Color.Transparent;
+            this.line105.Horizontal = true;
+            this.line105.LeftOrUpArrow = false;
+            this.line105.LineColor = System.Drawing.Color.Black;
+            this.line105.LineWidth = 1;
+            this.line105.Location = new System.Drawing.Point(802, 119);
+            this.line105.Name = "line105";
+            this.line105.RightOrBelowArrow = false;
+            this.line105.Size = new System.Drawing.Size(28, 10);
+            this.line105.TabIndex = 183;
+            // 
+            // M_CH1_Output_Mix0
+            // 
+            this.M_CH1_Output_Mix0.BackColor = System.Drawing.Color.White;
+            this.M_CH1_Output_Mix0.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH1_Output_Mix0.Location = new System.Drawing.Point(782, 114);
+            this.M_CH1_Output_Mix0.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH1_Output_Mix0.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH1_Output_Mix0.Name = "M_CH1_Output_Mix0";
+            this.M_CH1_Output_Mix0.Size = new System.Drawing.Size(20, 20);
+            this.M_CH1_Output_Mix0.TabIndex = 181;
+            this.M_CH1_Output_Mix0.Click += new System.EventHandler(this.M_CH1_Output_Mix0_Click);
+            // 
+            // btn_DRC2
+            // 
+            this.btn_DRC2.BackColor = System.Drawing.Color.LightGreen;
+            this.btn_DRC2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_DRC2.Location = new System.Drawing.Point(670, 266);
+            this.btn_DRC2.Name = "btn_DRC2";
+            this.btn_DRC2.Size = new System.Drawing.Size(51, 138);
+            this.btn_DRC2.TabIndex = 179;
+            this.btn_DRC2.Text = "DRC2";
+            this.btn_DRC2.UseVisualStyleBackColor = false;
+            this.btn_DRC2.Click += new System.EventHandler(this.btn_DRC2_Click);
+            // 
+            // btn_DRC1
+            // 
+            this.btn_DRC1.BackColor = System.Drawing.Color.LightGreen;
+            this.btn_DRC1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_DRC1.Location = new System.Drawing.Point(670, 43);
+            this.btn_DRC1.Name = "btn_DRC1";
+            this.btn_DRC1.Size = new System.Drawing.Size(51, 157);
+            this.btn_DRC1.TabIndex = 178;
+            this.btn_DRC1.Text = "DRC1";
+            this.btn_DRC1.UseVisualStyleBackColor = false;
+            this.btn_DRC1.Click += new System.EventHandler(this.btn_DRC1_Click);
+            // 
+            // line99
+            // 
+            this.line99.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line99.BackColor = System.Drawing.Color.Transparent;
+            this.line99.Horizontal = true;
+            this.line99.LeftOrUpArrow = false;
+            this.line99.LineColor = System.Drawing.Color.Black;
+            this.line99.LineWidth = 1;
+            this.line99.Location = new System.Drawing.Point(592, 378);
+            this.line99.Name = "line99";
+            this.line99.RightOrBelowArrow = false;
+            this.line99.Size = new System.Drawing.Size(14, 10);
+            this.line99.TabIndex = 172;
+            // 
+            // btn_MasterVOL
+            // 
+            this.btn_MasterVOL.BackColor = System.Drawing.Color.LavenderBlush;
+            this.btn_MasterVOL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_MasterVOL.Location = new System.Drawing.Point(606, 43);
+            this.btn_MasterVOL.Name = "btn_MasterVOL";
+            this.btn_MasterVOL.Size = new System.Drawing.Size(48, 361);
+            this.btn_MasterVOL.TabIndex = 171;
+            this.btn_MasterVOL.Text = "VOL1";
+            this.btn_MasterVOL.UseVisualStyleBackColor = false;
+            this.btn_MasterVOL.Click += new System.EventHandler(this.btn_MasterVOL_Click);
+            // 
+            // line95
+            // 
+            this.line95.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line95.BackColor = System.Drawing.Color.Transparent;
+            this.line95.Horizontal = false;
+            this.line95.LeftOrUpArrow = false;
+            this.line95.LineColor = System.Drawing.Color.Black;
+            this.line95.LineWidth = 1;
+            this.line95.Location = new System.Drawing.Point(400, 354);
+            this.line95.Name = "line95";
+            this.line95.RightOrBelowArrow = false;
+            this.line95.Size = new System.Drawing.Size(10, 30);
+            this.line95.TabIndex = 164;
+            // 
+            // line98
+            // 
+            this.line98.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line98.BackColor = System.Drawing.Color.Transparent;
+            this.line98.Horizontal = true;
+            this.line98.LeftOrUpArrow = false;
+            this.line98.LineColor = System.Drawing.Color.Black;
+            this.line98.LineWidth = 1;
+            this.line98.Location = new System.Drawing.Point(405, 379);
+            this.line98.Name = "line98";
+            this.line98.RightOrBelowArrow = false;
+            this.line98.Size = new System.Drawing.Size(88, 10);
+            this.line98.TabIndex = 170;
+            // 
+            // btn_VOL4
+            // 
+            this.btn_VOL4.BackColor = System.Drawing.Color.LavenderBlush;
+            this.btn_VOL4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_VOL4.Location = new System.Drawing.Point(555, 374);
+            this.btn_VOL4.Name = "btn_VOL4";
+            this.btn_VOL4.Size = new System.Drawing.Size(37, 19);
+            this.btn_VOL4.TabIndex = 169;
+            this.btn_VOL4.Text = "VOL4";
+            this.btn_VOL4.UseVisualStyleBackColor = false;
+            this.btn_VOL4.Click += new System.EventHandler(this.btn_VOL4_Click);
+            // 
+            // line97
+            // 
+            this.line97.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line97.BackColor = System.Drawing.Color.Transparent;
+            this.line97.Horizontal = true;
+            this.line97.LeftOrUpArrow = false;
+            this.line97.LineColor = System.Drawing.Color.Black;
+            this.line97.LineWidth = 1;
+            this.line97.Location = new System.Drawing.Point(529, 379);
+            this.line97.Name = "line97";
+            this.line97.RightOrBelowArrow = false;
+            this.line97.Size = new System.Drawing.Size(26, 10);
+            this.line97.TabIndex = 168;
+            // 
+            // btn_2BQ_Out
+            // 
+            this.btn_2BQ_Out.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_2BQ_Out.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_2BQ_Out.Location = new System.Drawing.Point(493, 375);
+            this.btn_2BQ_Out.Name = "btn_2BQ_Out";
+            this.btn_2BQ_Out.Size = new System.Drawing.Size(36, 19);
+            this.btn_2BQ_Out.TabIndex = 167;
+            this.btn_2BQ_Out.Text = "2BQ";
+            this.btn_2BQ_Out.UseVisualStyleBackColor = false;
+            this.btn_2BQ_Out.Click += new System.EventHandler(this.btn_2BQ_Out_Click);
+            // 
+            // line96
+            // 
+            this.line96.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line96.BackColor = System.Drawing.Color.Transparent;
+            this.line96.Horizontal = true;
+            this.line96.LeftOrUpArrow = false;
+            this.line96.LineColor = System.Drawing.Color.Black;
+            this.line96.LineWidth = 1;
+            this.line96.Location = new System.Drawing.Point(592, 285);
+            this.line96.Name = "line96";
+            this.line96.RightOrBelowArrow = false;
+            this.line96.Size = new System.Drawing.Size(14, 10);
+            this.line96.TabIndex = 166;
+            // 
+            // btn_VOL3
+            // 
+            this.btn_VOL3.BackColor = System.Drawing.Color.LavenderBlush;
+            this.btn_VOL3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_VOL3.Location = new System.Drawing.Point(555, 281);
+            this.btn_VOL3.Name = "btn_VOL3";
+            this.btn_VOL3.Size = new System.Drawing.Size(37, 19);
+            this.btn_VOL3.TabIndex = 165;
+            this.btn_VOL3.Text = "VOL3";
+            this.btn_VOL3.UseVisualStyleBackColor = false;
+            this.btn_VOL3.Click += new System.EventHandler(this.btn_VOL3_Click);
+            // 
+            // line92
+            // 
+            this.line92.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line92.BackColor = System.Drawing.Color.Transparent;
+            this.line92.Horizontal = false;
+            this.line92.LeftOrUpArrow = false;
+            this.line92.LineColor = System.Drawing.Color.Black;
+            this.line92.LineWidth = 1;
+            this.line92.Location = new System.Drawing.Point(400, 323);
+            this.line92.Name = "line92";
+            this.line92.RightOrBelowArrow = false;
+            this.line92.Size = new System.Drawing.Size(10, 30);
+            this.line92.TabIndex = 161;
+            // 
+            // line94
+            // 
+            this.line94.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line94.BackColor = System.Drawing.Color.Transparent;
+            this.line94.Horizontal = false;
+            this.line94.LeftOrUpArrow = false;
+            this.line94.LineColor = System.Drawing.Color.Black;
+            this.line94.LineWidth = 1;
+            this.line94.Location = new System.Drawing.Point(538, 292);
+            this.line94.Name = "line94";
+            this.line94.RightOrBelowArrow = false;
+            this.line94.Size = new System.Drawing.Size(10, 61);
+            this.line94.TabIndex = 163;
+            // 
+            // line93
+            // 
+            this.line93.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line93.BackColor = System.Drawing.Color.Transparent;
+            this.line93.Horizontal = true;
+            this.line93.LeftOrUpArrow = false;
+            this.line93.LineColor = System.Drawing.Color.Black;
+            this.line93.LineWidth = 1;
+            this.line93.Location = new System.Drawing.Point(179, 348);
+            this.line93.Name = "line93";
+            this.line93.RightOrBelowArrow = false;
+            this.line93.Size = new System.Drawing.Size(365, 10);
+            this.line93.TabIndex = 162;
+            // 
+            // line87
+            // 
+            this.line87.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line87.BackColor = System.Drawing.Color.Transparent;
+            this.line87.Horizontal = false;
+            this.line87.LeftOrUpArrow = false;
+            this.line87.LineColor = System.Drawing.Color.Black;
+            this.line87.LineWidth = 1;
+            this.line87.Location = new System.Drawing.Point(400, 292);
+            this.line87.Name = "line87";
+            this.line87.RightOrBelowArrow = false;
+            this.line87.Size = new System.Drawing.Size(10, 30);
+            this.line87.TabIndex = 160;
+            // 
+            // line76
+            // 
+            this.line76.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line76.BackColor = System.Drawing.Color.Transparent;
+            this.line76.Horizontal = false;
+            this.line76.LeftOrUpArrow = false;
+            this.line76.LineColor = System.Drawing.Color.Black;
+            this.line76.LineWidth = 1;
+            this.line76.Location = new System.Drawing.Point(400, 181);
+            this.line76.Name = "line76";
+            this.line76.RightOrBelowArrow = false;
+            this.line76.Size = new System.Drawing.Size(10, 110);
+            this.line76.TabIndex = 142;
+            // 
+            // line90
+            // 
+            this.line90.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line90.BackColor = System.Drawing.Color.Transparent;
+            this.line90.Horizontal = true;
+            this.line90.LeftOrUpArrow = false;
+            this.line90.LineColor = System.Drawing.Color.Black;
+            this.line90.LineWidth = 1;
+            this.line90.Location = new System.Drawing.Point(144, 317);
+            this.line90.Name = "line90";
+            this.line90.RightOrBelowArrow = false;
+            this.line90.Size = new System.Drawing.Size(34, 10);
+            this.line90.TabIndex = 159;
+            // 
+            // line91
+            // 
+            this.line91.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line91.BackColor = System.Drawing.Color.Transparent;
+            this.line91.Horizontal = true;
+            this.line91.LeftOrUpArrow = false;
+            this.line91.LineColor = System.Drawing.Color.Black;
+            this.line91.LineWidth = 1;
+            this.line91.Location = new System.Drawing.Point(179, 317);
+            this.line91.Name = "line91";
+            this.line91.RightOrBelowArrow = false;
+            this.line91.Size = new System.Drawing.Size(246, 10);
+            this.line91.TabIndex = 158;
+            // 
+            // line89
+            // 
+            this.line89.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line89.BackColor = System.Drawing.Color.Transparent;
+            this.line89.Horizontal = true;
+            this.line89.LeftOrUpArrow = false;
+            this.line89.LineColor = System.Drawing.Color.Black;
+            this.line89.LineWidth = 1;
+            this.line89.Location = new System.Drawing.Point(162, 286);
+            this.line89.Name = "line89";
+            this.line89.RightOrBelowArrow = false;
+            this.line89.Size = new System.Drawing.Size(16, 10);
+            this.line89.TabIndex = 157;
+            // 
+            // line88
+            // 
+            this.line88.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line88.BackColor = System.Drawing.Color.Transparent;
+            this.line88.Horizontal = true;
+            this.line88.LeftOrUpArrow = false;
+            this.line88.LineColor = System.Drawing.Color.Black;
+            this.line88.LineWidth = 1;
+            this.line88.Location = new System.Drawing.Point(179, 286);
+            this.line88.Name = "line88";
+            this.line88.RightOrBelowArrow = false;
+            this.line88.Size = new System.Drawing.Size(246, 10);
+            this.line88.TabIndex = 156;
+            // 
+            // line86
+            // 
+            this.line86.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line86.BackColor = System.Drawing.Color.Transparent;
+            this.line86.Horizontal = false;
+            this.line86.LeftOrUpArrow = false;
+            this.line86.LineColor = System.Drawing.Color.Black;
+            this.line86.LineWidth = 1;
+            this.line86.Location = new System.Drawing.Point(156, 181);
+            this.line86.Name = "line86";
+            this.line86.RightOrBelowArrow = false;
+            this.line86.Size = new System.Drawing.Size(10, 111);
+            this.line86.TabIndex = 154;
+            // 
+            // line83
+            // 
+            this.line83.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line83.BackColor = System.Drawing.Color.Transparent;
+            this.line83.Horizontal = false;
+            this.line83.LeftOrUpArrow = false;
+            this.line83.LineColor = System.Drawing.Color.Black;
+            this.line83.LineWidth = 1;
+            this.line83.Location = new System.Drawing.Point(138, 181);
+            this.line83.Name = "line83";
+            this.line83.RightOrBelowArrow = false;
+            this.line83.Size = new System.Drawing.Size(10, 142);
+            this.line83.TabIndex = 153;
+            // 
+            // line84
+            // 
+            this.line84.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line84.BackColor = System.Drawing.Color.Transparent;
+            this.line84.Horizontal = false;
+            this.line84.LeftOrUpArrow = false;
+            this.line84.LineColor = System.Drawing.Color.Black;
+            this.line84.LineWidth = 1;
+            this.line84.Location = new System.Drawing.Point(138, 150);
+            this.line84.Name = "line84";
+            this.line84.RightOrBelowArrow = false;
+            this.line84.Size = new System.Drawing.Size(10, 30);
+            this.line84.TabIndex = 152;
+            // 
+            // line85
+            // 
+            this.line85.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line85.BackColor = System.Drawing.Color.Transparent;
+            this.line85.Horizontal = false;
+            this.line85.LeftOrUpArrow = false;
+            this.line85.LineColor = System.Drawing.Color.Black;
+            this.line85.LineWidth = 1;
+            this.line85.Location = new System.Drawing.Point(138, 63);
+            this.line85.Name = "line85";
+            this.line85.RightOrBelowArrow = false;
+            this.line85.Size = new System.Drawing.Size(10, 86);
+            this.line85.TabIndex = 151;
+            // 
+            // line82
+            // 
+            this.line82.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line82.BackColor = System.Drawing.Color.Transparent;
+            this.line82.Horizontal = true;
+            this.line82.LeftOrUpArrow = false;
+            this.line82.LineColor = System.Drawing.Color.Black;
+            this.line82.LineWidth = 1;
+            this.line82.Location = new System.Drawing.Point(501, 220);
+            this.line82.Name = "line82";
+            this.line82.RightOrBelowArrow = false;
+            this.line82.Size = new System.Drawing.Size(18, 10);
+            this.line82.TabIndex = 149;
+            // 
+            // line81
+            // 
+            this.line81.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line81.BackColor = System.Drawing.Color.Transparent;
+            this.line81.Horizontal = true;
+            this.line81.LeftOrUpArrow = false;
+            this.line81.LineColor = System.Drawing.Color.Black;
+            this.line81.LineWidth = 1;
+            this.line81.Location = new System.Drawing.Point(501, 101);
+            this.line81.Name = "line81";
+            this.line81.RightOrBelowArrow = false;
+            this.line81.Size = new System.Drawing.Size(18, 10);
+            this.line81.TabIndex = 147;
+            // 
+            // line80
+            // 
+            this.line80.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line80.BackColor = System.Drawing.Color.Transparent;
+            this.line80.Horizontal = false;
+            this.line80.LeftOrUpArrow = false;
+            this.line80.LineColor = System.Drawing.Color.Black;
+            this.line80.LineWidth = 1;
+            this.line80.Location = new System.Drawing.Point(429, 216);
+            this.line80.Name = "line80";
+            this.line80.RightOrBelowArrow = false;
+            this.line80.Size = new System.Drawing.Size(10, 34);
+            this.line80.TabIndex = 146;
+            // 
+            // line79
+            // 
+            this.line79.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line79.BackColor = System.Drawing.Color.Transparent;
+            this.line79.Horizontal = true;
+            this.line79.LeftOrUpArrow = false;
+            this.line79.LineColor = System.Drawing.Color.Black;
+            this.line79.LineWidth = 1;
+            this.line79.Location = new System.Drawing.Point(434, 210);
+            this.line79.Name = "line79";
+            this.line79.RightOrBelowArrow = false;
+            this.line79.Size = new System.Drawing.Size(12, 10);
+            this.line79.TabIndex = 145;
+            // 
+            // line77
+            // 
+            this.line77.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line77.BackColor = System.Drawing.Color.Transparent;
+            this.line77.Horizontal = false;
+            this.line77.LeftOrUpArrow = false;
+            this.line77.LineColor = System.Drawing.Color.Black;
+            this.line77.LineWidth = 1;
+            this.line77.Location = new System.Drawing.Point(400, 98);
+            this.line77.Name = "line77";
+            this.line77.RightOrBelowArrow = false;
+            this.line77.Size = new System.Drawing.Size(10, 82);
+            this.line77.TabIndex = 143;
+            // 
+            // line78
+            // 
+            this.line78.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line78.BackColor = System.Drawing.Color.Transparent;
+            this.line78.Horizontal = true;
+            this.line78.LeftOrUpArrow = false;
+            this.line78.LineColor = System.Drawing.Color.Black;
+            this.line78.LineWidth = 1;
+            this.line78.Location = new System.Drawing.Point(405, 89);
+            this.line78.Name = "line78";
+            this.line78.RightOrBelowArrow = false;
+            this.line78.Size = new System.Drawing.Size(42, 17);
+            this.line78.TabIndex = 144;
+            // 
+            // line26
+            // 
+            this.line26.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line26.BackColor = System.Drawing.Color.Transparent;
+            this.line26.Horizontal = true;
+            this.line26.LeftOrUpArrow = false;
+            this.line26.LineColor = System.Drawing.Color.Black;
+            this.line26.LineWidth = 1;
+            this.line26.Location = new System.Drawing.Point(284, 88);
+            this.line26.Name = "line26";
+            this.line26.RightOrBelowArrow = false;
+            this.line26.Size = new System.Drawing.Size(12, 10);
+            this.line26.TabIndex = 64;
+            // 
+            // line75
+            // 
+            this.line75.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line75.BackColor = System.Drawing.Color.Transparent;
+            this.line75.Horizontal = true;
+            this.line75.LeftOrUpArrow = false;
+            this.line75.LineColor = System.Drawing.Color.Black;
+            this.line75.LineWidth = 1;
+            this.line75.Location = new System.Drawing.Point(444, 286);
+            this.line75.Name = "line75";
+            this.line75.RightOrBelowArrow = true;
+            this.line75.Size = new System.Drawing.Size(18, 10);
+            this.line75.TabIndex = 141;
+            // 
+            // M_CH3_Input_Mix0
+            // 
+            this.M_CH3_Input_Mix0.BackColor = System.Drawing.Color.White;
+            this.M_CH3_Input_Mix0.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH3_Input_Mix0.Location = new System.Drawing.Point(424, 281);
+            this.M_CH3_Input_Mix0.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH3_Input_Mix0.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH3_Input_Mix0.Name = "M_CH3_Input_Mix0";
+            this.M_CH3_Input_Mix0.Size = new System.Drawing.Size(20, 20);
+            this.M_CH3_Input_Mix0.TabIndex = 140;
+            this.M_CH3_Input_Mix0.Click += new System.EventHandler(this.M_CH3_Input_Mix0_Click);
+            // 
+            // line69
+            // 
+            this.line69.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line69.BackColor = System.Drawing.Color.Transparent;
+            this.line69.Horizontal = true;
+            this.line69.LeftOrUpArrow = false;
+            this.line69.LineColor = System.Drawing.Color.Black;
+            this.line69.LineWidth = 1;
+            this.line69.Location = new System.Drawing.Point(530, 286);
+            this.line69.Name = "line69";
+            this.line69.RightOrBelowArrow = false;
+            this.line69.Size = new System.Drawing.Size(26, 10);
+            this.line69.TabIndex = 139;
+            // 
+            // btn_1BQ_SubOut
+            // 
+            this.btn_1BQ_SubOut.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_1BQ_SubOut.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_1BQ_SubOut.Location = new System.Drawing.Point(494, 282);
+            this.btn_1BQ_SubOut.Name = "btn_1BQ_SubOut";
+            this.btn_1BQ_SubOut.Size = new System.Drawing.Size(36, 19);
+            this.btn_1BQ_SubOut.TabIndex = 138;
+            this.btn_1BQ_SubOut.Text = "1BQ";
+            this.btn_1BQ_SubOut.UseVisualStyleBackColor = false;
+            this.btn_1BQ_SubOut.Click += new System.EventHandler(this.btn_1BQ_SubOut_Click);
+            // 
+            // line70
+            // 
+            this.line70.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line70.BackColor = System.Drawing.Color.Transparent;
+            this.line70.Horizontal = true;
+            this.line70.LeftOrUpArrow = false;
+            this.line70.LineColor = System.Drawing.Color.Black;
+            this.line70.LineWidth = 1;
+            this.line70.Location = new System.Drawing.Point(481, 286);
+            this.line70.Name = "line70";
+            this.line70.RightOrBelowArrow = false;
+            this.line70.Size = new System.Drawing.Size(13, 10);
+            this.line70.TabIndex = 137;
+            // 
+            // line71
+            // 
+            this.line71.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line71.BackColor = System.Drawing.Color.Transparent;
+            this.line71.Horizontal = true;
+            this.line71.LeftOrUpArrow = false;
+            this.line71.LineColor = System.Drawing.Color.Black;
+            this.line71.LineWidth = 1;
+            this.line71.Location = new System.Drawing.Point(444, 255);
+            this.line71.Name = "line71";
+            this.line71.RightOrBelowArrow = false;
+            this.line71.Size = new System.Drawing.Size(27, 10);
+            this.line71.TabIndex = 132;
+            // 
+            // add7
+            // 
+            this.add7.BackColor = System.Drawing.Color.Transparent;
+            this.add7.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add7.Location = new System.Drawing.Point(461, 281);
+            this.add7.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add7.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add7.Name = "add7";
+            this.add7.Size = new System.Drawing.Size(20, 20);
+            this.add7.TabIndex = 136;
+            // 
+            // line72
+            // 
+            this.line72.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line72.BackColor = System.Drawing.Color.Transparent;
+            this.line72.Horizontal = false;
+            this.line72.LeftOrUpArrow = true;
+            this.line72.LineColor = System.Drawing.Color.Black;
+            this.line72.LineWidth = 1;
+            this.line72.Location = new System.Drawing.Point(466, 302);
+            this.line72.Name = "line72";
+            this.line72.RightOrBelowArrow = false;
+            this.line72.Size = new System.Drawing.Size(10, 20);
+            this.line72.TabIndex = 135;
+            // 
+            // line73
+            // 
+            this.line73.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line73.BackColor = System.Drawing.Color.Transparent;
+            this.line73.Horizontal = false;
+            this.line73.LeftOrUpArrow = false;
+            this.line73.LineColor = System.Drawing.Color.Black;
+            this.line73.LineWidth = 1;
+            this.line73.Location = new System.Drawing.Point(466, 260);
+            this.line73.Name = "line73";
+            this.line73.RightOrBelowArrow = true;
+            this.line73.Size = new System.Drawing.Size(10, 20);
+            this.line73.TabIndex = 134;
+            // 
+            // line74
+            // 
+            this.line74.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line74.BackColor = System.Drawing.Color.Transparent;
+            this.line74.Horizontal = true;
+            this.line74.LeftOrUpArrow = false;
+            this.line74.LineColor = System.Drawing.Color.Black;
+            this.line74.LineWidth = 1;
+            this.line74.Location = new System.Drawing.Point(444, 317);
+            this.line74.Name = "line74";
+            this.line74.RightOrBelowArrow = false;
+            this.line74.Size = new System.Drawing.Size(28, 10);
+            this.line74.TabIndex = 133;
+            // 
+            // M_CH3_Input_Mix1
+            // 
+            this.M_CH3_Input_Mix1.BackColor = System.Drawing.Color.White;
+            this.M_CH3_Input_Mix1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH3_Input_Mix1.Location = new System.Drawing.Point(424, 312);
+            this.M_CH3_Input_Mix1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH3_Input_Mix1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH3_Input_Mix1.Name = "M_CH3_Input_Mix1";
+            this.M_CH3_Input_Mix1.Size = new System.Drawing.Size(20, 20);
+            this.M_CH3_Input_Mix1.TabIndex = 131;
+            this.M_CH3_Input_Mix1.Click += new System.EventHandler(this.M_CH3_Input_Mix1_Click);
+            // 
+            // M_CH3_Input_Mix2
+            // 
+            this.M_CH3_Input_Mix2.BackColor = System.Drawing.Color.White;
+            this.M_CH3_Input_Mix2.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH3_Input_Mix2.Location = new System.Drawing.Point(424, 250);
+            this.M_CH3_Input_Mix2.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH3_Input_Mix2.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH3_Input_Mix2.Name = "M_CH3_Input_Mix2";
+            this.M_CH3_Input_Mix2.Size = new System.Drawing.Size(20, 20);
+            this.M_CH3_Input_Mix2.TabIndex = 130;
+            this.M_CH3_Input_Mix2.Click += new System.EventHandler(this.M_CH3_Input_Mix2_Click);
+            // 
+            // line68
+            // 
+            this.line68.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line68.BackColor = System.Drawing.Color.Transparent;
+            this.line68.Horizontal = true;
+            this.line68.LeftOrUpArrow = false;
+            this.line68.LineColor = System.Drawing.Color.Black;
+            this.line68.LineWidth = 1;
+            this.line68.Location = new System.Drawing.Point(179, 237);
+            this.line68.Name = "line68";
+            this.line68.RightOrBelowArrow = false;
+            this.line68.Size = new System.Drawing.Size(12, 10);
+            this.line68.TabIndex = 129;
+            // 
+            // line67
+            // 
+            this.line67.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line67.BackColor = System.Drawing.Color.Transparent;
+            this.line67.Horizontal = false;
+            this.line67.LeftOrUpArrow = false;
+            this.line67.LineColor = System.Drawing.Color.Black;
+            this.line67.LineWidth = 1;
+            this.line67.Location = new System.Drawing.Point(173, 181);
+            this.line67.Name = "line67";
+            this.line67.RightOrBelowArrow = false;
+            this.line67.Size = new System.Drawing.Size(10, 173);
+            this.line67.TabIndex = 128;
+            // 
+            // line66
+            // 
+            this.line66.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line66.BackColor = System.Drawing.Color.Transparent;
+            this.line66.Horizontal = false;
+            this.line66.LeftOrUpArrow = false;
+            this.line66.LineColor = System.Drawing.Color.Black;
+            this.line66.LineWidth = 1;
+            this.line66.Location = new System.Drawing.Point(173, 150);
+            this.line66.Name = "line66";
+            this.line66.RightOrBelowArrow = false;
+            this.line66.Size = new System.Drawing.Size(10, 30);
+            this.line66.TabIndex = 127;
+            // 
+            // line65
+            // 
+            this.line65.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line65.BackColor = System.Drawing.Color.Transparent;
+            this.line65.Horizontal = true;
+            this.line65.LeftOrUpArrow = false;
+            this.line65.LineColor = System.Drawing.Color.Black;
+            this.line65.LineWidth = 1;
+            this.line65.Location = new System.Drawing.Point(179, 119);
+            this.line65.Name = "line65";
+            this.line65.RightOrBelowArrow = false;
+            this.line65.Size = new System.Drawing.Size(12, 10);
+            this.line65.TabIndex = 126;
+            // 
+            // line64
+            // 
+            this.line64.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line64.BackColor = System.Drawing.Color.Transparent;
+            this.line64.Horizontal = false;
+            this.line64.LeftOrUpArrow = false;
+            this.line64.LineColor = System.Drawing.Color.Black;
+            this.line64.LineWidth = 1;
+            this.line64.Location = new System.Drawing.Point(173, 124);
+            this.line64.Name = "line64";
+            this.line64.RightOrBelowArrow = false;
+            this.line64.Size = new System.Drawing.Size(10, 25);
+            this.line64.TabIndex = 125;
+            // 
+            // line49
+            // 
+            this.line49.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line49.BackColor = System.Drawing.Color.Transparent;
+            this.line49.Horizontal = true;
+            this.line49.LeftOrUpArrow = false;
+            this.line49.LineColor = System.Drawing.Color.Black;
+            this.line49.LineWidth = 1;
+            this.line49.Location = new System.Drawing.Point(84, 144);
+            this.line49.Name = "line49";
+            this.line49.RightOrBelowArrow = false;
+            this.line49.Size = new System.Drawing.Size(212, 10);
+            this.line49.TabIndex = 103;
+            // 
+            // line63
+            // 
+            this.line63.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line63.BackColor = System.Drawing.Color.Transparent;
+            this.line63.Horizontal = false;
+            this.line63.LeftOrUpArrow = false;
+            this.line63.LineColor = System.Drawing.Color.Black;
+            this.line63.LineWidth = 1;
+            this.line63.Location = new System.Drawing.Point(78, 149);
+            this.line63.Name = "line63";
+            this.line63.RightOrBelowArrow = false;
+            this.line63.Size = new System.Drawing.Size(10, 31);
+            this.line63.TabIndex = 124;
+            // 
+            // line42
+            // 
+            this.line42.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line42.BackColor = System.Drawing.Color.Transparent;
+            this.line42.Horizontal = true;
+            this.line42.LeftOrUpArrow = false;
+            this.line42.LineColor = System.Drawing.Color.Black;
+            this.line42.LineWidth = 1;
+            this.line42.Location = new System.Drawing.Point(592, 175);
+            this.line42.Name = "line42";
+            this.line42.RightOrBelowArrow = false;
+            this.line42.Size = new System.Drawing.Size(14, 10);
+            this.line42.TabIndex = 123;
+            // 
+            // line43
+            // 
+            this.line43.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line43.BackColor = System.Drawing.Color.Transparent;
+            this.line43.Horizontal = false;
+            this.line43.LeftOrUpArrow = false;
+            this.line43.LineColor = System.Drawing.Color.Black;
+            this.line43.LineWidth = 1;
+            this.line43.Location = new System.Drawing.Point(451, 181);
+            this.line43.Name = "line43";
+            this.line43.RightOrBelowArrow = false;
+            this.line43.Size = new System.Drawing.Size(10, 25);
+            this.line43.TabIndex = 122;
+            // 
+            // line44
+            // 
+            this.line44.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line44.BackColor = System.Drawing.Color.Transparent;
+            this.line44.Horizontal = true;
+            this.line44.LeftOrUpArrow = false;
+            this.line44.LineColor = System.Drawing.Color.Black;
+            this.line44.LineWidth = 1;
+            this.line44.Location = new System.Drawing.Point(466, 210);
+            this.line44.Name = "line44";
+            this.line44.RightOrBelowArrow = false;
+            this.line44.Size = new System.Drawing.Size(16, 10);
+            this.line44.TabIndex = 121;
+            // 
+            // add4
+            // 
+            this.add4.BackColor = System.Drawing.Color.Transparent;
+            this.add4.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add4.Location = new System.Drawing.Point(446, 205);
+            this.add4.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add4.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add4.Name = "add4";
+            this.add4.Size = new System.Drawing.Size(20, 20);
+            this.add4.TabIndex = 120;
+            // 
+            // line45
+            // 
+            this.line45.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line45.BackColor = System.Drawing.Color.Transparent;
+            this.line45.Horizontal = true;
+            this.line45.LeftOrUpArrow = false;
+            this.line45.LineColor = System.Drawing.Color.Black;
+            this.line45.LineWidth = 1;
+            this.line45.Location = new System.Drawing.Point(501, 201);
+            this.line45.Name = "line45";
+            this.line45.RightOrBelowArrow = false;
+            this.line45.Size = new System.Drawing.Size(13, 10);
+            this.line45.TabIndex = 119;
+            // 
+            // line46
+            // 
+            this.line46.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line46.BackColor = System.Drawing.Color.Transparent;
+            this.line46.Horizontal = true;
+            this.line46.LeftOrUpArrow = false;
+            this.line46.LineColor = System.Drawing.Color.Black;
+            this.line46.LineWidth = 1;
+            this.line46.Location = new System.Drawing.Point(533, 201);
+            this.line46.Name = "line46";
+            this.line46.RightOrBelowArrow = false;
+            this.line46.Size = new System.Drawing.Size(10, 10);
+            this.line46.TabIndex = 118;
+            // 
+            // line47
+            // 
+            this.line47.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line47.BackColor = System.Drawing.Color.Transparent;
+            this.line47.Horizontal = false;
+            this.line47.LeftOrUpArrow = false;
+            this.line47.LineColor = System.Drawing.Color.Black;
+            this.line47.LineWidth = 1;
+            this.line47.Location = new System.Drawing.Point(538, 181);
+            this.line47.Name = "line47";
+            this.line47.RightOrBelowArrow = false;
+            this.line47.Size = new System.Drawing.Size(10, 26);
+            this.line47.TabIndex = 117;
+            // 
+            // line48
+            // 
+            this.line48.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line48.BackColor = System.Drawing.Color.Transparent;
+            this.line48.Horizontal = true;
+            this.line48.LeftOrUpArrow = false;
+            this.line48.LineColor = System.Drawing.Color.Black;
+            this.line48.LineWidth = 1;
+            this.line48.Location = new System.Drawing.Point(529, 175);
+            this.line48.Name = "line48";
+            this.line48.RightOrBelowArrow = false;
+            this.line48.Size = new System.Drawing.Size(26, 10);
+            this.line48.TabIndex = 116;
+            // 
+            // btn_VOL2
+            // 
+            this.btn_VOL2.BackColor = System.Drawing.Color.LavenderBlush;
+            this.btn_VOL2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_VOL2.Location = new System.Drawing.Point(555, 171);
+            this.btn_VOL2.Name = "btn_VOL2";
+            this.btn_VOL2.Size = new System.Drawing.Size(37, 19);
+            this.btn_VOL2.TabIndex = 115;
+            this.btn_VOL2.Text = "VOL2";
+            this.btn_VOL2.UseVisualStyleBackColor = false;
+            this.btn_VOL2.Click += new System.EventHandler(this.btn_VOL2_Click);
+            // 
+            // btn_1BQ_ROut
+            // 
+            this.btn_1BQ_ROut.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_1BQ_ROut.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_1BQ_ROut.Location = new System.Drawing.Point(493, 171);
+            this.btn_1BQ_ROut.Name = "btn_1BQ_ROut";
+            this.btn_1BQ_ROut.Size = new System.Drawing.Size(36, 19);
+            this.btn_1BQ_ROut.TabIndex = 114;
+            this.btn_1BQ_ROut.Text = "1BQ";
+            this.btn_1BQ_ROut.UseVisualStyleBackColor = false;
+            this.btn_1BQ_ROut.Click += new System.EventHandler(this.btn_1BQ_ROut_Click);
+            // 
+            // linearGain2
+            // 
+            this.linearGain2.ArrowDirection = SGM4711_Eva.MDUserCtrls.LinearGain.EnumArrowDirection.Left;
+            this.linearGain2.BackColor = System.Drawing.Color.White;
+            this.linearGain2.FrameColor = System.Drawing.Color.Black;
+            this.linearGain2.Gain = -1;
+            this.linearGain2.Location = new System.Drawing.Point(513, 196);
+            this.linearGain2.Name = "linearGain2";
+            this.linearGain2.Size = new System.Drawing.Size(20, 20);
+            this.linearGain2.TabIndex = 112;
+            // 
+            // line50
+            // 
+            this.line50.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line50.BackColor = System.Drawing.Color.Transparent;
+            this.line50.Horizontal = true;
+            this.line50.LeftOrUpArrow = false;
+            this.line50.LineColor = System.Drawing.Color.Black;
+            this.line50.LineWidth = 1;
+            this.line50.Location = new System.Drawing.Point(395, 175);
+            this.line50.Name = "line50";
+            this.line50.RightOrBelowArrow = false;
+            this.line50.Size = new System.Drawing.Size(98, 10);
+            this.line50.TabIndex = 111;
+            // 
+            // btn_6EQ_R
+            // 
+            this.btn_6EQ_R.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_6EQ_R.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_6EQ_R.Location = new System.Drawing.Point(359, 171);
+            this.btn_6EQ_R.Name = "btn_6EQ_R";
+            this.btn_6EQ_R.Size = new System.Drawing.Size(36, 19);
+            this.btn_6EQ_R.TabIndex = 110;
+            this.btn_6EQ_R.Text = "6BQ";
+            this.btn_6EQ_R.UseVisualStyleBackColor = false;
+            this.btn_6EQ_R.Click += new System.EventHandler(this.btn_6EQ_R_Click);
+            // 
+            // line51
+            // 
+            this.line51.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line51.BackColor = System.Drawing.Color.Transparent;
+            this.line51.Horizontal = true;
+            this.line51.LeftOrUpArrow = false;
+            this.line51.LineColor = System.Drawing.Color.Black;
+            this.line51.LineWidth = 1;
+            this.line51.Location = new System.Drawing.Point(341, 175);
+            this.line51.Name = "line51";
+            this.line51.RightOrBelowArrow = false;
+            this.line51.Size = new System.Drawing.Size(18, 10);
+            this.line51.TabIndex = 109;
+            // 
+            // line52
+            // 
+            this.line52.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line52.BackColor = System.Drawing.Color.Transparent;
+            this.line52.Horizontal = true;
+            this.line52.LeftOrUpArrow = false;
+            this.line52.LineColor = System.Drawing.Color.Black;
+            this.line52.LineWidth = 1;
+            this.line52.Location = new System.Drawing.Point(316, 144);
+            this.line52.Name = "line52";
+            this.line52.RightOrBelowArrow = false;
+            this.line52.Size = new System.Drawing.Size(15, 10);
+            this.line52.TabIndex = 104;
+            // 
+            // add5
+            // 
+            this.add5.BackColor = System.Drawing.Color.Transparent;
+            this.add5.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add5.Location = new System.Drawing.Point(321, 170);
+            this.add5.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add5.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add5.Name = "add5";
+            this.add5.Size = new System.Drawing.Size(20, 20);
+            this.add5.TabIndex = 108;
+            // 
+            // line53
+            // 
+            this.line53.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line53.BackColor = System.Drawing.Color.Transparent;
+            this.line53.Horizontal = false;
+            this.line53.LeftOrUpArrow = true;
+            this.line53.LineColor = System.Drawing.Color.Black;
+            this.line53.LineWidth = 1;
+            this.line53.Location = new System.Drawing.Point(326, 191);
+            this.line53.Name = "line53";
+            this.line53.RightOrBelowArrow = false;
+            this.line53.Size = new System.Drawing.Size(10, 20);
+            this.line53.TabIndex = 107;
+            // 
+            // line54
+            // 
+            this.line54.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line54.BackColor = System.Drawing.Color.Transparent;
+            this.line54.Horizontal = false;
+            this.line54.LeftOrUpArrow = false;
+            this.line54.LineColor = System.Drawing.Color.Black;
+            this.line54.LineWidth = 1;
+            this.line54.Location = new System.Drawing.Point(326, 149);
+            this.line54.Name = "line54";
+            this.line54.RightOrBelowArrow = true;
+            this.line54.Size = new System.Drawing.Size(10, 20);
+            this.line54.TabIndex = 106;
+            // 
+            // line55
+            // 
+            this.line55.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line55.BackColor = System.Drawing.Color.Transparent;
+            this.line55.Horizontal = true;
+            this.line55.LeftOrUpArrow = false;
+            this.line55.LineColor = System.Drawing.Color.Black;
+            this.line55.LineWidth = 1;
+            this.line55.Location = new System.Drawing.Point(316, 206);
+            this.line55.Name = "line55";
+            this.line55.RightOrBelowArrow = false;
+            this.line55.Size = new System.Drawing.Size(15, 10);
+            this.line55.TabIndex = 105;
+            // 
+            // M_CH2_Input_Mix0
+            // 
+            this.M_CH2_Input_Mix0.BackColor = System.Drawing.Color.White;
+            this.M_CH2_Input_Mix0.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH2_Input_Mix0.Location = new System.Drawing.Point(295, 201);
+            this.M_CH2_Input_Mix0.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH2_Input_Mix0.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH2_Input_Mix0.Name = "M_CH2_Input_Mix0";
+            this.M_CH2_Input_Mix0.Size = new System.Drawing.Size(20, 20);
+            this.M_CH2_Input_Mix0.TabIndex = 102;
+            this.M_CH2_Input_Mix0.Click += new System.EventHandler(this.M_CH2_Input_Mix0_Click);
+            // 
+            // M_CH2_Input_Mix1
+            // 
+            this.M_CH2_Input_Mix1.BackColor = System.Drawing.Color.White;
+            this.M_CH2_Input_Mix1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH2_Input_Mix1.Location = new System.Drawing.Point(295, 139);
+            this.M_CH2_Input_Mix1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH2_Input_Mix1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH2_Input_Mix1.Name = "M_CH2_Input_Mix1";
+            this.M_CH2_Input_Mix1.Size = new System.Drawing.Size(20, 20);
+            this.M_CH2_Input_Mix1.TabIndex = 101;
+            this.M_CH2_Input_Mix1.Click += new System.EventHandler(this.M_CH2_Input_Mix1_Click);
+            // 
+            // line56
+            // 
+            this.line56.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line56.BackColor = System.Drawing.Color.Transparent;
+            this.line56.Horizontal = true;
+            this.line56.LeftOrUpArrow = false;
+            this.line56.LineColor = System.Drawing.Color.Black;
+            this.line56.LineWidth = 1;
+            this.line56.Location = new System.Drawing.Point(284, 206);
+            this.line56.Name = "line56";
+            this.line56.RightOrBelowArrow = false;
+            this.line56.Size = new System.Drawing.Size(12, 10);
+            this.line56.TabIndex = 100;
+            // 
+            // btn_1BQ_LRMix_R
+            // 
+            this.btn_1BQ_LRMix_R.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_1BQ_LRMix_R.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_1BQ_LRMix_R.Location = new System.Drawing.Point(248, 202);
+            this.btn_1BQ_LRMix_R.Name = "btn_1BQ_LRMix_R";
+            this.btn_1BQ_LRMix_R.Size = new System.Drawing.Size(36, 19);
+            this.btn_1BQ_LRMix_R.TabIndex = 99;
+            this.btn_1BQ_LRMix_R.Text = "1BQ";
+            this.btn_1BQ_LRMix_R.UseVisualStyleBackColor = false;
+            this.btn_1BQ_LRMix_R.Click += new System.EventHandler(this.btn_1BQ_LRMix_R_Click);
+            // 
+            // line57
+            // 
+            this.line57.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line57.BackColor = System.Drawing.Color.Transparent;
+            this.line57.Horizontal = true;
+            this.line57.LeftOrUpArrow = false;
+            this.line57.LineColor = System.Drawing.Color.Black;
+            this.line57.LineWidth = 1;
+            this.line57.Location = new System.Drawing.Point(236, 206);
+            this.line57.Name = "line57";
+            this.line57.RightOrBelowArrow = false;
+            this.line57.Size = new System.Drawing.Size(12, 10);
+            this.line57.TabIndex = 98;
+            // 
+            // line58
+            // 
+            this.line58.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line58.BackColor = System.Drawing.Color.Transparent;
+            this.line58.Horizontal = true;
+            this.line58.LeftOrUpArrow = false;
+            this.line58.LineColor = System.Drawing.Color.Black;
+            this.line58.LineWidth = 1;
+            this.line58.Location = new System.Drawing.Point(211, 175);
+            this.line58.Name = "line58";
+            this.line58.RightOrBelowArrow = false;
+            this.line58.Size = new System.Drawing.Size(15, 10);
+            this.line58.TabIndex = 93;
+            // 
+            // add6
+            // 
+            this.add6.BackColor = System.Drawing.Color.Transparent;
+            this.add6.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add6.Location = new System.Drawing.Point(216, 201);
+            this.add6.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add6.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add6.Name = "add6";
+            this.add6.Size = new System.Drawing.Size(20, 20);
+            this.add6.TabIndex = 97;
+            // 
+            // line59
+            // 
+            this.line59.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line59.BackColor = System.Drawing.Color.Transparent;
+            this.line59.Horizontal = false;
+            this.line59.LeftOrUpArrow = true;
+            this.line59.LineColor = System.Drawing.Color.Black;
+            this.line59.LineWidth = 1;
+            this.line59.Location = new System.Drawing.Point(221, 222);
+            this.line59.Name = "line59";
+            this.line59.RightOrBelowArrow = false;
+            this.line59.Size = new System.Drawing.Size(10, 20);
+            this.line59.TabIndex = 96;
+            // 
+            // line60
+            // 
+            this.line60.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line60.BackColor = System.Drawing.Color.Transparent;
+            this.line60.Horizontal = false;
+            this.line60.LeftOrUpArrow = false;
+            this.line60.LineColor = System.Drawing.Color.Black;
+            this.line60.LineWidth = 1;
+            this.line60.Location = new System.Drawing.Point(221, 180);
+            this.line60.Name = "line60";
+            this.line60.RightOrBelowArrow = true;
+            this.line60.Size = new System.Drawing.Size(10, 20);
+            this.line60.TabIndex = 95;
+            // 
+            // line61
+            // 
+            this.line61.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line61.BackColor = System.Drawing.Color.Transparent;
+            this.line61.Horizontal = true;
+            this.line61.LeftOrUpArrow = false;
+            this.line61.LineColor = System.Drawing.Color.Black;
+            this.line61.LineWidth = 1;
+            this.line61.Location = new System.Drawing.Point(211, 237);
+            this.line61.Name = "line61";
+            this.line61.RightOrBelowArrow = false;
+            this.line61.Size = new System.Drawing.Size(15, 10);
+            this.line61.TabIndex = 94;
+            // 
+            // line62
+            // 
+            this.line62.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line62.BackColor = System.Drawing.Color.Transparent;
+            this.line62.Horizontal = true;
+            this.line62.LeftOrUpArrow = false;
+            this.line62.LineColor = System.Drawing.Color.Black;
+            this.line62.LineWidth = 1;
+            this.line62.Location = new System.Drawing.Point(132, 172);
+            this.line62.Name = "line62";
+            this.line62.RightOrBelowArrow = false;
+            this.line62.Size = new System.Drawing.Size(59, 17);
+            this.line62.TabIndex = 92;
+            // 
+            // M_CH2_Input_Mix2
+            // 
+            this.M_CH2_Input_Mix2.BackColor = System.Drawing.Color.White;
+            this.M_CH2_Input_Mix2.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH2_Input_Mix2.Location = new System.Drawing.Point(190, 232);
+            this.M_CH2_Input_Mix2.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH2_Input_Mix2.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH2_Input_Mix2.Name = "M_CH2_Input_Mix2";
+            this.M_CH2_Input_Mix2.Size = new System.Drawing.Size(20, 20);
+            this.M_CH2_Input_Mix2.TabIndex = 91;
+            this.M_CH2_Input_Mix2.Click += new System.EventHandler(this.M_CH2_Input_Mix2_Click);
+            // 
+            // M_CH2_Input_Mix3
+            // 
+            this.M_CH2_Input_Mix3.BackColor = System.Drawing.Color.White;
+            this.M_CH2_Input_Mix3.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH2_Input_Mix3.Location = new System.Drawing.Point(190, 170);
+            this.M_CH2_Input_Mix3.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH2_Input_Mix3.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH2_Input_Mix3.Name = "M_CH2_Input_Mix3";
+            this.M_CH2_Input_Mix3.Size = new System.Drawing.Size(20, 20);
+            this.M_CH2_Input_Mix3.TabIndex = 90;
+            this.M_CH2_Input_Mix3.Click += new System.EventHandler(this.M_CH2_Input_Mix3_Click);
+            // 
+            // line41
+            // 
+            this.line41.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line41.BackColor = System.Drawing.Color.Transparent;
+            this.line41.Horizontal = true;
+            this.line41.LeftOrUpArrow = false;
+            this.line41.LineColor = System.Drawing.Color.Black;
+            this.line41.LineWidth = 1;
+            this.line41.Location = new System.Drawing.Point(592, 57);
+            this.line41.Name = "line41";
+            this.line41.RightOrBelowArrow = false;
+            this.line41.Size = new System.Drawing.Size(14, 10);
+            this.line41.TabIndex = 89;
+            // 
+            // line40
+            // 
+            this.line40.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line40.BackColor = System.Drawing.Color.Transparent;
+            this.line40.Horizontal = false;
+            this.line40.LeftOrUpArrow = false;
+            this.line40.LineColor = System.Drawing.Color.Black;
+            this.line40.LineWidth = 1;
+            this.line40.Location = new System.Drawing.Point(451, 63);
+            this.line40.Name = "line40";
+            this.line40.RightOrBelowArrow = false;
+            this.line40.Size = new System.Drawing.Size(10, 25);
+            this.line40.TabIndex = 88;
+            // 
+            // line39
+            // 
+            this.line39.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line39.BackColor = System.Drawing.Color.Transparent;
+            this.line39.Horizontal = true;
+            this.line39.LeftOrUpArrow = false;
+            this.line39.LineColor = System.Drawing.Color.Black;
+            this.line39.LineWidth = 1;
+            this.line39.Location = new System.Drawing.Point(466, 92);
+            this.line39.Name = "line39";
+            this.line39.RightOrBelowArrow = false;
+            this.line39.Size = new System.Drawing.Size(16, 10);
+            this.line39.TabIndex = 87;
+            // 
+            // add3
+            // 
+            this.add3.BackColor = System.Drawing.Color.Transparent;
+            this.add3.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add3.Location = new System.Drawing.Point(446, 87);
+            this.add3.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add3.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add3.Name = "add3";
+            this.add3.Size = new System.Drawing.Size(20, 20);
+            this.add3.TabIndex = 86;
+            // 
+            // line38
+            // 
+            this.line38.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line38.BackColor = System.Drawing.Color.Transparent;
+            this.line38.Horizontal = true;
+            this.line38.LeftOrUpArrow = false;
+            this.line38.LineColor = System.Drawing.Color.Black;
+            this.line38.LineWidth = 1;
+            this.line38.Location = new System.Drawing.Point(501, 83);
+            this.line38.Name = "line38";
+            this.line38.RightOrBelowArrow = false;
+            this.line38.Size = new System.Drawing.Size(13, 10);
+            this.line38.TabIndex = 85;
+            // 
+            // line37
+            // 
+            this.line37.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line37.BackColor = System.Drawing.Color.Transparent;
+            this.line37.Horizontal = true;
+            this.line37.LeftOrUpArrow = false;
+            this.line37.LineColor = System.Drawing.Color.Black;
+            this.line37.LineWidth = 1;
+            this.line37.Location = new System.Drawing.Point(533, 83);
+            this.line37.Name = "line37";
+            this.line37.RightOrBelowArrow = false;
+            this.line37.Size = new System.Drawing.Size(10, 10);
+            this.line37.TabIndex = 83;
+            // 
+            // line36
+            // 
+            this.line36.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line36.BackColor = System.Drawing.Color.Transparent;
+            this.line36.Horizontal = false;
+            this.line36.LeftOrUpArrow = false;
+            this.line36.LineColor = System.Drawing.Color.Black;
+            this.line36.LineWidth = 1;
+            this.line36.Location = new System.Drawing.Point(538, 63);
+            this.line36.Name = "line36";
+            this.line36.RightOrBelowArrow = false;
+            this.line36.Size = new System.Drawing.Size(10, 26);
+            this.line36.TabIndex = 82;
+            // 
+            // line35
+            // 
+            this.line35.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line35.BackColor = System.Drawing.Color.Transparent;
+            this.line35.Horizontal = true;
+            this.line35.LeftOrUpArrow = false;
+            this.line35.LineColor = System.Drawing.Color.Black;
+            this.line35.LineWidth = 1;
+            this.line35.Location = new System.Drawing.Point(529, 57);
+            this.line35.Name = "line35";
+            this.line35.RightOrBelowArrow = false;
+            this.line35.Size = new System.Drawing.Size(26, 10);
+            this.line35.TabIndex = 81;
+            // 
+            // btn_VOL1
+            // 
+            this.btn_VOL1.BackColor = System.Drawing.Color.LavenderBlush;
+            this.btn_VOL1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_VOL1.Location = new System.Drawing.Point(555, 53);
+            this.btn_VOL1.Name = "btn_VOL1";
+            this.btn_VOL1.Size = new System.Drawing.Size(37, 19);
+            this.btn_VOL1.TabIndex = 80;
+            this.btn_VOL1.Text = "VOL1";
+            this.btn_VOL1.UseVisualStyleBackColor = false;
+            this.btn_VOL1.Click += new System.EventHandler(this.btn_VOL1_Click);
+            // 
+            // btn_1BQ_LOut
+            // 
+            this.btn_1BQ_LOut.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_1BQ_LOut.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_1BQ_LOut.Location = new System.Drawing.Point(493, 53);
+            this.btn_1BQ_LOut.Name = "btn_1BQ_LOut";
+            this.btn_1BQ_LOut.Size = new System.Drawing.Size(36, 19);
+            this.btn_1BQ_LOut.TabIndex = 79;
+            this.btn_1BQ_LOut.Text = "1BQ";
+            this.btn_1BQ_LOut.UseVisualStyleBackColor = false;
+            this.btn_1BQ_LOut.Click += new System.EventHandler(this.btn_1BQ_LOut_Click);
+            // 
+            // linearGain1
+            // 
+            this.linearGain1.ArrowDirection = SGM4711_Eva.MDUserCtrls.LinearGain.EnumArrowDirection.Left;
+            this.linearGain1.BackColor = System.Drawing.Color.White;
+            this.linearGain1.FrameColor = System.Drawing.Color.Black;
+            this.linearGain1.Gain = -1;
+            this.linearGain1.Location = new System.Drawing.Point(513, 78);
+            this.linearGain1.Name = "linearGain1";
+            this.linearGain1.Size = new System.Drawing.Size(20, 20);
+            this.linearGain1.TabIndex = 77;
+            // 
+            // line32
+            // 
+            this.line32.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line32.BackColor = System.Drawing.Color.Transparent;
+            this.line32.Horizontal = true;
+            this.line32.LeftOrUpArrow = false;
+            this.line32.LineColor = System.Drawing.Color.Black;
+            this.line32.LineWidth = 1;
+            this.line32.Location = new System.Drawing.Point(84, 26);
+            this.line32.Name = "line32";
+            this.line32.RightOrBelowArrow = false;
+            this.line32.Size = new System.Drawing.Size(212, 10);
+            this.line32.TabIndex = 67;
+            // 
+            // line34
+            // 
+            this.line34.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line34.BackColor = System.Drawing.Color.Transparent;
+            this.line34.Horizontal = false;
+            this.line34.LeftOrUpArrow = false;
+            this.line34.LineColor = System.Drawing.Color.Black;
+            this.line34.LineWidth = 1;
+            this.line34.Location = new System.Drawing.Point(78, 31);
+            this.line34.Name = "line34";
+            this.line34.RightOrBelowArrow = false;
+            this.line34.Size = new System.Drawing.Size(10, 31);
+            this.line34.TabIndex = 76;
+            // 
+            // line33
+            // 
+            this.line33.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line33.BackColor = System.Drawing.Color.Transparent;
+            this.line33.Horizontal = true;
+            this.line33.LeftOrUpArrow = false;
+            this.line33.LineColor = System.Drawing.Color.Black;
+            this.line33.LineWidth = 1;
+            this.line33.Location = new System.Drawing.Point(395, 57);
+            this.line33.Name = "line33";
+            this.line33.RightOrBelowArrow = false;
+            this.line33.Size = new System.Drawing.Size(98, 10);
+            this.line33.TabIndex = 75;
+            // 
+            // btn_6EQ_L
+            // 
+            this.btn_6EQ_L.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_6EQ_L.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_6EQ_L.Location = new System.Drawing.Point(359, 53);
+            this.btn_6EQ_L.Name = "btn_6EQ_L";
+            this.btn_6EQ_L.Size = new System.Drawing.Size(36, 19);
+            this.btn_6EQ_L.TabIndex = 74;
+            this.btn_6EQ_L.Text = "6BQ";
+            this.btn_6EQ_L.UseVisualStyleBackColor = false;
+            this.btn_6EQ_L.Click += new System.EventHandler(this.btn_6EQ_L_Click);
+            // 
+            // line27
+            // 
+            this.line27.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line27.BackColor = System.Drawing.Color.Transparent;
+            this.line27.Horizontal = true;
+            this.line27.LeftOrUpArrow = false;
+            this.line27.LineColor = System.Drawing.Color.Black;
+            this.line27.LineWidth = 1;
+            this.line27.Location = new System.Drawing.Point(341, 57);
+            this.line27.Name = "line27";
+            this.line27.RightOrBelowArrow = false;
+            this.line27.Size = new System.Drawing.Size(18, 10);
+            this.line27.TabIndex = 73;
+            // 
+            // line28
+            // 
+            this.line28.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line28.BackColor = System.Drawing.Color.Transparent;
+            this.line28.Horizontal = true;
+            this.line28.LeftOrUpArrow = false;
+            this.line28.LineColor = System.Drawing.Color.Black;
+            this.line28.LineWidth = 1;
+            this.line28.Location = new System.Drawing.Point(316, 26);
+            this.line28.Name = "line28";
+            this.line28.RightOrBelowArrow = false;
+            this.line28.Size = new System.Drawing.Size(15, 10);
+            this.line28.TabIndex = 68;
+            // 
+            // add2
+            // 
+            this.add2.BackColor = System.Drawing.Color.Transparent;
+            this.add2.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add2.Location = new System.Drawing.Point(321, 52);
+            this.add2.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add2.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add2.Name = "add2";
+            this.add2.Size = new System.Drawing.Size(20, 20);
+            this.add2.TabIndex = 72;
+            // 
+            // line29
+            // 
+            this.line29.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line29.BackColor = System.Drawing.Color.Transparent;
+            this.line29.Horizontal = false;
+            this.line29.LeftOrUpArrow = true;
+            this.line29.LineColor = System.Drawing.Color.Black;
+            this.line29.LineWidth = 1;
+            this.line29.Location = new System.Drawing.Point(326, 73);
+            this.line29.Name = "line29";
+            this.line29.RightOrBelowArrow = false;
+            this.line29.Size = new System.Drawing.Size(10, 20);
+            this.line29.TabIndex = 71;
+            // 
+            // line30
+            // 
+            this.line30.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line30.BackColor = System.Drawing.Color.Transparent;
+            this.line30.Horizontal = false;
+            this.line30.LeftOrUpArrow = false;
+            this.line30.LineColor = System.Drawing.Color.Black;
+            this.line30.LineWidth = 1;
+            this.line30.Location = new System.Drawing.Point(326, 31);
+            this.line30.Name = "line30";
+            this.line30.RightOrBelowArrow = true;
+            this.line30.Size = new System.Drawing.Size(10, 20);
+            this.line30.TabIndex = 70;
+            // 
+            // line31
+            // 
+            this.line31.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line31.BackColor = System.Drawing.Color.Transparent;
+            this.line31.Horizontal = true;
+            this.line31.LeftOrUpArrow = false;
+            this.line31.LineColor = System.Drawing.Color.Black;
+            this.line31.LineWidth = 1;
+            this.line31.Location = new System.Drawing.Point(316, 88);
+            this.line31.Name = "line31";
+            this.line31.RightOrBelowArrow = false;
+            this.line31.Size = new System.Drawing.Size(15, 10);
+            this.line31.TabIndex = 69;
+            // 
+            // M_CH1_Input_Mix0
+            // 
+            this.M_CH1_Input_Mix0.BackColor = System.Drawing.Color.White;
+            this.M_CH1_Input_Mix0.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH1_Input_Mix0.Location = new System.Drawing.Point(295, 83);
+            this.M_CH1_Input_Mix0.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH1_Input_Mix0.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH1_Input_Mix0.Name = "M_CH1_Input_Mix0";
+            this.M_CH1_Input_Mix0.Size = new System.Drawing.Size(20, 20);
+            this.M_CH1_Input_Mix0.TabIndex = 66;
+            this.M_CH1_Input_Mix0.Click += new System.EventHandler(this.M_CH1_Input_Mix0_Click);
+            // 
+            // M_CH1_Input_Mix1
+            // 
+            this.M_CH1_Input_Mix1.BackColor = System.Drawing.Color.White;
+            this.M_CH1_Input_Mix1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH1_Input_Mix1.Location = new System.Drawing.Point(295, 21);
+            this.M_CH1_Input_Mix1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH1_Input_Mix1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH1_Input_Mix1.Name = "M_CH1_Input_Mix1";
+            this.M_CH1_Input_Mix1.Size = new System.Drawing.Size(20, 20);
+            this.M_CH1_Input_Mix1.TabIndex = 65;
+            this.M_CH1_Input_Mix1.Click += new System.EventHandler(this.M_CH1_Input_Mix1_Click);
+            // 
+            // btn_1BQ_LRMix_L
+            // 
+            this.btn_1BQ_LRMix_L.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_1BQ_LRMix_L.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_1BQ_LRMix_L.Location = new System.Drawing.Point(248, 84);
+            this.btn_1BQ_LRMix_L.Name = "btn_1BQ_LRMix_L";
+            this.btn_1BQ_LRMix_L.Size = new System.Drawing.Size(36, 19);
+            this.btn_1BQ_LRMix_L.TabIndex = 63;
+            this.btn_1BQ_LRMix_L.Text = "1BQ";
+            this.btn_1BQ_LRMix_L.UseVisualStyleBackColor = false;
+            this.btn_1BQ_LRMix_L.Click += new System.EventHandler(this.btn_1BQ_LRMix_L_Click);
+            // 
+            // line25
+            // 
+            this.line25.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line25.BackColor = System.Drawing.Color.Transparent;
+            this.line25.Horizontal = true;
+            this.line25.LeftOrUpArrow = false;
+            this.line25.LineColor = System.Drawing.Color.Black;
+            this.line25.LineWidth = 1;
+            this.line25.Location = new System.Drawing.Point(236, 88);
+            this.line25.Name = "line25";
+            this.line25.RightOrBelowArrow = false;
+            this.line25.Size = new System.Drawing.Size(12, 10);
+            this.line25.TabIndex = 62;
+            // 
+            // line21
+            // 
+            this.line21.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line21.BackColor = System.Drawing.Color.Transparent;
+            this.line21.Horizontal = true;
+            this.line21.LeftOrUpArrow = false;
+            this.line21.LineColor = System.Drawing.Color.Black;
+            this.line21.LineWidth = 1;
+            this.line21.Location = new System.Drawing.Point(211, 57);
+            this.line21.Name = "line21";
+            this.line21.RightOrBelowArrow = false;
+            this.line21.Size = new System.Drawing.Size(15, 10);
+            this.line21.TabIndex = 57;
+            // 
+            // add1
+            // 
+            this.add1.BackColor = System.Drawing.Color.Transparent;
+            this.add1.DrawColor = System.Drawing.Color.SteelBlue;
+            this.add1.Location = new System.Drawing.Point(216, 83);
+            this.add1.MaximumSize = new System.Drawing.Size(100, 100);
+            this.add1.MinimumSize = new System.Drawing.Size(10, 10);
+            this.add1.Name = "add1";
+            this.add1.Size = new System.Drawing.Size(20, 20);
+            this.add1.TabIndex = 61;
+            // 
+            // line23
+            // 
+            this.line23.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line23.BackColor = System.Drawing.Color.Transparent;
+            this.line23.Horizontal = false;
+            this.line23.LeftOrUpArrow = true;
+            this.line23.LineColor = System.Drawing.Color.Black;
+            this.line23.LineWidth = 1;
+            this.line23.Location = new System.Drawing.Point(221, 104);
+            this.line23.Name = "line23";
+            this.line23.RightOrBelowArrow = false;
+            this.line23.Size = new System.Drawing.Size(10, 20);
+            this.line23.TabIndex = 60;
+            // 
+            // line24
+            // 
+            this.line24.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.small;
+            this.line24.BackColor = System.Drawing.Color.Transparent;
+            this.line24.Horizontal = false;
+            this.line24.LeftOrUpArrow = false;
+            this.line24.LineColor = System.Drawing.Color.Black;
+            this.line24.LineWidth = 1;
+            this.line24.Location = new System.Drawing.Point(221, 62);
+            this.line24.Name = "line24";
+            this.line24.RightOrBelowArrow = true;
+            this.line24.Size = new System.Drawing.Size(10, 20);
+            this.line24.TabIndex = 59;
+            // 
+            // line22
+            // 
+            this.line22.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line22.BackColor = System.Drawing.Color.Transparent;
+            this.line22.Horizontal = true;
+            this.line22.LeftOrUpArrow = false;
+            this.line22.LineColor = System.Drawing.Color.Black;
+            this.line22.LineWidth = 1;
+            this.line22.Location = new System.Drawing.Point(211, 119);
+            this.line22.Name = "line22";
+            this.line22.RightOrBelowArrow = false;
+            this.line22.Size = new System.Drawing.Size(15, 10);
+            this.line22.TabIndex = 58;
+            // 
+            // line20
+            // 
+            this.line20.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line20.BackColor = System.Drawing.Color.Transparent;
+            this.line20.Horizontal = true;
+            this.line20.LeftOrUpArrow = false;
+            this.line20.LineColor = System.Drawing.Color.Black;
+            this.line20.LineWidth = 1;
+            this.line20.Location = new System.Drawing.Point(132, 54);
+            this.line20.Name = "line20";
+            this.line20.RightOrBelowArrow = false;
+            this.line20.Size = new System.Drawing.Size(59, 17);
+            this.line20.TabIndex = 56;
+            // 
+            // M_CH1_Input_Mix2
+            // 
+            this.M_CH1_Input_Mix2.BackColor = System.Drawing.Color.White;
+            this.M_CH1_Input_Mix2.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH1_Input_Mix2.Location = new System.Drawing.Point(190, 114);
+            this.M_CH1_Input_Mix2.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH1_Input_Mix2.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH1_Input_Mix2.Name = "M_CH1_Input_Mix2";
+            this.M_CH1_Input_Mix2.Size = new System.Drawing.Size(20, 20);
+            this.M_CH1_Input_Mix2.TabIndex = 55;
+            this.M_CH1_Input_Mix2.Click += new System.EventHandler(this.M_CH1_Imnut_Mix2_Click);
+            // 
+            // M_CH1_Input_Mix3
+            // 
+            this.M_CH1_Input_Mix3.BackColor = System.Drawing.Color.White;
+            this.M_CH1_Input_Mix3.DrawColor = System.Drawing.Color.SteelBlue;
+            this.M_CH1_Input_Mix3.Location = new System.Drawing.Point(190, 52);
+            this.M_CH1_Input_Mix3.MaximumSize = new System.Drawing.Size(100, 100);
+            this.M_CH1_Input_Mix3.MinimumSize = new System.Drawing.Size(10, 10);
+            this.M_CH1_Input_Mix3.Name = "M_CH1_Input_Mix3";
+            this.M_CH1_Input_Mix3.Size = new System.Drawing.Size(20, 20);
+            this.M_CH1_Input_Mix3.TabIndex = 54;
+            this.M_CH1_Input_Mix3.Click += new System.EventHandler(this.M_CH1_Input_Mix3_Click);
+            // 
+            // btn_1BQ_RIn
+            // 
+            this.btn_1BQ_RIn.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_1BQ_RIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_1BQ_RIn.Location = new System.Drawing.Point(96, 171);
+            this.btn_1BQ_RIn.Name = "btn_1BQ_RIn";
+            this.btn_1BQ_RIn.Size = new System.Drawing.Size(36, 19);
+            this.btn_1BQ_RIn.TabIndex = 53;
+            this.btn_1BQ_RIn.Text = "1BQ";
+            this.btn_1BQ_RIn.UseVisualStyleBackColor = false;
+            this.btn_1BQ_RIn.Click += new System.EventHandler(this.btn_1BQ_RIn_Click);
+            // 
+            // btn_1BQ_LIn
+            // 
+            this.btn_1BQ_LIn.BackColor = System.Drawing.Color.LightCyan;
+            this.btn_1BQ_LIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_1BQ_LIn.Location = new System.Drawing.Point(96, 53);
+            this.btn_1BQ_LIn.Name = "btn_1BQ_LIn";
+            this.btn_1BQ_LIn.Size = new System.Drawing.Size(36, 19);
+            this.btn_1BQ_LIn.TabIndex = 53;
+            this.btn_1BQ_LIn.Text = "1BQ";
+            this.btn_1BQ_LIn.UseVisualStyleBackColor = false;
+            this.btn_1BQ_LIn.Click += new System.EventHandler(this.btn_1BQ_LIn_Click);
+            // 
+            // line18
+            // 
+            this.line18.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line18.BackColor = System.Drawing.Color.Transparent;
+            this.line18.Horizontal = true;
+            this.line18.LeftOrUpArrow = false;
+            this.line18.LineColor = System.Drawing.Color.Black;
+            this.line18.LineWidth = 1;
+            this.line18.Location = new System.Drawing.Point(70, 175);
+            this.line18.Name = "line18";
+            this.line18.RightOrBelowArrow = false;
+            this.line18.Size = new System.Drawing.Size(26, 10);
+            this.line18.TabIndex = 52;
+            // 
+            // line19
+            // 
+            this.line19.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line19.BackColor = System.Drawing.Color.Transparent;
+            this.line19.Horizontal = true;
+            this.line19.LeftOrUpArrow = false;
+            this.line19.LineColor = System.Drawing.Color.Black;
+            this.line19.LineWidth = 1;
+            this.line19.Location = new System.Drawing.Point(70, 57);
+            this.line19.Name = "line19";
+            this.line19.RightOrBelowArrow = false;
+            this.line19.Size = new System.Drawing.Size(26, 10);
+            this.line19.TabIndex = 51;
+            // 
+            // line17
+            // 
+            this.line17.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line17.BackColor = System.Drawing.Color.Transparent;
+            this.line17.Horizontal = true;
+            this.line17.LeftOrUpArrow = false;
+            this.line17.LineColor = System.Drawing.Color.Black;
+            this.line17.LineWidth = 1;
+            this.line17.Location = new System.Drawing.Point(21, 187);
+            this.line17.Name = "line17";
+            this.line17.RightOrBelowArrow = false;
+            this.line17.Size = new System.Drawing.Size(15, 10);
+            this.line17.TabIndex = 45;
+            // 
+            // line16
+            // 
+            this.line16.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
+            this.line16.BackColor = System.Drawing.Color.Transparent;
+            this.line16.Horizontal = true;
+            this.line16.LeftOrUpArrow = false;
+            this.line16.LineColor = System.Drawing.Color.Black;
+            this.line16.LineWidth = 1;
+            this.line16.Location = new System.Drawing.Point(21, 72);
+            this.line16.Name = "line16";
+            this.line16.RightOrBelowArrow = false;
+            this.line16.Size = new System.Drawing.Size(15, 10);
+            this.line16.TabIndex = 44;
+            // 
             // outputLogCtrl
             // 
             this.outputLogCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputLogCtrl.Location = new System.Drawing.Point(3, 3);
             this.outputLogCtrl.Name = "outputLogCtrl";
-            this.outputLogCtrl.Size = new System.Drawing.Size(561, 211);
+            this.outputLogCtrl.Size = new System.Drawing.Size(585, 211);
             this.outputLogCtrl.TabIndex = 0;
             // 
             // MainForm
@@ -2026,13 +4842,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1080, 758);
+            this.ClientSize = new System.Drawing.Size(1124, 758);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.41";
+            this.Text = "SGM4711 Eva_v0.42";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).EndInit();
@@ -2051,6 +4867,11 @@
             this.tabP_AudioEngine.ResumeLayout(false);
             this.pnl_Main.ResumeLayout(false);
             this.pnl_Main.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trb_MasterVolume_1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.pl_LFBSwitch.ResumeLayout(false);
+            this.pl_LFBSwitch.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -2173,48 +4994,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btn_MasterVolume;
         private System.Windows.Forms.TabPage tabP_AudioEngine;
-        private System.Windows.Forms.Panel pnl_Main;
-        private System.Windows.Forms.CheckBox chb_v4Source;
-        private System.Windows.Forms.Panel pl_SubReverb;
-        private System.Windows.Forms.Panel pl_RReverb;
-        private System.Windows.Forms.Panel pl_LReverb;
-        private System.Windows.Forms.Panel pl_SubOutMixGain;
-        private System.Windows.Forms.Panel pl_ROutMixGain;
-        private System.Windows.Forms.Panel pl_LOutMixGain;
-        private System.Windows.Forms.Panel pl_MidMixGain;
-        private System.Windows.Forms.Panel pl_LRMixGain_Sub;
-        private System.Windows.Forms.Panel pl_LRMixGain_R;
-        private System.Windows.Forms.Panel pl_LRPreMixGain_R;
-        private System.Windows.Forms.Panel pl_LRMixGain_L;
-        private System.Windows.Forms.Panel pl_LRPreMixGain_L;
-        private System.Windows.Forms.Panel pl_GainAfterClipper;
-        private System.Windows.Forms.Panel pl_GainBeforeClipper;
-        private System.Windows.Forms.Panel pl_DRC2;
-        private System.Windows.Forms.Panel pl_DRC1;
-        private System.Windows.Forms.Panel pl_MasterVOL;
-        private System.Windows.Forms.Panel pl_VOL4;
-        private System.Windows.Forms.Panel pl_VOL3;
-        private System.Windows.Forms.Panel pl_VOL2;
-        private System.Windows.Forms.Panel pl_VOL1;
-        private System.Windows.Forms.Panel pl_2BQ;
-        private System.Windows.Forms.Panel pl_1BQ_Sub;
-        private System.Windows.Forms.Panel pl_1BQ_ROut;
-        private System.Windows.Forms.Panel pl_1BQ_LOut;
-        private System.Windows.Forms.Panel pl_1BQ_LRMix_R;
-        private System.Windows.Forms.Panel pl_1BQ_LRMix_L;
-        private System.Windows.Forms.Panel pl_1BQ_RIn;
-        private System.Windows.Forms.Panel pl_1BQ_LIn;
-        private System.Windows.Forms.Panel pl_NGSubOut;
-        private System.Windows.Forms.Panel pl_NGROut;
-        private System.Windows.Forms.Panel pl_NGLOut;
-        private System.Windows.Forms.Panel pl_HPFSubOut;
-        private System.Windows.Forms.Panel pl_HPFROut;
-        private System.Windows.Forms.Panel pl_HPFLOut;
-        private System.Windows.Forms.Panel pl_HPF_RIn;
-        private System.Windows.Forms.Panel pl_6EQ_R;
-        private System.Windows.Forms.Panel pl_HPF_LIn;
-        private System.Windows.Forms.Panel pl_6EQ_L;
-        private System.Windows.Forms.CheckBox chb_v3Source;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TabControl tabCtrl_SingleRegSetting;
         private System.Windows.Forms.TabPage tabP_SingleCtrl;
@@ -2223,6 +5002,226 @@
         private System.Windows.Forms.TabControl tabCtrl_Output;
         private System.Windows.Forms.TabPage tabPage1;
         private MDUserCtrls.OutputLogCtrl outputLogCtrl;
+        private System.Windows.Forms.Panel pnl_Main;
+        private MDUserCtrls.Line line21;
+        private MDUserCtrls.Line line20;
+        private MDUserCtrls.Multiply M_CH1_Input_Mix2;
+        private MDUserCtrls.Multiply M_CH1_Input_Mix3;
+        private MDUserCtrls.myButton btn_1BQ_RIn;
+        private MDUserCtrls.myButton btn_1BQ_LIn;
+        private MDUserCtrls.Line line18;
+        private MDUserCtrls.Line line19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.CheckBox chb_PreHPF_EN;
+        private MDUserCtrls.Line line17;
+        private MDUserCtrls.Line line16;
+        private System.Windows.Forms.CheckBox chb_v4Source;
+        private System.Windows.Forms.CheckBox chb_v3Source;
+        private MDUserCtrls.Line line22;
+        private MDUserCtrls.Add add1;
+        private MDUserCtrls.Line line23;
+        private MDUserCtrls.Line line24;
+        private MDUserCtrls.myButton btn_1BQ_LRMix_L;
+        private MDUserCtrls.Line line25;
+        private MDUserCtrls.Line line33;
+        private MDUserCtrls.myButton btn_6EQ_L;
+        private MDUserCtrls.Line line27;
+        private MDUserCtrls.Line line28;
+        private MDUserCtrls.Add add2;
+        private MDUserCtrls.Line line29;
+        private MDUserCtrls.Line line30;
+        private MDUserCtrls.Line line31;
+        private MDUserCtrls.Line line32;
+        private MDUserCtrls.Multiply M_CH1_Input_Mix0;
+        private MDUserCtrls.Multiply M_CH1_Input_Mix1;
+        private MDUserCtrls.Line line26;
+        private MDUserCtrls.Line line34;
+        private MDUserCtrls.LinearGain linearGain1;
+        private System.Windows.Forms.Panel pl_LFBSwitch;
+        private System.Windows.Forms.RadioButton rbt_DRCAuto_LP_0_0;
+        private System.Windows.Forms.RadioButton rbt_DRCAuto_LP_0_1;
+        private MDUserCtrls.myButton btn_1BQ_LOut;
+        private MDUserCtrls.myButton btn_VOL1;
+        private MDUserCtrls.Line line35;
+        private MDUserCtrls.Line line37;
+        private MDUserCtrls.Line line36;
+        private MDUserCtrls.Line line38;
+        private MDUserCtrls.Add add3;
+        private MDUserCtrls.Line line39;
+        private MDUserCtrls.Line line40;
+        private MDUserCtrls.Line line41;
+        private MDUserCtrls.Line line42;
+        private MDUserCtrls.Line line43;
+        private MDUserCtrls.Line line44;
+        private MDUserCtrls.Add add4;
+        private MDUserCtrls.Line line45;
+        private MDUserCtrls.Line line46;
+        private MDUserCtrls.Line line47;
+        private MDUserCtrls.Line line48;
+        private MDUserCtrls.myButton btn_VOL2;
+        private MDUserCtrls.myButton btn_1BQ_ROut;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rbt_DRCAuto_LP_1_0;
+        private System.Windows.Forms.RadioButton rbt_DRCAuto_LP_1_1;
+        private MDUserCtrls.LinearGain linearGain2;
+        private MDUserCtrls.Line line49;
+        private MDUserCtrls.Line line50;
+        private MDUserCtrls.myButton btn_6EQ_R;
+        private MDUserCtrls.Line line51;
+        private MDUserCtrls.Line line52;
+        private MDUserCtrls.Add add5;
+        private MDUserCtrls.Line line53;
+        private MDUserCtrls.Line line54;
+        private MDUserCtrls.Line line55;
+        private MDUserCtrls.Multiply M_CH2_Input_Mix0;
+        private MDUserCtrls.Multiply M_CH2_Input_Mix1;
+        private MDUserCtrls.Line line56;
+        private MDUserCtrls.myButton btn_1BQ_LRMix_R;
+        private MDUserCtrls.Line line57;
+        private MDUserCtrls.Line line58;
+        private MDUserCtrls.Add add6;
+        private MDUserCtrls.Line line59;
+        private MDUserCtrls.Line line60;
+        private MDUserCtrls.Line line61;
+        private MDUserCtrls.Line line62;
+        private MDUserCtrls.Multiply M_CH2_Input_Mix2;
+        private MDUserCtrls.Multiply M_CH2_Input_Mix3;
+        private MDUserCtrls.Line line63;
+        private MDUserCtrls.Line line65;
+        private MDUserCtrls.Line line64;
+        private MDUserCtrls.Line line66;
+        private MDUserCtrls.Line line67;
+        private MDUserCtrls.Line line68;
+        private MDUserCtrls.Line line77;
+        private MDUserCtrls.Line line76;
+        private MDUserCtrls.Line line75;
+        private MDUserCtrls.Multiply M_CH3_Input_Mix0;
+        private MDUserCtrls.Line line69;
+        private MDUserCtrls.myButton btn_1BQ_SubOut;
+        private MDUserCtrls.Line line70;
+        private MDUserCtrls.Line line71;
+        private MDUserCtrls.Add add7;
+        private MDUserCtrls.Line line72;
+        private MDUserCtrls.Line line73;
+        private MDUserCtrls.Line line74;
+        private MDUserCtrls.Multiply M_CH3_Input_Mix1;
+        private MDUserCtrls.Multiply M_CH3_Input_Mix2;
+        private MDUserCtrls.Line line78;
+        private MDUserCtrls.Line line80;
+        private MDUserCtrls.Line line79;
+        private MDUserCtrls.Line line81;
+        private System.Windows.Forms.Label label29;
+        private MDUserCtrls.Line line82;
+        private System.Windows.Forms.Label label21;
+        private MDUserCtrls.Line line83;
+        private MDUserCtrls.Line line84;
+        private MDUserCtrls.Line line85;
+        private MDUserCtrls.Line line86;
+        private MDUserCtrls.Line line88;
+        private MDUserCtrls.Line line89;
+        private MDUserCtrls.Line line90;
+        private MDUserCtrls.Line line91;
+        private MDUserCtrls.Line line92;
+        private MDUserCtrls.Line line87;
+        private MDUserCtrls.Line line93;
+        private MDUserCtrls.Line line94;
+        private MDUserCtrls.Line line96;
+        private MDUserCtrls.myButton btn_VOL3;
+        private MDUserCtrls.Line line95;
+        private MDUserCtrls.Line line98;
+        private MDUserCtrls.myButton btn_VOL4;
+        private MDUserCtrls.Line line97;
+        private MDUserCtrls.myButton btn_2BQ_Out;
+        private MDUserCtrls.myButton btn_MasterVOL;
+        private MDUserCtrls.Line line99;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TrackBar trb_MasterVolume_1;
+        private System.Windows.Forms.TextBox txt_MasterVol_1;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.CheckBox chb_MuteMasterVolume_1;
+        private MDUserCtrls.myButton btn_DRC1;
+        private MDUserCtrls.myButton btn_DRC2;
+        private MDUserCtrls.Line line100;
+        private MDUserCtrls.Multiply M_CH1_Output_Mix1;
+        private MDUserCtrls.Line line101;
+        private MDUserCtrls.Line line102;
+        private MDUserCtrls.Add add8;
+        private MDUserCtrls.Line line103;
+        private MDUserCtrls.Line line104;
+        private MDUserCtrls.Line line105;
+        private MDUserCtrls.Multiply M_CH1_Output_Mix0;
+        private MDUserCtrls.Multiply M_CH1_Output_Mix2;
+        private MDUserCtrls.Line line108;
+        private MDUserCtrls.Line line109;
+        private MDUserCtrls.Line line107;
+        private MDUserCtrls.Line line106;
+        private MDUserCtrls.Line line113;
+        private MDUserCtrls.Line line112;
+        private MDUserCtrls.Line line111;
+        private MDUserCtrls.Line line110;
+        private MDUserCtrls.Line line114;
+        private MDUserCtrls.Multiply M_CH2_Output_Mix1;
+        private MDUserCtrls.Line line115;
+        private MDUserCtrls.Line line116;
+        private MDUserCtrls.Add add9;
+        private MDUserCtrls.Line line117;
+        private MDUserCtrls.Line line118;
+        private MDUserCtrls.Line line119;
+        private MDUserCtrls.Multiply M_CH2_Output_Mix0;
+        private MDUserCtrls.Multiply M_CH2_Output_Mix2;
+        private MDUserCtrls.Line line120;
+        private MDUserCtrls.Line line121;
+        private MDUserCtrls.Line line123;
+        private MDUserCtrls.Line line124;
+        private MDUserCtrls.Add add10;
+        private MDUserCtrls.Line line125;
+        private MDUserCtrls.Line line126;
+        private MDUserCtrls.Line line127;
+        private MDUserCtrls.Multiply M_CH4_Output_Mix0;
+        private MDUserCtrls.Multiply M_CH4_Output_Mix1;
+        private MDUserCtrls.Line line129;
+        private MDUserCtrls.Line line128;
+        private MDUserCtrls.Line line122;
+        private MDUserCtrls.Line line131;
+        private MDUserCtrls.Line line130;
+        private MDUserCtrls.Line line132;
+        private MDUserCtrls.Line line133;
+        private MDUserCtrls.Line line134;
+        private MDUserCtrls.Line line135;
+        private MDUserCtrls.Line line136;
+        private MDUserCtrls.Line line137;
+        private MDUserCtrls.Dot dot1;
+        private MDUserCtrls.Dot dot2;
+        private MDUserCtrls.Dot dot4;
+        private MDUserCtrls.Dot dot3;
+        private MDUserCtrls.Dot dot5;
+        private MDUserCtrls.Dot dot6;
+        private MDUserCtrls.Dot dot7;
+        private MDUserCtrls.Dot dot8;
+        private MDUserCtrls.Dot dot9;
+        private MDUserCtrls.Dot dot10;
+        private MDUserCtrls.Dot dot11;
+        private MDUserCtrls.Dot dot12;
+        private MDUserCtrls.Dot dot13;
+        private System.Windows.Forms.CheckBox chb_PostHPF_EN;
+        private MDUserCtrls.Multiply M_OutputPreScale_1;
+        private MDUserCtrls.Multiply M_OutputPreScale_0;
+        private MDUserCtrls.Multiply M_OutputPostScale_0;
+        private MDUserCtrls.Multiply M_OutputPostScale_1;
+        private MDUserCtrls.myButton btn_NG;
+        private MDUserCtrls.Line line139;
+        private System.Windows.Forms.Label label33;
+        private MDUserCtrls.Line line138;
+        private System.Windows.Forms.Label label32;
+        private MDUserCtrls.Line line140;
+        private MDUserCtrls.Line line141;
+        private MDUserCtrls.Line line142;
+        private MDUserCtrls.Line line143;
+        private MDUserCtrls.Line line147;
+        private MDUserCtrls.Line line146;
+        private MDUserCtrls.Line line144;
+        private MDUserCtrls.Line line145;
 
     }
 }

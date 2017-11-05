@@ -78,6 +78,9 @@ namespace SGM4711_Eva
             this.cmb_ModeConfig.SelectedIndex = 0;
             this.cmb_InterfaceConfig.SelectedIndex = 5;
             this.cmb_SampleRate.SelectedIndex = 3;
+
+            // Init double click events for my button
+            InitMyButtonDoubleClick();
         }
 
         private void CreateTabs(DataSet _ds)
@@ -540,6 +543,13 @@ namespace SGM4711_Eva
         FreeRegRWCtrl freeRegCtrl = null;
         I2CMemTool memoryTool = null;
 
+        private void ClearRegSettingSource()
+        {
+            regCtrlList.Clear();
+            regCtrl_AddrList.Clear();
+            this.singleRegCtrl.UpdateDataSource(regCtrlList);
+        }
+
         private void UpdateRegSettingSource()
         {
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
@@ -645,200 +655,287 @@ namespace SGM4711_Eva
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
 
-        private void pl_HPFInput_Click(object sender, EventArgs e)
+        private void InitMyButtonDoubleClick()
+        {
+            this.btn_1BQ_LIn.DoubleClick += btn_1BQ_LIn_DoubleClick;
+            this.btn_1BQ_RIn.DoubleClick += btn_1BQ_RIn_DoubleClick;
+
+            this.btn_1BQ_LRMix_L.DoubleClick += btn_1BQ_LRMix_L_DoubleClick;
+            this.btn_1BQ_LRMix_R.DoubleClick += btn_1BQ_LRMix_R_DoubleClick;
+
+            this.btn_6EQ_L.DoubleClick += btn_6EQ_L_DoubleClick;
+            this.btn_6EQ_R.DoubleClick += btn_6EQ_R_DoubleClick;
+
+            this.btn_1BQ_LOut.DoubleClick += btn_1BQ_LOut_DoubleClick;
+            this.btn_1BQ_ROut.DoubleClick += btn_1BQ_ROut_DoubleClick;
+            this.btn_1BQ_SubOut.DoubleClick += btn_1BQ_SubOut_DoubleClick;
+            this.btn_2BQ_Out.DoubleClick += btn_2BQ_Out_DoubleClick;
+
+            this.btn_DRC1.DoubleClick += btn_DRC1_DoubleClick;
+            this.btn_DRC2.DoubleClick += btn_DRC2_DoubleClick;
+        }
+
+        private void chb_PreHPF_EN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (regMap == null)
+                return;
+
+            if (this.chb_PreHPF_EN.Checked)
+            {
+                regMap[0x03]["PRE_HPF_EN"].BFValue = 1;
+                this.chb_PreHPF_EN.BackColor = Color.FromArgb(192, 255, 192);
+            }
+            else
+            {
+                regMap[0x03]["PRE_HPF_EN"].BFValue = 0;
+                this.chb_PreHPF_EN.BackColor = Color.IndianRed;
+            }
+            /* 0x03 bit7*/
+            //UpdateRegSettingSource(0x03, new string[] { "PRE_HPF_EN" });
+            ClearRegSettingSource();
+            RegWrite(0x03);
+        }
+
+        private void chb_PreHPF_Click(object sender, EventArgs e)
         {
             /* 0x03 bit7*/
             UpdateRegSettingSource(0x03, new string[] { "PRE_HPF_EN" });
         }
 
-        private void pl_1BQ_LIn_Click(object sender, EventArgs e)
+        private void btn_1BQ_LIn_Click(object sender, EventArgs e)
         {
             /* 0x29 */
             UpdateRegSettingSource(0x29);
         }
 
-        private void pl_1BQ_LIn_DoubleClick(object sender, EventArgs e)
+        private void btn_1BQ_LIn_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x29 });
             myEQ.ShowDialog();
         }
 
-        private void pl_1BQ_RIn_Click(object sender, EventArgs e)
+        private void btn_1BQ_RIn_Click(object sender, EventArgs e)
         {
             /* 0x30 */
             UpdateRegSettingSource(0x30);
         }
 
-        private void pl_1BQ_RIn_DoubleClick(object sender, EventArgs e)
+        private void btn_1BQ_RIn_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x30 });
             myEQ.ShowDialog();
         }
 
-        private void pl_LRMixGain_Sub_Click(object sender, EventArgs e)
-        {
-            // will set in input mux control
-
-            /* 1. 0x61 BF[31: 16] */
-            /* 2. 0x61 BF[15: 0] */
-            //UpdateRegSettingSource(0x61, new string[] { "CH4_INPUT_MIXER_1[25:0]", "CH4_INPUT_MIXER_0[25:0]" });
-        }
-
-        private void pl_LRPreMixGain_L_Click(object sender, EventArgs e)
+        private void M_CH1_Input_Mix3_Click(object sender, EventArgs e)
         {
             /* 1. 0x53 BF[127: 96] */
-            /* 2. 0x53 BF[95: 64] */
-            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" });
+            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_3[25:0]" });
         }
 
-        private void pl_LRPreMixGain_R_Click(object sender, EventArgs e)
+        private void M_CH1_Imnut_Mix2_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x53 BF[95: 64] */
+            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_2[25:0]" });
+        }
+
+        private void M_CH2_Input_Mix3_Click(object sender, EventArgs e)
         {
             /* 1. 0x54 BF[127: 96] */
             /* 2. 0x54 BF[95: 64] */
             UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_3[25:0]", "CH2_INPUT_MIXER_2[25:0]" });
         }
 
-        private void pl_1BQ_LRMix_L_Click(object sender, EventArgs e)
+        private void M_CH2_Input_Mix2_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x54 BF[127: 96] */
+            /* 2. 0x54 BF[95: 64] */
+            UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_3[25:0]", "CH2_INPUT_MIXER_2[25:0]" });
+        }
+
+        private void btn_1BQ_LRMix_L_Click(object sender, EventArgs e)
         {
             /* 0x2A */
             UpdateRegSettingSource(0x2A);
         }
 
-        private void pl_1BQ_LRMix_L_DoubleClick(object sender, EventArgs e)
+        private void btn_1BQ_LRMix_L_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x2A });
             myEQ.ShowDialog();
         }
 
-        private void pl_1BQ_LRMix_R_Click(object sender, EventArgs e)
+        private void btn_1BQ_LRMix_R_Click(object sender, EventArgs e)
         {
             /* 0x31 */
             UpdateRegSettingSource(0x31);
         }
 
-        private void pl_1BQ_LRMix_R_DoubleClick(object sender, EventArgs e)
+        private void btn_1BQ_LRMix_R_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x31 });
             myEQ.ShowDialog();
         }
 
-        private void pl_LRMixGain_L_Click(object sender, EventArgs e)
+        private void M_CH1_Input_Mix1_Click(object sender, EventArgs e)
         {
             /* 1. 0x53 BF[63: 32] */
-            /* 2. 0x53 BF[31: 0] */
-            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_1[25:0]", "CH1_INPUT_MIXER_0[25:0]" });
+            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_1[25:0]" });
         }
 
-        private void pl_LRMixGain_R_Click(object sender, EventArgs e)
+        private void M_CH1_Input_Mix0_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x53 BF[31: 0] */
+            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_0[25:0]" });
+        }
+
+        private void M_CH2_Input_Mix1_Click(object sender, EventArgs e)
         {
             /* 1. 0x54 BF[63: 32] */
-            /* 2. 0x54 BF[31: 0] */
-            UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_1[25:0]", "CH2_INPUT_MIXER_0[25:0]" });
+            UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_1[25:0]" });
         }
 
-        private void pl_6EQ_L_Click(object sender, EventArgs e)
+        private void M_CH2_Input_Mix0_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x54 BF[31: 0] */
+            UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_0[25:0]" });
+        }
+
+        private void btn_6EQ_L_Click(object sender, EventArgs e)
         {
             /* 0x2B-0x2F, 0x58*/
             byte[] regList = new byte[] {0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x58};
             UpdateRegSettingSource(regList);
         }
 
-        private void pl_6EQ_L_DoubleClick(object sender, EventArgs e)
+        private void btn_6EQ_L_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(6, regMap, new byte[] { 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x58 });
             myEQ.ShowDialog();
         }
 
-         private void pl_6EQ_R_Click(object sender, EventArgs e)
+         private void btn_6EQ_R_Click(object sender, EventArgs e)
         {
             /* 0x32-0x36, 0x5C*/
             byte[] regList = new byte[] { 0x32, 0x33, 0x34, 0x35, 0x36, 0x5C };
             UpdateRegSettingSource(regList);
         }
 
-        private void pl_6EQ_R_DoubleClick(object sender, EventArgs e)
+        private void btn_6EQ_R_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(6, regMap, new byte[] { 0x32, 0x33, 0x34, 0x35, 0x36, 0x5C });
             myEQ.ShowDialog();
         }
 
-        private void pl_MidMixGain_Click(object sender, EventArgs e)
+        private void M_CH3_Input_Mix2_Click(object sender, EventArgs e)
         {
             /* 1. 0x55 BF[95: 64] */
-            /* 1. 0x55 BF[63: 32] */
-            /* 2. 0x55 BF[31: 0] */
-            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_2[25:0]", "CH3_INPUT_MIXER_1[25:0]", "CH3_INPUT_MIXER_0[25:0]" });
+            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_2[25:0]" });
         }
 
-        private void pl_LReverb_Click(object sender, EventArgs e)
+        private void M_CH3_Input_Mix0_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x55 BF[31: 0] */
+            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_0[25:0]" });
+        }
+
+        private void M_CH3_Input_Mix1_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x55 BF[63: 32] */
+            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_1[25:0]" });
+        }
+
+        private void rbt_DRCAuto_LP_CheckedChanged(object sender, EventArgs e)
         {
             /* 0x46 bit5 */
-            UpdateRegSettingSource(0x46, new string[] { "DRC_AUTO_LP" });
+            //UpdateRegSettingSource(0x46, new string[] { "DRC_AUTO_LP" });
+
+            this.rbt_DRCAuto_LP_0_1.CheckedChanged -= rbt_DRCAuto_LP_CheckedChanged;
+            this.rbt_DRCAuto_LP_1_1.CheckedChanged -= rbt_DRCAuto_LP_CheckedChanged;
+
+            // Enabled
+            if ((sender as RadioButton).Checked)
+            {
+                this.rbt_DRCAuto_LP_1_1.Checked = true;
+                this.rbt_DRCAuto_LP_0_1.Checked = true;
+                this.rbt_DRCAuto_LP_0_0.Checked = false;
+                this.rbt_DRCAuto_LP_1_0.Checked = false;
+            }
+            // Disabled
+            else
+            {
+                this.rbt_DRCAuto_LP_1_1.Checked = false;
+                this.rbt_DRCAuto_LP_0_1.Checked = false;
+                this.rbt_DRCAuto_LP_0_0.Checked = true;
+                this.rbt_DRCAuto_LP_1_0.Checked = true;
+            }
+
+            this.rbt_DRCAuto_LP_0_1.CheckedChanged += rbt_DRCAuto_LP_CheckedChanged;
+            this.rbt_DRCAuto_LP_1_1.CheckedChanged += rbt_DRCAuto_LP_CheckedChanged;
+
+            if (regMap == null)
+                return;
+
+            regMap[0x46]["DRC_AUTO_LP"].BFValue = (sender as RadioButton).Checked ? 1u : 0u;
+
+            RegWrite(0x46);
+            ClearRegSettingSource();
         }
 
-        private void pl_SubReverb_Click(object sender, EventArgs e)
-        {
-            // will set in Input Mux control
-
-            /* 0x21 bit8 */
-            UpdateRegSettingSource(0x21, new string[] { "CH4_SOURCE_SEL" });
-        }
-
-        private void pl_1BQ_LOut_Click(object sender, EventArgs e)
+        private void btn_1BQ_LOut_Click(object sender, EventArgs e)
         {
             /* 0x59 */
             UpdateRegSettingSource(0x59);
         }
 
-        private void pl_1BQ_LOut_DoubleClick(object sender, EventArgs e)
+        private void btn_1BQ_LOut_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x59});
             myEQ.ShowDialog();
         }
 
-        private void pl_1BQ_ROut_Click(object sender, EventArgs e)
+        private void btn_1BQ_ROut_Click(object sender, EventArgs e)
         {
             /* 0x5D */
             UpdateRegSettingSource(0x5D);
         }
 
-        private void pl_1BQ_ROut_DoubleClick(object sender, EventArgs e)
+        private void btn_1BQ_ROut_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x5D });
             myEQ.ShowDialog();
         }
 
-        private void pl_1BQ_Sub_Click(object sender, EventArgs e)
+        private void btn_1BQ_SubOut_Click(object sender, EventArgs e)
         {
             /* 0x5E */
             UpdateRegSettingSource(0x5E);
         }
 
-        private void pl_1BQ_Sub_DoubleClick(object sender, EventArgs e)
+        private void btn_1BQ_SubOut_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x5E });
             myEQ.ShowDialog();
         }
 
-        private void pl_2BQ_Click(object sender, EventArgs e)
+        private void btn_2BQ_Out_Click(object sender, EventArgs e)
         {
             /* 0x5A, 0x5B */
             UpdateRegSettingSource(new byte[] { 0x5A, 0x5B });
         }
 
-        private void pl_2BQ_DoubleClick(object sender, EventArgs e)
+        private void btn_2BQ_Out_DoubleClick(object sender, EventArgs e)
         {
             ParameterEQCtrl myEQ = new ParameterEQCtrl(2, regMap, new byte[] { 0x5A, 0x5B });
             myEQ.ShowDialog();
         }
 
-        private void pl_VOL1_Click(object sender, EventArgs e)
+        private void btn_VOL1_Click(object sender, EventArgs e)
         {
             /* 0x08 */
             UpdateRegSettingSource(0x08);
         }
 
-        private void pl_VOL2_Click(object sender, EventArgs e)
+        private void btn_VOL2_Click(object sender, EventArgs e)
         {
             /* 0x09 */
             UpdateRegSettingSource(0x09);
@@ -859,10 +956,10 @@ namespace SGM4711_Eva
                 regMap[0x0E]["CH3_VOL"].BFValue = 0;
                 this.chb_v3Source.Text = "From 0x08";
             }
-            pl_VOL3_Click(null, null);
+            btn_VOL3_Click(null, null);
         }
 
-        private void pl_VOL3_Click(object sender, EventArgs e)
+        private void btn_VOL3_Click(object sender, EventArgs e)
         {
             if (regMap == null)
                 return;
@@ -883,17 +980,17 @@ namespace SGM4711_Eva
             if (chb_v4Source.Checked)
             {
                 regMap[0x0E]["SUB_VOL"].BFValue = 1;
-                this.chb_v3Source.Text = "From 0x0A";
+                this.chb_v4Source.Text = "From 0x0A";
             }
             else
             {
                 regMap[0x0E]["SUB_VOL"].BFValue = 0;
-                this.chb_v3Source.Text = "From 0x09";
+                this.chb_v4Source.Text = "From 0x09";
             }
-            pl_VOL4_Click(null, null);
+            btn_VOL4_Click(null, null);
         }
 
-        private void pl_VOL4_Click(object sender, EventArgs e)
+        private void btn_VOL4_Click(object sender, EventArgs e)
         {
             /* if(0x0E bit6 == 1) then = 0x0A, else 0x09 */
             if (regMap == null)
@@ -905,13 +1002,13 @@ namespace SGM4711_Eva
                 UpdateRegSettingSource(0x09);
         }
 
-        private void pl_MasterVOL_Click(object sender, EventArgs e)
+        private void btn_MasterVOL_Click(object sender, EventArgs e)
         {
             /* 0x07 */
             UpdateRegSettingSource(0x07);
         }
 
-        private void pl_DRC1_Click(object sender, EventArgs e)
+        private void btn_DRC1_Click(object sender, EventArgs e)
         {
             /* 0x3A-0x3C, 0x40-0x42,0x46[0] */
             byte[] regList = new byte[] { 0x3A, 0x3B, 0x3C, 0x40, 0x41, 0x42 };
@@ -919,7 +1016,7 @@ namespace SGM4711_Eva
             UpdateRegSettingSource(0x46, new string[] { "DRC1_EN" }, true);
         }
 
-        private void pl_DRC1_DoubleClick(object sender, EventArgs e)
+        private void btn_DRC1_DoubleClick(object sender, EventArgs e)
         {
             /* 0x3A-0x3C, 0x40-0x42,0x46[0] */
             //byte[] regList = new byte[] { 0x3A, 0x3B, 0x3C, 0x40, 0x41, 0x42 };
@@ -941,7 +1038,7 @@ namespace SGM4711_Eva
             myDRCForm.ShowDialog();
         }
 
-        private void pl_DRC2_Click(object sender, EventArgs e)
+        private void btn_DRC2_Click(object sender, EventArgs e)
         {
             /* 0x3D-0x3F, 0x43-0x45,0x46[1] */
             byte[] regList = new byte[] { 0x3D, 0x3E, 0x3F, 0x43, 0x44, 0x45 };
@@ -949,7 +1046,7 @@ namespace SGM4711_Eva
             UpdateRegSettingSource(0x46, new string[] { "DRC2_EN" }, true);
         }
 
-        private void pl_DRC2_DoubleClick(object sender, EventArgs e)
+        private void btn_DRC2_DoubleClick(object sender, EventArgs e)
         {
             /* 0x3D-0x3F, 0x43-0x45,0x46[1] */
             List<Register> regList = new List<Register> { };
@@ -967,50 +1064,94 @@ namespace SGM4711_Eva
             myDRCForm.ShowDialog();
         }
 
-        private void pl_LOutMixGain_Click(object sender, EventArgs e)
+        private void M_CH1_Output_Mix2_Click(object sender, EventArgs e)
         {
             /* 1. 0x51 BF[95: 64] */
-            /* 1. 0x51 BF[63: 32] */
-            /* 2. 0x51 BF[31: 0] */
-            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_2[25:0]", "CH1_OUTPUT_MIXER_1[25:0]", 
-                "CH1_OUTPUT_MIXER_0[25:0]" });
+            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_2[25:0]" });
         }
 
-        private void pl_ROutMixGain_Click(object sender, EventArgs e)
+        private void M_CH1_Output_Mix1_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x51 BF[63: 32] */
+            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_1[25:0]" });
+        }
+
+        private void M_CH1_Output_Mix0_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x51 BF[31: 0] */
+            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_0[25:0]" });
+        }
+
+        private void M_CH2_Output_Mix2_Click(object sender, EventArgs e)
         {
             /* 1. 0x52 BF[95: 64] */
-            /* 1. 0x52 BF[63: 32] */
-            /* 2. 0x52 BF[31: 0] */
-            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_2[25:0]", "CH2_OUTPUT_MIXER_1[25:0]", 
-                "CH2_OUTPUT_MIXER_0[25:0]" });
+            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_2[25:0]" });
         }
 
-        private void pl_SubOutMixGain_Click(object sender, EventArgs e)
+        private void M_CH2_Output_Mix1_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x52 BF[63: 32] */
+            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_1[25:0]" });
+        }
+
+        private void M_CH2_Output_Mix0_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x52 BF[31: 0] */
+            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_0[25:0]" });
+        }
+
+        private void M_CH4_Output_Mix1_Click(object sender, EventArgs e)
         {
             /* 1. 0x60 BF[63: 32] */
-            /* 2. 0x60 BF[31: 0] */
-            UpdateRegSettingSource(0x60, new string[] { "CH4_OUTPUT_MIXER_1[25:0]", "CH4_OUTPUT_MIXER_0[25:0]" });
+            UpdateRegSettingSource(0x60, new string[] { "CH4_OUTPUT_MIXER_1[25:0]" });
         }
 
-        private void pl_GainBeforeClipper_Click(object sender, EventArgs e)
+        private void M_CH4_Output_Mix0_Click(object sender, EventArgs e)
+        {
+            /* 1. 0x60 BF[31: 0] */
+            UpdateRegSettingSource(0x60, new string[] { "CH4_OUTPUT_MIXER_0[25:0]" });
+        }
+
+        private void M_OutputPreScale_Click(object sender, EventArgs e)
         {
             /* 0x56 */
             UpdateRegSettingSource(0x56);
         }
 
-        private void pl_GainAfterClipper_Click(object sender, EventArgs e)
+        private void M_OutputPostScale_Click(object sender, EventArgs e)
         {
             /* 0x57 */
             UpdateRegSettingSource(0x57);
         }
 
-        private void pl_HPFLOut_Click(object sender, EventArgs e)
+        private void chb_PostHPF_EN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (regMap == null)
+                return;
+
+            if (this.chb_PreHPF_EN.Checked)
+            {
+                regMap[0x03]["POST_HPF_EN"].BFValue = 1;
+                this.chb_PreHPF_EN.BackColor = Color.FromArgb(192, 255, 192);
+            }
+            else
+            {
+                regMap[0x03]["POST_HPF_EN"].BFValue = 0;
+                this.chb_PreHPF_EN.BackColor = Color.IndianRed;
+            }
+            /* 0x03 bit7*/
+            //UpdateRegSettingSource(0x03, new string[] { "PRE_HPF_EN" });
+            ClearRegSettingSource();
+            RegWrite(0x03);
+        }
+
+        private void chb_HPFLOut_Click(object sender, EventArgs e)
         {
             /* 0x03 bit6 */
             UpdateRegSettingSource(0x03, new string[] { "POST_HPF_EN" });
         }
 
-        private void pl_NGLOut_Click(object sender, EventArgs e)
+        private void btn_NGLOut_Click(object sender, EventArgs e)
         {
             /* 0x63, 0x64 */
             UpdateRegSettingSource(new byte[] { 0x63, 0x64 });
@@ -1516,24 +1657,41 @@ namespace SGM4711_Eva
         private void trb_MasterVolume_Scroll(object sender, EventArgs e)
         {
             /* 0x07 */
+            if ((sender as TrackBar) == trb_MasterVolume)
+            {
+                trb_MasterVolume_1.Scroll -= trb_MasterVolume_Scroll;
+                trb_MasterVolume_1.Value = trb_MasterVolume.Value;
+                trb_MasterVolume_1.Scroll += trb_MasterVolume_Scroll;
+            }
+            else if((sender as TrackBar) == trb_MasterVolume_1)
+            {
+                trb_MasterVolume.Scroll -= trb_MasterVolume_Scroll;
+                trb_MasterVolume.Value = trb_MasterVolume_1.Value;
+                trb_MasterVolume.Scroll += trb_MasterVolume_Scroll;
+            }
+
+            uint tempVlaue = 0xFF - (uint)this.trb_MasterVolume.Value;            
+
+            if (tempVlaue == 0xFF)
+            {
+                this.txt_MasterVol.Text = string.Format("Muted");
+                this.txt_MasterVol.ForeColor = Color.Red;
+                this.txt_MasterVol_1.Text = string.Format("Muted");
+                this.txt_MasterVol_1.ForeColor = Color.Red;
+            }
+            else
+            {
+                double tempdBValue = 24 - tempVlaue * 0.5;
+                this.txt_MasterVol.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
+                this.txt_MasterVol.ForeColor = Color.Black;
+                this.txt_MasterVol_1.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
+                this.txt_MasterVol_1.ForeColor = Color.Black;
+
+            }
             if (regMap != null)
             {
-                uint tempVlaue = 0xFF - (uint)this.trb_MasterVolume.Value;
                 regMap[0x07].RegValue = tempVlaue;
                 UpdateRegSettingSource(0x07);
-
-                if (tempVlaue == 0xFF)
-                {
-                    this.txt_MasterVol.Text = string.Format("Muted");
-                    this.txt_MasterVol.ForeColor = Color.Red;
-                }
-                else
-                {
-                    double tempdBValue = 24 - tempVlaue * 0.5;
-                    this.txt_MasterVol.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
-                    this.txt_MasterVol.ForeColor = Color.Black;
-                }
-
                 RegWrite(0x07);
             }
         }
@@ -1550,6 +1708,20 @@ namespace SGM4711_Eva
 
         private void chb_MuteMasterVolume_CheckedChanged(object sender, EventArgs e)
         {
+            // make sure another mute checkbox in same status.
+            if ((sender as CheckBox) == chb_MuteMasterVolume)
+            {
+                chb_MuteMasterVolume_1.CheckedChanged -= chb_MuteMasterVolume_CheckedChanged;
+                chb_MuteMasterVolume_1.Checked = chb_MuteMasterVolume.Checked;
+                chb_MuteMasterVolume_1.CheckedChanged += chb_MuteMasterVolume_CheckedChanged;
+            }
+            else
+            {
+                chb_MuteMasterVolume.CheckedChanged -= chb_MuteMasterVolume_CheckedChanged;
+                chb_MuteMasterVolume.Checked = chb_MuteMasterVolume_1.Checked;
+                chb_MuteMasterVolume.CheckedChanged += chb_MuteMasterVolume_CheckedChanged; 
+            }
+            
             /* write 0xFF to 0x07 */
             if (regMap != null)
             {
@@ -1562,7 +1734,7 @@ namespace SGM4711_Eva
                 }
                 else
                 {
-                    trb_MasterVolume_Scroll(null, null);
+                    trb_MasterVolume_Scroll(trb_MasterVolume, e);
                 }
             }
         }
@@ -1654,6 +1826,9 @@ namespace SGM4711_Eva
         }
 
         #endregion Main GUI Tab
+
+
+
 
 
     }

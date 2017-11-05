@@ -123,6 +123,14 @@ namespace SGM4711_Eva.GUI
         }
 
 
+        private void pl_LRMixGain_Sub_Click(object sender, EventArgs e)
+        {
+            // will set in input mux control
+
+            /* 1. 0x61 BF[31: 16] */
+            /* 2. 0x61 BF[15: 0] */
+            //UpdateRegSettingSource(0x61, new string[] { "CH4_INPUT_MIXER_1[25:0]", "CH4_INPUT_MIXER_0[25:0]" });
+        }
 
     }
 }

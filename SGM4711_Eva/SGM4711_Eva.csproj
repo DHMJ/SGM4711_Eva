@@ -72,6 +72,12 @@
     <Compile Include="GUI\DRCForm.Designer.cs">
       <DependentUpon>DRCForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDUserCtrls\Dot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDUserCtrls\Dot.Designer.cs">
+      <DependentUpon>Dot.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDUserCtrls\DRCCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -205,11 +211,23 @@
     <Compile Include="MDUserCtrls\Line.Designer.cs">
       <DependentUpon>Line.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDUserCtrls\LinearGain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MDUserCtrls\LinearGain.Designer.cs">
+      <DependentUpon>LinearGain.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDUserCtrls\Multiply.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MDUserCtrls\Multiply.designer.cs">
       <DependentUpon>Multiply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDUserCtrls\myButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MDUserCtrls\myButton.Designer.cs">
+      <DependentUpon>myButton.cs</DependentUpon>
     </Compile>
     <Compile Include="MDUserCtrls\OutputLogCtrl.cs">
       <SubType>UserControl</SubType>
@@ -252,6 +270,9 @@
     <EmbeddedResource Include="MDUserCtrls\Circle.resx">
       <DependentUpon>Circle.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MDUserCtrls\Dot.resx">
+      <DependentUpon>Dot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\DRCCtrl.resx">
       <DependentUpon>DRCCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\Line.resx">
       <DependentUpon>Line.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDUserCtrls\LinearGain.resx">
+      <DependentUpon>LinearGain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\Multiply.resx">
       <DependentUpon>Multiply.cs</DependentUpon>

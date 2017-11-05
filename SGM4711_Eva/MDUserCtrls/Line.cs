@@ -76,6 +76,25 @@ namespace SGM4711_Eva.MDUserCtrls
             }
         }
 
+        private EnumArrowSize arrowSize = EnumArrowSize.medium;
+        [CategoryAttribute("Style Settings"), DescriptionAttribute("Set arrow size")]
+        public EnumArrowSize ArrowSize
+        {
+            get { return this.arrowSize; }
+            set
+            {
+                this.arrowSize = value;
+                this.Refresh();
+            }
+        }
+
+        private int arrowSizeUnit = 5;
+        public enum EnumArrowSize
+        {
+            small = 1,
+            medium = 2,
+            big = 3
+        }
 
         private void myPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -100,25 +119,26 @@ namespace SGM4711_Eva.MDUserCtrls
             else
                 e.Graphics.DrawLine(myPen, new Point(this.Width / 2, 0), new Point(this.Width / 2, this.Height));
 
+            int currentArrowSize = arrowSizeUnit * (int)arrowSize;
             // Draw arrows
             if (this.leftOrUpArrow)
             {
                 if(horizontal) // left
                     e.Graphics.FillPolygon(myBrush, new Point[] { new Point(0, this.Height / 2), 
-                        new Point(10, 0), new Point(10, this.Height) });
+                        new Point(currentArrowSize, 0), new Point(currentArrowSize, this.Height) });
                 else           // up 
                     e.Graphics.FillPolygon(myBrush, new Point[] { new Point(this.Width / 2, 0), 
-                        new Point(0, 10), new Point(this.Width, 10) });
+                        new Point(0, currentArrowSize), new Point(this.Width, currentArrowSize) });
             }
 
             if (this.rightOrBelowArrow)
             {
                 if(horizontal) // right
                     e.Graphics.FillPolygon(myBrush, new Point[] { new Point(this.Width, this.Height / 2), 
-                        new Point(this.Width - 10, 0), new Point(this.Width - 10, this.Height) });
+                        new Point(this.Width - currentArrowSize, 0), new Point(this.Width - currentArrowSize, this.Height) });
                 else           // below
                     e.Graphics.FillPolygon(myBrush, new Point[] { new Point(this.Width / 2, this.Height), 
-                        new Point(0, this.Height - 10), new Point(this.Width, this.Height - 10) });
+                        new Point(0, this.Height - currentArrowSize), new Point(this.Width, this.Height - currentArrowSize) });
             }
         }
 
