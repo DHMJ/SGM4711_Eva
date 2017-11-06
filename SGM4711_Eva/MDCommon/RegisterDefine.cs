@@ -9,7 +9,8 @@ namespace MD.MDCommon
     [Serializable]
     public class BitField
     {
-        uint mask;        
+        uint mask;
+        Register ReportedReg;
         /// <summary>
         /// Initialize bit field and set default bit field value.
         /// </summary>
@@ -17,8 +18,11 @@ namespace MD.MDCommon
         /// <param name="name">the name of this bit field</param>
         /// <param name="description">bit field description, include each bit value description</param>
         /// <param name="value">default register value</param>
-        public BitField(string _bits, int byteCountOfReg, string name, string description, string regValue)
+        public BitField(Register _Reg, string _bits, int byteCountOfReg, string name, string description, string regValue)
         {
+            //Get the reg handler of this bitfield belongs to
+            ReportedReg = _Reg;
+
             // Set name firstly is good for init when register init. Can update bf later.
             bfName = name;
 
@@ -228,7 +232,18 @@ namespace MD.MDCommon
         { 
             get { return bfValue; }
             // Due to set the bif field value with reg value, mask is needed
-            set { bfValue = value; } 
+            set 
+            { 
+                bfValue = value;
+
+                // Update reg value
+                uint temp = ReportedReg.RegValue;
+
+                temp &= ~mask;
+                temp |= BFValueInRegValue;
+
+                ReportedReg.RegValue = temp;
+            } 
         }
 
         private byte[] bfValue_byte;
@@ -303,7 +318,7 @@ namespace MD.MDCommon
             bfList.Clear();
             for(int ix = 0; ix < _paras.Length; ix++)
             {
-                bfList.Add(new BitField("", this.byteCount, (string)_paras[ix], "", ""));
+                bfList.Add(new BitField(this, "", this.byteCount, (string)_paras[ix], "", ""));
             }
         }
 
@@ -334,7 +349,7 @@ namespace MD.MDCommon
             bfList.Clear();
             for (int ix = 0; ix < _paras.Length; ix++)
             {
-                bfList.Add(new BitField("", this.byteCount, (string)_paras[ix], "", ""));
+                bfList.Add(new BitField(this, "", this.byteCount, (string)_paras[ix], "", ""));
             }
         }
 

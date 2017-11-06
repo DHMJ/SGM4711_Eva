@@ -149,7 +149,7 @@ namespace SGM4711_Eva
         private bool RegRead(byte _regAddr)
         {
             bool ret = false;
-            string log = "I2C Read >> \r\n";
+            string log = String.Format("I2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
             if (myDongle.IsOpen && regMap != null)
             {
                 byte[] tempRegBytes;
@@ -184,7 +184,7 @@ namespace SGM4711_Eva
         private bool RegRead(byte[] _regAddr)
         {
             bool ret = true;
-            string log = "I2C Read >>";
+            string log = String.Format("I2C Read >> {0} ", DateTime.Now.ToLocalTime());
             if (myDongle.IsOpen && regMap != null)
             {
                 byte[] tempRegBytes;
@@ -230,7 +230,7 @@ namespace SGM4711_Eva
         private bool RegRead(Register _reg)
         {
             bool ret = false;
-            string log = "I2C Read >> \r\n";
+            string log = String.Format("I2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
 
             if (myDongle.IsOpen)
             {
@@ -265,7 +265,7 @@ namespace SGM4711_Eva
         private bool RegRead(Register[] _reg)
         {
             bool ret = true;
-            string log = "I2C Read >>";
+            string log = String.Format("I2C Read >> {0} ", DateTime.Now.ToLocalTime());
             if (myDongle.IsOpen)
             {
                 byte[] tempRegBytes;
@@ -308,8 +308,8 @@ namespace SGM4711_Eva
 
         private bool RegWrite(byte _regAddr)
         {
-            bool ret = false;
-            string log = "I2C Write >> \r\n";
+            bool ret = false; 
+            string log = String.Format("I2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
             if (myDongle.IsOpen && regMap != null)
             {
                 Register tempReg = regMap[_regAddr];
@@ -340,7 +340,7 @@ namespace SGM4711_Eva
         private bool RegWrite(byte[] _regAddr)
         {
             bool ret = true;
-            string log = "I2C Write >>";
+            string log = String.Format("I2C Write >> {0} ", DateTime.Now.ToLocalTime());
             if (myDongle.IsOpen && regMap != null)
             {
                 Register tempReg;
@@ -383,7 +383,7 @@ namespace SGM4711_Eva
         private bool RegWrite(Register _reg)
         {
             bool ret = false;
-            string log = "I2C Write >> \r\n";
+            string log = String.Format("I2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
             if (myDongle.IsOpen)
             {
                 if (myDongle.writeRegBurst(_reg.RegAddress, _reg.ByteValue, _reg.ByteCount))
@@ -413,7 +413,7 @@ namespace SGM4711_Eva
         private bool RegWrite(Register[] _reg)
         {
             bool ret = true;
-            string log = "I2C Write >>";
+            string log = String.Format("I2C Write >> {0} ", DateTime.Now.ToLocalTime());
             if (myDongle.IsOpen)
             {
                 for (int ix = 0; ix < _reg.Length; ix++)
@@ -456,6 +456,7 @@ namespace SGM4711_Eva
             //Transfer regmap to other classes
             this.singleRegCtrl.UpdateRegMap(regMap);
             this.freeRegCtrl.UpdateRegMap(regMap);
+            this.memoryTool.UpdateRegMap(regMap);
         }
 
         private void ReadAllAndUpdateGUI()
@@ -516,7 +517,7 @@ namespace SGM4711_Eva
 
         void btn_WriteAllReg_FreeRegCtrl_Click(object sender, EventArgs e)
         {
-            for (int ix = 0; ix < freeRegCtrl.RegAddrList.Count; ix++)
+            for (int ix = 0; ix < freeRegCtrl.TotalCount; ix++)
             {
                 if(freeRegCtrl.ActivedEnList[ix])
                     RegWrite(freeRegCtrl.RegAddrList[ix]);
@@ -526,7 +527,7 @@ namespace SGM4711_Eva
 
         void btn_ReadAllReg_FreeRegCtrl_Click(object sender, EventArgs e)
         {
-            for (int ix = 0; ix < freeRegCtrl.RegAddrList.Count; ix++)
+            for (int ix = 0; ix < freeRegCtrl.TotalCount; ix++)
             {
                 if (freeRegCtrl.ActivedEnList[ix])
                     RegRead(freeRegCtrl.RegAddrList[ix]);
@@ -1682,9 +1683,9 @@ namespace SGM4711_Eva
             else
             {
                 double tempdBValue = 24 - tempVlaue * 0.5;
-                this.txt_MasterVol.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
+                this.txt_MasterVol.Text = string.Format("{0}", tempdBValue.ToString("F1"));
                 this.txt_MasterVol.ForeColor = Color.Black;
-                this.txt_MasterVol_1.Text = string.Format("{0} dB", tempdBValue.ToString("F1"));
+                this.txt_MasterVol_1.Text = string.Format("{0}", tempdBValue.ToString("F1"));
                 this.txt_MasterVol_1.ForeColor = Color.Black;
 
             }
@@ -1698,12 +1699,64 @@ namespace SGM4711_Eva
 
         private void txt_MasterVol_TextChanged(object sender, EventArgs e)
         {
+            //double gain = 0;
+            //this.txt_MasterVol.TextChanged -= txt_MasterVol_TextChanged;
+            //this.txt_MasterVol_1.TextChanged -= txt_MasterVol_TextChanged;
 
+            //if(Double.TryParse(this.txt_MasterVol.Text, out gain))
+            //{
+            //    gain = gain > 24 ? 24 : (gain < -103 ? -103 : gain);
+            //    gain = (int)Math.Round(gain * 2) / 2d;      // try to make it to integer times of 0.5
+
+            //    this.txt_MasterVol.Text = gain.ToString();
+            //    this.txt_MasterVol_1.Text = gain.ToString();
+
+            //    this.trb_MasterVolume.Value = (int)(24 - gain) * 2;
+            //    this.trb_MasterVolume_1.Value = (int)(24 - gain) * 2;
+            //}
+
+            //this.txt_MasterVol.TextChanged += txt_MasterVol_TextChanged;
+            //this.txt_MasterVol_1.TextChanged += txt_MasterVol_TextChanged;
         }
 
         private void txt_MasterVol_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+            string str = "\b\r0123456789.-";//This will allow the user to enter numeric HEX values only.
+            
+            e.Handled = !(str.Contains(e.KeyChar.ToString()));
 
+            if (e.Handled)
+                return;
+
+            double gain = 0;
+            if (e.KeyChar == '\r')
+            {
+                this.txt_MasterVol.TextChanged -= txt_MasterVol_TextChanged;
+                this.txt_MasterVol_1.TextChanged -= txt_MasterVol_TextChanged;
+
+                if (Double.TryParse((sender as TextBox).Text, out gain))
+                {
+                    gain = gain > 24 ? 24 : (gain < -103 ? -103 : gain);
+                    gain = (int)Math.Round(gain * 2) / 2d;      // try to make it to integer times of 0.5
+
+                    this.txt_MasterVol.Text = gain.ToString();
+                    this.txt_MasterVol_1.Text = gain.ToString();
+
+                    this.trb_MasterVolume.Value = (int)(gain + 103) * 2 + 1;
+                    this.trb_MasterVolume_1.Value = (int)(gain + 103) * 2 + 1;
+                }
+                else
+                {
+                    uint tempVlaue = 0xFF - (uint)this.trb_MasterVolume.Value;
+                    double tempdBValue = 24 - tempVlaue * 0.5;
+                    this.txt_MasterVol.Text = string.Format("{0}", tempdBValue.ToString("F1"));
+                    this.txt_MasterVol_1.Text = string.Format("{0}", tempdBValue.ToString("F1"));
+                }
+
+                this.txt_MasterVol.TextChanged += txt_MasterVol_TextChanged;
+                this.txt_MasterVol_1.TextChanged += txt_MasterVol_TextChanged;
+            }
         }
 
         private void chb_MuteMasterVolume_CheckedChanged(object sender, EventArgs e)

@@ -24,6 +24,12 @@ namespace SGM4711_Eva.MDUserCtrls
             this.myDongle = _dongle;
         }
 
+        public void UpdateRegMap(RegisterMap _regmap)
+        {
+            this.regMap = _regmap;
+            this.txt_Display.Clear();
+        }
+
         private bool RegRead(byte _regAddr, byte[] regData)
         {
             if (myDongle.IsOpen)

@@ -20,6 +20,7 @@ namespace SGM4711_Eva.GUI
         List<byte> regAddrList = new List<byte> { };
         List<uint> regDataList = new List<uint> { };
         List<bool> activedEnList = new List<bool> { };
+        int totalCount = 0;
         public FreeRegRWCtrl(DMDongle _dongle)
         {
             InitializeComponent();
@@ -42,6 +43,11 @@ namespace SGM4711_Eva.GUI
         public List<bool> ActivedEnList
         {
             get { return this.activedEnList; }
+        }
+
+        public int TotalCount
+        {
+            get { return totalCount; }
         }
 
         private void UpdateGUI()
@@ -139,7 +145,8 @@ namespace SGM4711_Eva.GUI
 
         private void InitGUI()
         {
-            this.dgv_regSetting.Rows.Add((int)(this.numUP_RowCount.Value));
+            totalCount = (int)this.numUP_RowCount.Value;
+            this.dgv_regSetting.Rows.Add(totalCount);
             uint tempRegValue = 0;
            
             for (int ix = 0; ix < dgv_regSetting.Rows.Count; ix++)
@@ -210,8 +217,8 @@ namespace SGM4711_Eva.GUI
                     tempRow.Cells[1].Value = regMap[tempAddr].RegValue.ToString("X");
 
                     //backup
-                    regAddrList[e.ColumnIndex] = tempAddr;
-                    regDataList[e.ColumnIndex] = regMap[tempAddr].RegValue;
+                    regAddrList[e.RowIndex] = tempAddr;
+                    //regDataList[e.RowIndex] = regMap[tempAddr].RegValue;
 
                     break;
 
@@ -221,13 +228,13 @@ namespace SGM4711_Eva.GUI
                     regMap[tempAddr].RegValue = UInt32.Parse(tempRow.Cells[1].Value.ToString().Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
 
                     //backup
-                    regAddrList[e.ColumnIndex] = tempAddr;
-                    regDataList[e.ColumnIndex] = regMap[tempAddr].RegValue;
+                    //regAddrList[e.RowIndex] = tempAddr;
+                    regDataList[e.RowIndex] = regMap[tempAddr].RegValue;
 
                     break;
 
                 case 2:         //Reg Value changed
-                    activedEnList[e.ColumnIndex] = (bool)tempRow.Cells[2].Value;
+                    activedEnList[e.RowIndex] = (bool)tempRow.Cells[2].Value;
                     break;
 
                 default:
@@ -266,7 +273,7 @@ namespace SGM4711_Eva.GUI
 
         private void numUP_RowCount_ValueChanged(object sender, EventArgs e)
         {
-            int totalCount = (int)numUP_RowCount.Value;
+            totalCount = (int)numUP_RowCount.Value;
             int currentRowCount = this.dgv_regSetting.Rows.Count;
             //this.dgv_regSetting.Rows.Clear();
             if (totalCount < currentRowCount)
@@ -290,12 +297,12 @@ namespace SGM4711_Eva.GUI
                     }
                     else
                     {
-                        this.dgv_regSetting[0, ix].Value = "0";
-                        this.dgv_regSetting[1, ix].Value = "0";
-                        this.dgv_regSetting[2, ix].Value = true;
                         regAddrList.Add(0);
                         regDataList.Add(0);
                         activedEnList.Add(true);
+                        this.dgv_regSetting[0, ix].Value = "0";
+                        this.dgv_regSetting[1, ix].Value = "0";
+                        this.dgv_regSetting[2, ix].Value = true;
                     }
                 }
 
