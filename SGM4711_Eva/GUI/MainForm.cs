@@ -22,7 +22,7 @@ using System.IO.Ports;
 namespace SGM4711_Eva
 {
     [Serializable]
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IRegOperation
     {
         public MainForm()
         {
@@ -75,8 +75,8 @@ namespace SGM4711_Eva
             this.tabP_IICMemTool.Controls.Add(memoryTool);
 
             // init Mian GUI commbox
-            this.cmb_ModeConfig.SelectedIndex = 0;
-            this.cmb_InterfaceConfig.SelectedIndex = 5;
+            //this.cmb_ModeConfig.SelectedIndex = 0;
+            //this.cmb_InterfaceConfig.SelectedIndex = 5;
             this.cmb_SampleRate.SelectedIndex = 3;
 
             // Init double click events for my button
@@ -146,10 +146,20 @@ namespace SGM4711_Eva
             //To DO: Add create taps on GUI with dataset
         }
 
-        private bool RegRead(byte _regAddr)
+        public bool RegRead(byte _regAddr)
+        {
+            return RegRead(_regAddr, true);
+        }
+
+        public bool RegRead(byte _regAddr, bool ifTimeLog)
         {
             bool ret = false;
-            string log = String.Format("I2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
+            string log;
+            if(ifTimeLog)
+                log = String.Format("\r\nI2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
+            //else
+            //    log = String.Format("I2C Read >> \r\n");
+
             if (myDongle.IsOpen && regMap != null)
             {
                 byte[] tempRegBytes;
@@ -181,10 +191,20 @@ namespace SGM4711_Eva
             return ret;
         }
 
-        private bool RegRead(byte[] _regAddr)
+        public bool RegRead(byte[] _regAddr)
+        {
+            return RegRead(_regAddr, true);
+        }
+
+        public bool RegRead(byte[] _regAddr, bool ifTimeLog)
         {
             bool ret = true;
-            string log = String.Format("I2C Read >> {0} ", DateTime.Now.ToLocalTime());
+            string log;
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Read >> {0}", DateTime.Now.ToLocalTime());
+            //else
+            //    log = String.Format("I2C Read >> ");
+
             if (myDongle.IsOpen && regMap != null)
             {
                 byte[] tempRegBytes;
@@ -227,10 +247,19 @@ namespace SGM4711_Eva
             return ret;
         }
 
-        private bool RegRead(Register _reg)
+        public bool RegRead(Register _reg)
+        {
+            return RegRead(_reg, true);
+        }
+
+        public bool RegRead(Register _reg, bool ifTimeLog)
         {
             bool ret = false;
-            string log = String.Format("I2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
+            string log;
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
+            //else
+            //    log = String.Format("I2C Read >> \r\n");
 
             if (myDongle.IsOpen)
             {
@@ -262,10 +291,20 @@ namespace SGM4711_Eva
             return ret;
         }
 
-        private bool RegRead(Register[] _reg)
+        public bool RegRead(Register[] _reg)
+        {
+            return RegRead(_reg, true);
+        }
+
+        public bool RegRead(Register[] _reg, bool ifTimeLog)
         {
             bool ret = true;
-            string log = String.Format("I2C Read >> {0} ", DateTime.Now.ToLocalTime());
+            string log;
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Read >> {0}", DateTime.Now.ToLocalTime());
+            //else
+            //    log = String.Format("I2C Read >> ");
+
             if (myDongle.IsOpen)
             {
                 byte[] tempRegBytes;
@@ -306,10 +345,20 @@ namespace SGM4711_Eva
             return ret;
         }
 
-        private bool RegWrite(byte _regAddr)
+        public bool RegWrite(byte _regAddr)
         {
-            bool ret = false; 
-            string log = String.Format("I2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
+            return RegWrite(_regAddr, true);
+        }
+
+        public bool RegWrite(byte _regAddr, bool ifTimeLog)
+        {
+            bool ret = false;
+            string log;
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
+            //else
+            //    log = String.Format("I2C Write >> \r\n");
+
             if (myDongle.IsOpen && regMap != null)
             {
                 Register tempReg = regMap[_regAddr];
@@ -337,10 +386,20 @@ namespace SGM4711_Eva
             return ret;
         }
 
-        private bool RegWrite(byte[] _regAddr)
+        public bool RegWrite(byte[] _regAddr)
+        {
+            return RegWrite(_regAddr, true);
+        }
+
+        public bool RegWrite(byte[] _regAddr, bool ifTimeLog)
         {
             bool ret = true;
-            string log = String.Format("I2C Write >> {0} ", DateTime.Now.ToLocalTime());
+            string log;
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime());
+            //else
+            //    log = String.Format("I2C Write >> ");
+
             if (myDongle.IsOpen && regMap != null)
             {
                 Register tempReg;
@@ -380,10 +439,20 @@ namespace SGM4711_Eva
             return ret;
         }
 
-        private bool RegWrite(Register _reg)
+        public bool RegWrite(Register _reg)
+        {
+            return RegWrite(_reg, true);
+        }
+
+        public bool RegWrite(Register _reg, bool ifTimeLog)
         {
             bool ret = false;
-            string log = String.Format("I2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
+            string log;
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
+            //else
+            //    log = String.Format("I2C Write >> \r\n");
+
             if (myDongle.IsOpen)
             {
                 if (myDongle.writeRegBurst(_reg.RegAddress, _reg.ByteValue, _reg.ByteCount))
@@ -410,10 +479,20 @@ namespace SGM4711_Eva
             return ret;
         }
 
-        private bool RegWrite(Register[] _reg)
+        public bool RegWrite(Register[] _reg)
+        {
+            return RegWrite(_reg, true); 
+        }
+
+        public bool RegWrite(Register[] _reg, bool ifTimeLog)
         {
             bool ret = true;
-            string log = String.Format("I2C Write >> {0} ", DateTime.Now.ToLocalTime());
+            string log;
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime());
+            //else
+            //    log = String.Format("I2C Write >> ");
+
             if (myDongle.IsOpen)
             {
                 for (int ix = 0; ix < _reg.Length; ix++)
@@ -461,11 +540,13 @@ namespace SGM4711_Eva
 
         private void ReadAllAndUpdateGUI()
         {
+            bool ifFirstRd = true;
             if (regMap != null && myDongle.IsOpen)
             {
                 foreach (Register _reg in regMap.RegList)
                 {
-                    RegRead(_reg);
+                    RegRead(_reg, ifFirstRd);
+                    ifFirstRd = false;
                 }
             }
             #region Update GUI
@@ -517,20 +598,28 @@ namespace SGM4711_Eva
 
         void btn_WriteAllReg_FreeRegCtrl_Click(object sender, EventArgs e)
         {
+            bool firstWr = true;
             for (int ix = 0; ix < freeRegCtrl.TotalCount; ix++)
             {
-                if(freeRegCtrl.ActivedEnList[ix])
-                    RegWrite(freeRegCtrl.RegAddrList[ix]);
+                if (freeRegCtrl.ActivedEnList[ix])
+                {
+                    RegWrite(freeRegCtrl.RegAddrList[ix], firstWr);
+                    firstWr = false;
+                }
             }
             //RegWrite(this.freeRegCtrl.RegAddrList.ToArray());
         }
 
         void btn_ReadAllReg_FreeRegCtrl_Click(object sender, EventArgs e)
         {
+            bool firstWr = true;
             for (int ix = 0; ix < freeRegCtrl.TotalCount; ix++)
             {
                 if (freeRegCtrl.ActivedEnList[ix])
-                    RegRead(freeRegCtrl.RegAddrList[ix]);
+                {
+                    RegRead(freeRegCtrl.RegAddrList[ix], firstWr);
+                    firstWr = false;
+                }
             }
             //RegRead(this.freeRegCtrl.RegAddrList.ToArray());
         }
@@ -551,7 +640,7 @@ namespace SGM4711_Eva
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
 
-        private void UpdateRegSettingSource()
+        public void UpdateRegSettingSource()
         {
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
@@ -1130,7 +1219,7 @@ namespace SGM4711_Eva
             if (regMap == null)
                 return;
 
-            if (this.chb_PreHPF_EN.Checked)
+            if (this.chb_PostHPF_EN.Checked)
             {
                 regMap[0x03]["POST_HPF_EN"].BFValue = 1;
                 this.chb_PreHPF_EN.BackColor = Color.FromArgb(192, 255, 192);
@@ -1552,9 +1641,11 @@ namespace SGM4711_Eva
 
             if (myDongle.IsOpen)
             {
+                bool ifFirstWr = true;
                 for (int ix = 0; ix < regAddrList.Count; ix++)
                 {
-                    RegWrite(regAddrList[ix]);
+                    RegWrite(regAddrList[ix], ifFirstWr);
+                    ifFirstWr = false;
                     //tempReg = regAddrList[ix];
                     //myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
                 }
@@ -1631,7 +1722,7 @@ namespace SGM4711_Eva
 
         private void btn_InputMux_GUI_Click(object sender, EventArgs e)
         {
-            InputMux inputConfig = new InputMux(regMap);
+            InputMux inputConfig = new InputMux(regMap, this);
             inputConfig.FormClosed += new FormClosedEventHandler(inputConfig_FormClosed);
             inputConfig.ShowDialog();
         }

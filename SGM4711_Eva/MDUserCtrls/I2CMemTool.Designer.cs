@@ -117,6 +117,7 @@
             // 
             this.numUP_I2CAddr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numUP_I2CAddr.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numUP_I2CAddr.Hexadecimal = true;
             this.numUP_I2CAddr.Location = new System.Drawing.Point(21, 25);
             this.numUP_I2CAddr.Maximum = new decimal(new int[] {
             255,

@@ -529,7 +529,7 @@
             // 
             this.MenuItemTools_I2CAddress.Name = "MenuItemTools_I2CAddress";
             this.MenuItemTools_I2CAddress.Size = new System.Drawing.Size(100, 23);
-            this.MenuItemTools_I2CAddress.Text = "0x1A";
+            this.MenuItemTools_I2CAddress.Text = "0x34";
             this.MenuItemTools_I2CAddress.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.MenuItemTools_I2CAddress.ToolTipText = "I2C Device Address";
             this.MenuItemTools_I2CAddress.TextChanged += new System.EventHandler(this.MenuItemTools_I2CAddress_TextChanged);
@@ -634,7 +634,7 @@
             this.numUP_OpVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.numUP_OpVoltage.Location = new System.Drawing.Point(18, 64);
             this.numUP_OpVoltage.Maximum = new decimal(new int[] {
-            24,
+            26,
             0,
             0,
             0});
@@ -4868,7 +4868,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.43";
+            this.Text = "SGM4711 Eva_v0.44";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).EndInit();

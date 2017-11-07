@@ -177,6 +177,7 @@
             // 
             // line11
             // 
+            this.line11.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line11.BackColor = System.Drawing.Color.Transparent;
             this.line11.Horizontal = true;
             this.line11.LeftOrUpArrow = false;
@@ -191,6 +192,7 @@
             // 
             // line12
             // 
+            this.line12.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line12.BackColor = System.Drawing.Color.Transparent;
             this.line12.Horizontal = true;
             this.line12.LeftOrUpArrow = false;
@@ -205,13 +207,14 @@
             // 
             // cmb_2p0_RN
             // 
+            this.cmb_2p0_RN.Enabled = false;
             this.cmb_2p0_RN.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p0_RN.FormattingEnabled = true;
             this.cmb_2p0_RN.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_2p0_RN.Location = new System.Drawing.Point(179, 152);
             this.cmb_2p0_RN.Name = "cmb_2p0_RN";
             this.cmb_2p0_RN.Size = new System.Drawing.Size(71, 24);
@@ -220,13 +223,14 @@
             // 
             // cmb_2p0_RP
             // 
+            this.cmb_2p0_RP.Enabled = false;
             this.cmb_2p0_RP.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p0_RP.FormattingEnabled = true;
             this.cmb_2p0_RP.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_2p0_RP.Location = new System.Drawing.Point(179, 106);
             this.cmb_2p0_RP.Name = "cmb_2p0_RP";
             this.cmb_2p0_RP.Size = new System.Drawing.Size(71, 24);
@@ -268,6 +272,7 @@
             // 
             // line10
             // 
+            this.line10.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line10.BackColor = System.Drawing.Color.Transparent;
             this.line10.Horizontal = true;
             this.line10.LeftOrUpArrow = false;
@@ -282,6 +287,7 @@
             // 
             // line9
             // 
+            this.line9.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line9.BackColor = System.Drawing.Color.Transparent;
             this.line9.Horizontal = true;
             this.line9.LeftOrUpArrow = false;
@@ -296,13 +302,14 @@
             // 
             // cmb_2p0_LN
             // 
+            this.cmb_2p0_LN.Enabled = false;
             this.cmb_2p0_LN.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p0_LN.FormattingEnabled = true;
             this.cmb_2p0_LN.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_2p0_LN.Location = new System.Drawing.Point(179, 64);
             this.cmb_2p0_LN.Name = "cmb_2p0_LN";
             this.cmb_2p0_LN.Size = new System.Drawing.Size(71, 24);
@@ -311,13 +318,14 @@
             // 
             // cmb_2p0_LP
             // 
+            this.cmb_2p0_LP.Enabled = false;
             this.cmb_2p0_LP.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p0_LP.FormattingEnabled = true;
             this.cmb_2p0_LP.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_2p0_LP.Location = new System.Drawing.Point(179, 18);
             this.cmb_2p0_LP.Name = "cmb_2p0_LP";
             this.cmb_2p0_LP.Size = new System.Drawing.Size(71, 24);
@@ -326,6 +334,7 @@
             // 
             // line7
             // 
+            this.line7.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line7.BackColor = System.Drawing.Color.Transparent;
             this.line7.Horizontal = true;
             this.line7.LeftOrUpArrow = false;
@@ -340,6 +349,7 @@
             // 
             // line8
             // 
+            this.line8.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line8.BackColor = System.Drawing.Color.Transparent;
             this.line8.Horizontal = true;
             this.line8.LeftOrUpArrow = false;
@@ -354,6 +364,7 @@
             // 
             // line6
             // 
+            this.line6.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line6.BackColor = System.Drawing.Color.Transparent;
             this.line6.Horizontal = true;
             this.line6.LeftOrUpArrow = false;
@@ -368,6 +379,7 @@
             // 
             // line5
             // 
+            this.line5.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line5.BackColor = System.Drawing.Color.Transparent;
             this.line5.Horizontal = true;
             this.line5.LeftOrUpArrow = false;
@@ -382,6 +394,7 @@
             // 
             // line2
             // 
+            this.line2.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line2.BackColor = System.Drawing.Color.Transparent;
             this.line2.Horizontal = true;
             this.line2.LeftOrUpArrow = false;
@@ -396,6 +409,7 @@
             // 
             // line4
             // 
+            this.line4.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line4.BackColor = System.Drawing.Color.Transparent;
             this.line4.Horizontal = false;
             this.line4.LeftOrUpArrow = false;
@@ -410,6 +424,7 @@
             // 
             // line1
             // 
+            this.line1.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line1.BackColor = System.Drawing.Color.Transparent;
             this.line1.Horizontal = true;
             this.line1.LeftOrUpArrow = false;
@@ -424,6 +439,7 @@
             // 
             // line3
             // 
+            this.line3.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line3.BackColor = System.Drawing.Color.Transparent;
             this.line3.Horizontal = false;
             this.line3.LeftOrUpArrow = false;
@@ -509,6 +525,7 @@
             // 
             // line24
             // 
+            this.line24.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line24.BackColor = System.Drawing.Color.Transparent;
             this.line24.Horizontal = true;
             this.line24.LeftOrUpArrow = false;
@@ -545,6 +562,7 @@
             // 
             // line20
             // 
+            this.line20.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line20.BackColor = System.Drawing.Color.Transparent;
             this.line20.Horizontal = true;
             this.line20.LeftOrUpArrow = false;
@@ -581,6 +599,7 @@
             // 
             // line19
             // 
+            this.line19.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line19.BackColor = System.Drawing.Color.Transparent;
             this.line19.Horizontal = true;
             this.line19.LeftOrUpArrow = false;
@@ -628,6 +647,7 @@
             // 
             // line13
             // 
+            this.line13.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line13.BackColor = System.Drawing.Color.Transparent;
             this.line13.Horizontal = true;
             this.line13.LeftOrUpArrow = false;
@@ -642,6 +662,7 @@
             // 
             // line14
             // 
+            this.line14.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line14.BackColor = System.Drawing.Color.Transparent;
             this.line14.Horizontal = true;
             this.line14.LeftOrUpArrow = false;
@@ -656,13 +677,14 @@
             // 
             // cmb_2p1_SubN
             // 
+            this.cmb_2p1_SubN.Enabled = false;
             this.cmb_2p1_SubN.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p1_SubN.FormattingEnabled = true;
             this.cmb_2p1_SubN.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_2p1_SubN.Location = new System.Drawing.Point(179, 203);
             this.cmb_2p1_SubN.Name = "cmb_2p1_SubN";
             this.cmb_2p1_SubN.Size = new System.Drawing.Size(71, 24);
@@ -671,13 +693,14 @@
             // 
             // cmb_2p1_SubP
             // 
+            this.cmb_2p1_SubP.Enabled = false;
             this.cmb_2p1_SubP.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p1_SubP.FormattingEnabled = true;
             this.cmb_2p1_SubP.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_2p1_SubP.Location = new System.Drawing.Point(179, 157);
             this.cmb_2p1_SubP.Name = "cmb_2p1_SubP";
             this.cmb_2p1_SubP.Size = new System.Drawing.Size(71, 24);
@@ -708,6 +731,7 @@
             // 
             // line15
             // 
+            this.line15.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line15.BackColor = System.Drawing.Color.Transparent;
             this.line15.Horizontal = true;
             this.line15.LeftOrUpArrow = false;
@@ -722,6 +746,7 @@
             // 
             // line16
             // 
+            this.line16.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line16.BackColor = System.Drawing.Color.Transparent;
             this.line16.Horizontal = true;
             this.line16.LeftOrUpArrow = false;
@@ -736,13 +761,14 @@
             // 
             // cmb_2p1_RP
             // 
+            this.cmb_2p1_RP.Enabled = false;
             this.cmb_2p1_RP.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p1_RP.FormattingEnabled = true;
             this.cmb_2p1_RP.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_2p1_RP.Location = new System.Drawing.Point(179, 82);
             this.cmb_2p1_RP.Name = "cmb_2p1_RP";
             this.cmb_2p1_RP.Size = new System.Drawing.Size(71, 24);
@@ -751,13 +777,14 @@
             // 
             // cmb_2p1_LP
             // 
+            this.cmb_2p1_LP.Enabled = false;
             this.cmb_2p1_LP.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p1_LP.FormattingEnabled = true;
             this.cmb_2p1_LP.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_2p1_LP.Location = new System.Drawing.Point(179, 18);
             this.cmb_2p1_LP.Name = "cmb_2p1_LP";
             this.cmb_2p1_LP.Size = new System.Drawing.Size(71, 24);
@@ -766,6 +793,7 @@
             // 
             // line17
             // 
+            this.line17.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line17.BackColor = System.Drawing.Color.Transparent;
             this.line17.Horizontal = true;
             this.line17.LeftOrUpArrow = false;
@@ -780,6 +808,7 @@
             // 
             // line18
             // 
+            this.line18.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line18.BackColor = System.Drawing.Color.Transparent;
             this.line18.Horizontal = true;
             this.line18.LeftOrUpArrow = false;
@@ -794,6 +823,7 @@
             // 
             // line21
             // 
+            this.line21.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line21.BackColor = System.Drawing.Color.Transparent;
             this.line21.Horizontal = true;
             this.line21.LeftOrUpArrow = false;
@@ -808,6 +838,7 @@
             // 
             // line22
             // 
+            this.line22.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line22.BackColor = System.Drawing.Color.Transparent;
             this.line22.Horizontal = false;
             this.line22.LeftOrUpArrow = false;
@@ -822,6 +853,7 @@
             // 
             // line23
             // 
+            this.line23.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line23.BackColor = System.Drawing.Color.Transparent;
             this.line23.Horizontal = true;
             this.line23.LeftOrUpArrow = false;
@@ -894,9 +926,9 @@
             this.label18.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label18.Location = new System.Drawing.Point(314, 155);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(28, 14);
+            this.label18.Size = new System.Drawing.Size(42, 14);
             this.label18.TabIndex = 50;
-            this.label18.Text = "LN1";
+            this.label18.Text = "OUT_D";
             // 
             // circle4
             // 
@@ -916,12 +948,13 @@
             this.label19.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label19.Location = new System.Drawing.Point(314, 111);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(28, 14);
+            this.label19.Size = new System.Drawing.Size(41, 14);
             this.label19.TabIndex = 49;
-            this.label19.Text = "LN0";
+            this.label19.Text = "OUT_C";
             // 
             // line25
             // 
+            this.line25.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line25.BackColor = System.Drawing.Color.Transparent;
             this.line25.Horizontal = true;
             this.line25.LeftOrUpArrow = false;
@@ -936,6 +969,7 @@
             // 
             // line26
             // 
+            this.line26.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line26.BackColor = System.Drawing.Color.Transparent;
             this.line26.Horizontal = true;
             this.line26.LeftOrUpArrow = false;
@@ -950,13 +984,14 @@
             // 
             // cmb_PBTL_LN1
             // 
+            this.cmb_PBTL_LN1.Enabled = false;
             this.cmb_PBTL_LN1.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_PBTL_LN1.FormattingEnabled = true;
             this.cmb_PBTL_LN1.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_PBTL_LN1.Location = new System.Drawing.Point(179, 150);
             this.cmb_PBTL_LN1.Name = "cmb_PBTL_LN1";
             this.cmb_PBTL_LN1.Size = new System.Drawing.Size(71, 24);
@@ -965,13 +1000,14 @@
             // 
             // cmb_PBTL_LN0
             // 
+            this.cmb_PBTL_LN0.Enabled = false;
             this.cmb_PBTL_LN0.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_PBTL_LN0.FormattingEnabled = true;
             this.cmb_PBTL_LN0.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_PBTL_LN0.Location = new System.Drawing.Point(179, 106);
             this.cmb_PBTL_LN0.Name = "cmb_PBTL_LN0";
             this.cmb_PBTL_LN0.Size = new System.Drawing.Size(71, 24);
@@ -985,9 +1021,9 @@
             this.label20.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label20.Location = new System.Drawing.Point(310, 67);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(27, 14);
+            this.label20.Size = new System.Drawing.Size(41, 14);
             this.label20.TabIndex = 43;
-            this.label20.Text = "LP1";
+            this.label20.Text = "OUT_B";
             // 
             // circle5
             // 
@@ -1007,12 +1043,13 @@
             this.label21.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label21.Location = new System.Drawing.Point(310, 23);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(27, 14);
+            this.label21.Size = new System.Drawing.Size(41, 14);
             this.label21.TabIndex = 42;
-            this.label21.Text = "LP0";
+            this.label21.Text = "OUT_A";
             // 
             // line27
             // 
+            this.line27.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line27.BackColor = System.Drawing.Color.Transparent;
             this.line27.Horizontal = true;
             this.line27.LeftOrUpArrow = false;
@@ -1027,6 +1064,7 @@
             // 
             // line28
             // 
+            this.line28.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line28.BackColor = System.Drawing.Color.Transparent;
             this.line28.Horizontal = true;
             this.line28.LeftOrUpArrow = false;
@@ -1041,13 +1079,14 @@
             // 
             // cmb_PBTL_LP1
             // 
+            this.cmb_PBTL_LP1.Enabled = false;
             this.cmb_PBTL_LP1.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_PBTL_LP1.FormattingEnabled = true;
             this.cmb_PBTL_LP1.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_PBTL_LP1.Location = new System.Drawing.Point(179, 62);
             this.cmb_PBTL_LP1.Name = "cmb_PBTL_LP1";
             this.cmb_PBTL_LP1.Size = new System.Drawing.Size(71, 24);
@@ -1056,13 +1095,14 @@
             // 
             // cmb_PBTL_LP0
             // 
+            this.cmb_PBTL_LP0.Enabled = false;
             this.cmb_PBTL_LP0.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_PBTL_LP0.FormattingEnabled = true;
             this.cmb_PBTL_LP0.Items.AddRange(new object[] {
-            "PWM A",
-            "PWM B",
-            "PWM C",
-            "PWM D"});
+            "PWM 1",
+            "PWM 2",
+            "PWM 3",
+            "PWM 4"});
             this.cmb_PBTL_LP0.Location = new System.Drawing.Point(179, 18);
             this.cmb_PBTL_LP0.Name = "cmb_PBTL_LP0";
             this.cmb_PBTL_LP0.Size = new System.Drawing.Size(71, 24);
@@ -1071,6 +1111,7 @@
             // 
             // line29
             // 
+            this.line29.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line29.BackColor = System.Drawing.Color.Transparent;
             this.line29.Horizontal = true;
             this.line29.LeftOrUpArrow = false;
@@ -1085,6 +1126,7 @@
             // 
             // line30
             // 
+            this.line30.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line30.BackColor = System.Drawing.Color.Transparent;
             this.line30.Horizontal = true;
             this.line30.LeftOrUpArrow = false;
@@ -1099,6 +1141,7 @@
             // 
             // line31
             // 
+            this.line31.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line31.BackColor = System.Drawing.Color.Transparent;
             this.line31.Horizontal = true;
             this.line31.LeftOrUpArrow = false;
@@ -1113,6 +1156,7 @@
             // 
             // line32
             // 
+            this.line32.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line32.BackColor = System.Drawing.Color.Transparent;
             this.line32.Horizontal = true;
             this.line32.LeftOrUpArrow = false;
@@ -1127,6 +1171,7 @@
             // 
             // line35
             // 
+            this.line35.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line35.BackColor = System.Drawing.Color.Transparent;
             this.line35.Horizontal = true;
             this.line35.LeftOrUpArrow = false;
@@ -1141,6 +1186,7 @@
             // 
             // line36
             // 
+            this.line36.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line36.BackColor = System.Drawing.Color.Transparent;
             this.line36.Horizontal = false;
             this.line36.LeftOrUpArrow = false;
