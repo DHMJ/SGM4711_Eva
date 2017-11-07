@@ -154,7 +154,7 @@ namespace SGM4711_Eva
         public bool RegRead(byte _regAddr, bool ifTimeLog)
         {
             bool ret = false;
-            string log;
+            string log = "";
             if(ifTimeLog)
                 log = String.Format("\r\nI2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
             //else
@@ -199,7 +199,7 @@ namespace SGM4711_Eva
         public bool RegRead(byte[] _regAddr, bool ifTimeLog)
         {
             bool ret = true;
-            string log;
+            string log = "";
             if (ifTimeLog)
                 log = String.Format("\r\nI2C Read >> {0}", DateTime.Now.ToLocalTime());
             //else
@@ -255,7 +255,7 @@ namespace SGM4711_Eva
         public bool RegRead(Register _reg, bool ifTimeLog)
         {
             bool ret = false;
-            string log;
+            string log = "";
             if (ifTimeLog)
                 log = String.Format("\r\nI2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
             //else
@@ -299,7 +299,7 @@ namespace SGM4711_Eva
         public bool RegRead(Register[] _reg, bool ifTimeLog)
         {
             bool ret = true;
-            string log;
+            string log = "";
             if (ifTimeLog)
                 log = String.Format("\r\nI2C Read >> {0}", DateTime.Now.ToLocalTime());
             //else
@@ -353,7 +353,7 @@ namespace SGM4711_Eva
         public bool RegWrite(byte _regAddr, bool ifTimeLog)
         {
             bool ret = false;
-            string log;
+            string log = "";
             if (ifTimeLog)
                 log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
             //else
@@ -394,7 +394,7 @@ namespace SGM4711_Eva
         public bool RegWrite(byte[] _regAddr, bool ifTimeLog)
         {
             bool ret = true;
-            string log;
+            string log = "";
             if (ifTimeLog)
                 log = String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime());
             //else
@@ -447,7 +447,7 @@ namespace SGM4711_Eva
         public bool RegWrite(Register _reg, bool ifTimeLog)
         {
             bool ret = false;
-            string log;
+            string log = "";
             if (ifTimeLog)
                 log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
             //else
@@ -487,7 +487,7 @@ namespace SGM4711_Eva
         public bool RegWrite(Register[] _reg, bool ifTimeLog)
         {
             bool ret = true;
-            string log;
+            string log = "";
             if (ifTimeLog)
                 log = String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime());
             //else
