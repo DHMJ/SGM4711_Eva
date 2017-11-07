@@ -98,10 +98,13 @@ namespace SGM4711_Eva.MDUserCtrls
                             for (int ixByteCount = 0; ixByteCount < regData.Length; ixByteCount++)
                             {
                                 //outputString.Append(tempReg.ByteValue[ixByteCount].ToString("X2"));
-                                outputString.Append(String.Format("/t{0}", regData[ixByteCount].ToString("X2")));
+                                outputString.Append(String.Format(" {0}", regData[ixByteCount].ToString("X2")));
                             }
-                            outputString.Append("/r/n");
+                            //outputString.Append(" - ");
                             finishCount++;
+
+                            if (finishCount != rwCount)
+                                outputString.Append(" - ");
                         }
                         else
                         {
