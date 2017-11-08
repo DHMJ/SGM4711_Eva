@@ -333,8 +333,8 @@ namespace GeneralRegConfigPlatform.MDGUI
                     tempRegBytes = new byte[tempReg.ByteCount];
                     if (dongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
                     {
-                        for (int ix_byteCount = 0; ix_byteCount < tempRegBytes.Length; ix_byteCount++)
-                            tempReg.ByteValue = tempRegBytes;
+                        //for (int ix_byteCount = 0; ix_byteCount < tempRegBytes.Length; ix_byteCount++)
+                        tempReg.ByteValue = tempRegBytes;
 
                         // Update new value to GUI display
                         UpdateRegValueCell(tempReg);
@@ -369,8 +369,8 @@ namespace GeneralRegConfigPlatform.MDGUI
                     tempRegBytes = new byte[tempReg.ByteCount];
                     if (dongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
                     {
-                        for (int ix_byteCount = 0; ix_byteCount < tempRegBytes.Length; ix_byteCount++)
-                            tempReg.ByteValue = tempRegBytes;
+                        //for (int ix_byteCount = 0; ix_byteCount < tempRegBytes.Length; ix_byteCount++)
+                        tempReg.ByteValue = tempRegBytes;
 
                         // Update new value to GUI display
                         UpdateRegValueCell(tempReg);

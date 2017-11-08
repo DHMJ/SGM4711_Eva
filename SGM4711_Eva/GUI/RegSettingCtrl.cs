@@ -17,10 +17,11 @@ namespace SGM4711_Eva.GUI
     {
         RegisterMap regMap;
         DMDongle dongle;
-
-        public RegSettingCtrl(DMDongle _dongle)
+        IRegOperation myRegOp;
+        public RegSettingCtrl(DMDongle _dongle, IRegOperation _myRegOp)
         {
             InitializeComponent();
+            this.myRegOp = _myRegOp;
             this.dongle = _dongle;
             DataGridViewInit();
         }

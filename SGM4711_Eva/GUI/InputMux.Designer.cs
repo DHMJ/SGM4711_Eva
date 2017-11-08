@@ -76,11 +76,13 @@
             this.line18 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line19 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line20 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.numUP_CH4_Input_Mxier_1 = new System.Windows.Forms.NumericUpDown();
+            this.numUP_CH4_Input_Mxier_0 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUP_CH4_Input_Mxier_1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUP_CH4_Input_Mxier_0)).BeginInit();
             this.SuspendLayout();
             // 
             // label14
@@ -107,6 +109,7 @@
             // 
             // line2
             // 
+            this.line2.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line2.BackColor = System.Drawing.Color.Transparent;
             this.line2.Horizontal = true;
             this.line2.LeftOrUpArrow = false;
@@ -121,6 +124,7 @@
             // 
             // line1
             // 
+            this.line1.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line1.BackColor = System.Drawing.Color.Transparent;
             this.line1.Horizontal = true;
             this.line1.LeftOrUpArrow = false;
@@ -135,6 +139,7 @@
             // 
             // line3
             // 
+            this.line3.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line3.BackColor = System.Drawing.Color.Transparent;
             this.line3.Horizontal = true;
             this.line3.LeftOrUpArrow = false;
@@ -220,6 +225,7 @@
             // 
             // line4
             // 
+            this.line4.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line4.BackColor = System.Drawing.Color.Transparent;
             this.line4.Horizontal = true;
             this.line4.LeftOrUpArrow = false;
@@ -245,6 +251,7 @@
             // 
             // line5
             // 
+            this.line5.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line5.BackColor = System.Drawing.Color.Transparent;
             this.line5.Horizontal = true;
             this.line5.LeftOrUpArrow = false;
@@ -341,6 +348,7 @@
             // 
             // line6
             // 
+            this.line6.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line6.BackColor = System.Drawing.Color.Transparent;
             this.line6.Horizontal = true;
             this.line6.LeftOrUpArrow = false;
@@ -355,6 +363,7 @@
             // 
             // line7
             // 
+            this.line7.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line7.BackColor = System.Drawing.Color.Transparent;
             this.line7.Horizontal = true;
             this.line7.LeftOrUpArrow = false;
@@ -369,6 +378,7 @@
             // 
             // line8
             // 
+            this.line8.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line8.BackColor = System.Drawing.Color.Transparent;
             this.line8.Horizontal = true;
             this.line8.LeftOrUpArrow = false;
@@ -394,6 +404,7 @@
             // 
             // line9
             // 
+            this.line9.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line9.BackColor = System.Drawing.Color.Transparent;
             this.line9.Horizontal = true;
             this.line9.LeftOrUpArrow = false;
@@ -479,6 +490,7 @@
             // 
             // line10
             // 
+            this.line10.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line10.BackColor = System.Drawing.Color.Transparent;
             this.line10.Horizontal = true;
             this.line10.LeftOrUpArrow = false;
@@ -493,6 +505,7 @@
             // 
             // line11
             // 
+            this.line11.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line11.BackColor = System.Drawing.Color.Transparent;
             this.line11.Horizontal = true;
             this.line11.LeftOrUpArrow = false;
@@ -507,6 +520,7 @@
             // 
             // line12
             // 
+            this.line12.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line12.BackColor = System.Drawing.Color.Transparent;
             this.line12.Horizontal = true;
             this.line12.LeftOrUpArrow = false;
@@ -576,6 +590,7 @@
             // 
             // line13
             // 
+            this.line13.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line13.BackColor = System.Drawing.Color.Transparent;
             this.line13.Horizontal = true;
             this.line13.LeftOrUpArrow = false;
@@ -590,6 +605,7 @@
             // 
             // line14
             // 
+            this.line14.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line14.BackColor = System.Drawing.Color.Transparent;
             this.line14.Horizontal = true;
             this.line14.LeftOrUpArrow = false;
@@ -604,6 +620,7 @@
             // 
             // line15
             // 
+            this.line15.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line15.BackColor = System.Drawing.Color.Transparent;
             this.line15.Horizontal = true;
             this.line15.LeftOrUpArrow = false;
@@ -618,6 +635,7 @@
             // 
             // line16
             // 
+            this.line16.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line16.BackColor = System.Drawing.Color.Transparent;
             this.line16.Horizontal = false;
             this.line16.LeftOrUpArrow = false;
@@ -632,6 +650,7 @@
             // 
             // line17
             // 
+            this.line17.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line17.BackColor = System.Drawing.Color.Transparent;
             this.line17.Horizontal = false;
             this.line17.LeftOrUpArrow = true;
@@ -646,6 +665,7 @@
             // 
             // line18
             // 
+            this.line18.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line18.BackColor = System.Drawing.Color.Transparent;
             this.line18.Horizontal = true;
             this.line18.LeftOrUpArrow = false;
@@ -660,6 +680,7 @@
             // 
             // line19
             // 
+            this.line19.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line19.BackColor = System.Drawing.Color.Transparent;
             this.line19.Horizontal = false;
             this.line19.LeftOrUpArrow = true;
@@ -674,6 +695,7 @@
             // 
             // line20
             // 
+            this.line20.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
             this.line20.BackColor = System.Drawing.Color.Transparent;
             this.line20.Horizontal = false;
             this.line20.LeftOrUpArrow = false;
@@ -686,27 +708,55 @@
             this.line20.Size = new System.Drawing.Size(10, 25);
             this.line20.TabIndex = 61;
             // 
-            // label11
+            // numUP_CH4_Input_Mxier_1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(94, 289);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(23, 14);
-            this.label11.TabIndex = 63;
-            this.label11.Text = "0.5";
+            this.numUP_CH4_Input_Mxier_1.DecimalPlaces = 3;
+            this.numUP_CH4_Input_Mxier_1.Location = new System.Drawing.Point(76, 281);
+            this.numUP_CH4_Input_Mxier_1.Maximum = new decimal(new int[] {
+            39999999,
+            0,
+            0,
+            458752});
+            this.numUP_CH4_Input_Mxier_1.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            -2147483648});
+            this.numUP_CH4_Input_Mxier_1.Name = "numUP_CH4_Input_Mxier_1";
+            this.numUP_CH4_Input_Mxier_1.Size = new System.Drawing.Size(59, 21);
+            this.numUP_CH4_Input_Mxier_1.TabIndex = 65;
+            this.numUP_CH4_Input_Mxier_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numUP_CH4_Input_Mxier_1.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numUP_CH4_Input_Mxier_1.ValueChanged += new System.EventHandler(this.numUP_CH4_Input_Mxier_1_ValueChanged);
             // 
-            // label15
+            // numUP_CH4_Input_Mxier_0
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(94, 464);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(23, 14);
-            this.label15.TabIndex = 64;
-            this.label15.Text = "0.5";
+            this.numUP_CH4_Input_Mxier_0.DecimalPlaces = 3;
+            this.numUP_CH4_Input_Mxier_0.Location = new System.Drawing.Point(76, 465);
+            this.numUP_CH4_Input_Mxier_0.Maximum = new decimal(new int[] {
+            39999999,
+            0,
+            0,
+            458752});
+            this.numUP_CH4_Input_Mxier_0.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            -2147483648});
+            this.numUP_CH4_Input_Mxier_0.Name = "numUP_CH4_Input_Mxier_0";
+            this.numUP_CH4_Input_Mxier_0.Size = new System.Drawing.Size(59, 21);
+            this.numUP_CH4_Input_Mxier_0.TabIndex = 65;
+            this.numUP_CH4_Input_Mxier_0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numUP_CH4_Input_Mxier_0.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numUP_CH4_Input_Mxier_0.ValueChanged += new System.EventHandler(this.numUP_CH4_Input_Mxier_0_ValueChanged);
             // 
             // InputMux
             // 
@@ -714,8 +764,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(560, 557);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.numUP_CH4_Input_Mxier_0);
+            this.Controls.Add(this.numUP_CH4_Input_Mxier_1);
             this.Controls.Add(this.line19);
             this.Controls.Add(this.line20);
             this.Controls.Add(this.line18);
@@ -763,6 +813,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUP_CH4_Input_Mxier_1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUP_CH4_Input_Mxier_0)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -818,7 +870,7 @@
         private MDUserCtrls.Line line18;
         private MDUserCtrls.Line line19;
         private MDUserCtrls.Line line20;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.NumericUpDown numUP_CH4_Input_Mxier_1;
+        private System.Windows.Forms.NumericUpDown numUP_CH4_Input_Mxier_0;
     }
 }

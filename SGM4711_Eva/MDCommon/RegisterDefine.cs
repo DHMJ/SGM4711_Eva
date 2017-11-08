@@ -441,7 +441,10 @@ namespace MD.MDCommon
             }
             set
             {
-                regValue_byte = value;
+                for (int ix = 0; ix < byteCount; ix++)
+                {
+                    regValue_byte[ix] = value[ix];
+                }
                 if (byteCount <= 4)
                 {
                     regValue = 0;

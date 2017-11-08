@@ -54,30 +54,33 @@ namespace DMCommunication
         //----------------------DONGLE FUNCTIONS--------------------------------
         public bool dongleInit(string portname, VCPGROUP vg, byte devaddr, byte pilot)
         {
-            if (!IsOpen)
+            if (IsOpen)
             {
-                uart.PortName = portname;
-                uart.BaudRate = 9600;
-                uart.DataBits = 8;
-                uart.Parity = Parity.None;
-                uart.StopBits = StopBits.One;
-
-                //uart.Handshake = Handshake.None;
-
-                try
-                {
-                    uart.Open();
-                    IsOpen = true;
-                    //uart.DiscardInBuffer();
-                    commInit(vg, devaddr, pilot);
-                    //return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return false;
-                }
+                dongleDeInit();
             }
+            
+            uart.PortName = portname;
+            uart.BaudRate = 9600;
+            uart.DataBits = 8;
+            uart.Parity = Parity.None;
+            uart.StopBits = StopBits.One;
+
+            //uart.Handshake = Handshake.None;
+
+            try
+            {
+                uart.Open();
+                IsOpen = true;
+                //uart.DiscardInBuffer();
+                commInit(vg, devaddr, pilot);
+                //return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            
             return true;
         }
 

@@ -58,7 +58,7 @@ namespace SGM4711_Eva
         #region Funcs
         private void InitGUI()
         {
-            singleRegCtrl = new RegSettingCtrl(myDongle);
+            singleRegCtrl = new RegSettingCtrl(myDongle, this);
             singleRegCtrl.Dock = DockStyle.Fill;
             this.tabP_SingleCtrl.Controls.Add(singleRegCtrl);
             this.singleRegCtrl.btn_ReadReg.Click += new EventHandler(btn_ReadReg_RegSetCtrl_Click);
@@ -168,9 +168,9 @@ namespace SGM4711_Eva
                 if (myDongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
                 {
                     log += "\tOK\t" + "Address: 0x" + _regAddr.ToString("X2") + "\tData(Hex):";
+                    tempReg.ByteValue = tempRegBytes;
                     for (int ix = 0; ix < tempRegBytes.Length; ix++)
                     {
-                        tempReg.ByteValue[ix] = tempRegBytes[ix];
                         log += " " + tempRegBytes[ix].ToString("X2");
                     }
                     
@@ -216,9 +216,9 @@ namespace SGM4711_Eva
                     if (myDongle.readRegBurst(tempReg.RegAddress, tempRegBytes, tempRegBytes.Length))
                     {
                         log += "\r\n\tOK\t" + "Address: 0x" + _regAddr[ix_reg].ToString("X2") + "\tData(Hex):";
+                        tempReg.ByteValue = tempRegBytes;
                         for (int ix = 0; ix < tempRegBytes.Length; ix++)
-                        {
-                            tempReg.ByteValue[ix] = tempRegBytes[ix];
+                        {                            
                             log += " " + tempRegBytes[ix].ToString("X2");
                         }
                     }
@@ -268,9 +268,9 @@ namespace SGM4711_Eva
                 if(myDongle.readRegBurst(_reg.RegAddress, tempRegBytes, tempRegBytes.Length))
                 {
                     log += "\tOK\t" + "Address: 0x" + _reg.RegAddress.ToString("X2") + "\tData(Hex):";
+                    _reg.ByteValue = tempRegBytes;
                     for (int ix = 0; ix < tempRegBytes.Length; ix++)
-                    {
-                        _reg.ByteValue[ix] = tempRegBytes[ix];
+                    {                        
                         log += " " + tempRegBytes[ix].ToString("X2");
                     }
 
@@ -314,9 +314,9 @@ namespace SGM4711_Eva
                     if (myDongle.readRegBurst(_reg[ix_reg].RegAddress, tempRegBytes, tempRegBytes.Length))
                     {
                         log += "\r\n\tOK\t" + "Address: 0x" + _reg[ix_reg].RegAddress.ToString("X2") + "\tData(Hex):";
+                        _reg[ix_reg].ByteValue = tempRegBytes;
                         for (int ix = 0; ix < tempRegBytes.Length; ix++)
-                        {
-                            _reg[ix_reg].ByteValue[ix] = tempRegBytes[ix];
+                        {                            
                             log += " " + tempRegBytes[ix].ToString("X2");
                         }
                     }
@@ -642,6 +642,7 @@ namespace SGM4711_Eva
 
         public void UpdateRegSettingSource()
         {
+            //ClearRegSettingSource();
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
 
@@ -773,16 +774,20 @@ namespace SGM4711_Eva
             if (this.chb_PreHPF_EN.Checked)
             {
                 regMap[0x03]["PRE_HPF_EN"].BFValue = 1;
-                this.chb_PreHPF_EN.BackColor = Color.FromArgb(192, 255, 192);
+                this.chb_PreHPF_EN.Text = "HPF\r\nEN";
+                this.chb_PreHPF_EN.ForeColor = Color.Black;
+                //this.chb_PreHPF_EN.BackColor = Color.FromArgb(192, 255, 192);
             }
             else
             {
                 regMap[0x03]["PRE_HPF_EN"].BFValue = 0;
-                this.chb_PreHPF_EN.BackColor = Color.IndianRed;
+                this.chb_PreHPF_EN.Text = "HPF\r\nDIS";
+                this.chb_PreHPF_EN.ForeColor = Color.Red;
+                //this.chb_PreHPF_EN.BackColor = Color.IndianRed;
             }
             /* 0x03 bit7*/
-            //UpdateRegSettingSource(0x03, new string[] { "PRE_HPF_EN" });
-            ClearRegSettingSource();
+            UpdateRegSettingSource(0x03, new string[] { "PRE_HPF_EN" });
+            //ClearRegSettingSource();
             RegWrite(0x03);
         }
 
@@ -968,7 +973,8 @@ namespace SGM4711_Eva
             regMap[0x46]["DRC_AUTO_LP"].BFValue = (sender as RadioButton).Checked ? 1u : 0u;
 
             RegWrite(0x46);
-            ClearRegSettingSource();
+            UpdateRegSettingSource(0x46, new string[] { "DRC_AUTO_LP" });
+            //ClearRegSettingSource();
         }
 
         private void btn_1BQ_LOut_Click(object sender, EventArgs e)
@@ -1222,16 +1228,20 @@ namespace SGM4711_Eva
             if (this.chb_PostHPF_EN.Checked)
             {
                 regMap[0x03]["POST_HPF_EN"].BFValue = 1;
-                this.chb_PreHPF_EN.BackColor = Color.FromArgb(192, 255, 192);
+                this.chb_PostHPF_EN.Text = "HPF\r\nEN";
+                this.chb_PostHPF_EN.ForeColor = Color.Black;
+                //this.chb_PreHPF_EN.BackColor = Color.FromArgb(192, 255, 192);
             }
             else
             {
                 regMap[0x03]["POST_HPF_EN"].BFValue = 0;
-                this.chb_PreHPF_EN.BackColor = Color.IndianRed;
+                this.chb_PostHPF_EN.Text = "HPF\r\nDIS";
+                this.chb_PostHPF_EN.ForeColor = Color.Red;
+                //this.chb_PreHPF_EN.BackColor = Color.IndianRed;
             }
             /* 0x03 bit7*/
-            //UpdateRegSettingSource(0x03, new string[] { "PRE_HPF_EN" });
-            ClearRegSettingSource();
+            UpdateRegSettingSource(0x03, new string[] { "POST_HPF_EN" });
+            //ClearRegSettingSource();
             RegWrite(0x03);
         }
 
@@ -1512,9 +1522,8 @@ namespace SGM4711_Eva
             if(regMap != null)
             {
                 tempData = (byte)this.numUP_OpVoltage.Value;
-                tempData = (byte)((tempData >= 24) ? 0x0 : ((tempData >= 18) ? 0x01 :
-                    ((tempData >= 12) ? 0x02 : 0x03)));
-                regMap[tempAddr]["Operation Voltage[1:0]"].BFValue = tempData;
+                tempData = (byte)((tempData >= 22) ? 0x0 : ((tempData >= 15) ? 0x01 : 0x03));
+                regMap[tempAddr]["Operation_Voltage[1:0]"].BFValue = tempData;
 
                 RegWrite(tempAddr);
             }
@@ -1715,9 +1724,10 @@ namespace SGM4711_Eva
 
         private void btn_InputMux_Click(object sender, EventArgs e)
         {
-            /* 0x20 byte1[6:4], 0x20 byte1[2:0], 0x21 */
+            /* 0x20 byte1[6:4], 0x20 byte1[2:0]; 0x21; Reg 0x61 CH4_INPUT_MIXER_1[25:0], CH4_INPUT_MIXER_1[25:0] */
             UpdateRegSettingSource(0x20, new string[] { "SDIN_TO_CH1", "SDIN_TO_CH2" });
             UpdateRegSettingSource(0x21, new string[] { "CH4_SOURCE_SEL" }, true);
+            UpdateRegSettingSource(0x61, new string[] { "CH4_INPUT_MIXER_1[25:0]", "CH4_INPUT_MIXER_0[25:0]" }, true);
         }
 
         private void btn_InputMux_GUI_Click(object sender, EventArgs e)
@@ -1828,14 +1838,25 @@ namespace SGM4711_Eva
 
                 if (Double.TryParse((sender as TextBox).Text, out gain))
                 {
-                    gain = gain > 24 ? 24 : (gain < -103 ? -103 : gain);
+                    gain = gain > 24 ? 24 : (gain < -103.5 ? -103.5 : gain);
                     gain = (int)Math.Round(gain * 2) / 2d;      // try to make it to integer times of 0.5
 
-                    this.txt_MasterVol.Text = gain.ToString();
-                    this.txt_MasterVol_1.Text = gain.ToString();
+                    this.txt_MasterVol.Text = (gain == -103.5) ? "Muted" : gain.ToString();
+                    this.txt_MasterVol_1.Text = (gain == -103.5) ? "Muted" : gain.ToString();
 
-                    this.trb_MasterVolume.Value = (int)(gain + 103) * 2 + 1;
-                    this.trb_MasterVolume_1.Value = (int)(gain + 103) * 2 + 1;
+                    if (gain == -103.5)
+                    {
+                        this.txt_MasterVol.ForeColor = Color.Red;
+                        this.txt_MasterVol_1.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        this.txt_MasterVol.ForeColor = Color.Black;
+                        this.txt_MasterVol_1.ForeColor = Color.Black;
+                    }
+
+                    this.trb_MasterVolume.Value = (int)((gain + 103) * 2) + 1;
+                    this.trb_MasterVolume_1.Value = (int)((gain + 103) * 2) + 1;
                 }
                 else
                 {
@@ -1843,6 +1864,13 @@ namespace SGM4711_Eva
                     double tempdBValue = 24 - tempVlaue * 0.5;
                     this.txt_MasterVol.Text = string.Format("{0}", tempdBValue.ToString("F1"));
                     this.txt_MasterVol_1.Text = string.Format("{0}", tempdBValue.ToString("F1"));
+                }
+
+                if (regMap != null)
+                {
+                    regMap[0x07].RegValue = 0xFF - (uint)this.trb_MasterVolume.Value;
+                    UpdateRegSettingSource(0x07);
+                    RegWrite(0x07);
                 }
 
                 this.txt_MasterVol.TextChanged += txt_MasterVol_TextChanged;

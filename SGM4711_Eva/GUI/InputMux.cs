@@ -89,6 +89,9 @@ namespace SGM4711_Eva.GUI
                     break;
             }
 
+            // Sub channel gain
+            this.numUP_CH4_Input_Mxier_1.Value = (decimal)((int)regMap[0x61]["CH4_INPUT_MIXER_1[25:0]"].BFValue / Math.Pow(2, 23));
+            this.numUP_CH4_Input_Mxier_0.Value = (decimal)((int)regMap[0x61]["CH4_INPUT_MIXER_0[25:0]"].BFValue / Math.Pow(2, 23));
         }
 
         private void rdbtn_CHL_Source_CheckedChanged(object sender, EventArgs e)
@@ -100,7 +103,8 @@ namespace SGM4711_Eva.GUI
             bfValue = rdbtn_CHL_SourceL.Checked ? 0u : (rdbtn_CHL_SourceR.Checked ? 1u : 2u);
 
             regMap[0x20]["SDIN_TO_CH1"].BFValue = bfValue;
-            
+
+            myRegOp.RegWrite(regMap[0x20]);
             myRegOp.UpdateRegSettingSource();
         }
 
@@ -114,6 +118,7 @@ namespace SGM4711_Eva.GUI
 
             regMap[0x20]["SDIN_TO_CH2"].BFValue = bfValue;
 
+            myRegOp.RegWrite(regMap[0x20]);
             myRegOp.UpdateRegSettingSource();
         }
 
@@ -127,6 +132,7 @@ namespace SGM4711_Eva.GUI
 
             regMap[0x21]["CH4_SOURCE_SEL"].BFValue = bfValue;
 
+            myRegOp.RegWrite(regMap[0x21]);
             myRegOp.UpdateRegSettingSource();
         }
 
@@ -138,6 +144,32 @@ namespace SGM4711_Eva.GUI
             /* 1. 0x61 BF[31: 16] */
             /* 2. 0x61 BF[15: 0] */
             //UpdateRegSettingSource(0x61, new string[] { "CH4_INPUT_MIXER_1[25:0]", "CH4_INPUT_MIXER_0[25:0]" });
+        }
+
+        private void numUP_CH4_Input_Mxier_1_ValueChanged(object sender, EventArgs e)
+        {
+            // Reg 0x61 CH4_INPUT_MIXER_1[25:0]
+            if (regMap == null)
+                return;
+
+            regMap[0x61]["CH4_INPUT_MIXER_1[25:0]"].BFValue = 
+                (uint)Math.Round((double)this.numUP_CH4_Input_Mxier_1.Value * Math.Pow(2, 23));
+
+            myRegOp.RegWrite(regMap[0x61]);
+            myRegOp.UpdateRegSettingSource();
+        }
+
+        private void numUP_CH4_Input_Mxier_0_ValueChanged(object sender, EventArgs e)
+        {
+            // Reg 0x61 CH4_INPUT_MIXER_0[25:0]
+            if (regMap == null)
+                return;
+
+            regMap[0x61]["CH4_INPUT_MIXER_0[25:0]"].BFValue =
+                (uint)Math.Round((double)this.numUP_CH4_Input_Mxier_1.Value * Math.Pow(2, 23));
+
+            myRegOp.RegWrite(regMap[0x61]);
+            myRegOp.UpdateRegSettingSource();
         }
 
     }
