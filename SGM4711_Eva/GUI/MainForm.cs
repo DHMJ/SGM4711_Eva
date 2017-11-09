@@ -1590,13 +1590,14 @@ namespace SGM4711_Eva
         private void cmb_ModeConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             /* **********************************************************************************
-             * 2.0: reg05 [2]=0; reg20 byte1[7] = 1; reg20 byte1[3] = 1; reg1A [7] = 1; 
-             * reg11=0xb8;reg12=0x60;reg13=0xa0;reg14=0x48;
+             * 2.0值：reg03[4]=0x01, reg20=0x00897772, reg1A=0x8F，reg25=0x01021345,reg05[3:2]=10
+             * reg11=0xB860A048
              * 
-             * 2.1: reg05 [2]=1; reg05 [3]=1; reg1A [7] = 1; reg11=0xb8;reg12=0x60;reg13=0xa0;reg14=0x48;
+             * 2.1值:reg03[4]=0x01,reg20=0x00897772, reg1A=0x8F，reg25=0x01012345,reg05[3:2]=11
+             * reg11=0xB860A048
              * 
-             * PBTL: reg05 [2]=0; reg20 byte1[7] = 1; reg20 byte1[3] = 1; reg1A [7] = 1; 
-             * eg11=0xb8;reg12=0x60;reg13=0xa0;reg14=0x48;
+             * PBTL值：reg03[4]=0x01,reg20=0x00897772, reg1A=0x8F，reg25=0x01002245,reg05[3:2]=10
+             * reg11=0xB860A048
              * **********************************************************************************/
             if (regMap == null)
                 return;
@@ -1607,97 +1608,164 @@ namespace SGM4711_Eva
             {
                 case 0:
                     #region 2.0
-                    tempReg = regMap[0x05];
-                    tempReg["MODE_SEL"].BFValue = 0x0;
+                    tempReg = regMap[0x03];
+                    //tempReg["MODE_SEL"].BFValue = 0x0;
+                    tempReg["OL_BYPASS"].BFValue = 0x1;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x20];
-                    tempReg["CH1_MOD"].BFValue = 0x01;
-                    tempReg["CH2_MOD"].BFValue = 0x01;
+                    tempReg.RegValue = 0x00897772;
+                    //tempReg["CH1_MOD"].BFValue = 0x01;
+                    //tempReg["CH2_MOD"].BFValue = 0x01;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x1A];
-                    tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    tempReg.RegValue = 0x8F;
+                    //tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x25];
+                    tempReg.RegValue = 0x01021345;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x05];
+                    tempReg["SUB_CH_MOD"].BFValue = 0x01;
+                    tempReg["MODE_SEL"].BFValue = 0x0;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x11];
-                    tempReg.RegValue = 0xB8;
+                    tempReg.RegValue = 0xB860A048;
                     regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x12];
-                    tempReg.RegValue = 0x60;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x12];
+                    //tempReg.RegValue = 0x60;
+                    //regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x13];
-                    tempReg.RegValue = 0xA0;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x13];
+                    //tempReg.RegValue = 0xA0;
+                    //regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x14];
-                    tempReg.RegValue = 0x48;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x14];
+                    //tempReg.RegValue = 0x48;
+                    //regAddrList.Add(tempReg);
                     #endregion
                     break;
 
                 case 1:
                     #region 2.1
-                    tempReg = regMap[0x05];
-                    tempReg["MODE_SEL"].BFValue = 0x1;
-                    tempReg["SUB_CH_MOD"].BFValue = 0x1;
+
+                    tempReg = regMap[0x03];
+                    //tempReg["MODE_SEL"].BFValue = 0x0;
+                    tempReg["OL_BYPASS"].BFValue = 0x1;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x20];
+                    tempReg.RegValue = 0x00897772;
+                    //tempReg["CH1_MOD"].BFValue = 0x01;
+                    //tempReg["CH2_MOD"].BFValue = 0x01;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x1A];
-                    tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    tempReg.RegValue = 0x8F;
+                    //tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x25];
+                    tempReg.RegValue = 0x01021345;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x05];
+                    tempReg["SUB_CH_MOD"].BFValue = 0x01;
+                    tempReg["MODE_SEL"].BFValue = 0x1;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x11];
-                    tempReg.RegValue = 0xB8;
+                    tempReg.RegValue = 0xB860A048;
                     regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x05];
+                    //tempReg["MODE_SEL"].BFValue = 0x1;
+                    //tempReg["SUB_CH_MOD"].BFValue = 0x1;
+                    //regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x12];
-                    tempReg.RegValue = 0x60;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x1A];
+                    //tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    //regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x13];
-                    tempReg.RegValue = 0xA0;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x11];
+                    //tempReg.RegValue = 0xB8;
+                    //regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x14];
-                    tempReg.RegValue = 0x48;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x12];
+                    //tempReg.RegValue = 0x60;
+                    //regAddrList.Add(tempReg);
+
+                    //tempReg = regMap[0x13];
+                    //tempReg.RegValue = 0xA0;
+                    //regAddrList.Add(tempReg);
+
+                    //tempReg = regMap[0x14];
+                    //tempReg.RegValue = 0x48;
+                    //regAddrList.Add(tempReg);
                     #endregion
 
                     break;
 
                 case 2:
                     #region PBTL
-                    tempReg = regMap[0x05];
-                    tempReg["MODE_SEL"].BFValue = 0x0;
+                    tempReg = regMap[0x03];
+                    //tempReg["MODE_SEL"].BFValue = 0x0;
+                    tempReg["OL_BYPASS"].BFValue = 0x1;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x20];
-                    tempReg["CH1_MOD"].BFValue = 0x01;
-                    tempReg["CH2_MOD"].BFValue = 0x01;
+                    tempReg.RegValue = 0x00897772;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x1A];
-                    tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    tempReg.RegValue = 0x8F;
+                    //tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x25];
+                    tempReg.RegValue = 0x01002245;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x05];
+                    tempReg["SUB_CH_MOD"].BFValue = 0x01;
+                    tempReg["MODE_SEL"].BFValue = 0x0;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x11];
-                    tempReg.RegValue = 0xB8;
+                    tempReg.RegValue = 0xB860A048;
                     regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x05];
+                    //tempReg["MODE_SEL"].BFValue = 0x0;
+                    //regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x12];
-                    tempReg.RegValue = 0x60;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x20];
+                    //tempReg["CH1_MOD"].BFValue = 0x01;
+                    //tempReg["CH2_MOD"].BFValue = 0x01;
+                    //regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x13];
-                    tempReg.RegValue = 0xA0;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x1A];
+                    //tempReg["SSTIMER_DIS"].BFValue = 0x1;
+                    //regAddrList.Add(tempReg);
 
-                    tempReg = regMap[0x14];
-                    tempReg.RegValue = 0x48;
-                    regAddrList.Add(tempReg);
+                    //tempReg = regMap[0x11];
+                    //tempReg.RegValue = 0xB8;
+                    //regAddrList.Add(tempReg);
+
+                    //tempReg = regMap[0x12];
+                    //tempReg.RegValue = 0x60;
+                    //regAddrList.Add(tempReg);
+
+                    //tempReg = regMap[0x13];
+                    //tempReg.RegValue = 0xA0;
+                    //regAddrList.Add(tempReg);
+
+                    //tempReg = regMap[0x14];
+                    //tempReg.RegValue = 0x48;
+                    //regAddrList.Add(tempReg);
                     #endregion
 
                     break;
