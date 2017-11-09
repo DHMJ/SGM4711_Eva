@@ -230,7 +230,7 @@ namespace GeneralRegConfigPlatform.MDDataBase
 
                     tempBF = tempReg[tempRowItems[(int)itemIx_BF.bfName].ToString()];
                     // Initialize bit field
-                    tempBF.InitiBF(tempRowItems[(int)itemIx_BF.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF.bfName].ToString(),
+                    tempBF.InitiBF(tempReg, tempRowItems[(int)itemIx_BF.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF.bfName].ToString(),
                         tempRowItems[(int)itemIx_BF.Description].ToString().Replace("\n", "\r\n"), tempReg.RegValue.ToString("X2"));
 
                     // Add row for bitfield: "", BIT, Name, BFValue, ""
@@ -324,7 +324,7 @@ namespace GeneralRegConfigPlatform.MDDataBase
 
                     // Initialize bit field
                     bfAddedCount++;
-                    tempBF.InitiBF(tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(),
+                    tempBF.InitiBF(tempReg, tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(),
                         tempRowItems[(int)itemIx_BF_Crazy.Description].ToString().Replace("\n", "\r\n"), tempReg.RegValue.ToString("X2"));
 
                     // Add row for bitfield: "", BIT, Name, BFValue, ""

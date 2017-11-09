@@ -135,7 +135,7 @@ namespace SGM4711_Eva.MDUserCtrls
                 byte tempValue;
                 for (int ix = 0; ix < tempValues.Length; ix++)
                 {
-                    if (byte.TryParse(tempValues[ix], out tempValue))
+                    if (byte.TryParse(tempValues[ix], System.Globalization.NumberStyles.HexNumber, null, out tempValue))
                         wrValues[ix] = tempValue;
                     else
                         MessageBox.Show("One or more data wrong");

@@ -38,7 +38,7 @@ namespace SGM4711_Eva
 
         // Menu Ctrl
         bool blockDiagramMode = true;
-        byte chipAddress = 0x1A;
+        byte chipAddress = 0x34;
 
         // Output Log Ctrl
         Color failedLogColor = Color.Red;
@@ -47,6 +47,7 @@ namespace SGM4711_Eva
         MDDataSet DataSet;
         RegisterMap regMap;
         List<MDRegisterViewTab> AllTables = new List<MDRegisterViewTab> { };
+        CustomerRegList customerRegs = new CustomerRegList();
         DMDongle myDongle = new DMDongle();
         List<String> historyProjPath = new List<string> { };
         int maxHistProjPathCount = 10;
@@ -543,36 +544,47 @@ namespace SGM4711_Eva
             bool ifFirstRd = true;
             if (regMap != null && myDongle.IsOpen)
             {
-                foreach (Register _reg in regMap.RegList)
+                byte[] tempRegAddrs;
+                Register tempReg;
+                for (int ix_reg = 0; ix_reg < customerRegs.RegList.Count; ix_reg++)
                 {
-                    RegRead(_reg, ifFirstRd);
-                    ifFirstRd = false;
+                    tempRegAddrs = customerRegs.RegList[ix_reg];
+
+                    foreach (byte tempRegAddr in tempRegAddrs)
+                    {
+                        tempReg = regMap[tempRegAddr];
+                        if (tempReg == null)
+                            continue;
+
+                        RegRead(tempRegAddr, ifFirstRd);
+                        ifFirstRd = false;
+                    }
                 }
+
+                #region Update GUI
+                // Operation Voltage; reg 0x0C
+                tempReg = regMap[0x0C];
+                uint tempBFValue = tempReg["Operation Voltage[1:0]"].BFValue;
+                this.numUP_OpVoltage.Value = tempBFValue == 0 ? 24 : (tempBFValue == 1 ? 18 : (tempBFValue == 2 ? 12 : 8));
+
+                // Mode Config
+
+                // Interface Config
+                tempReg = regMap[0x04];
+                this.cmb_InterfaceConfig.SelectedIndex = (int)tempReg["AIF_FORMAT[3:0]"].BFValue;
+
+                // Status
+                UpdateIndicator((byte)regMap[0x02].RegValue);
+
+                // Sample Rate
+                tempReg = regMap[0x00];
+                this.cmb_SampleRate.SelectedIndex = (int)tempReg["FS_SEL[2:0]"].BFValue;
+
+                // Master Vol
+                tempReg = regMap[0x07];
+                this.trb_MasterVolume.Value = (int)tempReg.RegValue;
+                #endregion
             }
-            #region Update GUI
-            Register tempReg;
-            // Operation Voltage; reg 0x0C
-            tempReg = regMap[0x0C];
-            uint tempBFValue = tempReg["Operation Voltage[1:0]"].BFValue;
-            this.numUP_OpVoltage.Value = tempBFValue == 0 ? 24 : (tempBFValue == 1 ? 18 : (tempBFValue == 2 ? 12 : 8));
-
-            // Mode Config
-
-            // Interface Config
-            tempReg = regMap[0x04];
-            this.cmb_InterfaceConfig.SelectedIndex = (int)tempReg["AIF_FORMAT[3:0]"].BFValue;
-
-            // Status
-            UpdateIndicator((byte)regMap[0x02].RegValue);
-
-            // Sample Rate
-            tempReg = regMap[0x00];
-            this.cmb_SampleRate.SelectedIndex = (int)tempReg["FS_SEL[2:0]"].BFValue;
-
-            // Master Vol
-            tempReg = regMap[0x07];
-            this.trb_MasterVolume.Value = (int)tempReg.RegValue;
-            #endregion 
         }
 
         #endregion Funcs
@@ -1387,11 +1399,45 @@ namespace SGM4711_Eva
             if (exportFile.ShowDialog() == DialogResult.OK)
             {
                 string filename = exportFile.FileName;
-                foreach (Register reg in regMap.RegList)
+                //foreach (Register reg in regMap.RegList)
+                //{
+                //    WritePrivateProfileString(reg.RegName, "Address", "0x" + reg.RegAddress.ToString("X2"), filename);
+                //    WritePrivateProfileString(reg.RegName, "Value", "0x" + reg.RegValue.ToString("X2"), filename);
+                //}
+
+                StreamWriter sw = new StreamWriter(filename);
+                sw.WriteLine("/* SGM4711 Registers */");
+                //foreach (Register reg in regs)
+                //{
+                //    string address = "0x" + reg.Address.ToString("X2");
+                //    string data = "0x" + reg.DataInt.ToString("X2");
+                //    string output = address + "," + data;
+                //    sw.WriteLine(output);
+                //}
+
+                byte[] tempRegAddrs;
+                Register tempReg;
+                for (int ix_reg = 0; ix_reg < customerRegs.RegList.Count; ix_reg++)
                 {
-                    WritePrivateProfileString(reg.RegName, "Address", "0x" + reg.RegAddress.ToString("X2"), filename);
-                    WritePrivateProfileString(reg.RegName, "Value", "0x" + reg.RegValue.ToString("X2"), filename);
+                    tempRegAddrs = customerRegs.RegList[ix_reg];
+                    //sw.WriteLine(String.Format("/* {0} */", tempRegAddrs.ToString()));
+
+                    foreach(byte tempRegAddr in tempRegAddrs)
+                    {
+                        tempReg = regMap[tempRegAddr];
+                        if (tempReg == null)
+                            continue;
+
+                        sw.Write(String.Format("0x{0}", tempReg.RegAddress.ToString("X2")));
+                        for (int ix_byte = 0; ix_byte < tempReg.ByteCount; ix_byte++)
+                        {
+                            sw.Write(String.Format(" 0x{0}", tempReg.ByteValue[ix_byte].ToString("X2")));
+                        }
+                        sw.WriteLine();
+                    }
+                    sw.WriteLine();
                 }
+                sw.Close();
             }
         }
 
@@ -1448,6 +1494,18 @@ namespace SGM4711_Eva
                 //this.cbPortName.SelectedIndex = 0;
             }
 
+        }
+
+        FormScriptCtrl myScriptCtrl;
+        private void MenuItemTools_ScriptWrite_Click(object sender, EventArgs e)
+        {
+            if (myScriptCtrl == null)
+            {
+                myScriptCtrl = new FormScriptCtrl(myDongle);
+                myScriptCtrl.Show();
+            }
+            else
+                myScriptCtrl.Show();
         }
 
         ToolStripDropDownItem recordHistoryDongleInit = null;
@@ -1968,10 +2026,12 @@ namespace SGM4711_Eva
             if (regMap == null)
                 return;
 
+            this.Cursor = Cursors.WaitCursor;
             regMap[0xFF].RegValue = 0x0;
             UpdateRegSettingSource(0x00);
 
             ReadAllAndUpdateGUI();
+            this.Cursor = Cursors.Default;
         }
 
         private void chb_Enable_CheckedChanged(object sender, EventArgs e)

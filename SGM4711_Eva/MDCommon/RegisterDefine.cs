@@ -25,10 +25,6 @@ namespace MD.MDCommon
 
             // Set name firstly is good for init when register init. Can update bf later.
             bfName = name;
-
-            // if no bits info inputed
-            bits = _bits;
-            if (bits == null || bits.Length == 0 || name == "")
                 return;
 
             // Get byte count of this bf
@@ -36,8 +32,6 @@ namespace MD.MDCommon
             if(bits_inByte == null || bits_inByte.Length == 0)
                 return;
 
-            byteCount = bits_inByte.Length;
-            bfValue_byte = new byte[byteCount];
 
             // calc end bit and start bit index
             string[] bits_ix;
@@ -103,8 +97,11 @@ namespace MD.MDCommon
             //Console.WriteLine(BFValueInRegValue.ToString("X2"));        
         }
 
-        public void InitiBF(string _bits, int byteCountOfReg, string name, string description, string regValue)
+        public void InitiBF(Register _Reg, string _bits, int byteCountOfReg, string name, string description, string regValue)
         {
+            //Get the reg handler of this bitfield belongs to
+            ReportedReg = _Reg;
+
             // Set name firstly is good for init when register init. Can update bf later.
             bfName = name;
 
@@ -433,7 +430,7 @@ namespace MD.MDCommon
                     {
                         for (int ix = 0; ix < bfList[ix_bf].ByteCount; ix++)
                         {
-                            regValue_byte[ix_dest++] = bfList[ix].BFValue_byte[ix];
+                            regValue_byte[ix_dest++] = bfList[ix_bf].BFValue_byte[ix];
                         }
                     }
                 }

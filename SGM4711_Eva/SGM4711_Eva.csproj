@@ -72,6 +72,13 @@
     <Compile Include="GUI\DRCForm.Designer.cs">
       <DependentUpon>DRCForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FormScriptCtrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormScriptCtrl.Designer.cs">
+      <DependentUpon>FormScriptCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDCommon\CustomerRegList.cs" />
     <Compile Include="MDCommon\IRegOperation.cs" />
     <Compile Include="MDUserCtrls\Dot.cs">
       <SubType>UserControl</SubType>
@@ -249,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormDongle.resx">
       <DependentUpon>FormDongle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormScriptCtrl.resx">
+      <DependentUpon>FormScriptCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form_backup.resx">
       <DependentUpon>Form_backup.cs</DependentUpon>

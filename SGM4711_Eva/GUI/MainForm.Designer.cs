@@ -551,6 +551,7 @@
             this.MenuItemTools_ScriptWrite.Name = "MenuItemTools_ScriptWrite";
             this.MenuItemTools_ScriptWrite.Size = new System.Drawing.Size(160, 22);
             this.MenuItemTools_ScriptWrite.Text = "Script Write";
+            this.MenuItemTools_ScriptWrite.Click += new System.EventHandler(this.MenuItemTools_ScriptWrite_Click);
             // 
             // MenuItemView
             // 
@@ -4868,7 +4869,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.46";
+            this.Text = "SGM4711 Eva_v0.47";
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).EndInit();
