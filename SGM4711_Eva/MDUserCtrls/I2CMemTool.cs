@@ -95,10 +95,12 @@ namespace SGM4711_Eva.MDUserCtrls
                         if (RegRead(currentRegAddr, regData))
                         {
                             // print read back register infomation
-                            for (int ixByteCount = 0; ixByteCount < regData.Length; ixByteCount++)
+                            for (int ixByteCount = 0; ixByteCount < regData.Length; )
                             {
                                 //outputString.Append(tempReg.ByteValue[ixByteCount].ToString("X2"));
-                                outputString.Append(String.Format(" {0}", regData[ixByteCount].ToString("X2")));
+                                outputString.Append(String.Format("{0}", regData[ixByteCount].ToString("X2")));
+                                if (++ixByteCount < regData.Length)
+                                    outputString.Append("-");
                             }
                             outputString.Append("\t");
                             //outputString.Append("\r\n");
@@ -130,7 +132,7 @@ namespace SGM4711_Eva.MDUserCtrls
 
             if (myDongle.IsOpen)
             {
-                string[] tempValues = this.txt_Display.Text.Split(new string[] { " ", "\t", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] tempValues = this.txt_Display.Text.Split(new string[] { "-", "\t", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 byte[] wrValues = new byte[tempValues.Length];
                 byte tempValue;
                 for (int ix = 0; ix < tempValues.Length; ix++)

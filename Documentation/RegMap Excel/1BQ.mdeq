@@ -1,0 +1,5 @@
+/* SGM4711 EQ Settings */
+/* No.0, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */
+Filter 0,HighPass,Butterworth,48000,1000,0,100,1.414,True,False
+/* Register Value in hex: b0, b1, b2, a1, a2 */
+/*74AEDF FF16A242 74AEDF E85D19 FF95A19C */

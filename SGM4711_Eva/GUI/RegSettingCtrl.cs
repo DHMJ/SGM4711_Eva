@@ -127,7 +127,7 @@ namespace SGM4711_Eva.GUI
                     if (dgv_regSetting[0, ix].Value != "")
                     {
                         tempRegAddr = byte.Parse(dgv_regSetting[0, ix].Value.ToString(), NumberStyles.HexNumber);
-                        dgv_regSetting[2, ix].Value = regMap[tempRegAddr].RegValue.ToString("X");
+                        dgv_regSetting[2, ix].Value = regMap[tempRegAddr].RegValueString;
                     }
                     // update bit filed value
                     else
@@ -208,7 +208,7 @@ namespace SGM4711_Eva.GUI
                         regMap[tempAddr].SetBFValue(dgv_regSetting[1, e.RowIndex].Value.ToString(),
                             dgv_regSetting[2, e.RowIndex].Value.ToString().Replace("0x", ""));
                         if(regMap[tempAddr].ByteCount <= 4 )
-                            dgv_regSetting[2, tempIx].Value = regMap[tempAddr].RegValue.ToString("X");
+                            dgv_regSetting[2, tempIx].Value = regMap[tempAddr].RegValueString;
 
                     }
                     else

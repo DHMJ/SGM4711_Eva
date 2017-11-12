@@ -81,7 +81,7 @@ namespace SGM4711_Eva
             this.cmb_SampleRate.SelectedIndex = 3;
 
             // Init double click events for my button
-            InitMyButtonDoubleClick();
+            //InitMyButtonDoubleClick();
         }
 
         private void CreateTabs(DataSet _ds)
@@ -536,7 +536,7 @@ namespace SGM4711_Eva
             //Transfer regmap to other classes
             this.singleRegCtrl.UpdateRegMap(regMap);
             this.freeRegCtrl.UpdateRegMap(regMap);
-            this.memoryTool.UpdateRegMap(regMap);
+            this.memoryTool.UpdateRegMap(regMap);            
         }
 
         private void ReadAllAndUpdateGUI()
@@ -655,6 +655,26 @@ namespace SGM4711_Eva
         public void UpdateRegSettingSource()
         {
             //ClearRegSettingSource();
+            RegProperty currentRegPro;
+            Register currentReg = null;
+            for (int ix = 0; ix < regCtrlList.Count; ix++)
+            {
+                currentRegPro = regCtrlList[ix];
+                if (currentRegPro.RegAddr != "")
+                {
+                    currentReg = regMap[byte.Parse(currentRegPro.RegAddr, System.Globalization.NumberStyles.HexNumber)];
+                    if (currentReg.ByteCount <= 4)
+                    {
+                        currentRegPro.RegData = currentReg.RegValueString;
+                    }
+                }
+                else if(currentReg != null)
+                {
+                    if (currentReg.Contain(currentRegPro.Reg_bfName))
+                        currentRegPro.RegData = currentReg[currentRegPro.Reg_bfName].BFValueString;
+                }
+            }
+
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
 
@@ -668,9 +688,22 @@ namespace SGM4711_Eva
 
             regCtrlList.Clear();
             regCtrl_AddrList.Clear();
-            RegProperty tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValue.ToString("X")) { };
-            regCtrlList.Add(tempReg);
+
+            Register tempReg = regMap[_regAddr];
+            RegProperty tempRegPro;
+
+            tempRegPro = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValueString) { };
+            regCtrlList.Add(tempRegPro);
             regCtrl_AddrList.Add(_regAddr);
+
+            if (tempReg.ByteCount > 4)
+            {
+                for (int ix = 0; ix < tempReg.BFCount; ix++)
+                {
+                    tempRegPro = new RegProperty("", regMap[_regAddr][ix].BFName, regMap[_regAddr][ix].BFValueString) { };
+                    regCtrlList.Add(tempRegPro);
+                }
+            }
 
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
@@ -683,15 +716,26 @@ namespace SGM4711_Eva
                 return;
             }
 
-            byte tempAddr = 0;
             regCtrlList.Clear();
             regCtrl_AddrList.Clear();
-            for (int ix = 0; ix < _regList.Length; ix++)
+            for (int ix_reg = 0; ix_reg < _regList.Length; ix_reg++)
             {
-                tempAddr = _regList[ix];
-                RegProperty tempReg = new RegProperty(tempAddr.ToString("X2"), regMap[tempAddr].RegName, regMap[tempAddr].RegValue.ToString("X")) { };
-                regCtrlList.Add(tempReg);
-                regCtrl_AddrList.Add(_regList[ix]);
+                Register tempReg = regMap[_regList[ix_reg]];
+                RegProperty tempRegPro;
+
+                tempRegPro = new RegProperty(_regList[ix_reg].ToString("X2"), regMap[_regList[ix_reg]].RegName, regMap[_regList[ix_reg]].RegValueString) { };
+                regCtrlList.Add(tempRegPro);
+                regCtrl_AddrList.Add(_regList[ix_reg]);
+
+                if (tempReg.ByteCount > 4)
+                {
+                    for (int ix = 0; ix < tempReg.BFCount; ix++)
+                    {
+                        tempRegPro = new RegProperty("", tempReg[ix].BFName, tempReg[ix].BFValueString) { };
+                        regCtrlList.Add(tempRegPro);
+                    }
+                }
+
             }
             this.singleRegCtrl.UpdateDataSource(regCtrlList);
         }
@@ -708,7 +752,7 @@ namespace SGM4711_Eva
             regCtrl_AddrList.Clear();
             RegProperty tempReg;
             if(regMap[_regAddr].ByteCount <= 4)
-                tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValue.ToString("X")) { };
+                tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValueString) { };
             else
                 tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, "") { };
 
@@ -718,7 +762,7 @@ namespace SGM4711_Eva
             for (int ix = 0; ix < bf_nameList.Length; ix++)
             {
                 //tempReg = new RegProperty("", bf_nameList[ix], regMap[_regAddr][bf_nameList[ix]].BFValue.ToString("X")) { };
-                tempReg = new RegProperty("", bf_nameList[ix], regMap[_regAddr][bf_nameList[ix]].BFValue.ToString("X")) { };
+                tempReg = new RegProperty("", bf_nameList[ix], regMap[_regAddr][bf_nameList[ix]].BFValueString) { };
                 regCtrlList.Add(tempReg);
             }
 
@@ -741,7 +785,7 @@ namespace SGM4711_Eva
 
             RegProperty tempReg;
             if (regMap[_regAddr].ByteCount <= 4)
-                tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValue.ToString("X")) { };
+                tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValueString) { };
             else
                 tempReg = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, "") { };
 
@@ -751,7 +795,7 @@ namespace SGM4711_Eva
             for (int ix = 0; ix < bf_nameList.Length; ix++)
             {
                 //tempReg = new RegProperty("", bf_nameList[ix], regMap[_regAddr][bf_nameList[ix]].BFValue.ToString("X")) { };
-                tempReg = new RegProperty("", bf_nameList[ix], regMap[_regAddr][bf_nameList[ix]].BFValue.ToString("X")) { };
+                tempReg = new RegProperty("", bf_nameList[ix], regMap[_regAddr][bf_nameList[ix]].BFValueString) { };
                 regCtrlList.Add(tempReg);
             }
 
@@ -813,24 +857,36 @@ namespace SGM4711_Eva
         {
             /* 0x29 */
             UpdateRegSettingSource(0x29);
+            btn_1BQ_LIn_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_1BQ_LIn;
         private void btn_1BQ_LIn_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x29 });
-            myEQ.ShowDialog();
+            if (myEQ_1BQ_LIn == null)
+                myEQ_1BQ_LIn = new ParameterEQCtrl(this, 1, regMap, new byte[] { 0x29 });
+            else
+                myEQ_1BQ_LIn.UpdateRegMap(regMap);
+
+            myEQ_1BQ_LIn.ShowDialog();
         }
 
         private void btn_1BQ_RIn_Click(object sender, EventArgs e)
         {
             /* 0x30 */
             UpdateRegSettingSource(0x30);
+            btn_1BQ_RIn_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_1BQ_RIn;
         private void btn_1BQ_RIn_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x30 });
-            myEQ.ShowDialog();
+            if (myEQ_1BQ_RIn == null)
+                myEQ_1BQ_RIn = new ParameterEQCtrl(this, 1, regMap, new byte[] { 0x30 });
+            else
+                myEQ_1BQ_RIn.UpdateRegMap(regMap);
+
+            myEQ_1BQ_RIn.ShowDialog();
         }
 
         private void M_CH1_Input_Mix3_Click(object sender, EventArgs e)
@@ -863,24 +919,36 @@ namespace SGM4711_Eva
         {
             /* 0x2A */
             UpdateRegSettingSource(0x2A);
+            btn_1BQ_LRMix_L_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_1BQ_LRMix_L;
         private void btn_1BQ_LRMix_L_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x2A });
-            myEQ.ShowDialog();
+            if (myEQ_1BQ_LRMix_L == null)
+                myEQ_1BQ_LRMix_L = new ParameterEQCtrl(this, 1, regMap, new byte[] { 0x2A });
+            else
+                myEQ_1BQ_LRMix_L.UpdateRegMap(regMap);
+
+            myEQ_1BQ_LRMix_L.ShowDialog();
         }
 
         private void btn_1BQ_LRMix_R_Click(object sender, EventArgs e)
         {
             /* 0x31 */
             UpdateRegSettingSource(0x31);
+            btn_1BQ_LRMix_R_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_1BQ_LRMix_R;
         private void btn_1BQ_LRMix_R_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x31 });
-            myEQ.ShowDialog();
+            if (myEQ_1BQ_LRMix_R == null)
+                myEQ_1BQ_LRMix_R = new ParameterEQCtrl(this, 1, regMap, new byte[] { 0x31 });
+            else
+                myEQ_1BQ_LRMix_R.UpdateRegMap(regMap);
+
+            myEQ_1BQ_LRMix_R.ShowDialog();
         }
 
         private void M_CH1_Input_Mix1_Click(object sender, EventArgs e)
@@ -912,25 +980,37 @@ namespace SGM4711_Eva
             /* 0x2B-0x2F, 0x58*/
             byte[] regList = new byte[] {0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x58};
             UpdateRegSettingSource(regList);
+            btn_6EQ_L_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_6EQ_L;
         private void btn_6EQ_L_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(6, regMap, new byte[] { 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x58 });
-            myEQ.ShowDialog();
+            if (myEQ_6EQ_L == null)
+                myEQ_6EQ_L = new ParameterEQCtrl(this, 6, regMap, new byte[] { 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x58 });
+            else
+                myEQ_6EQ_L.UpdateRegMap(regMap);
+
+            myEQ_6EQ_L.ShowDialog();
         }
 
-         private void btn_6EQ_R_Click(object sender, EventArgs e)
+        private void btn_6EQ_R_Click(object sender, EventArgs e)
         {
             /* 0x32-0x36, 0x5C*/
             byte[] regList = new byte[] { 0x32, 0x33, 0x34, 0x35, 0x36, 0x5C };
             UpdateRegSettingSource(regList);
+            btn_6EQ_R_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_6EQ_R;
         private void btn_6EQ_R_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(6, regMap, new byte[] { 0x32, 0x33, 0x34, 0x35, 0x36, 0x5C });
-            myEQ.ShowDialog();
+            if (myEQ_6EQ_R == null)
+                myEQ_6EQ_R = new ParameterEQCtrl(this, 6, regMap, new byte[] { 0x32, 0x33, 0x34, 0x35, 0x36, 0x5C });
+            else
+                myEQ_6EQ_R.UpdateRegMap(regMap);
+            
+            myEQ_6EQ_R.ShowDialog();
         }
 
         private void M_CH3_Input_Mix2_Click(object sender, EventArgs e)
@@ -993,60 +1073,214 @@ namespace SGM4711_Eva
         {
             /* 0x59 */
             UpdateRegSettingSource(0x59);
+            btn_1BQ_LOut_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_1BQ_LOut;
         private void btn_1BQ_LOut_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x59});
-            myEQ.ShowDialog();
+            if (myEQ_1BQ_LOut == null)
+                myEQ_1BQ_LOut = new ParameterEQCtrl(this, 1, regMap, new byte[] { 0x59 });
+            else
+                myEQ_1BQ_LOut.UpdateRegMap(regMap);
+
+            myEQ_1BQ_LOut.ShowDialog();
         }
 
         private void btn_1BQ_ROut_Click(object sender, EventArgs e)
         {
             /* 0x5D */
             UpdateRegSettingSource(0x5D);
+            btn_1BQ_ROut_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_1BQ_ROut;
         private void btn_1BQ_ROut_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x5D });
-            myEQ.ShowDialog();
+            if (myEQ_1BQ_ROut == null)
+                myEQ_1BQ_ROut = new ParameterEQCtrl(this, 1, regMap, new byte[] { 0x5D });
+            else
+                myEQ_1BQ_ROut.UpdateRegMap(regMap);
+
+            myEQ_1BQ_ROut.ShowDialog();
         }
 
         private void btn_1BQ_SubOut_Click(object sender, EventArgs e)
         {
             /* 0x5E */
             UpdateRegSettingSource(0x5E);
+            btn_1BQ_SubOut_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_1BQ_SubOut;
         private void btn_1BQ_SubOut_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(1, regMap, new byte[] { 0x5E });
-            myEQ.ShowDialog();
+            if (myEQ_1BQ_SubOut == null)
+                myEQ_1BQ_SubOut = new ParameterEQCtrl(this, 1, regMap, new byte[] { 0x5E });
+            else
+                myEQ_1BQ_SubOut.UpdateRegMap(regMap);
+
+            myEQ_1BQ_SubOut.ShowDialog();
         }
 
         private void btn_2BQ_Out_Click(object sender, EventArgs e)
         {
             /* 0x5A, 0x5B */
             UpdateRegSettingSource(new byte[] { 0x5A, 0x5B });
+            btn_2BQ_Out_DoubleClick(sender, e);
         }
 
+        ParameterEQCtrl myEQ_2BQ_Out;
         private void btn_2BQ_Out_DoubleClick(object sender, EventArgs e)
         {
-            ParameterEQCtrl myEQ = new ParameterEQCtrl(2, regMap, new byte[] { 0x5A, 0x5B });
-            myEQ.ShowDialog();
+            if (myEQ_2BQ_Out == null)
+                myEQ_2BQ_Out = new ParameterEQCtrl(this, 2, regMap, new byte[] { 0x5A, 0x5B });
+            else
+                myEQ_2BQ_Out.UpdateRegMap(regMap);
+
+            myEQ_2BQ_Out.ShowDialog();
         }
 
+        private void txt_VOL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+            string str = "\b\r0123456789.-";//This will allow the user to enter numeric HEX values only.
+
+            e.Handled = !(str.Contains(e.KeyChar.ToString()));
+
+            if (e.Handled)
+                return;
+
+            TextBox currentTxt = (sender as TextBox);
+            double gain = 0;
+            if (e.KeyChar == '\r')
+            {
+                if (Double.TryParse(currentTxt.Text, out gain))
+                {
+                    gain = gain > 24 ? 24 : (gain < -103.5 ? -103.5 : gain);
+                    gain = (int)Math.Round(gain * 2) / 2d;      // try to make it to integer times of 0.5
+
+                    currentTxt.Text = (gain == -103.5) ? "Muted" : gain.ToString();
+
+                    if (gain == -103.5)
+                    {
+                        currentTxt.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        currentTxt.ForeColor = Color.Black;
+                    }
+                }
+                else
+                {
+                    //uint tempVlaue = 0xFF - (uint)this.trb_MasterVolume.Value;
+                    //double tempdBValue = 24 - tempVlaue * 0.5;
+                    //this.txt_MasterVol.Text = string.Format("{0}", tempdBValue.ToString("F1"));
+                    //this.txt_MasterVol_1.Text = string.Format("{0}", tempdBValue.ToString("F1"));
+                }
+
+                if (regMap != null)
+                {
+                    if (currentTxt == txt_VOL1)
+                    {
+                        // 0x08
+                        regMap[0x08].RegValue = (uint)((24 - gain) * 2);
+                        UpdateRegSettingSource(0x08);
+                        RegWrite(0x08);
+
+                        // if not checked, from 0x08
+                        if (!chb_v3Source.Checked)
+                        {
+                            this.txt_VOL3.Text = this.txt_VOL1.Text;
+                            this.txt_VOL3.ForeColor = this.txt_VOL1.ForeColor;
+                        }
+                    }
+                    else if(currentTxt == txt_VOL2)
+                    {
+                        // 0x09
+                        regMap[0x09].RegValue = (uint)((24 - gain) * 2);
+                        UpdateRegSettingSource(0x09);
+                        RegWrite(0x09);
+
+                        // if not checked, from 0x08
+                        if (!chb_v4Source.Checked)
+                        {
+                            this.txt_VOL4.Text = this.txt_VOL2.Text;
+                            this.txt_VOL4.ForeColor = this.txt_VOL2.ForeColor;
+                        }
+                    }
+                    else if (currentTxt == txt_VOL3)
+                    {
+                        // 0x08/0A
+                        if (!chb_v3Source.Checked)
+                        {
+                            regMap[0x08].RegValue = (uint)((24 - gain) * 2);
+                            UpdateRegSettingSource(0x08);
+                            RegWrite(0x08);
+                            this.txt_VOL1.Text = this.txt_VOL3.Text;
+                            this.txt_VOL1.ForeColor = this.txt_VOL3.ForeColor;
+                        }
+                        else
+                        {
+                            regMap[0x0A].RegValue = (uint)((24 - gain) * 2);
+                            UpdateRegSettingSource(0x0A);
+                            RegWrite(0x0A);
+
+                            if (chb_v4Source.Checked)
+                            {
+                                this.txt_VOL4.Text = this.txt_VOL3.Text;
+                                this.txt_VOL4.ForeColor = this.txt_VOL3.ForeColor;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // 0x09/0A
+                        if (!chb_v3Source.Checked)
+                        {
+                            regMap[0x09].RegValue = (uint)((24 - gain) * 2);
+                            UpdateRegSettingSource(0x09);
+                            RegWrite(0x09);
+                            this.txt_VOL2.Text = this.txt_VOL4.Text;
+                            this.txt_VOL2.ForeColor = this.txt_VOL4.ForeColor;
+                        }
+                        else
+                        {
+                            regMap[0x0A].RegValue = (uint)((24 - gain) * 2);
+                            UpdateRegSettingSource(0x0A);
+                            RegWrite(0x0A);
+
+                            if (chb_v3Source.Checked)
+                            {
+                                this.txt_VOL3.Text = this.txt_VOL4.Text;
+                                this.txt_VOL3.ForeColor = this.txt_VOL4.ForeColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
         private void btn_VOL1_Click(object sender, EventArgs e)
         {
             /* 0x08 */
             UpdateRegSettingSource(0x08);
         }
 
+        private void txt_VOL1_Enter(object sender, EventArgs e)
+        {
+            btn_VOL1_Click(null, null);
+        }
+
         private void btn_VOL2_Click(object sender, EventArgs e)
         {
             /* 0x09 */
             UpdateRegSettingSource(0x09);
+        }
+
+        private void txt_VOL2_Enter(object sender, EventArgs e)
+        {
+            btn_VOL2_Click(null, null);
         }
 
         private void chb_v3Source_CheckedChanged(object sender, EventArgs e)
@@ -1079,6 +1313,11 @@ namespace SGM4711_Eva
                 UpdateRegSettingSource(0x08);
         }
 
+        private void txt_VOL3_Enter(object sender, EventArgs e)
+        {
+            btn_VOL3_Click(null, null);
+        }
+
         private void chb_v4Source_CheckedChanged(object sender, EventArgs e)
         {
             /* if(0x0E bit6 == 1) then = 0x0A, else 0x09 */
@@ -1108,6 +1347,11 @@ namespace SGM4711_Eva
                 UpdateRegSettingSource(0x0A);
             else
                 UpdateRegSettingSource(0x09);
+        }
+
+        private void txt_VOL4_Enter(object sender, EventArgs e)
+        {
+            btn_VOL4_Click(null, null);
         }
 
         private void btn_MasterVOL_Click(object sender, EventArgs e)
@@ -1334,15 +1578,26 @@ namespace SGM4711_Eva
                     historyProjPath.Add(currentProjPath);
                     if (historyProjPath.Count > maxHistProjPathCount)
                         historyProjPath.RemoveAt(0);
+                    
+                    SerializeMethod(currentProjPath);
                 }
             }
-
-            SerializeMethod(currentProjPath);
         }
 
         private void MenuItemFile_SaveAs_Click(object sender, EventArgs e)
         {
-
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "save project file...";
+            sfd.Filter = "MDPROJ(.mdproj)|*.mdproj";
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                currentProjPath = sfd.FileName;
+                historyProjPath.Add(currentProjPath);
+                if (historyProjPath.Count > maxHistProjPathCount)
+                    historyProjPath.RemoveAt(0);
+            
+                SerializeMethod(currentProjPath);
+            }
         }
 
         private void MenuItemFile_Close_Click(object sender, EventArgs e)
@@ -1368,12 +1623,42 @@ namespace SGM4711_Eva
             if (importFile.ShowDialog() == DialogResult.OK)
             {
                 string filename = importFile.FileName;
-                foreach (Register reg in regMap.RegList)
+
+                StreamReader sr = new StreamReader(filename);
+                Register currentReg;
+                int lineNum = 1;
+                //string comment = sr.ReadLine();
+                string registerstate = sr.ReadLine();
+                while (registerstate != null)
                 {
-                    GetPrivateProfileString(reg.RegName, "Value", "00", tempValue, 256, filename);
-                    reg.RegValue = byte.Parse(tempValue.ToString().Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
+                    if (registerstate.StartsWith("/*") || registerstate.Trim() == "")
+                    {
+                        registerstate = sr.ReadLine(); lineNum++;
+                        continue;
+                    }
+                    try
+                    {
+                        string[] temp = registerstate.TrimStart(' ').TrimEnd(' ').Replace("0x", "").Split(' ');  //Trim blank space
+                        currentReg = regMap[byte.Parse(temp[0], System.Globalization.NumberStyles.HexNumber)];
+
+                        if (temp.Length != (currentReg.ByteCount + 1))
+                            MessageBox.Show(String.Format("Reg 0x{0} import failed!", currentReg.RegAddress.ToString("X2")));
+
+                        byte[] tempHexValue = new byte[currentReg.ByteCount];
+                        for (int ix = 0; ix < tempHexValue.Length; ix++)
+                        {
+                            tempHexValue[ix] = byte.Parse(temp[ix + 1], System.Globalization.NumberStyles.HexNumber);
+                        }
+
+                        currentReg.ByteValue = tempHexValue;
+                        //Array.Copy(tempHexValue, 1, currentReg.ByteValue, 0, currentReg.ByteCount);
+                    }
+                    catch{ MessageBox.Show(String.Format("Wrong format in Line {0}", lineNum)); }
+                    finally { registerstate = sr.ReadLine(); lineNum++; }                    
                 }
+                sr.Close();
             }
+
             //todo update GUI 
             for (int ix = 0; ix < AllTables.Count; ix++)
             {
@@ -1399,28 +1684,16 @@ namespace SGM4711_Eva
             if (exportFile.ShowDialog() == DialogResult.OK)
             {
                 string filename = exportFile.FileName;
-                //foreach (Register reg in regMap.RegList)
-                //{
-                //    WritePrivateProfileString(reg.RegName, "Address", "0x" + reg.RegAddress.ToString("X2"), filename);
-                //    WritePrivateProfileString(reg.RegName, "Value", "0x" + reg.RegValue.ToString("X2"), filename);
-                //}
 
                 StreamWriter sw = new StreamWriter(filename);
                 sw.WriteLine("/* SGM4711 Registers */");
-                //foreach (Register reg in regs)
-                //{
-                //    string address = "0x" + reg.Address.ToString("X2");
-                //    string data = "0x" + reg.DataInt.ToString("X2");
-                //    string output = address + "," + data;
-                //    sw.WriteLine(output);
-                //}
 
                 byte[] tempRegAddrs;
                 Register tempReg;
                 for (int ix_reg = 0; ix_reg < customerRegs.RegList.Count; ix_reg++)
                 {
                     tempRegAddrs = customerRegs.RegList[ix_reg];
-                    //sw.WriteLine(String.Format("/* {0} */", tempRegAddrs.ToString()));
+                    sw.WriteLine(String.Format("/* {0} */", customerRegs.RegListName[ix_reg]));
 
                     foreach(byte tempRegAddr in tempRegAddrs)
                     {
@@ -1431,7 +1704,7 @@ namespace SGM4711_Eva
                         sw.Write(String.Format("0x{0}", tempReg.RegAddress.ToString("X2")));
                         for (int ix_byte = 0; ix_byte < tempReg.ByteCount; ix_byte++)
                         {
-                            sw.Write(String.Format(" 0x{0}", tempReg.ByteValue[ix_byte].ToString("X2")));
+                            sw.Write(String.Format(" {0}", tempReg.ByteValue[ix_byte].ToString("X2")));
                         }
                         sw.WriteLine();
                     }
@@ -1443,12 +1716,13 @@ namespace SGM4711_Eva
 
         private void MenuItemFile_Exit_Click(object sender, EventArgs e)
         {
-
+            MenuItemFile_Save_Click(sender, e);
+            this.Close();
         }
 
         private void MenuItemFile_ExitWithoutSave_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void MenuItemTools_I2CAddress_TextChanged(object sender, EventArgs e)
@@ -1629,7 +1903,7 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x05];
-                    tempReg["SUB_CH_MOD"].BFValue = 0x01;
+                    tempReg["SUB_CH_MOD"].BFValue = 0x1;
                     tempReg["MODE_SEL"].BFValue = 0x0;
                     regAddrList.Add(tempReg);
 
@@ -1671,11 +1945,11 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x25];
-                    tempReg.RegValue = 0x01021345;
+                    tempReg.RegValue = 0x01012345;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x05];
-                    tempReg["SUB_CH_MOD"].BFValue = 0x01;
+                    tempReg["SUB_CH_MOD"].BFValue = 0x1;
                     tempReg["MODE_SEL"].BFValue = 0x1;
                     regAddrList.Add(tempReg);
 
@@ -1731,7 +2005,7 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x05];
-                    tempReg["SUB_CH_MOD"].BFValue = 0x01;
+                    tempReg["SUB_CH_MOD"].BFValue = 0x1;
                     tempReg["MODE_SEL"].BFValue = 0x0;
                     regAddrList.Add(tempReg);
 
@@ -1858,6 +2132,10 @@ namespace SGM4711_Eva
 
         private void btn_InputMux_GUI_Click(object sender, EventArgs e)
         {
+            if (regMap == null)
+                return;
+
+            btn_InputMux_Click(sender, e);
             InputMux inputConfig = new InputMux(regMap, this);
             inputConfig.FormClosed += new FormClosedEventHandler(inputConfig_FormClosed);
             inputConfig.ShowDialog();
@@ -2046,6 +2324,10 @@ namespace SGM4711_Eva
         
         private void btn_OutputMux_GUI_Click(object sender, EventArgs e)
         {
+            if (regMap == null)
+                return;
+
+            btn_OutputMux_Click(sender, e);
             Output_Mux outputMux = new Output_Mux(this.regMap, this.cmb_ModeConfig.SelectedIndex);
             outputMux.FormClosed += new FormClosedEventHandler(outputMux_FormClosed);
             outputMux.ShowDialog();
@@ -2126,6 +2408,8 @@ namespace SGM4711_Eva
         }
 
         #endregion Main GUI Tab
+
+
 
 
 

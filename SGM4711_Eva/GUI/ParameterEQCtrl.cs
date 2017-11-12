@@ -7,30 +7,56 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MD.MDCommon;
+using System.Runtime.Serialization;
 
 namespace SGM4711_Eva.GUI
 {
-    public partial class ParameterEQCtrl : Form
+    [Serializable]
+    public partial class ParameterEQCtrl : Form, ISerializable 
     {
         private int filterCount = 1;
-        RegisterMap regmap;
+        RegisterMap regMap;
+        IRegOperation myRegOp;
         byte[] regAddr;
         EQCurveCtrl eqCurveCtrl = null;
-        public ParameterEQCtrl(int count, RegisterMap _regmap, byte[] _regAddr)
+        public ParameterEQCtrl(IRegOperation _myRegOp, int count, RegisterMap _regmap, byte[] _regAddr)
         {
             InitializeComponent();
+            myRegOp = _myRegOp;
             filterCount = count;
-            regmap = _regmap;
+            regMap = _regmap;
             regAddr = _regAddr;
-            InitGUI(filterCount);
+            InitGUI(_myRegOp, filterCount, _regmap, _regAddr);
         }
 
-        private void InitGUI(int filterCount)
+        public void SerializableForm(SerializationInfo info, StreamingContext context) 
+        { 
+            //this.Name   =   info.GetString( "Name "); 
+            //this.Size   =   (Size)info.GetValue( "Size ",   typeof(Size)); 
+            //this.Location   =   (Point)info.GetValue( "Location ",   typeof(Point)); 
+        } 
+
+        public void GetObjectData(SerializationInfo   info,   StreamingContext   context) 
         {
-            eqCurveCtrl = new EQCurveCtrl();
+            //info.AddValue(
+            //info.AddValue( "Name ",   this.Name);
+            //info.AddValue( "Size ",   this.Size);
+            //info.AddValue( "Location ",   this.Location);
+        } 
+
+        public void UpdateRegMap(RegisterMap _regmap)
+        {
+            this.regMap = _regmap;
+            if(eqCurveCtrl != null)
+                eqCurveCtrl.UpdateRegMap(_regmap);
+        }
+
+        private void InitGUI(IRegOperation _myRegOp, int _filterCount, RegisterMap _regmap, byte[] _regAddr)
+        {
+            eqCurveCtrl = new EQCurveCtrl(_myRegOp, _filterCount, _regmap, _regAddr);
             this.Controls.Add(eqCurveCtrl);
             eqCurveCtrl.Location = new Point(12, 12);
-            this.eqCurveCtrl.InitSetting(filterCount);
+            //this.eqCurveCtrl.InitSetting(filterCount);
             this.eqCurveCtrl.dgv_filterSetting.CellValueChanged += filterSetting_CellValueChanged;
         }
 
@@ -39,37 +65,6 @@ namespace SGM4711_Eva.GUI
             //MessageBox.Show("Test Successed");
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            int N = 200;
 
-            double[] den = {1.0, 0.0, 0.9};  
-            double[] num = {0.0, -1.0};  
-            double[] x_out, y_out;  
-            int i;  
-            double f;  
-            //gain(num, den, 1, 2, x_out, y_out, N, 1);  
-            for(i = 0; i < N; i ++)  
-            {  
-                f = 0.5 * i / (N - 1);  
-                //printf("%f, %f, %f\n", f, x_out[i], y_out[i]);  
-            }  
-   
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void eqCurveCtrl1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

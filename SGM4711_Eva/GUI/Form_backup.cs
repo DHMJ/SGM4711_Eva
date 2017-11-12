@@ -291,7 +291,7 @@ namespace GeneralRegConfigPlatform.GUI
                 foreach (Register reg in regMap.RegList)
                 {
                     WritePrivateProfileString(reg.RegName, "Address", "0x" + reg.RegAddress.ToString("X2"), filename);
-                    WritePrivateProfileString(reg.RegName, "Value", "0x" + reg.RegValue.ToString("X2"), filename);
+                    WritePrivateProfileString(reg.RegName, "Value", "0x" + reg.RegValueString, filename);
                 }
             }
         }

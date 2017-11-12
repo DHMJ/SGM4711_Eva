@@ -35,10 +35,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(799, 556);
+            this.ClientSize = new System.Drawing.Size(799, 602);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(815, 594);
-            this.MinimumSize = new System.Drawing.Size(815, 594);
+            this.MaximumSize = new System.Drawing.Size(815, 640);
+            this.MinimumSize = new System.Drawing.Size(815, 640);
             this.Name = "ParameterEQCtrl";
             this.Text = "EQ";
             this.ResumeLayout(false);

@@ -8,30 +8,54 @@ namespace MD.MDCommon
     public class CustomerRegList
     {
         private List<byte[]> regList = new List<byte[]> { };
+        private List<string> regListName = new List<string> { };
+
         public CustomerRegList()
         {
             regList.Clear();
+            regListName.Clear();
             regList.Add(Normal);
+            regListName.Add("Normal Registers");
             regList.Add(Biquads);
+            regListName.Add("Biquads");
             regList.Add(DRC1);
+            regListName.Add("DRC1");
             regList.Add(DRC2);
+            regListName.Add("DRC2");
             regList.Add(DRCs);
+            regListName.Add("DRCs");
             regList.Add(CH1OutputMixer);
+            regListName.Add("CH1OutputMixer");
             regList.Add(CH2OutputMixer);
+            regListName.Add("CH2OutputMixer");
             regList.Add(CH1InputMixer);
+            regListName.Add("CH1InputMixer");
             regList.Add(CH2InputMixer);
+            regListName.Add("CH2InputMixer");
             regList.Add(CH3InputMixer);
+            regListName.Add("CH3InputMixer");
             regList.Add(PostScale);
+            regListName.Add("PostScale");
             regList.Add(PreScale);
+            regListName.Add("PreScale");
             regList.Add(SubOutputMixer);
+            regListName.Add("SubOutputMixer");
             regList.Add(SubInputMixer);
+            regListName.Add("SubInputMixer");
             regList.Add(NoiseGate1);
+            regListName.Add("NoiseGate1");
             regList.Add(NoiseGate2);
+            regListName.Add("NoiseGate2");
         }
 
         public List<byte[]> RegList
         {
             get { return this.regList; }
+        }
+
+        public List<String> RegListName
+        {
+            get { return this.regListName; }
         }
 
         private byte[] Normal = new byte[] {0x00, 0x02, 0x05, 0x03, 0x04, 0x06, 0x07, 

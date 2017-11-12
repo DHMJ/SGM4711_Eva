@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_EQCurveSetting = new System.Windows.Forms.Panel();
+            this.chb_EQCurveView = new System.Windows.Forms.CheckBox();
             this.btn_Download_EQParam = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.numUP_MaxMagn = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,7 +57,11 @@
             this.Bypass = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CurveColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EQ_CurvePanel = new System.Windows.Forms.Panel();
-            this.chb_EQCurveView = new System.Windows.Forms.CheckBox();
+            this.btn_ImportEQ = new System.Windows.Forms.Button();
+            this.btn_ExportEQ = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.pnl_EQCurveSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MaxMagn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MaxFreq)).BeginInit();
@@ -66,34 +69,41 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MinFreq)).BeginInit();
             this.FilterSettingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_filterSetting)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_EQCurveSetting
             // 
             this.pnl_EQCurveSetting.BackColor = System.Drawing.Color.White;
-            this.pnl_EQCurveSetting.Controls.Add(this.chb_EQCurveView);
-            this.pnl_EQCurveSetting.Controls.Add(this.btn_Download_EQParam);
-            this.pnl_EQCurveSetting.Controls.Add(this.label5);
-            this.pnl_EQCurveSetting.Controls.Add(this.label2);
-            this.pnl_EQCurveSetting.Controls.Add(this.label4);
-            this.pnl_EQCurveSetting.Controls.Add(this.numUP_MaxMagn);
-            this.pnl_EQCurveSetting.Controls.Add(this.label1);
-            this.pnl_EQCurveSetting.Controls.Add(this.label3);
-            this.pnl_EQCurveSetting.Controls.Add(this.numUP_MaxFreq);
-            this.pnl_EQCurveSetting.Controls.Add(this.numUP_MinMagn);
-            this.pnl_EQCurveSetting.Controls.Add(this.numUP_MinFreq);
-            this.pnl_EQCurveSetting.Controls.Add(this.lbl_MinFreq);
+            this.pnl_EQCurveSetting.Controls.Add(this.groupBox3);
+            this.pnl_EQCurveSetting.Controls.Add(this.groupBox2);
+            this.pnl_EQCurveSetting.Controls.Add(this.groupBox1);
             this.pnl_EQCurveSetting.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_EQCurveSetting.Location = new System.Drawing.Point(0, 0);
             this.pnl_EQCurveSetting.Name = "pnl_EQCurveSetting";
-            this.pnl_EQCurveSetting.Size = new System.Drawing.Size(775, 46);
+            this.pnl_EQCurveSetting.Size = new System.Drawing.Size(776, 72);
             this.pnl_EQCurveSetting.TabIndex = 1;
             this.pnl_EQCurveSetting.SizeChanged += new System.EventHandler(this.pnl_EQCurveSetting_SizeChanged);
+            // 
+            // chb_EQCurveView
+            // 
+            this.chb_EQCurveView.AutoSize = true;
+            this.chb_EQCurveView.Checked = true;
+            this.chb_EQCurveView.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chb_EQCurveView.Location = new System.Drawing.Point(150, 23);
+            this.chb_EQCurveView.Name = "chb_EQCurveView";
+            this.chb_EQCurveView.Size = new System.Drawing.Size(66, 16);
+            this.chb_EQCurveView.TabIndex = 8;
+            this.chb_EQCurveView.Text = "EQ View";
+            this.chb_EQCurveView.UseVisualStyleBackColor = true;
+            this.chb_EQCurveView.CheckedChanged += new System.EventHandler(this.chb_EQCurveView_CheckedChanged);
             // 
             // btn_Download_EQParam
             // 
             this.btn_Download_EQParam.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Download_EQParam.Location = new System.Drawing.Point(697, 14);
+            this.btn_Download_EQParam.Location = new System.Drawing.Point(222, 20);
             this.btn_Download_EQParam.Name = "btn_Download_EQParam";
             this.btn_Download_EQParam.Size = new System.Drawing.Size(75, 23);
             this.btn_Download_EQParam.TabIndex = 6;
@@ -101,37 +111,19 @@
             this.btn_Download_EQParam.UseVisualStyleBackColor = true;
             this.btn_Download_EQParam.Click += new System.EventHandler(this.btn_Download_EQParam_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(320, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 12);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Magnitude (dB)";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("SimSun", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(493, 19);
+            this.label2.Location = new System.Drawing.Point(114, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 10);
             this.label2.TabIndex = 3;
             this.label2.Text = "Max";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 12);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Frequency (Hz)";
-            // 
             // numUP_MaxMagn
             // 
-            this.numUP_MaxMagn.Location = new System.Drawing.Point(522, 15);
+            this.numUP_MaxMagn.Location = new System.Drawing.Point(143, 22);
             this.numUP_MaxMagn.Maximum = new decimal(new int[] {
             24000,
             0,
@@ -157,7 +149,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("SimSun", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(193, 19);
+            this.label1.Location = new System.Drawing.Point(114, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(20, 10);
             this.label1.TabIndex = 3;
@@ -167,7 +159,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("SimSun", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(391, 19);
+            this.label3.Location = new System.Drawing.Point(12, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 10);
             this.label3.TabIndex = 1;
@@ -175,7 +167,7 @@
             // 
             // numUP_MaxFreq
             // 
-            this.numUP_MaxFreq.Location = new System.Drawing.Point(222, 15);
+            this.numUP_MaxFreq.Location = new System.Drawing.Point(143, 22);
             this.numUP_MaxFreq.Maximum = new decimal(new int[] {
             24000,
             0,
@@ -199,7 +191,7 @@
             // 
             // numUP_MinMagn
             // 
-            this.numUP_MinMagn.Location = new System.Drawing.Point(420, 15);
+            this.numUP_MinMagn.Location = new System.Drawing.Point(41, 22);
             this.numUP_MinMagn.Maximum = new decimal(new int[] {
             60,
             0,
@@ -228,7 +220,7 @@
             0,
             0,
             0});
-            this.numUP_MinFreq.Location = new System.Drawing.Point(120, 15);
+            this.numUP_MinFreq.Location = new System.Drawing.Point(41, 22);
             this.numUP_MinFreq.Maximum = new decimal(new int[] {
             20000,
             0,
@@ -254,7 +246,7 @@
             // 
             this.lbl_MinFreq.AutoSize = true;
             this.lbl_MinFreq.Font = new System.Drawing.Font("SimSun", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_MinFreq.Location = new System.Drawing.Point(91, 19);
+            this.lbl_MinFreq.Location = new System.Drawing.Point(12, 27);
             this.lbl_MinFreq.Name = "lbl_MinFreq";
             this.lbl_MinFreq.Size = new System.Drawing.Size(20, 10);
             this.lbl_MinFreq.TabIndex = 1;
@@ -265,9 +257,9 @@
             this.FilterSettingPanel.BackColor = System.Drawing.Color.White;
             this.FilterSettingPanel.Controls.Add(this.dgv_filterSetting);
             this.FilterSettingPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FilterSettingPanel.Location = new System.Drawing.Point(0, 376);
+            this.FilterSettingPanel.Location = new System.Drawing.Point(0, 411);
             this.FilterSettingPanel.Name = "FilterSettingPanel";
-            this.FilterSettingPanel.Size = new System.Drawing.Size(775, 164);
+            this.FilterSettingPanel.Size = new System.Drawing.Size(776, 163);
             this.FilterSettingPanel.TabIndex = 3;
             // 
             // dgv_filterSetting
@@ -277,14 +269,14 @@
             this.dgv_filterSetting.AllowUserToResizeColumns = false;
             this.dgv_filterSetting.AllowUserToResizeRows = false;
             this.dgv_filterSetting.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_filterSetting.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_filterSetting.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_filterSetting.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_filterSetting.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
@@ -297,14 +289,14 @@
             this.View,
             this.Bypass,
             this.CurveColor});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_filterSetting.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_filterSetting.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_filterSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_filterSetting.Location = new System.Drawing.Point(0, 0);
             this.dgv_filterSetting.MultiSelect = false;
@@ -313,7 +305,7 @@
             this.dgv_filterSetting.RowTemplate.Height = 23;
             this.dgv_filterSetting.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_filterSetting.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgv_filterSetting.Size = new System.Drawing.Size(775, 164);
+            this.dgv_filterSetting.Size = new System.Drawing.Size(776, 163);
             this.dgv_filterSetting.TabIndex = 1;
             this.dgv_filterSetting.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_filterSetting_CellFormatting);
             this.dgv_filterSetting.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_filterSetting_CellValidating);
@@ -323,8 +315,8 @@
             // No
             // 
             this.No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.No.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.No.DefaultCellStyle = dataGridViewCellStyle2;
             this.No.HeaderText = "No.";
             this.No.Name = "No";
             this.No.ReadOnly = true;
@@ -333,8 +325,8 @@
             // 
             // Type
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Type.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Type.DefaultCellStyle = dataGridViewCellStyle3;
             this.Type.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Type.HeaderText = "Type";
             this.Type.Items.AddRange(new object[] {
@@ -345,8 +337,8 @@
             // 
             // SubType
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SubType.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SubType.DefaultCellStyle = dataGridViewCellStyle4;
             this.SubType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SubType.HeaderText = "SubType";
             this.SubType.Name = "SubType";
@@ -404,24 +396,72 @@
             // 
             this.EQ_CurvePanel.BackColor = System.Drawing.Color.White;
             this.EQ_CurvePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EQ_CurvePanel.Location = new System.Drawing.Point(0, 46);
+            this.EQ_CurvePanel.Location = new System.Drawing.Point(0, 72);
             this.EQ_CurvePanel.Name = "EQ_CurvePanel";
-            this.EQ_CurvePanel.Size = new System.Drawing.Size(775, 330);
+            this.EQ_CurvePanel.Size = new System.Drawing.Size(776, 339);
             this.EQ_CurvePanel.TabIndex = 4;
             this.EQ_CurvePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EQ_CurvePanel_Paint);
             // 
-            // chb_EQCurveView
+            // btn_ImportEQ
             // 
-            this.chb_EQCurveView.AutoSize = true;
-            this.chb_EQCurveView.Checked = true;
-            this.chb_EQCurveView.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chb_EQCurveView.Location = new System.Drawing.Point(613, 17);
-            this.chb_EQCurveView.Name = "chb_EQCurveView";
-            this.chb_EQCurveView.Size = new System.Drawing.Size(66, 16);
-            this.chb_EQCurveView.TabIndex = 8;
-            this.chb_EQCurveView.Text = "EQ View";
-            this.chb_EQCurveView.UseVisualStyleBackColor = true;
-            this.chb_EQCurveView.CheckedChanged += new System.EventHandler(this.chb_EQCurveView_CheckedChanged);
+            this.btn_ImportEQ.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_ImportEQ.Location = new System.Drawing.Point(10, 20);
+            this.btn_ImportEQ.Name = "btn_ImportEQ";
+            this.btn_ImportEQ.Size = new System.Drawing.Size(55, 23);
+            this.btn_ImportEQ.TabIndex = 9;
+            this.btn_ImportEQ.Text = "Import";
+            this.btn_ImportEQ.UseVisualStyleBackColor = true;
+            this.btn_ImportEQ.Click += new System.EventHandler(this.btn_ImportEQ_Click);
+            // 
+            // btn_ExportEQ
+            // 
+            this.btn_ExportEQ.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_ExportEQ.Location = new System.Drawing.Point(71, 20);
+            this.btn_ExportEQ.Name = "btn_ExportEQ";
+            this.btn_ExportEQ.Size = new System.Drawing.Size(55, 23);
+            this.btn_ExportEQ.TabIndex = 10;
+            this.btn_ExportEQ.Text = "Export";
+            this.btn_ExportEQ.UseVisualStyleBackColor = true;
+            this.btn_ExportEQ.Click += new System.EventHandler(this.btn_ExportEQ_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.numUP_MaxFreq);
+            this.groupBox1.Controls.Add(this.lbl_MinFreq);
+            this.groupBox1.Controls.Add(this.numUP_MinFreq);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(213, 60);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Frequency (Hz)";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.numUP_MaxMagn);
+            this.groupBox2.Controls.Add(this.numUP_MinMagn);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Location = new System.Drawing.Point(233, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(213, 60);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Magnitude (dB)";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btn_ImportEQ);
+            this.groupBox3.Controls.Add(this.btn_ExportEQ);
+            this.groupBox3.Controls.Add(this.chb_EQCurveView);
+            this.groupBox3.Controls.Add(this.btn_Download_EQParam);
+            this.groupBox3.Location = new System.Drawing.Point(463, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(308, 60);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Functions";
             // 
             // EQCurveCtrl
             // 
@@ -432,15 +472,20 @@
             this.Controls.Add(this.FilterSettingPanel);
             this.Controls.Add(this.pnl_EQCurveSetting);
             this.Name = "EQCurveCtrl";
-            this.Size = new System.Drawing.Size(775, 540);
+            this.Size = new System.Drawing.Size(776, 574);
             this.pnl_EQCurveSetting.ResumeLayout(false);
-            this.pnl_EQCurveSetting.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MaxMagn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MaxFreq)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MinMagn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_MinFreq)).EndInit();
             this.FilterSettingPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_filterSetting)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -456,8 +501,6 @@
         private System.Windows.Forms.NumericUpDown numUP_MaxMagn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numUP_MinMagn;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel FilterSettingPanel;
         private System.Windows.Forms.Panel EQ_CurvePanel;
         public System.Windows.Forms.DataGridView dgv_filterSetting;
@@ -473,6 +516,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CurveColor;
         private System.Windows.Forms.Button btn_Download_EQParam;
         private System.Windows.Forms.CheckBox chb_EQCurveView;
+        private System.Windows.Forms.Button btn_ExportEQ;
+        private System.Windows.Forms.Button btn_ImportEQ;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
 
     }
 }

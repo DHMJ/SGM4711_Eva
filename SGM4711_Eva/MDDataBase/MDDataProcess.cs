@@ -219,7 +219,7 @@ namespace GeneralRegConfigPlatform.MDDataBase
                     {
                         tempReg = _regMap[tempRowItems[(int)itemIx_BF.regName].ToString()];
                         // Add row for register: RegAddress, "", RegName,"", RegValue
-                        tempDT.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", tempReg.RegValue.ToString("X2") });
+                        tempDT.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", tempReg.RegValueString });
                     }
 
                     if (tempReg == null)
@@ -231,10 +231,10 @@ namespace GeneralRegConfigPlatform.MDDataBase
                     tempBF = tempReg[tempRowItems[(int)itemIx_BF.bfName].ToString()];
                     // Initialize bit field
                     tempBF.InitiBF(tempReg, tempRowItems[(int)itemIx_BF.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF.bfName].ToString(),
-                        tempRowItems[(int)itemIx_BF.Description].ToString().Replace("\n", "\r\n"), tempReg.RegValue.ToString("X2"));
+                        tempRowItems[(int)itemIx_BF.Description].ToString().Replace("\n", "\r\n"), tempReg.RegValueString);
 
                     // Add row for bitfield: "", BIT, Name, BFValue, ""
-                    tempDT.Rows.Add(new object[] { "", tempRowItems[(int)itemIx_BF.bit].ToString(), tempRowItems[(int)itemIx_BF.bfName].ToString(), tempBF.BFValue.ToString("X2"), "" });
+                    tempDT.Rows.Add(new object[] { "", tempRowItems[(int)itemIx_BF.bit].ToString(), tempRowItems[(int)itemIx_BF.bfName].ToString(), tempBF.BFValueString, "" });
                 }                
             }
 
@@ -303,7 +303,7 @@ namespace GeneralRegConfigPlatform.MDDataBase
                         if (tempReg.DisplayRegValueCell)
                             tempDT.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", "" });   //if use byte array, no reg data displayed on GUI
                         else
-                            tempDT.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", tempReg.RegValue.ToString("X2") });
+                            tempDT.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", tempReg.RegValueString });
                     }
                     if (tempReg == null)
 
@@ -325,10 +325,10 @@ namespace GeneralRegConfigPlatform.MDDataBase
                     // Initialize bit field
                     bfAddedCount++;
                     tempBF.InitiBF(tempReg, tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(),
-                        tempRowItems[(int)itemIx_BF_Crazy.Description].ToString().Replace("\n", "\r\n"), tempReg.RegValue.ToString("X2"));
+                        tempRowItems[(int)itemIx_BF_Crazy.Description].ToString().Replace("\n", "\r\n"), tempReg.RegValueString);
 
                     // Add row for bitfield: "", BIT, Name, BFValue, ""
-                    tempDT.Rows.Add(new object[] { "", tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(), tempBF.BFValue.ToString("X2"), "" });
+                    tempDT.Rows.Add(new object[] { "", tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(), tempBF.BFValueString, "" });
                 }
             }
         }

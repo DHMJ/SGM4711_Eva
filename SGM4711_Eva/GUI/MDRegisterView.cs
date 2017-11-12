@@ -95,7 +95,7 @@ namespace GeneralRegConfigPlatform.MDGUI
                             continue;
 
                         // Add row for register: RegAddress, "", RegName,"", RegValue
-                        dt_Customer.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", tempReg.RegValue.ToString("X2") });
+                        dt_Customer.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", tempReg.RegValueString });
                         for (int ix_bf = 0; ix_bf < tempReg.BFCount; ix_bf++)
                         {
                             //Add row for bitfield: "", BIT, Name, BFValue, ""
@@ -279,7 +279,7 @@ namespace GeneralRegConfigPlatform.MDGUI
             {
                 Register tempReg = regMap[regAddrList[ix_reg]];
                 // Add row for register: RegAddress, "", RegName,"", RegValue
-                dt_Customer.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", tempReg.RegValue.ToString("X2") });
+                dt_Customer.Rows.Add(new object[] { tempReg.RegAddress.ToString("X2"), "", tempReg.RegName, "", tempReg.RegValueString });
                 for (int ix_bf = 0; ix_bf < tempReg.BFCount; ix_bf++)
                 {
                     //Add row for bitfield: "", BIT, Name, BFValue, ""
@@ -309,7 +309,7 @@ namespace GeneralRegConfigPlatform.MDGUI
                     {
                         //dgvRow.Cells[4].Value = regAddr.ToString("X2");
                         if (updateReg.ByteCount <= 4)       // if byte count <= 4, can update reg value first and then update bf cell in value changed event.
-                            dgvRow.Cells[(int)cellIx.regValue].Value = updateReg.RegValue.ToString("X2");
+                            dgvRow.Cells[(int)cellIx.regValue].Value = updateReg.RegValueString;
                         else                                // if byte count >4, will disable regVale cell and update bf cell directly
                             UpdateBFValueCells(dgvRow.Index, updateReg.RegAddress);                        
                         
@@ -514,7 +514,7 @@ namespace GeneralRegConfigPlatform.MDGUI
                     if (!tempReg.DisplayRegValueCell)  //if byte count of reg <= 4, then update reg Value on GUI
                     {
                         this.mdDVG1.CellValueChanged -= new System.Windows.Forms.DataGridViewCellEventHandler(this.mdDVG1_CellValueChanged);
-                        mdDVG1[4, regRowIx].Value = regMap[tempAddr].RegValue.ToString("X2");
+                        mdDVG1[4, regRowIx].Value = regMap[tempAddr].RegValueString;
                         this.mdDVG1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.mdDVG1_CellValueChanged);
                     }
                     break;

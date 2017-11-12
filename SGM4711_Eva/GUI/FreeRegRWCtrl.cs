@@ -61,7 +61,7 @@ namespace SGM4711_Eva.GUI
                     if (dgv_regSetting[0, ix].Value.ToString() != "")
                     {
                         tempRegAddr = byte.Parse(dgv_regSetting[0, ix].Value.ToString(), NumberStyles.HexNumber);
-                        dgv_regSetting[1, ix].Value = regMap[tempRegAddr].RegValue.ToString("X");
+                        dgv_regSetting[1, ix].Value = regMap[tempRegAddr].RegValueString;
                     }
                     // update bit filed value
                     else
@@ -214,7 +214,7 @@ namespace SGM4711_Eva.GUI
                 case 0:         //Reg Address changed
                     // Update regmap and BF value in GUI display
                     tempAddr = byte.Parse(tempRow.Cells[0].Value.ToString().Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
-                    tempRow.Cells[1].Value = regMap[tempAddr].RegValue.ToString("X");
+                    tempRow.Cells[1].Value = regMap[tempAddr].RegValueString;
 
                     //backup
                     regAddrList[e.RowIndex] = tempAddr;

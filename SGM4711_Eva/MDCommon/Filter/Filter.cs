@@ -6,6 +6,7 @@ using System.Drawing;
 
 namespace SGM4711_Eva.MDCommon.Filter
 {
+    [Serializable]
     public class Filter
     {
         #region Coefficents
@@ -16,8 +17,9 @@ namespace SGM4711_Eva.MDCommon.Filter
 
         double[] p = new double[3]; // coefficent a, num
         double[] d = new double[3]; // coefficent b, den
-        int[] reg_b = new int[3];
-        int[] reg_a = new int[2];
+        uint[] reg_b = new uint[3];
+        uint[] reg_a = new uint[2];
+        
         //double fc;
         //double fs = 48000;      //Default 48KHz
         //double gain_dB;
@@ -127,11 +129,11 @@ namespace SGM4711_Eva.MDCommon.Filter
              * a0 = round(d1 × 2^23)
              * a1 = round(d2 × 2^23)
             ********************************************/
-            reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-            reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-            reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
-            reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
-            reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+            reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+            reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+            reg_b[2] = (uint)Math.Round(p[2] * Math.Pow(2, 23));
+            reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
+            reg_a[1] = (uint)Math.Round(d[2] * Math.Pow(2, 23));
 
             /*******************************************
              * 4. Transfer the decimal integer values 
@@ -188,11 +190,11 @@ namespace SGM4711_Eva.MDCommon.Filter
              * a0 = round(d1 × 2^23)
              * a1 = round(d2 × 2^23)
             ********************************************/
-            reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-            reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-            reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
-            reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
-            reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+            reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+            reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+            reg_b[2] = (uint)Math.Round(p[2] * Math.Pow(2, 23));
+            reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
+            reg_a[1] = (uint)Math.Round(d[2] * Math.Pow(2, 23));
 
             /*******************************************
              * 4. Transfer the decimal integer values 
@@ -248,9 +250,9 @@ namespace SGM4711_Eva.MDCommon.Filter
             //     * b1 = round(p1 × 2^23)
             //     * a0 = round(d1 × 2^23)             
             //    ********************************************/
-            //    reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-            //    reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-            //    reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
+            //    reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+            //    reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+            //    reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
 
             //    /*******************************************
             //     * 4. Transfer the decimal integer values 
@@ -295,9 +297,9 @@ namespace SGM4711_Eva.MDCommon.Filter
             //     * b1 = round(p1 × 2^23)
             //     * a0 = round(d1 × 2^23)             
             //    ********************************************/
-            //    reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-            //    reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-            //    reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
+            //    reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+            //    reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+            //    reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
 
             //    /*******************************************
             //     * 4. Transfer the decimal integer values 
@@ -360,11 +362,11 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * a0 = round(d1 × 2^23)
                  * a1 = round(d2 × 2^23)
                 ********************************************/
-                reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-                reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-                reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
-                reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
-                reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+                reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+                reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+                reg_b[2] = (uint)Math.Round(p[2] * Math.Pow(2, 23));
+                reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
+                reg_a[1] = (uint)Math.Round(d[2] * Math.Pow(2, 23));
 
                 /*******************************************
                  * 4. Transfer the decimal integer values 
@@ -437,11 +439,11 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * a0 = round(d1 × 2^23)
                  * a1 = round(d2 × 2^23)
                 ********************************************/
-                reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-                reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-                reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
-                reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
-                reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+                reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+                reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+                reg_b[2] = (uint)Math.Round(p[2] * Math.Pow(2, 23));
+                reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
+                reg_a[1] = (uint)Math.Round(d[2] * Math.Pow(2, 23));
 
                 /*******************************************
                  * 4. Transfer the decimal integer values 
@@ -509,11 +511,11 @@ namespace SGM4711_Eva.MDCommon.Filter
              * a0 = round(d1 × 2^23)
              * a1 = round(d2 × 2^23)
             ********************************************/
-            reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-            reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-            reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
-            reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
-            reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+            reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+            reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+            reg_b[2] = (uint)Math.Round(p[2] * Math.Pow(2, 23));
+            reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
+            reg_a[1] = (uint)Math.Round(d[2] * Math.Pow(2, 23));
 
             /*******************************************
              * 4. Transfer the decimal integer values 
@@ -590,11 +592,11 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * a0 = round(d1 × 2^23)
                  * a1 = round(d2 × 2^23)
                 ********************************************/
-                reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-                reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-                reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
-                reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
-                reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+                reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+                reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+                reg_b[2] = (uint)Math.Round(p[2] * Math.Pow(2, 23));
+                reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
+                reg_a[1] = (uint)Math.Round(d[2] * Math.Pow(2, 23));
 
                 /*******************************************
                  * 4. Transfer the decimal integer values 
@@ -673,11 +675,11 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * a0 = round(d1 × 2^23)
                  * a1 = round(d2 × 2^23)
                 ********************************************/
-                reg_b[0] = (int)Math.Round(p[0] * Math.Pow(2, 23));
-                reg_b[1] = (int)Math.Round(p[1] * Math.Pow(2, 23));
-                reg_b[2] = (int)Math.Round(p[2] * Math.Pow(2, 23));
-                reg_a[0] = (int)Math.Round(d[1] * Math.Pow(2, 23));
-                reg_a[1] = (int)Math.Round(d[2] * Math.Pow(2, 23));
+                reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+                reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+                reg_b[2] = (uint)Math.Round(p[2] * Math.Pow(2, 23));
+                reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
+                reg_a[1] = (uint)Math.Round(d[2] * Math.Pow(2, 23));
 
                 /*******************************************
                  * 4. Transfer the decimal integer values 
@@ -777,6 +779,16 @@ namespace SGM4711_Eva.MDCommon.Filter
             get { return d; }
         }
 
+        public uint[] RegValue_B
+        {
+            get { return this.reg_b; }
+        }
+
+        public uint[] RegValue_A
+        {
+            get { return this.reg_a; }
+        }
+
         //public double FS
         //{
         //    //set { fs = value; }
@@ -819,10 +831,9 @@ namespace SGM4711_Eva.MDCommon.Filter
             }
         }
         #endregion Properties
-
-
     }
 
+    [Serializable]
     public enum FilterType
     {
         AllPass = 0,
@@ -833,6 +844,7 @@ namespace SGM4711_Eva.MDCommon.Filter
         Notch    = 5
     }
 
+    [Serializable]
     public enum FilterSubType
     {
         None = 0,
@@ -847,6 +859,7 @@ namespace SGM4711_Eva.MDCommon.Filter
         High =11
     }
 
+    [Serializable]
     public enum FilterSubType_LoHiPass
     {
         General = 1,
@@ -854,12 +867,14 @@ namespace SGM4711_Eva.MDCommon.Filter
         Bessel = 3
     }
 
+    [Serializable]
     public enum FilterSubType_Shelving
     {
         Low = 10,
         High = 11
     }
 
+    [Serializable]
     public class FilterSetting
     {
         public FilterSetting(int _ix, Color frCurveColor)

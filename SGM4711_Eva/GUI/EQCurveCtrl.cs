@@ -7,17 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SGM4711_Eva.MDCommon.Filter;
+using MD.MDCommon;
+using System.IO;
+using System.Runtime.Serialization;
 
 namespace SGM4711_Eva.GUI
 {
-    public partial class EQCurveCtrl : UserControl
+    [Serializable]
+    public partial class EQCurveCtrl : UserControl, ISerializable
     {
-        public EQCurveCtrl()
+        IRegOperation myRegOp;
+        RegisterMap regMap;
+        byte[] regAddr;
+        public EQCurveCtrl(IRegOperation _myRegOp, int filterCount, RegisterMap _regmap, byte[] _regAddr)
         {
             InitializeComponent();
+            myRegOp = _myRegOp;
+            this.regMap = _regmap;
+            this.regAddr = _regAddr;
             InitDVG();
+            InitSetting(filterCount);
             //UpdateDrawPoints_Frame();
             //UpdateFreqPointForFR();
+        }
+
+        public void SerializableForm(SerializationInfo info, StreamingContext context)
+        {
+            this.filterList = (List<Filter>)info.GetValue("Filters", typeof(List<Filter>));
+            this.settings = (List<FilterSetting>)info.GetValue("FilterSettings", typeof(List<FilterSetting>));
+            //this.Name   =   info.GetString( "Name "); 
+            //this.Size   =   (Size)info.GetValue( "Size ",   typeof(Size)); 
+            //this.Location   =   (Point)info.GetValue( "Location ",   typeof(Point)); 
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("FilterSettings", settings);
+            info.AddValue("Filters", filterList);
+            //info.AddValue( "Name ",   this.Name);
+            //info.AddValue( "Size ",   this.Size);
+            //info.AddValue( "Location ",   this.Location);
+        } 
+
+        public void UpdateRegMap(RegisterMap _regmap)
+        {
+            this.regMap = _regmap;
         }
 
         #region Params
@@ -338,7 +372,7 @@ namespace SGM4711_Eva.GUI
             dgv_filterSetting.Columns[9].ReadOnly = true;
         }
 
-        public void InitSetting(int count)
+        private void InitSetting(int count)
         {
             freqResponsePointsLoca = new Point[count][];
             for (int ix = 0; ix < count; ix++)
@@ -371,6 +405,33 @@ namespace SGM4711_Eva.GUI
 
             // Update all filters' curve points
             //UpdateDrawPoints_FR(-1);
+        }
+
+        private void UpdateGUIFromSetting()
+        {
+            this.dgv_filterSetting.CellValueChanged -= dgv_filterSetting_CellValueChanged;
+            UpdateDrawPoints_Frame();
+            UpdateFreqPointForFR();
+
+            /* No.{0}, Filter Type, SubType, F0, Gain, Bandwidth, Q, View, Bypass */
+            for (int filterNo = 0; filterNo < settings.Count; filterNo++)
+            {
+                FilterSetting currentSet = settings[filterNo];
+                dgv_filterSetting[(int)paramIx.Type, filterNo].Value = currentSet.Type.ToString();
+                dgv_filterSetting[(int)paramIx.SubType, filterNo].Value = currentSet.SubType.ToString();
+                dgv_filterSetting[(int)paramIx.Freq, filterNo].Value = currentSet.Freq.ToString("F2");
+                dgv_filterSetting[(int)paramIx.Gain, filterNo].Value = currentSet.Gain.ToString("F2");
+                dgv_filterSetting[(int)paramIx.BW, filterNo].Value = currentSet.BandWidth.ToString("F2");
+                dgv_filterSetting[(int)paramIx.QFatcor, filterNo].Value = currentSet.QFactor.ToString("F3");
+                dgv_filterSetting[(int)paramIx.View, filterNo].Value = currentSet.View;
+                dgv_filterSetting[(int)paramIx.Bypass, filterNo].Value = currentSet.Bypass;
+                filterList[filterNo].UpdateCoefficents(freqPointForFR.ToArray());
+            }
+
+            UpdateDrawPoints_FR(-1);
+            this.EQ_CurvePanel.Refresh();
+
+            this.dgv_filterSetting.CellValueChanged += dgv_filterSetting_CellValueChanged;
         }
 
         private void UpdateFilterSetFeature(int _ixFilter, FilterType _fType)
@@ -973,10 +1034,123 @@ namespace SGM4711_Eva.GUI
             EQView = this.chb_EQCurveView.Checked;
             this.EQ_CurvePanel.Refresh();
         }
+        
+        private void btn_ImportEQ_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog importFile = new OpenFileDialog();
+            importFile.Title = "Import EQ setting and update to GUI...";
+            importFile.Filter = "MDEQ(.mdeq)|*.mdeq|All File(*.*)|*.*";
+            //importFile.RestoreDirectory = true;
+            if (importFile.ShowDialog() == DialogResult.OK)
+            {
+                string filename = importFile.FileName;
 
+                StreamReader sr = new StreamReader(filename);
+                int successCount = 0;
+                int lineNum = 1;
+                FilterSetting currentSet;
+                Filter currentFilter;
+                //string comment = sr.ReadLine();
+                string registerstate = sr.ReadLine();
+                while (registerstate != null)
+                {
+                    if (registerstate.StartsWith("/*") || registerstate.Trim() == "")
+                    {
+                        registerstate = sr.ReadLine(); lineNum++;
+                        continue;
+                    }
+                    try
+                    {
+                        string[] tempStr = registerstate.TrimStart(' ').TrimEnd(' ').Split(',');  //Trim blank space
+                        if (tempStr.Length != 10)
+                            throw new Exception(String.Format("Wrong data in line {0}!!", lineNum));
+                        
+                        /* No.{0}, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */                            
+                        currentSet = settings[successCount];
+                        currentFilter = filterList[successCount];
+                        currentSet.Type = (FilterType)Enum.Parse(typeof(FilterType), tempStr[1]);
+                        currentSet.SubType = (FilterSubType)Enum.Parse(typeof(FilterSubType), tempStr[2]);
+                        currentSet.FS = double.Parse(tempStr[3]);
+                        currentSet.Freq = double.Parse(tempStr[4]);
+                        currentSet.Gain = double.Parse(tempStr[5]);
+                        currentSet.BandWidth = double.Parse(tempStr[6]);
+                        currentSet.QFactor= double.Parse(tempStr[7]);
+                        currentSet.View = bool.Parse(tempStr[8]);
+                        currentSet.Bypass = bool.Parse(tempStr[9]);
+                                                
+                        // count successed num after got everything
+                        successCount++;
+                    }
+                    catch(Exception ex) { MessageBox.Show(ex.ToString()); }
+                    finally { registerstate = sr.ReadLine(); lineNum++; }
+                }
+                UpdateGUIFromSetting();
+                sr.Close();
+
+                MessageBox.Show(String.Format("{0} filters have been imported!", successCount));
+            }
+        }
+
+        private void btn_ExportEQ_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportFile = new SaveFileDialog();
+            exportFile.Title = "Export all the eq setting to local file...";
+            exportFile.Filter = "MDEQ(.mdeq)|*.mdeq|All File(*.*)|*.*";
+            //exportFile.RestoreDirectory = true;
+            if (exportFile.ShowDialog() == DialogResult.OK)
+            {
+                string filename = exportFile.FileName;
+
+                StreamWriter sw = new StreamWriter(filename);
+                sw.WriteLine("/* SGM4711 EQ Settings */");
+
+                FilterSetting currentSet;
+                Filter currentFilter;
+                for (int ix_filter = 0; ix_filter < settings.Count; ix_filter++)
+                {
+                    currentSet = settings[ix_filter];
+                    currentFilter = filterList[ix_filter];
+                    sw.WriteLine(String.Format("/* No.{0}, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */", ix_filter));
+                    sw.Write(String.Format("Filter {0},", ix_filter));
+                    sw.Write(String.Format("{0},", currentSet.Type.ToString()));
+                    sw.Write(String.Format("{0},", currentSet.SubType.ToString()));
+                    sw.Write(String.Format("{0},", currentSet.FS.ToString()));
+                    sw.Write(String.Format("{0},", currentSet.Freq.ToString()));
+                    sw.Write(String.Format("{0},", currentSet.Gain.ToString()));
+                    sw.Write(String.Format("{0},", currentSet.BandWidth.ToString()));
+                    sw.Write(String.Format("{0},", currentSet.QFactor.ToString()));
+                    sw.Write(String.Format("{0},", currentSet.View.ToString()));
+                    sw.Write(String.Format("{0}", currentSet.Bypass.ToString()));
+                    sw.WriteLine();
+
+                    sw.WriteLine("/* Register Value in hex: b0, b1, b2, a1, a2 */");
+                    sw.WriteLine(string.Format("/*{0} {1} {2} {3} {4} */", currentFilter.RegValue_B[0].ToString("X4"), currentFilter.RegValue_B[1].ToString("X4"),
+                        currentFilter.RegValue_B[2].ToString("X4"), currentFilter.RegValue_A[0].ToString("X4"), currentFilter.RegValue_A[1].ToString("X4")));
+                }
+                sw.Close();
+            }
+        }
+        
         private void btn_Download_EQParam_Click(object sender, EventArgs e)
         {
+            if (regMap == null)
+            {
+                MessageBox.Show("No Register Map");
+                return;
+            }
 
+            Register currentReg;
+            for (int ix = 0; ix < regAddr.Length; ix++)
+            {
+                currentReg = regMap[regAddr[ix]];
+                currentReg["b0[25:0]"].BFValue = filterList[ix].RegValue_B[0];
+                currentReg["b1[25:0]"].BFValue = filterList[ix].RegValue_B[1];
+                currentReg["b2[25:0]"].BFValue = filterList[ix].RegValue_B[2];
+                currentReg["a1[25:0]"].BFValue = filterList[ix].RegValue_A[0];
+                currentReg["a2[25:0]"].BFValue = filterList[ix].RegValue_A[1];
+                myRegOp.RegWrite(currentReg);
+            }
+            myRegOp.UpdateRegSettingSource();
         }
 
         private void pnl_EQCurveSetting_SizeChanged(object sender, EventArgs e)

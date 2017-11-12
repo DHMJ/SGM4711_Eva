@@ -243,6 +243,17 @@ namespace MD.MDCommon
             } 
         }
 
+        public string BFValueString
+        {
+            get
+            {
+                if (byteCount <= 4)
+                    return bfValue.ToString(String.Format("X{0}", byteCount * 2));
+                else
+                    return "";
+            }
+        }
+
         private byte[] bfValue_byte;
         public byte[] BFValue_byte
         {
@@ -409,6 +420,17 @@ namespace MD.MDCommon
             }
         }
 
+        public String RegValueString
+        {
+            get 
+            {
+                if (byteCount <= 4)
+                    return regValue.ToString(String.Format("X{0}", byteCount * 2));
+                else
+                    return "";
+            }
+        }
+
         // save register value as byte array, MSB first(e.g. bit24-31 save in regValue_byte[0])
         private byte[] regValue_byte;
         public byte[] ByteValue
@@ -458,7 +480,7 @@ namespace MD.MDCommon
                     {
                         for (int ix = 0; ix < bfList[ix_bf].ByteCount; ix++)
                         {
-                            bfList[ix].BFValue_byte[ix] = regValue_byte[ix_dest++];
+                            bfList[ix_bf].BFValue_byte[ix] = regValue_byte[ix_dest++];
                         }
                     }
                 }
