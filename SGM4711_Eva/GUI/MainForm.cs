@@ -1236,7 +1236,7 @@ namespace SGM4711_Eva
                     else
                     {
                         // 0x09/0A
-                        if (!chb_v3Source.Checked)
+                        if (!chb_v4Source.Checked)
                         {
                             regMap[0x09].RegValue = (uint)((24 - gain) * 2);
                             UpdateRegSettingSource(0x09);
@@ -1288,16 +1288,23 @@ namespace SGM4711_Eva
             /* if(0x0E bit5 == 1) then = 0x0A, else 0x08 */
             if (regMap == null)
                 return;
+
+            Register currentReg;
             if (chb_v3Source.Checked)
             {
                 regMap[0x0E]["CH3_VOL"].BFValue = 1;
                 this.chb_v3Source.Text = "From 0x0A";
+                currentReg = regMap[0x0A];
             }
             else
             {
                 regMap[0x0E]["CH3_VOL"].BFValue = 0;
                 this.chb_v3Source.Text = "From 0x08";
+                currentReg = regMap[0x08];
             }
+
+            this.txt_VOL3.Text = (currentReg.RegValue == 0xFF) ? "Muted" : (24 - currentReg.RegValue * 0.5).ToString("F1");
+            this.txt_VOL3.ForeColor = (currentReg.RegValue == 0xFF) ? Color.Red : Color.Black;
             btn_VOL3_Click(null, null);
         }
 
@@ -1324,16 +1331,21 @@ namespace SGM4711_Eva
             if (regMap == null)
                 return;
 
+            Register currentReg;
             if (chb_v4Source.Checked)
             {
                 regMap[0x0E]["SUB_VOL"].BFValue = 1;
                 this.chb_v4Source.Text = "From 0x0A";
+                currentReg = regMap[0x0A];
             }
             else
             {
                 regMap[0x0E]["SUB_VOL"].BFValue = 0;
                 this.chb_v4Source.Text = "From 0x09";
+                currentReg = regMap[0x09];
             }
+            this.txt_VOL4.Text = (currentReg.RegValue == 0xFF) ? "Muted" : (24 - currentReg.RegValue * 0.5).ToString("F1");
+            this.txt_VOL4.ForeColor = (currentReg.RegValue == 0xFF) ? Color.Red : Color.Black;
             btn_VOL4_Click(null, null);
         }
 
