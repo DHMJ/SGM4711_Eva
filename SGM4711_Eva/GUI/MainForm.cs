@@ -65,7 +65,7 @@ namespace SGM4711_Eva
             this.singleRegCtrl.btn_ReadReg.Click += new EventHandler(btn_ReadReg_RegSetCtrl_Click);
             this.singleRegCtrl.btn_WriteReg.Click += new EventHandler(btn_WriteReg_RegSetCtrl_Click);
             
-            freeRegCtrl = new FreeRegRWCtrl(myDongle);
+            freeRegCtrl = new FreeRegRWCtrl(this, myDongle);
             freeRegCtrl.Dock = DockStyle.Fill;
             this.tabP_RegRW.Controls.Add(freeRegCtrl);
             freeRegCtrl.btn_ReadAllReg.Click += new EventHandler(btn_ReadAllReg_FreeRegCtrl_Click);
@@ -546,9 +546,9 @@ namespace SGM4711_Eva
             {
                 byte[] tempRegAddrs;
                 Register tempReg;
-                for (int ix_reg = 0; ix_reg < customerRegs.RegList.Count; ix_reg++)
+                for (int ix_reg = 0; ix_reg < customerRegs.RegAddrList.Count; ix_reg++)
                 {
-                    tempRegAddrs = customerRegs.RegList[ix_reg];
+                    tempRegAddrs = customerRegs.RegAddrList[ix_reg];
 
                     foreach (byte tempRegAddr in tempRegAddrs)
                     {
@@ -560,31 +560,38 @@ namespace SGM4711_Eva
                         ifFirstRd = false;
                     }
                 }
-
-                #region Update GUI
-                // Operation Voltage; reg 0x0C
-                tempReg = regMap[0x0C];
-                uint tempBFValue = tempReg["Operation Voltage[1:0]"].BFValue;
-                this.numUP_OpVoltage.Value = tempBFValue == 0 ? 24 : (tempBFValue == 1 ? 18 : (tempBFValue == 2 ? 12 : 8));
-
-                // Mode Config
-
-                // Interface Config
-                tempReg = regMap[0x04];
-                this.cmb_InterfaceConfig.SelectedIndex = (int)tempReg["AIF_FORMAT[3:0]"].BFValue;
-
-                // Status
-                UpdateIndicator((byte)regMap[0x02].RegValue);
-
-                // Sample Rate
-                tempReg = regMap[0x00];
-                this.cmb_SampleRate.SelectedIndex = (int)tempReg["FS_SEL[2:0]"].BFValue;
-
-                // Master Vol
-                tempReg = regMap[0x07];
-                this.trb_MasterVolume.Value = (int)tempReg.RegValue;
-                #endregion
+                UpdateMainGUI();
             }
+        }
+
+        private void UpdateMainGUI()
+        {
+            #region Update GUI
+            Register tempReg;
+
+            // Operation Voltage; reg 0x0C
+            tempReg = regMap[0x0C];
+            uint tempBFValue = tempReg["Operation_Voltage[1:0]"].BFValue;
+            this.numUP_OpVoltage.Value = tempBFValue == 0 ? 24 : (tempBFValue == 1 ? 18 : (tempBFValue == 2 ? 12 : 8));
+
+            // Mode Config
+
+            // Interface Config
+            tempReg = regMap[0x04];
+            this.cmb_InterfaceConfig.SelectedIndex = (int)tempReg["AIF_FORMAT[3:0]"].BFValue;
+
+            // Status
+            UpdateIndicator((byte)regMap[0x02].RegValue);
+
+            // Sample Rate
+            tempReg = regMap[0x00];
+            this.cmb_SampleRate.SelectedIndex = (int)tempReg["FS_SEL[2:0]"].BFValue;
+
+            // Master Vol
+            tempReg = regMap[0x07];
+            this.trb_MasterVolume.Value = (int)tempReg.RegValue;
+            #endregion
+
         }
 
         #endregion Funcs
@@ -649,7 +656,7 @@ namespace SGM4711_Eva
         {
             regCtrlList.Clear();
             regCtrl_AddrList.Clear();
-            this.singleRegCtrl.UpdateDataSource(regCtrlList);
+            this.singleRegCtrl.UpdateDataSource(regCtrlList, regCtrl_AddrList.ToArray());
         }
 
         public void UpdateRegSettingSource()
@@ -675,7 +682,7 @@ namespace SGM4711_Eva
                 }
             }
 
-            this.singleRegCtrl.UpdateDataSource(regCtrlList);
+            this.singleRegCtrl.UpdateDataSource(regCtrlList, regCtrl_AddrList.ToArray());
         }
 
         private void UpdateRegSettingSource(byte _regAddr)
@@ -705,7 +712,40 @@ namespace SGM4711_Eva
                 }
             }
 
-            this.singleRegCtrl.UpdateDataSource(regCtrlList);
+            this.singleRegCtrl.UpdateDataSource(regCtrlList, regCtrl_AddrList.ToArray());
+        }
+
+        private void UpdateRegSettingSource(byte _regAddr, bool append)
+        {
+            if (regMap == null)
+            {
+                MessageBox.Show("Please open excel or project first.");
+                return;
+            }
+
+            if (!append)
+            {
+                regCtrlList.Clear();
+                regCtrl_AddrList.Clear();
+            }
+
+            Register tempReg = regMap[_regAddr];
+            RegProperty tempRegPro;
+
+            tempRegPro = new RegProperty(_regAddr.ToString("X2"), regMap[_regAddr].RegName, regMap[_regAddr].RegValueString) { };
+            regCtrlList.Add(tempRegPro);
+            regCtrl_AddrList.Add(_regAddr);
+
+            if (tempReg.ByteCount > 4)
+            {
+                for (int ix = 0; ix < tempReg.BFCount; ix++)
+                {
+                    tempRegPro = new RegProperty("", regMap[_regAddr][ix].BFName, regMap[_regAddr][ix].BFValueString) { };
+                    regCtrlList.Add(tempRegPro);
+                }
+            }
+
+            this.singleRegCtrl.UpdateDataSource(regCtrlList, regCtrl_AddrList.ToArray());
         }
 
         private void UpdateRegSettingSource(byte[] _regList)
@@ -737,7 +777,43 @@ namespace SGM4711_Eva
                 }
 
             }
-            this.singleRegCtrl.UpdateDataSource(regCtrlList);
+            this.singleRegCtrl.UpdateDataSource(regCtrlList, regCtrl_AddrList.ToArray());
+        }
+
+        private void UpdateRegSettingSource(byte[] _regList, bool append)
+        {
+            if (regMap == null)
+            {
+                MessageBox.Show("Please open excel or project first.");
+                return;
+            }
+
+            if (!append)
+            {
+                regCtrlList.Clear();
+                regCtrl_AddrList.Clear();
+            }
+
+            for (int ix_reg = 0; ix_reg < _regList.Length; ix_reg++)
+            {
+                Register tempReg = regMap[_regList[ix_reg]];
+                RegProperty tempRegPro;
+
+                tempRegPro = new RegProperty(_regList[ix_reg].ToString("X2"), regMap[_regList[ix_reg]].RegName, regMap[_regList[ix_reg]].RegValueString) { };
+                regCtrlList.Add(tempRegPro);
+                regCtrl_AddrList.Add(_regList[ix_reg]);
+
+                if (tempReg.ByteCount > 4)
+                {
+                    for (int ix = 0; ix < tempReg.BFCount; ix++)
+                    {
+                        tempRegPro = new RegProperty("", tempReg[ix].BFName, tempReg[ix].BFValueString) { };
+                        regCtrlList.Add(tempRegPro);
+                    }
+                }
+
+            }
+            this.singleRegCtrl.UpdateDataSource(regCtrlList, regCtrl_AddrList.ToArray());
         }
 
         private void UpdateRegSettingSource(byte _regAddr, string[] bf_nameList)
@@ -766,7 +842,7 @@ namespace SGM4711_Eva
                 regCtrlList.Add(tempReg);
             }
 
-            this.singleRegCtrl.UpdateDataSource(regCtrlList);
+            this.singleRegCtrl.UpdateDataSource(regCtrlList, regCtrl_AddrList.ToArray());
         }
 
         private void UpdateRegSettingSource(byte _regAddr, string[] bf_nameList, bool append)
@@ -799,7 +875,7 @@ namespace SGM4711_Eva
                 regCtrlList.Add(tempReg);
             }
 
-            this.singleRegCtrl.UpdateDataSource(regCtrlList);
+            this.singleRegCtrl.UpdateDataSource(regCtrlList, regCtrl_AddrList.ToArray());
         }
 
         private void InitMyButtonDoubleClick()
@@ -1305,6 +1381,8 @@ namespace SGM4711_Eva
 
             this.txt_VOL3.Text = (currentReg.RegValue == 0xFF) ? "Muted" : (24 - currentReg.RegValue * 0.5).ToString("F1");
             this.txt_VOL3.ForeColor = (currentReg.RegValue == 0xFF) ? Color.Red : Color.Black;
+
+            RegWrite(0x0E);
             btn_VOL3_Click(null, null);
         }
 
@@ -1346,6 +1424,8 @@ namespace SGM4711_Eva
             }
             this.txt_VOL4.Text = (currentReg.RegValue == 0xFF) ? "Muted" : (24 - currentReg.RegValue * 0.5).ToString("F1");
             this.txt_VOL4.ForeColor = (currentReg.RegValue == 0xFF) ? Color.Red : Color.Black;
+
+            RegWrite(0x0E);
             btn_VOL4_Click(null, null);
         }
 
@@ -1702,10 +1782,10 @@ namespace SGM4711_Eva
 
                 byte[] tempRegAddrs;
                 Register tempReg;
-                for (int ix_reg = 0; ix_reg < customerRegs.RegList.Count; ix_reg++)
+                for (int ix_reg = 0; ix_reg < customerRegs.RegAddrList.Count; ix_reg++)
                 {
-                    tempRegAddrs = customerRegs.RegList[ix_reg];
-                    sw.WriteLine(String.Format("/* {0} */", customerRegs.RegListName[ix_reg]));
+                    tempRegAddrs = customerRegs.RegAddrList[ix_reg];
+                    sw.WriteLine(String.Format("/* {0} */", customerRegs.RegGroupName[ix_reg]));
 
                     foreach(byte tempRegAddr in tempRegAddrs)
                     {
@@ -1854,7 +1934,7 @@ namespace SGM4711_Eva
         private void numUP_OpVoltage_ValueChanged(object sender, EventArgs e)
         {
             /* *****************************************
-             * Reg0x0C bit[3:2] Operation Voltage[1:0] 
+             * Reg0x0C bit[3:2] Operation_Voltage[1:0] 
              * operation voltage
              * 00:24V(default)
              * 01:18V
@@ -1871,6 +1951,8 @@ namespace SGM4711_Eva
 
                 RegWrite(tempAddr);
             }
+
+            UpdateRegSettingSource(0x0C, new string[] { "Operation_Voltage[1:0]" });
         }
 
         private void cmb_ModeConfig_SelectedIndexChanged(object sender, EventArgs e)
@@ -1920,20 +2002,20 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x11];
-                    tempReg.RegValue = 0xB860A048;
+                    tempReg.RegValue = 0xB8;
                     regAddrList.Add(tempReg);
 
-                    //tempReg = regMap[0x12];
-                    //tempReg.RegValue = 0x60;
-                    //regAddrList.Add(tempReg);
+                    tempReg = regMap[0x12];
+                    tempReg.RegValue = 0x60;
+                    regAddrList.Add(tempReg);
 
-                    //tempReg = regMap[0x13];
-                    //tempReg.RegValue = 0xA0;
-                    //regAddrList.Add(tempReg);
+                    tempReg = regMap[0x13];
+                    tempReg.RegValue = 0xA0;
+                    regAddrList.Add(tempReg);
 
-                    //tempReg = regMap[0x14];
-                    //tempReg.RegValue = 0x48;
-                    //regAddrList.Add(tempReg);
+                    tempReg = regMap[0x14];
+                    tempReg.RegValue = 0x48;
+                    regAddrList.Add(tempReg);
                     #endregion
                     break;
 
@@ -1966,8 +2048,21 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x11];
-                    tempReg.RegValue = 0xB860A048;
+                    tempReg.RegValue = 0xB8;
                     regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x12];
+                    tempReg.RegValue = 0x60;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x13];
+                    tempReg.RegValue = 0xA0;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x14];
+                    tempReg.RegValue = 0x48;
+                    regAddrList.Add(tempReg);
+                    
                     //tempReg = regMap[0x05];
                     //tempReg["MODE_SEL"].BFValue = 0x1;
                     //tempReg["SUB_CH_MOD"].BFValue = 0x1;
@@ -2022,7 +2117,19 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x11];
-                    tempReg.RegValue = 0xB860A048;
+                    tempReg.RegValue = 0xB8;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x12];
+                    tempReg.RegValue = 0x60;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x13];
+                    tempReg.RegValue = 0xA0;
+                    regAddrList.Add(tempReg);
+
+                    tempReg = regMap[0x14];
+                    tempReg.RegValue = 0x48;
                     regAddrList.Add(tempReg);
                     //tempReg = regMap[0x05];
                     //tempReg["MODE_SEL"].BFValue = 0x0;
@@ -2060,6 +2167,11 @@ namespace SGM4711_Eva
                     break;
             }
 
+            UpdateRegSettingSource(0x03, new string[] { "OL_BYPASS" });
+            UpdateRegSettingSource(new byte[]{ 0x20, 0x1A, 0x25}, true);
+            UpdateRegSettingSource(0x05, new string[] { "SUB_CH_MOD", "MODE_SEL" }, true);
+            UpdateRegSettingSource(new byte[] { 0x11, 0x12, 0x13, 0x14 }, true);
+
             if (myDongle.IsOpen)
             {
                 bool ifFirstWr = true;
@@ -2067,8 +2179,6 @@ namespace SGM4711_Eva
                 {
                     RegWrite(regAddrList[ix], ifFirstWr);
                     ifFirstWr = false;
-                    //tempReg = regAddrList[ix];
-                    //myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount);
                 }
             }
         }
@@ -2083,6 +2193,7 @@ namespace SGM4711_Eva
 
             Register tempReg = regMap[0x04];
             tempReg["AIF_FORMAT[3:0]"].BFValue = (uint)this.cmb_InterfaceConfig.SelectedIndex;
+            UpdateRegSettingSource(0x04, new string[] { "AIF_FORMAT[3:0]" });
             RegWrite(tempReg);
         }
 
@@ -2389,10 +2500,44 @@ namespace SGM4711_Eva
                 return;
 
             this.Cursor = Cursors.WaitCursor;
-            regMap[0xFF].RegValue = 0x0;
-            UpdateRegSettingSource(0x00);
+            //regMap[0xFF].RegValue = 0x0;
+            //UpdateRegSettingSource(0x00);
+            //ReadAllAndUpdateGUI();
 
-            ReadAllAndUpdateGUI();
+            byte[] tempRegAddrs;
+            byte[] tempRegDatas;
+            byte[] tempData = new byte[20];
+            int copiedCount = 0;
+            Register tempReg;
+            for (int ix_list = 0; ix_list < customerRegs.RegAddrList.Count; ix_list++)
+            {
+                tempRegAddrs = customerRegs.RegAddrList[ix_list];
+                tempRegDatas = customerRegs.RegDataList[ix_list];
+                copiedCount = 0;
+                for (int ix_reg = 0; ix_reg < tempRegAddrs.Length; ix_reg++ )
+                {
+                    tempReg = regMap[tempRegAddrs[ix_reg]];
+                    if (tempReg.RWPro == RWProperty.R)
+                    {
+                        copiedCount += tempReg.ByteCount;
+                        continue;
+                    }
+
+                    Array.Clear(tempData, 0, tempData.Length);
+                    Array.Copy(tempRegDatas, copiedCount, tempData, 0, tempReg.ByteCount);
+                    copiedCount += tempReg.ByteCount;
+                    tempReg.ByteValue = tempData;
+                    RegWrite(tempReg);
+
+                    //string tempLog = "";
+                    //tempLog += tempReg.RegAddress.ToString("X2") + " ";
+                    //for(int ix = 0; ix < tempReg.ByteCount; ix++)
+                    //    tempLog += tempData[ix].ToString("X2") + " ";
+                    //Console.WriteLine(tempLog);
+                }
+            }
+
+            UpdateMainGUI();
             this.Cursor = Cursors.Default;
         }
 

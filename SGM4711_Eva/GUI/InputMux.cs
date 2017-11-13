@@ -166,7 +166,7 @@ namespace SGM4711_Eva.GUI
                 return;
 
             regMap[0x61]["CH4_INPUT_MIXER_0[25:0]"].BFValue =
-                (uint)Math.Round((double)this.numUP_CH4_Input_Mxier_1.Value * Math.Pow(2, 23));
+                (uint)Math.Round((double)this.numUP_CH4_Input_Mxier_0.Value * Math.Pow(2, 23));
 
             myRegOp.RegWrite(regMap[0x61]);
             myRegOp.UpdateRegSettingSource();

@@ -28,12 +28,12 @@ namespace SGM4711_Eva.GUI
 
         private void InitGUI(int modeIndex)
         {
-            if (regMap == null)
-            {
+            //if (regMap == null)
+            //{
                 // 2.0 
                 this.cmb_2p0_LP.SelectedIndex = 0;
-                this.cmb_2p0_LN.SelectedIndex = 1;
-                this.cmb_2p0_RP.SelectedIndex = 2;
+                this.cmb_2p0_LN.SelectedIndex = 2;
+                this.cmb_2p0_RP.SelectedIndex = 1;
                 this.cmb_2p0_RN.SelectedIndex = 3;
 
                 // 2.1
@@ -44,36 +44,36 @@ namespace SGM4711_Eva.GUI
 
                 // PBTL
                 this.cmb_PBTL_LP0.SelectedIndex = 0;
-                this.cmb_PBTL_LP1.SelectedIndex = 1;
+                this.cmb_PBTL_LP1.SelectedIndex = 0;
                 this.cmb_PBTL_LN0.SelectedIndex = 2;
-                this.cmb_PBTL_LN1.SelectedIndex = 3;
-            }
-            else
-            {
-                Register tempReg = regMap[0x25];
-                //tempReg["MUX_TO_OUT_A"].BFValue = (uint)this.cmb_2p0_LP.SelectedIndex;
-                //tempReg["MUX_TO_OUT_B"].BFValue = (uint)this.cmb_2p0_LN.SelectedIndex;
-                //tempReg["MUX_TO_OUT_C"].BFValue = (uint)this.cmb_2p0_RP.SelectedIndex;
-                //tempReg["MUX_TO_OUT_D"].BFValue = (uint)this.cmb_2p0_RN.SelectedIndex;
+                this.cmb_PBTL_LN1.SelectedIndex = 2;
+            //}
+            //else
+            //{
+                //Register tempReg = regMap[0x25];
+                ////tempReg["MUX_TO_OUT_A"].BFValue = (uint)this.cmb_2p0_LP.SelectedIndex;
+                ////tempReg["MUX_TO_OUT_B"].BFValue = (uint)this.cmb_2p0_LN.SelectedIndex;
+                ////tempReg["MUX_TO_OUT_C"].BFValue = (uint)this.cmb_2p0_RP.SelectedIndex;
+                ////tempReg["MUX_TO_OUT_D"].BFValue = (uint)this.cmb_2p0_RN.SelectedIndex;
 
-                // 2.0 
-                this.cmb_2p0_LP.SelectedIndex = (int)tempReg["MUX_TO_OUT_A"].BFValue;
-                this.cmb_2p0_LN.SelectedIndex = (int)tempReg["MUX_TO_OUT_B"].BFValue;
-                this.cmb_2p0_RP.SelectedIndex = (int)tempReg["MUX_TO_OUT_C"].BFValue;
-                this.cmb_2p0_RN.SelectedIndex = (int)tempReg["MUX_TO_OUT_D"].BFValue;
+                //// 2.0  reg25=0x01021345；
+                //this.cmb_2p0_LP.SelectedIndex = (int)tempReg["MUX_TO_OUT_A"].BFValue;
+                //this.cmb_2p0_LN.SelectedIndex = (int)tempReg["MUX_TO_OUT_B"].BFValue;
+                //this.cmb_2p0_RP.SelectedIndex = (int)tempReg["MUX_TO_OUT_C"].BFValue;
+                //this.cmb_2p0_RN.SelectedIndex = (int)tempReg["MUX_TO_OUT_D"].BFValue;
 
-                // 2.1
-                this.cmb_2p1_LP.SelectedIndex = (int)tempReg["MUX_TO_OUT_A"].BFValue;
-                this.cmb_2p1_RP.SelectedIndex = (int)tempReg["MUX_TO_OUT_B"].BFValue;
-                this.cmb_2p1_SubP.SelectedIndex = (int)tempReg["MUX_TO_OUT_C"].BFValue;
-                this.cmb_2p1_SubN.SelectedIndex = (int)tempReg["MUX_TO_OUT_D"].BFValue;
+                //// 2.1 reg25=0x01012345；
+                //this.cmb_2p1_LP.SelectedIndex = (int)tempReg["MUX_TO_OUT_A"].BFValue;
+                //this.cmb_2p1_RP.SelectedIndex = (int)tempReg["MUX_TO_OUT_B"].BFValue;
+                //this.cmb_2p1_SubP.SelectedIndex = (int)tempReg["MUX_TO_OUT_C"].BFValue;
+                //this.cmb_2p1_SubN.SelectedIndex = (int)tempReg["MUX_TO_OUT_D"].BFValue;
 
-                // PBTL
-                this.cmb_PBTL_LP0.SelectedIndex = (int)tempReg["MUX_TO_OUT_A"].BFValue;
-                this.cmb_PBTL_LP1.SelectedIndex = (int)tempReg["MUX_TO_OUT_B"].BFValue;
-                this.cmb_PBTL_LN0.SelectedIndex = (int)tempReg["MUX_TO_OUT_C"].BFValue;
-                this.cmb_PBTL_LN1.SelectedIndex = (int)tempReg["MUX_TO_OUT_D"].BFValue;
-            }
+                //// PBTL reg25=0x01002245；
+                //this.cmb_PBTL_LP0.SelectedIndex = (int)tempReg["MUX_TO_OUT_A"].BFValue;
+                //this.cmb_PBTL_LP1.SelectedIndex = (int)tempReg["MUX_TO_OUT_B"].BFValue;
+                //this.cmb_PBTL_LN0.SelectedIndex = (int)tempReg["MUX_TO_OUT_C"].BFValue;
+                //this.cmb_PBTL_LN1.SelectedIndex = (int)tempReg["MUX_TO_OUT_D"].BFValue;
+            //}
             // Enalbe different groupbox
             switch (modeIndex)
             {

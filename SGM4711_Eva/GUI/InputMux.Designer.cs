@@ -727,10 +727,10 @@
             this.numUP_CH4_Input_Mxier_1.TabIndex = 65;
             this.numUP_CH4_Input_Mxier_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUP_CH4_Input_Mxier_1.Value = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
-            65536});
+            0});
             this.numUP_CH4_Input_Mxier_1.ValueChanged += new System.EventHandler(this.numUP_CH4_Input_Mxier_1_ValueChanged);
             // 
             // numUP_CH4_Input_Mxier_0
@@ -751,11 +751,6 @@
             this.numUP_CH4_Input_Mxier_0.Size = new System.Drawing.Size(59, 21);
             this.numUP_CH4_Input_Mxier_0.TabIndex = 65;
             this.numUP_CH4_Input_Mxier_0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numUP_CH4_Input_Mxier_0.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
             this.numUP_CH4_Input_Mxier_0.ValueChanged += new System.EventHandler(this.numUP_CH4_Input_Mxier_0_ValueChanged);
             // 
             // InputMux

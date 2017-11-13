@@ -137,7 +137,7 @@
             this.grb_2p0.Controls.Add(this.label5);
             this.grb_2p0.Location = new System.Drawing.Point(12, 12);
             this.grb_2p0.Name = "grb_2p0";
-            this.grb_2p0.Size = new System.Drawing.Size(382, 193);
+            this.grb_2p0.Size = new System.Drawing.Size(406, 193);
             this.grb_2p0.TabIndex = 0;
             this.grb_2p0.TabStop = false;
             this.grb_2p0.Text = "2.0 Mode";
@@ -149,9 +149,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label4.Location = new System.Drawing.Point(314, 157);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(22, 14);
+            this.label4.Size = new System.Drawing.Size(42, 14);
             this.label4.TabIndex = 50;
-            this.label4.Text = "RN";
+            this.label4.Text = "OUT_D";
             // 
             // circle2
             // 
@@ -171,9 +171,9 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label6.Location = new System.Drawing.Point(314, 111);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(21, 14);
+            this.label6.Size = new System.Drawing.Size(41, 14);
             this.label6.TabIndex = 49;
-            this.label6.Text = "RP";
+            this.label6.Text = "OUT_C";
             // 
             // line11
             // 
@@ -242,11 +242,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cambria", 9F);
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(310, 69);
+            this.label3.Location = new System.Drawing.Point(314, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(21, 14);
+            this.label3.Size = new System.Drawing.Size(41, 14);
             this.label3.TabIndex = 43;
-            this.label3.Text = "LN";
+            this.label3.Text = "OUT_B";
             // 
             // circle1
             // 
@@ -264,11 +264,11 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cambria", 9F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(310, 23);
+            this.label2.Location = new System.Drawing.Point(314, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 14);
+            this.label2.Size = new System.Drawing.Size(41, 14);
             this.label2.TabIndex = 42;
-            this.label2.Text = "LP";
+            this.label2.Text = "OUT_A";
             // 
             // line10
             // 
@@ -507,7 +507,7 @@
             this.grb_2p1.Enabled = false;
             this.grb_2p1.Location = new System.Drawing.Point(12, 228);
             this.grb_2p1.Name = "grb_2p1";
-            this.grb_2p1.Size = new System.Drawing.Size(382, 249);
+            this.grb_2p1.Size = new System.Drawing.Size(406, 249);
             this.grb_2p1.TabIndex = 0;
             this.grb_2p1.TabStop = false;
             this.grb_2p1.Text = "2.1 Mode";
@@ -517,7 +517,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Cambria", 9F);
             this.label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label16.Location = new System.Drawing.Point(310, 108);
+            this.label16.Location = new System.Drawing.Point(314, 108);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(22, 14);
             this.label16.TabIndex = 55;
@@ -554,7 +554,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Cambria", 9F);
             this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(310, 43);
+            this.label15.Location = new System.Drawing.Point(314, 43);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(21, 14);
             this.label15.TabIndex = 52;
@@ -619,9 +619,9 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label7.Location = new System.Drawing.Point(314, 208);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 14);
+            this.label7.Size = new System.Drawing.Size(83, 14);
             this.label7.TabIndex = 50;
-            this.label7.Text = "SubN";
+            this.label7.Text = "SubN (OUT_D)";
             // 
             // circle3
             // 
@@ -641,9 +641,9 @@
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label8.Location = new System.Drawing.Point(314, 162);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 14);
+            this.label8.Size = new System.Drawing.Size(81, 14);
             this.label8.TabIndex = 49;
-            this.label8.Text = "SubP";
+            this.label8.Text = "SubP (OUT_C)";
             // 
             // line13
             // 
@@ -712,22 +712,22 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Cambria", 9F);
             this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(310, 87);
+            this.label9.Location = new System.Drawing.Point(314, 87);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(21, 14);
+            this.label9.Size = new System.Drawing.Size(68, 14);
             this.label9.TabIndex = 43;
-            this.label9.Text = "RP";
+            this.label9.Text = "RP (OUT_B)";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Cambria", 9F);
             this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(310, 23);
+            this.label10.Location = new System.Drawing.Point(314, 23);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(20, 14);
+            this.label10.Size = new System.Drawing.Size(67, 14);
             this.label10.TabIndex = 42;
-            this.label10.Text = "LP";
+            this.label10.Text = "LP (OUT_A)";
             // 
             // line15
             // 
@@ -914,7 +914,7 @@
             this.grb_PBTL.Enabled = false;
             this.grb_PBTL.Location = new System.Drawing.Point(12, 500);
             this.grb_PBTL.Name = "grb_PBTL";
-            this.grb_PBTL.Size = new System.Drawing.Size(382, 193);
+            this.grb_PBTL.Size = new System.Drawing.Size(406, 193);
             this.grb_PBTL.TabIndex = 1;
             this.grb_PBTL.TabStop = false;
             this.grb_PBTL.Text = "PBTL Mode";
@@ -1019,7 +1019,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Cambria", 9F);
             this.label20.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label20.Location = new System.Drawing.Point(310, 67);
+            this.label20.Location = new System.Drawing.Point(314, 67);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(41, 14);
             this.label20.TabIndex = 43;
@@ -1041,7 +1041,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Cambria", 9F);
             this.label21.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label21.Location = new System.Drawing.Point(310, 23);
+            this.label21.Location = new System.Drawing.Point(314, 23);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(41, 14);
             this.label21.TabIndex = 42;
@@ -1214,7 +1214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 720);
+            this.ClientSize = new System.Drawing.Size(453, 720);
             this.Controls.Add(this.grb_PBTL);
             this.Controls.Add(this.grb_2p1);
             this.Controls.Add(this.grb_2p0);

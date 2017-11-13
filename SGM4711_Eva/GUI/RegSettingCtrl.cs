@@ -16,6 +16,7 @@ namespace SGM4711_Eva.GUI
     public partial class RegSettingCtrl : UserControl
     {
         RegisterMap regMap;
+        byte[] regAddrList;
         DMDongle dongle;
         IRegOperation myRegOp;
         public RegSettingCtrl(DMDongle _dongle, IRegOperation _myRegOp)
@@ -42,8 +43,10 @@ namespace SGM4711_Eva.GUI
             UpdateGUI();
         }
 
-        public void UpdateDataSource(BindingList<RegProperty> _blist)
+        public void UpdateDataSource(BindingList<RegProperty> _blist, byte[] _regList)
         {
+            regAddrList = _regList;
+
             if (_blist.Count == 0)
             {
                 this.btn_ReadReg.Enabled = false;
@@ -141,12 +144,13 @@ namespace SGM4711_Eva.GUI
 
         private void btn_ReadReg_Click(object sender, EventArgs e)
         {
-            //RegSettingCtrl_ReadEvent(
+            myRegOp.RegRead(this.regAddrList);
+            myRegOp.UpdateRegSettingSource();
         }
 
         private void btn_WriteReg_Click(object sender, EventArgs e)
         {
-
+            myRegOp.RegWrite(this.regAddrList);
         }
 
         /// <summary>

@@ -16,14 +16,16 @@ namespace SGM4711_Eva.GUI
     public partial class FreeRegRWCtrl : UserControl
     {
         RegisterMap regMap;
+        IRegOperation myRegOp;
         DMDongle dongle;
         List<byte> regAddrList = new List<byte> { };
         List<uint> regDataList = new List<uint> { };
         List<bool> activedEnList = new List<bool> { };
         int totalCount = 0;
-        public FreeRegRWCtrl(DMDongle _dongle)
+        public FreeRegRWCtrl(IRegOperation _myRegOp, DMDongle _dongle)
         {
             InitializeComponent();
+            this.myRegOp = _myRegOp;
             this.dongle = _dongle;
             DataGridViewInit();
             InitGUI();
