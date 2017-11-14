@@ -132,7 +132,8 @@ namespace SGM4711_Eva
             //创建一个格式化程序的实例
             IFormatter formatter = new BinaryFormatter();             //创建一个文件流
             Stream stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-            formatter.Serialize(stream, DataSet);
+            if(DataSet != null)
+                formatter.Serialize(stream, DataSet);
             stream.Close();
         }
 
@@ -362,13 +363,15 @@ namespace SGM4711_Eva
 
             if (myDongle.IsOpen && regMap != null)
             {
+                byte[] tempData;
                 Register tempReg = regMap[_regAddr];
                 if (myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
                 {
+                    tempData = tempReg.ByteValue;
                     log += "\tOK\t" + "Address: 0x" + _regAddr.ToString("X2") + "\tData(Hex):";
                     for (int ix = 0; ix < tempReg.ByteCount; ix++)
                     {
-                        log += " " + tempReg.ByteValue[ix].ToString("X2");
+                        log += " " + tempData[ix].ToString("X2");
                     }
 
                     ret = true;
@@ -403,16 +406,18 @@ namespace SGM4711_Eva
 
             if (myDongle.IsOpen && regMap != null)
             {
+                byte[] tempData;
                 Register tempReg;
                 for (int ix = 0; ix < _regAddr.Length; ix++)
                 {
                     tempReg = regMap[_regAddr[ix]];
                     if (myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
                     {
+                        tempData = tempReg.ByteValue;
                         log += "\r\n\tOK\t" + "Address: 0x" + tempReg.RegAddress.ToString("X2") + "\tData(Hex):";
                         for (int ix_byte = 0; ix_byte < tempReg.ByteCount; ix_byte++)
                         {
-                            log += " " + tempReg.ByteValue[ix_byte].ToString("X2");
+                            log += " " + tempData[ix_byte].ToString("X2");
                         }
                     }
                     else
@@ -456,12 +461,14 @@ namespace SGM4711_Eva
 
             if (myDongle.IsOpen)
             {
+                byte[] tempData;
                 if (myDongle.writeRegBurst(_reg.RegAddress, _reg.ByteValue, _reg.ByteCount))
                 {
+                    tempData = _reg.ByteValue;
                     log += "\tOK\t" + "Address: 0x" + _reg.RegAddress.ToString("X2") + "\tData(Hex):";
                     for (int ix = 0; ix < _reg.ByteCount; ix++)
                     {
-                        log += " " + _reg.ByteValue[ix].ToString("X2");
+                        log += " " + tempData[ix].ToString("X2");
                     }
                     ret = true;
                 }
@@ -496,14 +503,16 @@ namespace SGM4711_Eva
 
             if (myDongle.IsOpen)
             {
+                byte[] tempData;
                 for (int ix = 0; ix < _reg.Length; ix++)
                 {
                     if (myDongle.writeRegBurst(_reg[ix].RegAddress, _reg[ix].ByteValue, _reg[ix].ByteCount))
                     {
+                        tempData = _reg[ix].ByteValue;
                         log += "\r\n\tOK\t" + "Address: 0x" + _reg[ix].RegAddress.ToString("X2") + "\tData(Hex):";
                         for (int ix_byte = 0; ix_byte < _reg[ix].ByteCount; ix_byte++)
                         {
-                            log += " " + _reg[ix].ByteValue[ix_byte].ToString("X2");
+                            log += " " + tempData[ix_byte].ToString("X2");
                         }
                     }
                     else
@@ -566,19 +575,23 @@ namespace SGM4711_Eva
 
         private void UpdateMainGUI()
         {
-            #region Update GUI
+            #region Update GUI, and shield GUI value changed events.
             Register tempReg;
 
             // Operation Voltage; reg 0x0C
+            this.numUP_OpVoltage.ValueChanged -= numUP_OpVoltage_ValueChanged;
             tempReg = regMap[0x0C];
             uint tempBFValue = tempReg["Operation_Voltage[1:0]"].BFValue;
             this.numUP_OpVoltage.Value = tempBFValue == 0 ? 24 : (tempBFValue == 1 ? 18 : (tempBFValue == 2 ? 12 : 8));
+            this.numUP_OpVoltage.ValueChanged += numUP_OpVoltage_ValueChanged;
 
             // Mode Config
 
             // Interface Config
+            this.cmb_InterfaceConfig.SelectedIndexChanged -= cmb_InterfaceConfig_SelectedIndexChanged;
             tempReg = regMap[0x04];
             this.cmb_InterfaceConfig.SelectedIndex = (int)tempReg["AIF_FORMAT[3:0]"].BFValue;
+            this.cmb_InterfaceConfig.SelectedIndexChanged += cmb_InterfaceConfig_SelectedIndexChanged;
 
             // Status
             UpdateIndicator((byte)regMap[0x02].RegValue);
@@ -589,7 +602,25 @@ namespace SGM4711_Eva
 
             // Master Vol
             tempReg = regMap[0x07];
-            this.trb_MasterVolume.Value = (int)tempReg.RegValue;
+            this.trb_MasterVolume.Value = 0xFF - (int)tempReg.RegValue;
+            this.trb_MasterVolume_1.Value = 0xFF - (int)tempReg.RegValue;
+
+            if (tempReg.RegValue == 0xFF)
+            {
+                this.txt_MasterVol.Text = string.Format("Muted");
+                this.txt_MasterVol.ForeColor = Color.Red;
+                this.txt_MasterVol_1.Text = string.Format("Muted");
+                this.txt_MasterVol_1.ForeColor = Color.Red;
+            }
+            else
+            {
+                double gain = 24 - tempReg.RegValue * 0.5;
+                this.txt_MasterVol.Text = string.Format("{0}", gain.ToString("F1"));
+                this.txt_MasterVol.ForeColor = Color.Black;
+                this.txt_MasterVol_1.Text = string.Format("{0}", gain.ToString("F1"));
+                this.txt_MasterVol_1.ForeColor = Color.Black;
+            }
+
             #endregion
 
         }
@@ -1808,8 +1839,53 @@ namespace SGM4711_Eva
 
         private void MenuItemFile_Exit_Click(object sender, EventArgs e)
         {
-            MenuItemFile_Save_Click(sender, e);
-            this.Close();
+            DialogResult dialogRes = MessageBox.Show("Save project before quit?", "Saving project timps", MessageBoxButtons.YesNoCancel);
+            if (dialogRes == System.Windows.Forms.DialogResult.No)
+                this.Close();
+            else if (dialogRes == System.Windows.Forms.DialogResult.Cancel)
+                return;
+            else
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "save project file...";
+                sfd.Filter = "MDPROJ(.mdproj)|*.mdproj";
+                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    currentProjPath = sfd.FileName;
+                    historyProjPath.Add(currentProjPath);
+                    if (historyProjPath.Count > maxHistProjPathCount)
+                        historyProjPath.RemoveAt(0);
+
+                    SerializeMethod(currentProjPath);
+                    this.Close();
+                }
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogRes = MessageBox.Show("Save project before quit?", "Saving project timps", MessageBoxButtons.YesNoCancel);
+            if (dialogRes == System.Windows.Forms.DialogResult.No)
+                //this.Close();
+                return;
+            else if (dialogRes == System.Windows.Forms.DialogResult.Cancel)
+                e.Cancel = true;
+            else
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "save project file...";
+                sfd.Filter = "MDPROJ(.mdproj)|*.mdproj";
+                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    currentProjPath = sfd.FileName;
+                    historyProjPath.Add(currentProjPath);
+                    if (historyProjPath.Count > maxHistProjPathCount)
+                        historyProjPath.RemoveAt(0);
+
+                    SerializeMethod(currentProjPath);
+                    //this.Close();
+                }
+            }
         }
 
         private void MenuItemFile_ExitWithoutSave_Click(object sender, EventArgs e)
@@ -2260,7 +2336,7 @@ namespace SGM4711_Eva
 
             btn_InputMux_Click(sender, e);
             InputMux inputConfig = new InputMux(regMap, this);
-            inputConfig.FormClosed += new FormClosedEventHandler(inputConfig_FormClosed);
+            //inputConfig.FormClosed += new FormClosedEventHandler(inputConfig_FormClosed);
             inputConfig.ShowDialog();
         }
 
@@ -2565,6 +2641,7 @@ namespace SGM4711_Eva
         }
 
         #endregion Main GUI Tab
+
 
 
 

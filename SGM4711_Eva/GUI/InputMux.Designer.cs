@@ -55,13 +55,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rdbtn_SubCH_Zero = new System.Windows.Forms.RadioButton();
             this.rdbtn_SubCH_SourceL = new System.Windows.Forms.RadioButton();
             this.rdbtn_SubCH_SourceR = new System.Windows.Forms.RadioButton();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.line10 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.line11 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line12 = new SGM4711_Eva.MDUserCtrls.Line();
             this.add1 = new SGM4711_Eva.MDUserCtrls.Add();
             this.multiply1 = new SGM4711_Eva.MDUserCtrls.Multiply();
@@ -419,7 +416,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.rdbtn_SubCH_Zero);
             this.groupBox3.Controls.Add(this.rdbtn_SubCH_SourceL);
             this.groupBox3.Controls.Add(this.rdbtn_SubCH_SourceR);
             this.groupBox3.Location = new System.Drawing.Point(306, 358);
@@ -427,18 +423,6 @@
             this.groupBox3.Size = new System.Drawing.Size(45, 134);
             this.groupBox3.TabIndex = 47;
             this.groupBox3.TabStop = false;
-            // 
-            // rdbtn_SubCH_Zero
-            // 
-            this.rdbtn_SubCH_Zero.AutoSize = true;
-            this.rdbtn_SubCH_Zero.Font = new System.Drawing.Font("SimSun", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.rdbtn_SubCH_Zero.Location = new System.Drawing.Point(15, 104);
-            this.rdbtn_SubCH_Zero.Name = "rdbtn_SubCH_Zero";
-            this.rdbtn_SubCH_Zero.Size = new System.Drawing.Size(14, 13);
-            this.rdbtn_SubCH_Zero.TabIndex = 0;
-            this.rdbtn_SubCH_Zero.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rdbtn_SubCH_Zero.UseVisualStyleBackColor = true;
-            this.rdbtn_SubCH_Zero.CheckedChanged += new System.EventHandler(this.rdbtn_SubCH_Source_CheckedChanged);
             // 
             // rdbtn_SubCH_SourceL
             // 
@@ -457,7 +441,7 @@
             this.rdbtn_SubCH_SourceR.AutoSize = true;
             this.rdbtn_SubCH_SourceR.Checked = true;
             this.rdbtn_SubCH_SourceR.Font = new System.Drawing.Font("SimSun", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.rdbtn_SubCH_SourceR.Location = new System.Drawing.Point(15, 62);
+            this.rdbtn_SubCH_SourceR.Location = new System.Drawing.Point(15, 104);
             this.rdbtn_SubCH_SourceR.Name = "rdbtn_SubCH_SourceR";
             this.rdbtn_SubCH_SourceR.Size = new System.Drawing.Size(14, 13);
             this.rdbtn_SubCH_SourceR.TabIndex = 0;
@@ -466,23 +450,12 @@
             this.rdbtn_SubCH_SourceR.UseVisualStyleBackColor = true;
             this.rdbtn_SubCH_SourceR.CheckedChanged += new System.EventHandler(this.rdbtn_SubCH_Source_CheckedChanged);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Cambria", 9F);
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(256, 451);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(14, 14);
-            this.label9.TabIndex = 45;
-            this.label9.Text = "0";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Cambria", 9F);
             this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(195, 409);
+            this.label10.Location = new System.Drawing.Point(195, 448);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(94, 14);
             this.label10.TabIndex = 44;
@@ -502,21 +475,6 @@
             this.line10.RightOrBelowArrow = true;
             this.line10.Size = new System.Drawing.Size(66, 10);
             this.line10.TabIndex = 41;
-            // 
-            // line11
-            // 
-            this.line11.ArrowSize = SGM4711_Eva.MDUserCtrls.Line.EnumArrowSize.medium;
-            this.line11.BackColor = System.Drawing.Color.Transparent;
-            this.line11.Horizontal = true;
-            this.line11.LeftOrUpArrow = false;
-            this.line11.LineColor = System.Drawing.Color.SteelBlue;
-            this.line11.LineWidth = 1;
-            this.line11.Location = new System.Drawing.Point(237, 420);
-            this.line11.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.line11.Name = "line11";
-            this.line11.RightOrBelowArrow = true;
-            this.line11.Size = new System.Drawing.Size(66, 10);
-            this.line11.TabIndex = 42;
             // 
             // line12
             // 
@@ -727,10 +685,10 @@
             this.numUP_CH4_Input_Mxier_1.TabIndex = 65;
             this.numUP_CH4_Input_Mxier_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUP_CH4_Input_Mxier_1.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            0});
+            65536});
             this.numUP_CH4_Input_Mxier_1.ValueChanged += new System.EventHandler(this.numUP_CH4_Input_Mxier_1_ValueChanged);
             // 
             // numUP_CH4_Input_Mxier_0
@@ -751,6 +709,11 @@
             this.numUP_CH4_Input_Mxier_0.Size = new System.Drawing.Size(59, 21);
             this.numUP_CH4_Input_Mxier_0.TabIndex = 65;
             this.numUP_CH4_Input_Mxier_0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numUP_CH4_Input_Mxier_0.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             this.numUP_CH4_Input_Mxier_0.ValueChanged += new System.EventHandler(this.numUP_CH4_Input_Mxier_0_ValueChanged);
             // 
             // InputMux
@@ -777,10 +740,8 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.line9);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.line10);
-            this.Controls.Add(this.line11);
             this.Controls.Add(this.line12);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.line5);
@@ -844,13 +805,10 @@
         private System.Windows.Forms.Label label8;
         private MDUserCtrls.Line line9;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton rdbtn_SubCH_Zero;
         private System.Windows.Forms.RadioButton rdbtn_SubCH_SourceL;
         private System.Windows.Forms.RadioButton rdbtn_SubCH_SourceR;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private MDUserCtrls.Line line10;
-        private MDUserCtrls.Line line11;
         private MDUserCtrls.Line line12;
         private MDUserCtrls.Add add1;
         private MDUserCtrls.Multiply multiply1;

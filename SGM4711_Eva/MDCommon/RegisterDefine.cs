@@ -259,14 +259,19 @@ namespace MD.MDCommon
         {
             get 
             {
-                uint tempValue = BFValueInRegValue;
+                uint tempValue = bfValue;
                 uint byteMask = 0xFF;
                 for (int ix = 0; ix < byteCount; ix++)
                 {
-                    bfValue_byte[byteCount - ix - 1] = (byte)((tempValue >> ((startBit / 8 + ix) * 8)) & byteMask);
+                    bfValue_byte[byteCount - ix - 1] = (byte)((tempValue >> (ix * 8)) & byteMask);
                 }
 
                 return this.bfValue_byte; 
+            }
+            set
+            {
+                for (int ix = 0; ix < byteCount; ix++)
+                    bfValue_byte[ix] = value[ix];
             }
         }
 
@@ -450,10 +455,12 @@ namespace MD.MDCommon
                     int ix_dest = 0;
                     for (int ix_bf = 0; ix_bf < BFCount; ix_bf++)
                     {
-                        for (int ix = 0; ix < bfList[ix_bf].ByteCount; ix++)
-                        {
-                            regValue_byte[ix_dest++] = bfList[ix_bf].BFValue_byte[ix];
-                        }
+                        Array.Copy(bfList[ix_bf].BFValue_byte, 0, regValue_byte, ix_dest, bfList[ix_bf].ByteCount);
+                        ix_dest += bfList[ix_bf].ByteCount;
+                        //for (int ix = 0; ix < bfList[ix_bf].ByteCount; ix++)
+                        //{
+                        //    regValue_byte[ix_dest++] = bfList[ix_bf].BFValue_byte[ix];
+                        //}
                     }
                 }
                 return regValue_byte; 
@@ -476,12 +483,17 @@ namespace MD.MDCommon
                 else
                 {
                     int ix_dest = 0;
+                    byte[] tempData = new byte[4];
                     for (int ix_bf = 0; ix_bf < BFCount; ix_bf++)
                     {
-                        for (int ix = 0; ix < bfList[ix_bf].ByteCount; ix++)
-                        {
-                            bfList[ix_bf].BFValue_byte[ix] = regValue_byte[ix_dest++];
-                        }
+                        Array.Copy(regValue_byte, ix_dest++, tempData, 0, bfList[ix_bf].ByteCount);
+                        ix_dest += bfList[ix_bf].ByteCount;
+                        bfList[ix_bf].BFValue_byte = tempData;
+                        //for (int ix = 0; ix < bfList[ix_bf].ByteCount; ix++)
+                        //{
+                            
+                            //bfList[ix_bf].BFValue_byte[ix] = regValue_byte[ix_dest++];
+                        //}
                     }
                 }
             }

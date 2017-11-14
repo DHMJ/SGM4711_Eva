@@ -17,8 +17,8 @@ namespace SGM4711_Eva.MDCommon.Filter
 
         double[] p = new double[3]; // coefficent a, num
         double[] d = new double[3]; // coefficent b, den
-        uint[] reg_b = new uint[3];
-        uint[] reg_a = new uint[2];
+        uint[] reg_b = new uint[3] { 0x00800000, 0, 0 };
+        uint[] reg_a = new uint[2]{0, 0};
         
         //double fc;
         //double fs = 48000;      //Default 48KHz

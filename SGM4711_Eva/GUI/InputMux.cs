@@ -81,9 +81,9 @@ namespace SGM4711_Eva.GUI
                     rdbtn_SubCH_SourceR.Checked = true;
                     break;
 
-                case 2:
-                    rdbtn_SubCH_Zero.Checked = true;
-                    break;
+                //case 2:
+                //    rdbtn_SubCH_Zero.Checked = true;
+                //    break;
 
                 default:
                     break;

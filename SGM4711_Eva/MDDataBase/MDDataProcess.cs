@@ -324,8 +324,12 @@ namespace GeneralRegConfigPlatform.MDDataBase
 
                     // Initialize bit field
                     bfAddedCount++;
-                    tempBF.InitiBF(tempReg, tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(),
+                    if(tempReg.ByteCount<= 4)
+                        tempBF.InitiBF(tempReg, tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(),
                         tempRowItems[(int)itemIx_BF_Crazy.Description].ToString().Replace("\n", "\r\n"), tempReg.RegValueString);
+                    else
+                        tempBF.InitiBF(tempReg, tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempReg.ByteCount, tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(),
+                        tempRowItems[(int)itemIx_BF_Crazy.Description].ToString().Replace("\n", "\r\n"), tempRowItems[(int)itemIx_BF_Crazy.DefaultBFValue].ToString());
 
                     // Add row for bitfield: "", BIT, Name, BFValue, ""
                     tempDT.Rows.Add(new object[] { "", tempRowItems[(int)itemIx_BF_Crazy.bit].ToString(), tempRowItems[(int)itemIx_BF_Crazy.bfName].ToString(), tempBF.BFValueString, "" });
@@ -390,7 +394,8 @@ namespace GeneralRegConfigPlatform.MDDataBase
         regName = 1,
         bit     = 2,
         bfName    = 3,
-        Description = 4
+        Description = 4,
+        DefaultBFValue = 5
     }
 
     public enum itemIx_Crazy
