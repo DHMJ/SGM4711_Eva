@@ -1841,7 +1841,11 @@ namespace SGM4711_Eva
         {
             DialogResult dialogRes = MessageBox.Show("Save project before quit?", "Saving project timps", MessageBoxButtons.YesNoCancel);
             if (dialogRes == System.Windows.Forms.DialogResult.No)
+            {
+                this.FormClosing -= MainForm_FormClosing;
                 this.Close();
+                //this.FormClosing += MainForm_FormClosing;
+            }
             else if (dialogRes == System.Windows.Forms.DialogResult.Cancel)
                 return;
             else
@@ -1857,6 +1861,8 @@ namespace SGM4711_Eva
                         historyProjPath.RemoveAt(0);
 
                     SerializeMethod(currentProjPath);
+
+                    this.FormClosing -= MainForm_FormClosing;
                     this.Close();
                 }
             }

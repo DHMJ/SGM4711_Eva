@@ -483,10 +483,10 @@ namespace MD.MDCommon
                 else
                 {
                     int ix_dest = 0;
-                    byte[] tempData = new byte[4];
+                    byte[] tempData = new byte[byteCount];
                     for (int ix_bf = 0; ix_bf < BFCount; ix_bf++)
                     {
-                        Array.Copy(regValue_byte, ix_dest++, tempData, 0, bfList[ix_bf].ByteCount);
+                        Array.Copy(regValue_byte, ix_dest, tempData, 0, bfList[ix_bf].ByteCount);
                         ix_dest += bfList[ix_bf].ByteCount;
                         bfList[ix_bf].BFValue_byte = tempData;
                         //for (int ix = 0; ix < bfList[ix_bf].ByteCount; ix++)

@@ -113,8 +113,8 @@ namespace SGM4711_Eva.MDCommon.Filter
              * d1 = (1 + alpha) * beta
              * d2 = - alpha
             ********************************************/
-            p[0] = 0;
-            p[1] = 1;
+            p[0] = 1;
+            p[1] = 0;
             p[2] = 0;
             d[1] = 0;
             d[2] = 0;
@@ -419,10 +419,10 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * d1 = -a1/a0
                  * d2 = -a2/a0
                 ********************************************/
-                double A = Math.Sqrt(Math.Pow(10, myFilterSet.Gain / 20));
+                double A = Math.Sqrt(Math.Pow(10, myFilterSet.Gain / 20d));
                 wc = myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS;
                 k = Math.Sin(wc) / Math.Sqrt(2);
-                double a0 = (A + 1) + (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k;
+                double a0 = (A + 1) - (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k;
                 p[0] = (A * ((A + 1) + (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k)) / a0;
                 p[1] = (-2 * A * ((A - 1) + (A + 1) * Math.Cos(wc))) / a0;
                 p[2] = (A * ((A + 1) + (A - 1) * Math.Cos(wc) - 2 * Math.Sqrt(A) * k)) / a0;
@@ -449,6 +449,28 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * 4. Transfer the decimal integer values 
                  * to 26-bit, twos complement hex values.
                 ********************************************/
+
+                /*******************************************
+                 Debug Infomation*/
+                 //Console.WriteLine(String.Format("Fc = {0}", myFilterSet.Freq.ToString("F5")));
+                 //Console.WriteLine(String.Format("FS = {0}", myFilterSet.FS.ToString("F5")));
+                 //Console.WriteLine(String.Format("Gain = {0}", myFilterSet.Gain.ToString("F5")));
+                 //Console.WriteLine(String.Format("A = {0}", A.ToString("F5")));
+                 //Console.WriteLine(String.Format("wc = {0}", wc.ToString("F5")));
+                 //Console.WriteLine(String.Format("k = {0}", k.ToString("F5")));
+                 //Console.WriteLine(String.Format("a0 = {0}", a0.ToString("F5")));
+                 //Console.WriteLine(String.Format("p0 = {0}", p[0].ToString("F5")));
+                 //Console.WriteLine(String.Format("p1 = {0}", p[1].ToString("F5")));
+                 //Console.WriteLine(String.Format("p2 = {0}", p[2].ToString("F5")));
+                 //Console.WriteLine(String.Format("d1 = {0}", d[1].ToString("F5")));
+                 //Console.WriteLine(String.Format("d2 = {0}", d[2].ToString("F5")));
+                  
+                 //Console.WriteLine(String.Format("Reg_b0 = {0}(0x{1})", reg_b[0].ToString(), reg_b[0].ToString("X")));
+                 //Console.WriteLine(String.Format("Reg_b1 = {0}(0x{1})", reg_b[1].ToString(), reg_b[1].ToString("X")));
+                 //Console.WriteLine(String.Format("Reg_b2 = {0}(0x{1})", reg_b[2].ToString(), reg_b[2].ToString("X")));
+                 //Console.WriteLine(String.Format("Reg_a1 = {0}(0x{1})", reg_a[0].ToString(), reg_a[0].ToString("X")));
+                 //Console.WriteLine(String.Format("Reg_a2 = {0}(0x{1})", reg_a[1].ToString(), reg_a[1].ToString("X")));
+                /**********************************************/
 
                 /*******************************************
                  * 5. Change the p and d to be used for FR calc

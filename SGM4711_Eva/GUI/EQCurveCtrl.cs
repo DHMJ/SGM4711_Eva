@@ -455,6 +455,7 @@ namespace SGM4711_Eva.GUI
                 case FilterType.Peaking:
                     // Enable/Disable other settings
                     currentRow.Cells[(int)paramIx.SubType].ReadOnly = true;
+                    //currentRow.Cells[(int)paramIx.SubType].Style.BackColor = Color.WhiteSmoke;
                     currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
                     currentRow.Cells[(int)paramIx.Gain].ReadOnly = false;
                     currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = false;
@@ -1069,6 +1070,7 @@ namespace SGM4711_Eva.GUI
                         currentSet = settings[successCount];
                         currentFilter = filterList[successCount];
                         currentSet.Type = (FilterType)Enum.Parse(typeof(FilterType), tempStr[1]);
+                        UpdateFilterSetFeature(successCount, currentSet.Type);
                         currentSet.SubType = (FilterSubType)Enum.Parse(typeof(FilterSubType), tempStr[2]);
                         currentSet.FS = double.Parse(tempStr[3]);
                         currentSet.Freq = double.Parse(tempStr[4]);
