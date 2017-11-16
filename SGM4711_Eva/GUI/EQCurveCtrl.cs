@@ -370,7 +370,7 @@ namespace SGM4711_Eva.GUI
             dgv_filterSetting.Columns[9].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv_filterSetting.Columns[9].HeaderText = "Color";
             dgv_filterSetting.Columns[9].ReadOnly = true;
-        }
+}
 
         private void InitSetting(int count)
         {
@@ -403,13 +403,15 @@ namespace SGM4711_Eva.GUI
             UpdateDrawPoints_Frame();
             UpdateFreqPointForFR();
 
-            // Update all filters' curve points
-            //UpdateDrawPoints_FR(-1);
+            // Set GUI display feature
+            for (int ix = 0; ix < filterList.Count; ix++)
+                UpdateFilterSetFeature(ix, FilterType.AllPass);
         }
 
         private void UpdateGUIFromSetting()
         {
             this.dgv_filterSetting.CellValueChanged -= dgv_filterSetting_CellValueChanged;
+            this.EQ_CurvePanel.Paint -= EQ_CurvePanel_Paint;
             UpdateDrawPoints_Frame();
             UpdateFreqPointForFR();
 
@@ -426,27 +428,52 @@ namespace SGM4711_Eva.GUI
                 dgv_filterSetting[(int)paramIx.View, filterNo].Value = currentSet.View;
                 dgv_filterSetting[(int)paramIx.Bypass, filterNo].Value = currentSet.Bypass;
                 filterList[filterNo].UpdateCoefficents(freqPointForFR.ToArray());
+
+                // Set GUI display feature
+                UpdateFilterSetFeature(filterNo, currentSet.Type);
+
             }
 
             UpdateDrawPoints_FR(-1);
-            this.EQ_CurvePanel.Refresh();
 
             this.dgv_filterSetting.CellValueChanged += dgv_filterSetting_CellValueChanged;
+            this.EQ_CurvePanel.Paint += EQ_CurvePanel_Paint;
+            this.EQ_CurvePanel.Refresh();
         }
 
         private void UpdateFilterSetFeature(int _ixFilter, FilterType _fType)
         {
             DataGridViewRow currentRow = dgv_filterSetting.Rows[_ixFilter];
+            this.dgv_filterSetting.CellValueChanged -= dgv_filterSetting_CellValueChanged;
             switch (_fType)
             {
                 case FilterType.AllPass:
                     // Enable/Disable other settings
                     currentRow.Cells[(int)paramIx.SubType].ReadOnly = true;
-                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = true;
-                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = true;
-                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
-                    currentRow.Cells[(int)paramIx.BW].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.SubType].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.SubType].Style.SelectionBackColor = Color.Gray;
                     
+                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.Freq].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Freq].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Freq].Value = "NA";
+
+                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.Gain].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Value = "NA";
+
+                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.QFatcor].Value = "NA";
+
+                    currentRow.Cells[(int)paramIx.BW].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.BW].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.BW].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.BW].Value = "NA";
+
+                    this.dgv_filterSetting.CellValueChanged += dgv_filterSetting_CellValueChanged;
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.None.ToString());
                     currentRow.Cells[2].Value = FilterSubType.None.ToString();
@@ -455,12 +482,30 @@ namespace SGM4711_Eva.GUI
                 case FilterType.Peaking:
                     // Enable/Disable other settings
                     currentRow.Cells[(int)paramIx.SubType].ReadOnly = true;
-                    //currentRow.Cells[(int)paramIx.SubType].Style.BackColor = Color.WhiteSmoke;
-                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
-                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = false;
-                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = false;
-                    currentRow.Cells[(int)paramIx.BW].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.SubType].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.SubType].Style.SelectionBackColor = Color.Gray;
 
+                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Freq].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.Freq].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.Freq].Value = settings[_ixFilter].Freq;
+
+                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Gain].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.Gain].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.Gain].Value = settings[_ixFilter].Gain;
+                    
+                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.QFatcor].Value = settings[_ixFilter].QFactor;
+                    
+                    currentRow.Cells[(int)paramIx.BW].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.BW].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.BW].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.BW].Value = settings[_ixFilter].BandWidth;
+
+                    this.dgv_filterSetting.CellValueChanged += dgv_filterSetting_CellValueChanged;
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.None.ToString());
                     currentRow.Cells[2].Value = FilterSubType.None.ToString();
@@ -470,11 +515,30 @@ namespace SGM4711_Eva.GUI
                 case FilterType.LowPass:
                     // Enable/Disable other settings
                     currentRow.Cells[(int)paramIx.SubType].ReadOnly = false;
-                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
-                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = true;
-                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
-                    currentRow.Cells[(int)paramIx.BW].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.SubType].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.SubType].Style.SelectionBackColor = SystemColors.Highlight;
 
+                    currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Freq].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.Freq].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.Freq].Value = settings[_ixFilter].Freq;
+                    
+                    currentRow.Cells[(int)paramIx.Gain].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.Gain].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Value = "NA";
+                    
+                    currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.QFatcor].Value = "NA";
+                    
+                    currentRow.Cells[(int)paramIx.BW].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.BW].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.BW].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.BW].Value = "NA";
+
+                    this.dgv_filterSetting.CellValueChanged += dgv_filterSetting_CellValueChanged;
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.Butterworth.ToString());
                     currentRow.Cells[2].Value = FilterSubType.Butterworth.ToString();
@@ -483,11 +547,30 @@ namespace SGM4711_Eva.GUI
                 case FilterType.Notch:
                     // Enable/Disable other settings
                     currentRow.Cells[(int)paramIx.SubType].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.SubType].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.SubType].Style.SelectionBackColor = Color.Gray;
+                    
                     currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Freq].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.Freq].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.Freq].Value = settings[_ixFilter].Freq;
+                    
                     currentRow.Cells[(int)paramIx.Gain].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.Gain].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Value = "NA";
+                    
                     currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.QFatcor].Value = settings[_ixFilter].QFactor;
+                    
                     currentRow.Cells[(int)paramIx.BW].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.BW].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.BW].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.BW].Value = settings[_ixFilter].BandWidth;
 
+                    this.dgv_filterSetting.CellValueChanged += dgv_filterSetting_CellValueChanged;
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.None.ToString());
                     currentRow.Cells[2].Value = FilterSubType.None.ToString();
@@ -497,11 +580,30 @@ namespace SGM4711_Eva.GUI
                 case FilterType.Shelving:
                     // Enable/Disable other settings
                     currentRow.Cells[(int)paramIx.SubType].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.SubType].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.SubType].Style.SelectionBackColor = SystemColors.Highlight;
+                    
                     currentRow.Cells[(int)paramIx.Freq].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Freq].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.Freq].Style.SelectionBackColor = SystemColors.Highlight;
+                    currentRow.Cells[(int)paramIx.Freq].Value = settings[_ixFilter].Freq;
+                    
                     currentRow.Cells[(int)paramIx.Gain].ReadOnly = false;
+                    currentRow.Cells[(int)paramIx.Gain].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Value = settings[_ixFilter].Gain;
+                    
                     currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.QFatcor].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.QFatcor].Value = "NA";
+                    
                     currentRow.Cells[(int)paramIx.BW].ReadOnly = true;
+                    currentRow.Cells[(int)paramIx.BW].Style.BackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.BW].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.BW].Value = "NA";
 
+                    this.dgv_filterSetting.CellValueChanged += dgv_filterSetting_CellValueChanged;
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Clear();
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.Low.ToString());
                     (currentRow.Cells[2] as DataGridViewComboBoxCell).Items.Add(FilterSubType.High.ToString());
@@ -816,6 +918,11 @@ namespace SGM4711_Eva.GUI
             this.MinFreq = (int)numUP_MinFreq.Value;
             UpdateDrawPoints_Frame();
             UpdateFreqPointForFR();
+            for (int ix = 0; ix < filterList.Count; ix++)
+            {
+                filterList[ix].UpdateCoefficents(freqPointForFR.ToArray());
+            }
+
             UpdateDrawPoints_FR(-1);
             this.EQ_CurvePanel.Refresh();
         }
@@ -825,6 +932,11 @@ namespace SGM4711_Eva.GUI
             this.MaxFreq = (int)numUP_MaxFreq.Value;
             UpdateDrawPoints_Frame();
             UpdateFreqPointForFR();
+            for (int ix = 0; ix < filterList.Count; ix++)
+            {
+                filterList[ix].UpdateCoefficents(freqPointForFR.ToArray());
+            }
+
             UpdateDrawPoints_FR(-1);
             this.EQ_CurvePanel.Refresh();
         }
@@ -832,8 +944,15 @@ namespace SGM4711_Eva.GUI
         private void numUP_MinMagn_ValueChanged(object sender, EventArgs e)
         {
             this.MinMag = (int)numUP_MinMagn.Value;
+            this.numUP_MaxMagn.Minimum = this.MinMag + 10;
+
             UpdateDrawPoints_Frame();
             UpdateFreqPointForFR();
+            for (int ix = 0; ix < filterList.Count; ix++)
+            {
+                filterList[ix].UpdateCoefficents(freqPointForFR.ToArray());
+            }
+
             UpdateDrawPoints_FR(-1);
             this.EQ_CurvePanel.Refresh();
         }
@@ -841,8 +960,15 @@ namespace SGM4711_Eva.GUI
         private void numUP_MaxMagn_ValueChanged(object sender, EventArgs e)
         {
             this.MaxMag = (int)numUP_MaxMagn.Value;
+            this.numUP_MinMagn.Maximum = this.MaxMag - 10;
+
             UpdateDrawPoints_Frame();
             UpdateFreqPointForFR();
+            for (int ix = 0; ix < filterList.Count; ix++)
+            {
+                filterList[ix].UpdateCoefficents(freqPointForFR.ToArray());
+            }
+
             UpdateDrawPoints_FR(-1);
             this.EQ_CurvePanel.Refresh();
         }
@@ -976,6 +1102,9 @@ namespace SGM4711_Eva.GUI
             if (e.ColumnIndex <= (int)paramIx.No || e.ColumnIndex >= (int)paramIx.Color)
                 return;
 
+            if (e.FormattedValue.ToString() == "NA")
+                return;
+
             //parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].FormattedValue.ToString(), out tempData);
             parseRet = double.TryParse(e.FormattedValue.ToString(), out tempData);
             switch (e.ColumnIndex)
@@ -1070,7 +1199,7 @@ namespace SGM4711_Eva.GUI
                         currentSet = settings[successCount];
                         currentFilter = filterList[successCount];
                         currentSet.Type = (FilterType)Enum.Parse(typeof(FilterType), tempStr[1]);
-                        UpdateFilterSetFeature(successCount, currentSet.Type);
+                        //UpdateFilterSetFeature(successCount, currentSet.Type);
                         currentSet.SubType = (FilterSubType)Enum.Parse(typeof(FilterSubType), tempStr[2]);
                         currentSet.FS = double.Parse(tempStr[3]);
                         currentSet.Freq = double.Parse(tempStr[4]);
@@ -1141,6 +1270,17 @@ namespace SGM4711_Eva.GUI
                 return;
             }
 
+            // Power down chip if the chip is on
+            bool ifPoweredOn = false;
+            if (regMap[0x05]["ALL_CH_PD"].BFValue == 0)
+                ifPoweredOn = true;
+
+            if (ifPoweredOn)
+            {
+                regMap[0x05]["ALL_CH_PD"].BFValue = 0x1;
+                myRegOp.RegWrite(0x05);
+            }
+
             Register currentReg;
             for (int ix = 0; ix < regAddr.Length; ix++)
             {
@@ -1150,8 +1290,22 @@ namespace SGM4711_Eva.GUI
                 currentReg["b2[25:0]"].BFValue = filterList[ix].RegValue_B[2];
                 currentReg["a1[25:0]"].BFValue = filterList[ix].RegValue_A[0];
                 currentReg["a2[25:0]"].BFValue = filterList[ix].RegValue_A[1];
-                myRegOp.RegWrite(currentReg);
+
+                // Only the first write needs time log
+                if (ifPoweredOn)
+                    myRegOp.RegWrite(currentReg, false);
+                else if(ix == 0)
+                    myRegOp.RegWrite(currentReg, true);
+                else
+                    myRegOp.RegWrite(currentReg, false);
             }
+
+            if (ifPoweredOn)
+            {
+                regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
+                myRegOp.RegWrite(0x05, false);
+            }
+
             myRegOp.UpdateRegSettingSource();
         }
 

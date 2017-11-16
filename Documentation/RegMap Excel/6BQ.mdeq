@@ -1,25 +1,25 @@
 /* SGM4711 EQ Settings */
 /* No.0, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */
-Filter 0,Peaking,None,48000,200,6,100,2,False,False
+Filter 0,HighPass,Butterworth,48000,200,0,100,1.414,False,False
 /* Register Value in hex: b0, b1, b2, a1, a2 */
-/*80D411 FF01C076 7D81C9 FE3F8A FF81AA26 */
+/*7DA6FA FF04B20B 7DA6FA FB42EE FF84A705 */
 /* No.1, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */
-Filter 1,HighPass,Butterworth,48000,100,0,100,1.414,False,False
+Filter 1,AllPass,None,48000,20,0,100,1.414,False,False
 /* Register Value in hex: b0, b1, b2, a1, a2 */
-/*7ED219 FF025BCE 7ED219 FDA16A FF825905 */
+/*800000 0000 0000 0000 0000 */
 /* No.2, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */
-Filter 2,LowPass,Butterworth,48000,18000,0,100,1.414,False,False
+Filter 2,LowPass,Butterworth,48000,20000,0,100,1.414,False,False
 /* Register Value in hex: b0, b1, b2, a1, a2 */
-/*48D629 91AC51 48D629 FF875209 FFD55555 */
+/*583B2F B0765E 583B2F FF5C3501 FFC2DE42 */
 /* No.3, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */
-Filter 3,Peaking,None,48000,1000,-12,100,10,False,False
+Filter 3,Peaking,None,48000,10000,12,500,20,False,False
 /* Register Value in hex: b0, b1, b2, a1, a2 */
-/*7F6073 FF03D72C 7EF567 FC28D4 FF81AA26 */
+/*8C1878 FFBFD7B6 6BCA1D 40284A FF881D6B */
 /* No.4, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */
-Filter 4,Peaking,None,48000,2000,12,100,20,False,False
+Filter 4,Peaking,None,48000,20,0,100,0.2,False,False
 /* Register Value in hex: b0, b1, b2, a1, a2 */
-/*827B31 FF0A54B7 7BDAA9 F5AB49 FF81AA26 */
+/*800000 FF01AA5F 7E55DA FE55A1 FF81AA26 */
 /* No.5, Filter Type, SubType, FS, F0, Gain, Bandwidth, Q, View, Bypass */
-Filter 5,Peaking,None,48000,8000,6,400,20,False,False
+Filter 5,Shelving,Low,48000,500,0,100,1.414,False,False
 /* Register Value in hex: b0, b1, b2, a1, a2 */
-/*834034 FF83442A 763778 7CBBD6 FF868854 */
+/*800000 FF0BD6FD 74AF21 F42903 FF8B50DF */

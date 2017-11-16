@@ -1872,7 +1872,6 @@ namespace SGM4711_Eva
         {
             DialogResult dialogRes = MessageBox.Show("Save project before quit?", "Saving project timps", MessageBoxButtons.YesNoCancel);
             if (dialogRes == System.Windows.Forms.DialogResult.No)
-                //this.Close();
                 return;
             else if (dialogRes == System.Windows.Forms.DialogResult.Cancel)
                 e.Cancel = true;
@@ -1881,7 +1880,8 @@ namespace SGM4711_Eva
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Title = "save project file...";
                 sfd.Filter = "MDPROJ(.mdproj)|*.mdproj";
-                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                DialogResult dr = sfd.ShowDialog();
+                if (dr == System.Windows.Forms.DialogResult.OK)
                 {
                     currentProjPath = sfd.FileName;
                     historyProjPath.Add(currentProjPath);
@@ -1889,13 +1889,16 @@ namespace SGM4711_Eva
                         historyProjPath.RemoveAt(0);
 
                     SerializeMethod(currentProjPath);
-                    //this.Close();
                 }
+                else if (dr == System.Windows.Forms.DialogResult.Cancel)
+                    e.Cancel = true;
+                
             }
         }
 
         private void MenuItemFile_ExitWithoutSave_Click(object sender, EventArgs e)
         {
+            this.FormClosing -= MainForm_FormClosing;
             this.Close();
         }
 
@@ -2591,6 +2594,7 @@ namespace SGM4711_Eva
             byte[] tempData = new byte[20];
             int copiedCount = 0;
             Register tempReg;
+            bool ifFirstWr = true;
             for (int ix_list = 0; ix_list < customerRegs.RegAddrList.Count; ix_list++)
             {
                 tempRegAddrs = customerRegs.RegAddrList[ix_list];
@@ -2609,7 +2613,8 @@ namespace SGM4711_Eva
                     Array.Copy(tempRegDatas, copiedCount, tempData, 0, tempReg.ByteCount);
                     copiedCount += tempReg.ByteCount;
                     tempReg.ByteValue = tempData;
-                    RegWrite(tempReg);
+                    RegWrite(tempReg, ifFirstWr);
+                    ifFirstWr = false;
 
                     //string tempLog = "";
                     //tempLog += tempReg.RegAddress.ToString("X2") + " ";

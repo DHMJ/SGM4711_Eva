@@ -79,20 +79,31 @@ namespace SGM4711_Eva.GUI
             {
                 case 0:
                     this.grb_2p0.Enabled = true;
-                    this.grb_2p1.Enabled = false;
+                    this.grb_2p1.Enabled = false;                    
                     this.grb_PBTL.Enabled = false;
+                    this.grb_2p0.BackColor = Color.White;
+                    this.grb_2p1.BackColor = Color.DarkGray;
+                    this.grb_PBTL.BackColor = Color.DarkGray;
                     break;
 
                 case 1:
                     this.grb_2p0.Enabled = false;
                     this.grb_2p1.Enabled = true;
                     this.grb_PBTL.Enabled = false;
+                    this.grb_2p0.BackColor = Color.DarkGray;
+                    this.grb_2p1.BackColor = Color.White;
+                    this.grb_PBTL.BackColor = Color.DarkGray;
+
                     break;
 
                 case 2:
                     this.grb_2p0.Enabled = false;
                     this.grb_2p1.Enabled = false;
                     this.grb_PBTL.Enabled = true;
+                    this.grb_2p0.BackColor = Color.DarkGray;
+                    this.grb_2p1.BackColor = Color.DarkGray;
+                    this.grb_PBTL.BackColor = Color.White;
+
                     break;
             }
         }
