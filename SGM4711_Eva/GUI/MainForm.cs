@@ -999,13 +999,27 @@ namespace SGM4711_Eva
         private void M_CH1_Input_Mix3_Click(object sender, EventArgs e)
         {
             /* 1. 0x53 BF[127: 96] */
-            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_3[25:0]" });
+            /* 2. 0x53 BF[95: 64] */
+            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x53];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH1_Imnut_Mix2_Click(object sender, EventArgs e)
         {
-            /* 1. 0x53 BF[95: 64] */
-            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_2[25:0]" });
+            /* 1. 0x53 BF[127: 96] */
+            /* 2. 0x53 BF[95: 64] */
+            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x53];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH2_Input_Mix3_Click(object sender, EventArgs e)
@@ -1013,6 +1027,12 @@ namespace SGM4711_Eva
             /* 1. 0x54 BF[127: 96] */
             /* 2. 0x54 BF[95: 64] */
             UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_3[25:0]", "CH2_INPUT_MIXER_2[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x54];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH2_Input_Mix2_Click(object sender, EventArgs e)
@@ -1020,6 +1040,12 @@ namespace SGM4711_Eva
             /* 1. 0x54 BF[127: 96] */
             /* 2. 0x54 BF[95: 64] */
             UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_3[25:0]", "CH2_INPUT_MIXER_2[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x54];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void btn_1BQ_LRMix_L_Click(object sender, EventArgs e)
@@ -1061,25 +1087,53 @@ namespace SGM4711_Eva
         private void M_CH1_Input_Mix1_Click(object sender, EventArgs e)
         {
             /* 1. 0x53 BF[63: 32] */
-            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_1[25:0]" });
+            /* 2. 0x53 BF[31: 0] */
+            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_1[25:0]", "CH1_INPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x53];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH1_INPUT_MIXER_1[25:0]", "CH1_INPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH1_Input_Mix0_Click(object sender, EventArgs e)
         {
-            /* 1. 0x53 BF[31: 0] */
-            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_0[25:0]" });
+            /* 1. 0x53 BF[63: 32] */
+            /* 2. 0x53 BF[31: 0] */
+            UpdateRegSettingSource(0x53, new string[] { "CH1_INPUT_MIXER_1[25:0]", "CH1_INPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x53];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH1_INPUT_MIXER_1[25:0]", "CH1_INPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH2_Input_Mix1_Click(object sender, EventArgs e)
         {
             /* 1. 0x54 BF[63: 32] */
-            UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_1[25:0]" });
+            /* 2. 0x54 BF[31: 0] */
+            UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_1[25:0]", "CH2_INPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x54];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH2_INPUT_MIXER_1[25:0]", "CH2_INPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH2_Input_Mix0_Click(object sender, EventArgs e)
         {
-            /* 1. 0x54 BF[31: 0] */
-            UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_0[25:0]" });
+            /* 1. 0x54 BF[63: 32] */
+            /* 2. 0x54 BF[31: 0] */
+            UpdateRegSettingSource(0x54, new string[] { "CH2_INPUT_MIXER_1[25:0]", "CH2_INPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x54];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH2_INPUT_MIXER_1[25:0]", "CH2_INPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void btn_6EQ_L_Click(object sender, EventArgs e)
@@ -1123,19 +1177,43 @@ namespace SGM4711_Eva
         private void M_CH3_Input_Mix2_Click(object sender, EventArgs e)
         {
             /* 1. 0x55 BF[95: 64] */
-            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_2[25:0]" });
+            /* 2. 0x55 BF[31: 0] */
+            /* 3. 0x55 BF[63: 32] */
+            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_2[25:0]", "CH3_INPUT_MIXER_0[25:0]", "CH3_INPUT_MIXER_1[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x55];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH3_INPUT_MIXER_2[25:0]", "CH3_INPUT_MIXER_0[25:0]", "CH3_INPUT_MIXER_1[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH3_Input_Mix0_Click(object sender, EventArgs e)
         {
-            /* 1. 0x55 BF[31: 0] */
-            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_0[25:0]" });
+            /* 1. 0x55 BF[95: 64] */
+            /* 2. 0x55 BF[31: 0] */
+            /* 3. 0x55 BF[63: 32] */
+            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_2[25:0]", "CH3_INPUT_MIXER_0[25:0]", "CH3_INPUT_MIXER_1[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x55];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH3_INPUT_MIXER_2[25:0]", "CH3_INPUT_MIXER_0[25:0]", "CH3_INPUT_MIXER_1[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH3_Input_Mix1_Click(object sender, EventArgs e)
         {
-            /* 1. 0x55 BF[63: 32] */
-            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_1[25:0]" });
+            /* 1. 0x55 BF[95: 64] */
+            /* 2. 0x55 BF[31: 0] */
+            /* 3. 0x55 BF[63: 32] */
+            UpdateRegSettingSource(0x55, new string[] { "CH3_INPUT_MIXER_2[25:0]", "CH3_INPUT_MIXER_0[25:0]", "CH3_INPUT_MIXER_1[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x55];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH3_INPUT_MIXER_2[25:0]", "CH3_INPUT_MIXER_0[25:0]", "CH3_INPUT_MIXER_1[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void rbt_DRCAuto_LP_CheckedChanged(object sender, EventArgs e)
@@ -1489,6 +1567,8 @@ namespace SGM4711_Eva
             byte[] regList = new byte[] { 0x3A, 0x3B, 0x3C, 0x40, 0x41, 0x42 };
             UpdateRegSettingSource(regList);
             UpdateRegSettingSource(0x46, new string[] { "DRC1_EN" }, true);
+            
+            btn_DRC1_DoubleClick(sender, e);
         }
 
         private void btn_DRC1_DoubleClick(object sender, EventArgs e)
@@ -1519,6 +1599,8 @@ namespace SGM4711_Eva
             byte[] regList = new byte[] { 0x3D, 0x3E, 0x3F, 0x43, 0x44, 0x45 };
             UpdateRegSettingSource(regList);
             UpdateRegSettingSource(0x46, new string[] { "DRC2_EN" }, true);
+
+            btn_DRC2_DoubleClick(sender, e);
         }
 
         private void btn_DRC2_DoubleClick(object sender, EventArgs e)
@@ -1542,61 +1624,135 @@ namespace SGM4711_Eva
         private void M_CH1_Output_Mix2_Click(object sender, EventArgs e)
         {
             /* 1. 0x51 BF[95: 64] */
-            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_2[25:0]" });
+            /* 2. 0x51 BF[63: 32] */
+            /* 3. 0x51 BF[31: 0] */
+            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_2[25:0]", "CH1_OUTPUT_MIXER_1[25:0]", "CH1_OUTPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x51];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH1_OUTPUT_MIXER_2[25:0]", "CH1_OUTPUT_MIXER_1[25:0]", "CH1_OUTPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH1_Output_Mix1_Click(object sender, EventArgs e)
         {
-            /* 1. 0x51 BF[63: 32] */
-            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_1[25:0]" });
+            /* 1. 0x51 BF[95: 64] */
+            /* 2. 0x51 BF[63: 32] */
+            /* 3. 0x51 BF[31: 0] */
+            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_2[25:0]", "CH1_OUTPUT_MIXER_1[25:0]", "CH1_OUTPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x51];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH1_OUTPUT_MIXER_2[25:0]", "CH1_OUTPUT_MIXER_1[25:0]", "CH1_OUTPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH1_Output_Mix0_Click(object sender, EventArgs e)
         {
-            /* 1. 0x51 BF[31: 0] */
-            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_0[25:0]" });
+            /* 1. 0x51 BF[95: 64] */
+            /* 2. 0x51 BF[63: 32] */
+            /* 3. 0x51 BF[31: 0] */
+            UpdateRegSettingSource(0x51, new string[] { "CH1_OUTPUT_MIXER_2[25:0]", "CH1_OUTPUT_MIXER_1[25:0]", "CH1_OUTPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x51];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH1_OUTPUT_MIXER_2[25:0]", "CH1_OUTPUT_MIXER_1[25:0]", "CH1_OUTPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH2_Output_Mix2_Click(object sender, EventArgs e)
         {
             /* 1. 0x52 BF[95: 64] */
-            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_2[25:0]" });
+            /* 2. 0x52 BF[63: 32] */
+            /* 3. 0x52 BF[31: 0] */
+            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_2[25:0]", "CH2_OUTPUT_MIXER_1[25:0]", "CH2_OUTPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x52];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH2_OUTPUT_MIXER_2[25:0]", "CH2_OUTPUT_MIXER_1[25:0]", "CH2_OUTPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH2_Output_Mix1_Click(object sender, EventArgs e)
         {
-            /* 1. 0x52 BF[63: 32] */
-            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_1[25:0]" });
+            /* 1. 0x52 BF[95: 64] */
+            /* 2. 0x52 BF[63: 32] */
+            /* 3. 0x52 BF[31: 0] */
+            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_2[25:0]", "CH2_OUTPUT_MIXER_1[25:0]", "CH2_OUTPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x52];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH2_OUTPUT_MIXER_2[25:0]", "CH2_OUTPUT_MIXER_1[25:0]", "CH2_OUTPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH2_Output_Mix0_Click(object sender, EventArgs e)
         {
-            /* 1. 0x52 BF[31: 0] */
-            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_0[25:0]" });
+            /* 1. 0x52 BF[95: 64] */
+            /* 2. 0x52 BF[63: 32] */
+            /* 3. 0x52 BF[31: 0] */
+            UpdateRegSettingSource(0x52, new string[] { "CH2_OUTPUT_MIXER_2[25:0]", "CH2_OUTPUT_MIXER_1[25:0]", "CH2_OUTPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x52];
+            Mixer_3In myMixer = new Mixer_3In(reg, new string[] { "CH2_OUTPUT_MIXER_2[25:0]", "CH2_OUTPUT_MIXER_1[25:0]", "CH2_OUTPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH4_Output_Mix1_Click(object sender, EventArgs e)
         {
             /* 1. 0x60 BF[63: 32] */
-            UpdateRegSettingSource(0x60, new string[] { "CH4_OUTPUT_MIXER_1[25:0]" });
+            /* 2. 0x60 BF[31: 0] */
+            UpdateRegSettingSource(0x60, new string[] { "CH4_OUTPUT_MIXER_1[25:0]", "CH4_OUTPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x60];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH4_OUTPUT_MIXER_1[25:0]", "CH4_OUTPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_CH4_Output_Mix0_Click(object sender, EventArgs e)
         {
-            /* 1. 0x60 BF[31: 0] */
-            UpdateRegSettingSource(0x60, new string[] { "CH4_OUTPUT_MIXER_0[25:0]" });
+            /* 1. 0x60 BF[63: 32] */
+            /* 2. 0x60 BF[31: 0] */
+            UpdateRegSettingSource(0x60, new string[] { "CH4_OUTPUT_MIXER_1[25:0]", "CH4_OUTPUT_MIXER_0[25:0]" });
+
+            if (regMap == null) return;
+            Register reg = regMap[0x60];
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH4_OUTPUT_MIXER_1[25:0]", "CH4_OUTPUT_MIXER_0[25:0]" }, this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_OutputPreScale_Click(object sender, EventArgs e)
         {
             /* 0x56 */
             UpdateRegSettingSource(0x56);
+
+            if (regMap == null) return;
+            Register reg = regMap[0x56];
+            Mixer_1In myMixer = new Mixer_1In(reg, "OUTPUT_POST_SCALE[25:0] ", this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void M_OutputPostScale_Click(object sender, EventArgs e)
         {
             /* 0x57 */
             UpdateRegSettingSource(0x57);
+           
+            if (regMap == null) return;
+            Register reg = regMap[0x57];
+            Mixer_1In myMixer = new Mixer_1In(reg, "OUTPUT_PRE_SCALE[25:0] ", this);
+            //myMixer.PointToScreen((sender as Multiply).PointToScreen);
+            myMixer.ShowDialog();
         }
 
         private void chb_PostHPF_EN_CheckedChanged(object sender, EventArgs e)
@@ -1634,7 +1790,8 @@ namespace SGM4711_Eva
         {
             /* 0x63, 0x64 */
             UpdateRegSettingSource(new byte[] { 0x63, 0x64 });
-
+            NoiseGateForm myNoiseGate = new NoiseGateForm(regMap, this);
+            myNoiseGate.ShowDialog();
         }
         #endregion GUI control
         

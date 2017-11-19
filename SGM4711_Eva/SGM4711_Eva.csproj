@@ -78,6 +78,30 @@
     <Compile Include="GUI\FormScriptCtrl.Designer.cs">
       <DependentUpon>FormScriptCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Mixer_1In.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Mixer_1In.Designer.cs">
+      <DependentUpon>Mixer_1In.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Mixer_2In.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Mixer_2In.Designer.cs">
+      <DependentUpon>Mixer_2In.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Mixer_3In.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Mixer_3In.Designer.cs">
+      <DependentUpon>Mixer_3In.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\NoiseGateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\NoiseGateForm.Designer.cs">
+      <DependentUpon>NoiseGateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDCommon\CustomerRegList.cs" />
     <Compile Include="MDCommon\IRegOperation.cs" />
     <Compile Include="MDUserCtrls\Dot.cs">
@@ -271,6 +295,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\InputMux.resx">
       <DependentUpon>InputMux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Mixer_1In.resx">
+      <DependentUpon>Mixer_1In.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Mixer_2In.resx">
+      <DependentUpon>Mixer_2In.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Mixer_3In.resx">
+      <DependentUpon>Mixer_3In.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\NoiseGateForm.resx">
+      <DependentUpon>NoiseGateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\OutputMux.resx">
       <DependentUpon>OutputMux.cs</DependentUpon>

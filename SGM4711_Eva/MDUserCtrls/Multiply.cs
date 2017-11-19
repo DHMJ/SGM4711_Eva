@@ -67,5 +67,10 @@ namespace SGM4711_Eva.MDUserCtrls
         {
             this.Height = this.Width;
         }
+
+        private void myPanel_Click(object sender, EventArgs e)
+        {
+            base.InvokeOnClick(this, e);
+        }
     }
 }

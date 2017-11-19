@@ -38,9 +38,10 @@
             this.myPanel.Name = "myPanel";
             this.myPanel.Size = new System.Drawing.Size(20, 20);
             this.myPanel.TabIndex = 0;
+            this.myPanel.Click += new System.EventHandler(this.myPanel_Click);
             this.myPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.myPanel_Paint);
             // 
-            // Indicator
+            // Multiply
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -48,7 +49,7 @@
             this.Controls.Add(this.myPanel);
             this.MaximumSize = new System.Drawing.Size(100, 100);
             this.MinimumSize = new System.Drawing.Size(10, 10);
-            this.Name = "Indicator";
+            this.Name = "Multiply";
             this.Size = new System.Drawing.Size(20, 20);
             this.SizeChanged += new System.EventHandler(this.Indicator_SizeChanged);
             this.ResumeLayout(false);

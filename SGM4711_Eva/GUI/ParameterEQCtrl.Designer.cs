@@ -40,7 +40,8 @@
             this.MaximumSize = new System.Drawing.Size(815, 640);
             this.MinimumSize = new System.Drawing.Size(815, 640);
             this.Name = "ParameterEQCtrl";
-            this.Text = "EQ";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Paraneter EQ";
             this.ResumeLayout(false);
 
         }

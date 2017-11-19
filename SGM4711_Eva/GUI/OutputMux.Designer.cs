@@ -1219,7 +1219,9 @@
             this.Controls.Add(this.grb_PBTL);
             this.Controls.Add(this.grb_2p1);
             this.Controls.Add(this.grb_2p0);
+            this.MaximizeBox = false;
             this.Name = "Output_Mux";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OutputMux";
             this.grb_2p0.ResumeLayout(false);
             this.grb_2p0.PerformLayout();

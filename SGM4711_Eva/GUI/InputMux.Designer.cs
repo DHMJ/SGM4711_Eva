@@ -761,7 +761,9 @@
             this.Controls.Add(this.line3);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.line1);
+            this.MaximizeBox = false;
             this.Name = "InputMux";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "InputMux";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
