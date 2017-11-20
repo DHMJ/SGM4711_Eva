@@ -669,12 +669,17 @@
             // numUP_CH4_Input_Mxier_1
             // 
             this.numUP_CH4_Input_Mxier_1.DecimalPlaces = 3;
+            this.numUP_CH4_Input_Mxier_1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numUP_CH4_Input_Mxier_1.Location = new System.Drawing.Point(76, 281);
             this.numUP_CH4_Input_Mxier_1.Maximum = new decimal(new int[] {
-            39999999,
+            3999,
             0,
             0,
-            458752});
+            196608});
             this.numUP_CH4_Input_Mxier_1.Minimum = new decimal(new int[] {
             4,
             0,
@@ -694,12 +699,17 @@
             // numUP_CH4_Input_Mxier_0
             // 
             this.numUP_CH4_Input_Mxier_0.DecimalPlaces = 3;
+            this.numUP_CH4_Input_Mxier_0.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numUP_CH4_Input_Mxier_0.Location = new System.Drawing.Point(76, 465);
             this.numUP_CH4_Input_Mxier_0.Maximum = new decimal(new int[] {
-            39999999,
+            3999,
             0,
             0,
-            458752});
+            196608});
             this.numUP_CH4_Input_Mxier_0.Minimum = new decimal(new int[] {
             4,
             0,

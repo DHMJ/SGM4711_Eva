@@ -52,12 +52,17 @@
             // numUP_Input1
             // 
             this.numUP_Input1.DecimalPlaces = 3;
+            this.numUP_Input1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numUP_Input1.Location = new System.Drawing.Point(71, 205);
             this.numUP_Input1.Maximum = new decimal(new int[] {
-            39999999,
+            3999,
             0,
             0,
-            458752});
+            196608});
             this.numUP_Input1.Minimum = new decimal(new int[] {
             4,
             0,
@@ -77,12 +82,17 @@
             // numUP_Input0
             // 
             this.numUP_Input0.DecimalPlaces = 3;
+            this.numUP_Input0.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numUP_Input0.Location = new System.Drawing.Point(71, 21);
             this.numUP_Input0.Maximum = new decimal(new int[] {
-            39999999,
+            3999,
             0,
             0,
-            458752});
+            196608});
             this.numUP_Input0.Minimum = new decimal(new int[] {
             4,
             0,

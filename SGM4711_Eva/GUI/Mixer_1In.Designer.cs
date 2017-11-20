@@ -43,12 +43,12 @@
             this.numUP_Input.DecimalPlaces = 3;
             this.numUP_Input.Location = new System.Drawing.Point(98, 30);
             this.numUP_Input.Maximum = new decimal(new int[] {
-            39999999,
+            255999,
             0,
             0,
-            458752});
+            196608});
             this.numUP_Input.Minimum = new decimal(new int[] {
-            4,
+            256,
             0,
             0,
             -2147483648});

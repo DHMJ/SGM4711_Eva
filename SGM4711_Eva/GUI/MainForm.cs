@@ -1030,7 +1030,7 @@ namespace SGM4711_Eva
 
             if (regMap == null) return;
             Register reg = regMap[0x54];
-            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" }, this);
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH2_INPUT_MIXER_3[25:0]", "CH2_INPUT_MIXER_2[25:0]" }, this);
             //myMixer.PointToScreen((sender as Multiply).PointToScreen);
             myMixer.ShowDialog();
         }
@@ -1733,24 +1733,24 @@ namespace SGM4711_Eva
 
         private void M_OutputPreScale_Click(object sender, EventArgs e)
         {
-            /* 0x56 */
-            UpdateRegSettingSource(0x56);
+            /* 0x57 format: 9.17*/
+            UpdateRegSettingSource(0x57);
 
             if (regMap == null) return;
-            Register reg = regMap[0x56];
-            Mixer_1In myMixer = new Mixer_1In(reg, "OUTPUT_POST_SCALE[25:0] ", this);
+            Register reg = regMap[0x57];
+            Mixer_1In myMixer = new Mixer_1In(reg, "OUTPUT_PRE_SCALE[25:0] ", this, 17);
             //myMixer.PointToScreen((sender as Multiply).PointToScreen);
             myMixer.ShowDialog();
         }
 
         private void M_OutputPostScale_Click(object sender, EventArgs e)
         {
-            /* 0x57 */
-            UpdateRegSettingSource(0x57);
-           
+            /* 0x56 */
+            UpdateRegSettingSource(0x56);
+
             if (regMap == null) return;
-            Register reg = regMap[0x57];
-            Mixer_1In myMixer = new Mixer_1In(reg, "OUTPUT_PRE_SCALE[25:0] ", this);
+            Register reg = regMap[0x56];
+            Mixer_1In myMixer = new Mixer_1In(reg, "OUTPUT_POST_SCALE[25:0] ", this);
             //myMixer.PointToScreen((sender as Multiply).PointToScreen);
             myMixer.ShowDialog();
         }
