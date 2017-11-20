@@ -28,7 +28,8 @@ namespace GeneralRegConfigPlatform.MDGUI
             SET_RSTB,
             SET_VALID,
             DELAY,
-            None
+            None,
+            TI_WRITE
         };
 
         public FormScript(DMDongle _uart)
@@ -48,7 +49,7 @@ namespace GeneralRegConfigPlatform.MDGUI
             {
                 OpenFileDialog openfiledlg = new OpenFileDialog();
                 openfiledlg.Title = "Please choose the script file to be loaded...";
-                openfiledlg.Filter = "Text file(*.txt)|*.txt";
+                openfiledlg.Filter = "Config file(*.cfg)|*.cfg|Text file(*.txt)|*.txt";
                 openfiledlg.RestoreDirectory = true;
                 string filename = "";
                 if (openfiledlg.ShowDialog() == DialogResult.OK)
@@ -76,7 +77,7 @@ namespace GeneralRegConfigPlatform.MDGUI
             {
                 SaveFileDialog savefiledlg = new SaveFileDialog();
                 savefiledlg.Title = "Saving script command...";
-                savefiledlg.Filter = "Text file(*.txt)|*.txt";
+                savefiledlg.Filter = "Config file(*.cfg)|*.cfg|Text file(*.txt)|*.txt";
                 savefiledlg.RestoreDirectory = true;
                 string filename = "";
                 if (savefiledlg.ShowDialog() == DialogResult.OK)
@@ -117,11 +118,50 @@ namespace GeneralRegConfigPlatform.MDGUI
                 SCRIPT_COMMAND cmdType;
                 for (int i = 0; i < AllCommands.Length; i++)
                 {
-                    cmdType = ScriptDecodeCommand(AllCommands[i], out parameters);
+                    cmdType = SCRIPT_COMMAND.None;
+                    #region TI Script
+                    parameters = AllCommands[i].TrimEnd().Split(":; ".ToCharArray());
+                    if (parameters == null || parameters.Length <= 1)   // if this line is null or comments
+                        continue;
+                    else if (parameters[0].Contains("~"))               // if this line is comments
+                        continue;
+                    else
+                    {
+                        if (byte.TryParse(parameters[0].TrimStart('X'), System.Globalization.NumberStyles.HexNumber, null, out addr))
+                        {
+                            data = new byte[parameters.Length - 1];
+                            for (int ix_data = 1; ix_data < parameters.Length; ix_data++)
+                            {
+                                if (!byte.TryParse(parameters[ix_data], System.Globalization.NumberStyles.HexNumber, null, out data[ix_data - 1]))
+                                {
+                                    MessageBox.Show(String.Format("Wrong data at line {0} : {1}", i + 1, parameters[ix_data]));
+                                    return;
+                                }
+                            }
+                            cmdType = SCRIPT_COMMAND.TI_WRITE;
+                        }
+                        else
+                        {
+                            MessageBox.Show(String.Format("Wrong data at line {0} : {1}", i + 1, parameters[0]));
+                            return;
+                        }
+                    }
+
+                    #endregion 
+
+                    if(cmdType == SCRIPT_COMMAND.None)
+                        cmdType = ScriptDecodeCommand(AllCommands[i], out parameters);
+
                     if (cmdType != SCRIPT_COMMAND.None)
                     {
                         switch (cmdType)
                         {
+                            case SCRIPT_COMMAND.TI_WRITE:
+                                dg.writeRegBurst(addr, data, data.Length);
+                                Thread.Sleep(200);
+                                break;
+
+                            #region Old Commands
                             case SCRIPT_COMMAND.SINGLE_WRITE:
                                 //I2CWrite_Single_OneWire(parameters[0], parameters[1]);
                                 //reg[0] = Convert.ToByte(parameters[0], 16);
@@ -203,11 +243,14 @@ namespace GeneralRegConfigPlatform.MDGUI
                                 Thread.Sleep(value);
                                 //Thread.Sleep(200);
                                 break;
+                            #endregion 
 
                             default:
                                 break;
                         }
                     }
+
+
                 }
 
             }
