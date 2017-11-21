@@ -578,6 +578,23 @@ namespace SGM4711_Eva
             #region Update GUI, and shield GUI value changed events.
             Register tempReg;
 
+            // Power On/Off
+            this.chb_Enable.CheckedChanged -= chb_Enable_CheckedChanged;
+            if (regMap[0x05]["ALL_CH_PD"].BFValue == 0x01)
+            {
+                chb_Enable.Checked = true;
+                //regMap[0x05]["ALL_CH_PD"].BFValue = 0x1;
+                this.chb_Enable.Text = "Powered Down";
+                this.chb_Enable.BackColor = Color.IndianRed;
+            }
+            else
+            {
+                chb_Enable.Checked = false;
+                this.chb_Enable.Text = "Powered ON";
+                this.chb_Enable.BackColor = Color.GreenYellow;
+            }
+            this.chb_Enable.CheckedChanged += chb_Enable_CheckedChanged;
+
             // Operation Voltage; reg 0x0C
             this.numUP_OpVoltage.ValueChanged -= numUP_OpVoltage_ValueChanged;
             tempReg = regMap[0x0C];
@@ -586,6 +603,55 @@ namespace SGM4711_Eva
             this.numUP_OpVoltage.ValueChanged += numUP_OpVoltage_ValueChanged;
 
             // Mode Config
+            this.cmb_ModeConfig.SelectedIndexChanged -= cmb_ModeConfig_SelectedIndexChanged;
+            #region 2.0
+            if(regMap[0x03]["OL_BYPASS"].BFValue == 0x1 && 
+                regMap[0x20].RegValue == 0x00897772 &&
+                regMap[0x1A].RegValue == 0x8F &&
+                regMap[0x25].RegValue == 0x01021345 &&
+                regMap[0x05]["SUB_CH_MOD"].BFValue == 0x1 &&
+                regMap[0x05]["MODE_SEL"].BFValue == 0x0 &&
+                regMap[0x11].RegValue == 0xB8 &&
+                regMap[0x12].RegValue == 0x60 &&
+                regMap[0x13].RegValue == 0xA0 &&
+                regMap[0x14].RegValue == 0x48 )
+            {
+                this.cmb_ModeConfig.SelectedIndex = 0;
+            }
+            #endregion
+
+            #region 2.1
+            else if (regMap[0x03]["OL_BYPASS"].BFValue == 0x1 &&
+                regMap[0x20].RegValue == 0x00897772 &&
+                regMap[0x1A].RegValue == 0x8F &&
+                regMap[0x25].RegValue == 0x01012345 &&
+                regMap[0x05]["SUB_CH_MOD"].BFValue == 0x1 &&
+                regMap[0x05]["MODE_SEL"].BFValue == 0x1 &&
+                regMap[0x11].RegValue == 0xB8 &&
+                regMap[0x12].RegValue == 0x60 &&
+                regMap[0x13].RegValue == 0xA0 &&
+                regMap[0x14].RegValue == 0x48)
+            {
+                this.cmb_ModeConfig.SelectedIndex = 1;
+            }
+            #endregion
+
+            #region PBTL
+            else if (regMap[0x03]["OL_BYPASS"].BFValue == 0x1 &&
+                regMap[0x20].RegValue == 0x00897772 &&
+                regMap[0x1A].RegValue == 0x8F &&
+                regMap[0x25].RegValue == 0x01002245 &&
+                regMap[0x05]["SUB_CH_MOD"].BFValue == 0x1 &&
+                regMap[0x05]["MODE_SEL"].BFValue == 0x0 &&
+                regMap[0x11].RegValue == 0xB8 &&
+                regMap[0x12].RegValue == 0x60 &&
+                regMap[0x13].RegValue == 0xA0 &&
+                regMap[0x14].RegValue == 0x48)
+            {
+                this.cmb_ModeConfig.SelectedIndex = 2;
+            }
+            #endregion
+            this.cmb_ModeConfig.SelectedIndexChanged += cmb_ModeConfig_SelectedIndexChanged;
 
             // Interface Config
             this.cmb_InterfaceConfig.SelectedIndexChanged -= cmb_InterfaceConfig_SelectedIndexChanged;
@@ -1043,7 +1109,7 @@ namespace SGM4711_Eva
 
             if (regMap == null) return;
             Register reg = regMap[0x54];
-            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH1_INPUT_MIXER_3[25:0]", "CH1_INPUT_MIXER_2[25:0]" }, this);
+            Mixer_2In myMixer = new Mixer_2In(reg, new string[] { "CH2_INPUT_MIXER_3[25:0]", "CH2_INPUT_MIXER_2[25:0]" }, this);
             //myMixer.PointToScreen((sender as Multiply).PointToScreen);
             myMixer.ShowDialog();
         }

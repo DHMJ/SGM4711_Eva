@@ -4977,7 +4977,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.57";
+            this.Text = "SGM4711 Eva_v0.58";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();

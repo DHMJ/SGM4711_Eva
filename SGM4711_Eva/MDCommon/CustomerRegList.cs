@@ -192,10 +192,10 @@ namespace MD.MDCommon
         private byte[] SubInputMixerData = new byte[] { 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x40, 0x00 };
 
         private byte[] NoiseGate1 = new byte[] { 0x63 };
-        private byte[] NoiseGate1Data = new byte[] { 0x02, 0x03, 0x02 };
+        private byte[] NoiseGate1Data = new byte[] { 0x02, 0x03, 0x02, 0x00 };
 
         private byte[] NoiseGate2 = new byte[] { 0x64 };
-        private byte[] NoiseGate2Data = new byte[] { 0x04, 0x62 };
+        private byte[] NoiseGate2Data = new byte[] { 0x04, 0x62, 0x00, 0x00 };
     }
 
 }
