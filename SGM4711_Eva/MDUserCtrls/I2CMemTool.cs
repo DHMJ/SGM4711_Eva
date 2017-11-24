@@ -15,13 +15,15 @@ namespace SGM4711_Eva.MDUserCtrls
     {
         RegisterMap regMap;
         DMDongle myDongle;
+        IRegOperation myRegOp;
         byte startAddr = 0;
         byte rwCount = 4;
-        public I2CMemTool(RegisterMap _regMap, DMDongle _dongle)
+        public I2CMemTool(RegisterMap _regMap, DMDongle _dongle, IRegOperation _myRegOp)
         {
             InitializeComponent();
             this.regMap = _regMap;
             this.myDongle = _dongle;
+            this.myRegOp = _myRegOp;
         }
 
         public void UpdateRegMap(RegisterMap _regmap)
@@ -30,33 +32,33 @@ namespace SGM4711_Eva.MDUserCtrls
             this.txt_Display.Clear();
         }
 
-        private bool RegRead(byte _regAddr, byte[] regData)
-        {
-            if (myDongle.IsOpen)
-            {
-                if (myDongle.readRegBurst(_regAddr, regData, regData.Length))
-                {
-                    return true;
-                }
-            }
+        //private bool RegRead(byte _regAddr, byte[] regData)
+        //{
+        //    if (myDongle.IsOpen)
+        //    {
+        //        if (myDongle.readRegBurst(_regAddr, regData, regData.Length))
+        //        {
+        //            return true;
+        //        }
+        //    }
 
-            MessageBox.Show("Read Register 0x" + _regAddr.ToString("X2") + " Failed!", "Warning");
-            return false;
-        }
+        //    MessageBox.Show("Read Register 0x" + _regAddr.ToString("X2") + " Failed!", "Warning");
+        //    return false;
+        //}
 
-        private bool RegWrite(byte _regAddr, byte[] regData)
-        {
-            if (myDongle.IsOpen)
-            {
-                if (myDongle.writeRegBurst(_regAddr, regData, regData.Length))
-                {
-                    return true;
-                }
-            }
+        //private bool RegWrite(byte _regAddr, byte[] regData)
+        //{
+        //    if (myDongle.IsOpen)
+        //    {
+        //        if (myDongle.writeRegBurst(_regAddr, regData, regData.Length))
+        //        {
+        //            return true;
+        //        }
+        //    }
 
-            MessageBox.Show("Write Register 0x" + _regAddr.ToString("X2") + " Failed!", "Warning");
-            return false;
-        }
+        //    MessageBox.Show("Write Register 0x" + _regAddr.ToString("X2") + " Failed!", "Warning");
+        //    return false;
+        //}
 
         private void numUP_I2CAddr_ValueChanged(object sender, EventArgs e)
         {
@@ -120,7 +122,7 @@ namespace SGM4711_Eva.MDUserCtrls
                 #region Count is how many bytes
                 byte[] regData = new byte[rwCount];
 
-                if (RegRead(startAddr, regData))
+                if (myRegOp.RegRead(startAddr, regData, true))
                 {
                     // print read back register infomation
                     for (int ixByteCount = 0; ixByteCount < regData.Length; )
@@ -240,13 +242,13 @@ namespace SGM4711_Eva.MDUserCtrls
                     Array.Copy(wrValuesList.ToArray(), 0, wrValues, 0, wrValues.Length);
                 }
 
-                if (RegWrite(startAddr, wrValues))
+                if (myRegOp.RegWrite(startAddr, wrValues, true))
                 {
-                    MessageBox.Show(String.Format("{0} bytes have been written.", realCount));
+                    //MessageBox.Show(String.Format("{0} bytes have been written.", realCount));
                 }
                 else
                 {
-                    MessageBox.Show("Write Failed!");
+                    //MessageBox.Show("Write Failed!");
                 }
                 #endregion 
             }

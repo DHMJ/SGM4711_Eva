@@ -1331,7 +1331,8 @@
             this.cmb_ModeConfig.Items.AddRange(new object[] {
             "2.0 CH",
             "2.1 CH",
-            "PBTL"});
+            "PBTL",
+            "None"});
             this.cmb_ModeConfig.Location = new System.Drawing.Point(146, 64);
             this.cmb_ModeConfig.Name = "cmb_ModeConfig";
             this.cmb_ModeConfig.Size = new System.Drawing.Size(82, 32);
@@ -4977,7 +4978,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.58";
+            this.Text = "SGM4711 Eva_v0.60";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();

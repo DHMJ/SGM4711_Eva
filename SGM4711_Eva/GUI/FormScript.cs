@@ -18,6 +18,7 @@ namespace GeneralRegConfigPlatform.MDGUI
     public partial class FormScript : UserControl
     {
         DMDongle dg;
+        IRegOperation myRegOp;
 
         public enum SCRIPT_COMMAND
         {
@@ -36,6 +37,13 @@ namespace GeneralRegConfigPlatform.MDGUI
         {
             InitializeComponent();
             dg = _uart;
+        }
+
+        public FormScript(DMDongle _uart, IRegOperation _myRegOp)
+        {
+            InitializeComponent();
+            dg = _uart;
+            this.myRegOp = _myRegOp;
         }
 
         //public FormScript()
@@ -116,6 +124,7 @@ namespace GeneralRegConfigPlatform.MDGUI
 
                 string[] parameters;
                 SCRIPT_COMMAND cmdType;
+                bool firstRW = true;
                 for (int i = 0; i < AllCommands.Length; i++)
                 {
                     cmdType = SCRIPT_COMMAND.None;
@@ -157,7 +166,13 @@ namespace GeneralRegConfigPlatform.MDGUI
                         switch (cmdType)
                         {
                             case SCRIPT_COMMAND.TI_WRITE:
-                                dg.writeRegBurst(addr, data, data.Length);
+                                if (myRegOp != null)
+                                {
+                                    myRegOp.RegWrite(addr, data, firstRW);
+                                    firstRW = false;
+                                }
+                                else
+                                    dg.writeRegBurst(addr, data, data.Length);
                                 Thread.Sleep(200);
                                 break;
 

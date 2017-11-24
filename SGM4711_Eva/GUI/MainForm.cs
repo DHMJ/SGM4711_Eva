@@ -62,8 +62,8 @@ namespace SGM4711_Eva
             singleRegCtrl = new RegSettingCtrl(myDongle, this);
             singleRegCtrl.Dock = DockStyle.Fill;
             this.tabP_SingleCtrl.Controls.Add(singleRegCtrl);
-            this.singleRegCtrl.btn_ReadReg.Click += new EventHandler(btn_ReadReg_RegSetCtrl_Click);
-            this.singleRegCtrl.btn_WriteReg.Click += new EventHandler(btn_WriteReg_RegSetCtrl_Click);
+            //this.singleRegCtrl.btn_ReadReg.Click += new EventHandler(btn_ReadReg_RegSetCtrl_Click);
+            //this.singleRegCtrl.btn_WriteReg.Click += new EventHandler(btn_WriteReg_RegSetCtrl_Click);
             
             freeRegCtrl = new FreeRegRWCtrl(this, myDongle);
             freeRegCtrl.Dock = DockStyle.Fill;
@@ -71,12 +71,12 @@ namespace SGM4711_Eva
             freeRegCtrl.btn_ReadAllReg.Click += new EventHandler(btn_ReadAllReg_FreeRegCtrl_Click);
             freeRegCtrl.btn_WriteAllReg.Click += new EventHandler(btn_WriteAllReg_FreeRegCtrl_Click);
 
-            memoryTool = new I2CMemTool(this.regMap, myDongle);
+            memoryTool = new I2CMemTool(this.regMap, myDongle, this);
             memoryTool.Dock = DockStyle.Fill;
             this.tabP_IICMemTool.Controls.Add(memoryTool);
 
             // init Mian GUI commbox
-            //this.cmb_ModeConfig.SelectedIndex = 0;
+            this.cmb_ModeConfig.SelectedIndex = 3;
             //this.cmb_InterfaceConfig.SelectedIndex = 5;
             this.cmb_SampleRate.SelectedIndex = 3;
 
@@ -146,6 +146,40 @@ namespace SGM4711_Eva
             destream.Close();
 
             //To DO: Add create taps on GUI with dataset
+        }
+
+        public bool RegRead(byte _regAddr, byte[] data, bool ifTimeLog)
+        {
+            bool ret = false;
+            string log = "";
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Read >> {0} \r\n", DateTime.Now.ToLocalTime());
+
+            if (myDongle.IsOpen)
+            {
+                if (myDongle.readRegBurst(_regAddr, data, data.Length))
+                {
+                    log += "\tOK\t" + "Address: 0x" + _regAddr.ToString("X2") + "\tData(Hex):";
+                    for (int ix = 0; ix < data.Length; ix++)
+                    {
+                        log += " " + data[ix].ToString("X2");
+                    }
+
+                    ret = true;
+                }
+            }
+
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + _regAddr.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }
+
+            return ret;
         }
 
         public bool RegRead(byte _regAddr)
@@ -344,6 +378,39 @@ namespace SGM4711_Eva
             else
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
 
+            return ret;
+        }
+
+        public bool RegWrite(byte _regAddr, byte[] data, bool ifTimeLog)
+        {
+            bool ret = false;
+            string log = "";
+            if (ifTimeLog)
+                log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
+
+            if (myDongle.IsOpen && regMap != null)
+            {
+                if (myDongle.writeRegBurst(_regAddr, data, data.Length))
+                {
+                    log += "\tOK\t" + "Address: 0x" + _regAddr.ToString("X2") + "\tData(Hex):";
+                    for (int ix = 0; ix < data.Length; ix++)
+                    {
+                        log += " " + data[ix].ToString("X2");
+                    }
+
+                    ret = true;
+                }
+            }
+
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + _regAddr.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }
             return ret;
         }
 
@@ -605,7 +672,7 @@ namespace SGM4711_Eva
             // Mode Config
             this.cmb_ModeConfig.SelectedIndexChanged -= cmb_ModeConfig_SelectedIndexChanged;
             #region 2.0
-            if(regMap[0x03]["OL_BYPASS"].BFValue == 0x1 && 
+            if (regMap[0x03]["OL_BYPASS"].BFValue == 0x1 &&
                 regMap[0x20].RegValue == 0x00897772 &&
                 regMap[0x1A].RegValue == 0x8F &&
                 regMap[0x25].RegValue == 0x01021345 &&
@@ -614,7 +681,7 @@ namespace SGM4711_Eva
                 regMap[0x11].RegValue == 0xB8 &&
                 regMap[0x12].RegValue == 0x60 &&
                 regMap[0x13].RegValue == 0xA0 &&
-                regMap[0x14].RegValue == 0x48 )
+                regMap[0x14].RegValue == 0x48)
             {
                 this.cmb_ModeConfig.SelectedIndex = 0;
             }
@@ -650,6 +717,8 @@ namespace SGM4711_Eva
             {
                 this.cmb_ModeConfig.SelectedIndex = 2;
             }
+            else
+                this.cmb_ModeConfig.SelectedIndex = 3;
             #endregion
             this.cmb_ModeConfig.SelectedIndexChanged += cmb_ModeConfig_SelectedIndexChanged;
 
@@ -2173,9 +2242,9 @@ namespace SGM4711_Eva
         FormScriptCtrl myScriptCtrl;
         private void MenuItemTools_ScriptWrite_Click(object sender, EventArgs e)
         {
-            if (myScriptCtrl == null)
+            if (myScriptCtrl == null || myScriptCtrl.IsDisposed == true)
             {
-                myScriptCtrl = new FormScriptCtrl(myDongle);
+                myScriptCtrl = new FormScriptCtrl(myDongle, this);
                 myScriptCtrl.Show();
             }
             else
@@ -2875,13 +2944,6 @@ namespace SGM4711_Eva
         }
 
         #endregion Main GUI Tab
-
-
-
-
-
-
-
 
     }
 }

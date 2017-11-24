@@ -77,7 +77,7 @@ namespace SGM4711_Eva.GUI
         bool EQView = true;
 
         // Frequency response calculation
-        int freqCountPerUnit = 200;     // how many freqs will be calc per unit. e.g. 100 point for 100 - 1000Hz and 1000Hz- 10000Hz...
+        int freqCountPerUnit = 800;     // how many freqs will be calc per unit. e.g. 100 point for 100 - 1000Hz and 1000Hz- 10000Hz...
 
         // Log Axis steps
         double[] logAxisStep = new double[] {Math.Log10(2), Math.Log10(3) - Math.Log10(2), Math.Log10(4) - Math.Log10(3),
@@ -273,6 +273,7 @@ namespace SGM4711_Eva.GUI
             {
                 pen_FRCurve = new Pen(FilterCurveColor.EQCurveColor, 2);
                 e.Graphics.DrawCurve(pen_FRCurve, freqPointLocaForFR.ToArray());
+                //e.Graphics.DrawPolygon(pen_FRCurve, freqPointLocaForFR.ToArray());
             }
 
             // Return the smooth way to default

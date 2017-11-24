@@ -7,6 +7,8 @@ namespace MD.MDCommon
 {
     public interface IRegOperation
     {
+        bool RegRead(byte _regAddr, byte[] data, bool ifTimeLog);
+
         bool RegRead(byte _regAddr);
 
         bool RegRead(byte _regAddr, bool ifTimeLog);
@@ -22,6 +24,8 @@ namespace MD.MDCommon
         bool RegRead(Register[] _reg);
 
         bool RegRead(Register[] _reg, bool ifTimeLog);
+
+        bool RegWrite(byte _regAddr, byte[] data, bool ifTimeLog);
 
         bool RegWrite(byte _regAddr);
 

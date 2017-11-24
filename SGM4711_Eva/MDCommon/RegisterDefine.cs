@@ -106,12 +106,12 @@ namespace MD.MDCommon
             bfName = name;
 
             // if no bits info inputed
-            bits = _bits.Replace(",", "\r\n"); ; //_bits.Replace("[","").Replace("]","");
+            bits = _bits.Replace("\n","").Replace(",", "\r\n"); ; //_bits.Replace("[","").Replace("]","");
             if (bits == null || bits.Length == 0 || name == "")
                 return;
 
             // Get byte count of this bf
-            string[] bits_inByte = _bits.Trim().Replace(" ", "").Replace("\r\n", ",").Split(',');
+            string[] bits_inByte = _bits.Trim().Replace("\n", "").Replace(" ", "").Replace("\r\n", ",").Split(',');
             if(bits_inByte == null || bits_inByte.Length == 0)
                 return;
 
@@ -150,20 +150,21 @@ namespace MD.MDCommon
                 // Calc end bit
                 bracketIx1 = bits_inByte[0].IndexOf("[");
                 bracketIx2 = bits_inByte[0].IndexOf("]");
-                int _byteIx = int.Parse(bits_inByte[0].Substring(bracketIx1 - 1, 1));
+                //int _byteIx = int.Parse(bits_inByte[0].Substring(bracketIx1 - 1, 1));
 
                 bits_ix = bits_inByte[0].Substring(bracketIx1, bracketIx2 - bracketIx1 + 1).Trim("[]".ToCharArray()).Split(':');
                 int.TryParse(bits_ix[0], out endBit);
-                endBit += (byteCountOfReg - _byteIx - 1) * 8;
+                //endBit += (byteCountOfReg - _byteIx - 1) * 8;
+                endBit += (byteCountOfReg - 1) * 8;
 
                 // Calc start bit
                 bracketIx1 = bits_inByte[bits_inByte.Length - 1].IndexOf("[");
                 bracketIx2 = bits_inByte[bits_inByte.Length - 1].IndexOf("]");
-                _byteIx = int.Parse(bits_inByte[bits_inByte.Length - 1].Substring(bracketIx1 - 1, 1));
+                //_byteIx = int.Parse(bits_inByte[bits_inByte.Length - 1].Substring(bracketIx1 - 1, 1));
 
                 bits_ix = bits_inByte[bits_inByte.Length - 1].Substring(bracketIx1, bracketIx2 - bracketIx1 + 1).Trim("[]".ToCharArray()).Split(':');
                 int.TryParse(bits_ix[bits_ix.Length - 1], out startBit);
-                startBit += (byteCountOfReg - _byteIx - 1) * 8;
+                //startBit += (byteCountOfReg - _byteIx - 1) * 8;
             }
 
             // Calc bitLength            

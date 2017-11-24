@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(719, 617);
             this.Name = "FormScriptCtrl";
-            this.Text = "FormScriptCtrl";
+            this.Text = "I2C Script";
             this.ResumeLayout(false);
 
         }
