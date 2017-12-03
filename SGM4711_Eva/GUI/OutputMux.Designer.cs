@@ -318,6 +318,7 @@
             // 
             // cmb_2p0_LP
             // 
+            this.cmb_2p0_LP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.cmb_2p0_LP.Enabled = false;
             this.cmb_2p0_LP.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.cmb_2p0_LP.FormattingEnabled = true;

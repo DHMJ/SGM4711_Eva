@@ -502,6 +502,7 @@ namespace SGM4711_Eva.MDCommon.Filter
         /// </summary>
         void CoeffCalc_Notch()
         {
+            #region Old method which may lead a negative infinity
             /*******************************************
             * 1. Transfer the gain in decibels (dB) to decimal domain.
             ********************************************/
@@ -560,6 +561,72 @@ namespace SGM4711_Eva.MDCommon.Filter
              * D1*2^23 = 16855280 
              * D2*2^23= -8612116
              *******************************************/
+            #endregion 
+
+            #region New alg updated on 24th Nov 2017
+            /*******************************************
+            * 1. Transfer the gain in decibels (dB) to decimal domain.
+            ********************************************/
+
+            /*******************************************
+             * 2. Calculate the double precision coefficients
+             * 
+             * alpha = (1-sin(BW*2pi/fs))/cos(BW*2pi/fs)
+             * beta = cos(fc*2pi/fs)
+             * p0 = (1+alpha)/2
+             * p1 = -(1+alpha)*beta
+             * p2 = (1+alpha)/2
+             * d1 = (1+alpha)*beta
+             * d2 = -alpha
+            ********************************************/
+            alpha = (1 - Math.Sin(myFilterSet.BandWidth * 2 * Math.PI / myFilterSet.FS)) / 
+                Math.Cos(myFilterSet.BandWidth * 2 * Math.PI / myFilterSet.FS);
+            beta = Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS);
+            p[0] = (1 + alpha) / 2;
+            p[1] = -(1 + alpha) * beta;
+            p[2] = (1 + alpha) / 2;
+            d[1] = (1 + alpha) * beta;
+            d[2] = -alpha;
+
+            /*******************************************
+             * 3. Transfer the double precision coefficients 
+             * to integer values represented by registers.
+             * 
+             * b0 = round(p0 × 2^23)
+             * b1 = round(p1 × 2^23)
+             * b2 = round(p2 × 2^23)
+             * a0 = round(d1 × 2^23)
+             * a1 = round(d2 × 2^23)
+            ********************************************/
+            reg_b[0] = (uint)Math.Round(p[0] * Math.Pow(2, 23));
+            reg_b[1] = (uint)Math.Round(p[1] * Math.Pow(2, 23));
+            reg_b[2] = (uint)Math.Round(p[2] * Math.Pow(2, 23));
+            reg_a[0] = (uint)Math.Round(d[1] * Math.Pow(2, 23));
+            reg_a[1] = (uint)Math.Round(d[2] * Math.Pow(2, 23));
+
+            /*******************************************
+             * 4. Transfer the decimal integer values 
+             * to 26-bit, twos complement hex values.
+            ********************************************/
+
+            /*******************************************
+             * 5. Change the p and d to be used for FR calc
+             * H(Z) = (p0 + p1 * Z-1 + p2 * Z-2)/(1 - d1 * Z-1 - d2 * Z-2)
+             *******************************************/
+            d[1] = -d[1];
+            d[2] = -d[2];
+
+            /*******************************************
+             * example: 
+             * when fc = 1KHz, fs = 48KHz, bw = 200Hz,
+             * P0*2^23 = 8500362
+             * P1*2^23 = -16855280
+             * P2*2^23 = 8500362
+             * D1*2^23 = 16855280 
+             * D2*2^23= -8612116
+             *******************************************/
+            #endregion 
+
         }
 
         /// <summary>

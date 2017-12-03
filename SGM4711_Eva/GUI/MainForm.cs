@@ -676,7 +676,7 @@ namespace SGM4711_Eva
                 regMap[0x20].RegValue == 0x00897772 &&
                 regMap[0x1A].RegValue == 0x8F &&
                 regMap[0x25].RegValue == 0x01021345 &&
-                regMap[0x05]["SUB_CH_MOD"].BFValue == 0x1 &&
+                //regMap[0x05]["SUB_CH_MOD"].BFValue == 0x1 &&
                 regMap[0x05]["MODE_SEL"].BFValue == 0x0 &&
                 regMap[0x11].RegValue == 0xB8 &&
                 regMap[0x12].RegValue == 0x60 &&
@@ -708,7 +708,7 @@ namespace SGM4711_Eva
                 regMap[0x20].RegValue == 0x00897772 &&
                 regMap[0x1A].RegValue == 0x8F &&
                 regMap[0x25].RegValue == 0x01002245 &&
-                regMap[0x05]["SUB_CH_MOD"].BFValue == 0x1 &&
+                //regMap[0x05]["SUB_CH_MOD"].BFValue == 0x1 &&
                 regMap[0x05]["MODE_SEL"].BFValue == 0x0 &&
                 regMap[0x11].RegValue == 0xB8 &&
                 regMap[0x12].RegValue == 0x60 &&
@@ -757,7 +757,6 @@ namespace SGM4711_Eva
             }
 
             #endregion
-
         }
 
         #endregion Funcs
@@ -1723,8 +1722,9 @@ namespace SGM4711_Eva
                 regList.Add(regMap[0x40]);
                 regList.Add(regMap[0x41]);
                 regList.Add(regMap[0x42]);
+                regList.Add(regMap[0x46]);
             }
-            DRCForm myDRCForm = new DRCForm(regList, regMap[0x46]["DRC1_EN"]);
+            DRCForm myDRCForm = new DRCForm(regList, "DRC1_EN", this);
             myDRCForm.ShowDialog();
         }
 
@@ -1751,8 +1751,9 @@ namespace SGM4711_Eva
                 regList.Add(regMap[0x43]);
                 regList.Add(regMap[0x44]);
                 regList.Add(regMap[0x45]);
+                regList.Add(regMap[0x46]);
             }
-            DRCForm myDRCForm = new DRCForm(regList, regMap[0x46]["DRC2_EN"]);
+            DRCForm myDRCForm = new DRCForm(regList, "DRC2_EN", this);
             myDRCForm.ShowDialog();
         }
 
@@ -2082,6 +2083,8 @@ namespace SGM4711_Eva
 
             // Transfer regmap to other child GUIs 
             UpdateChildGUI();
+            // Update Main Gui setting.
+            UpdateMainGUI();
         }
 
         private void MenuItemFile_Export_Click(object sender, EventArgs e)
@@ -2836,7 +2839,7 @@ namespace SGM4711_Eva
         private void outputMux_FormClosed(object sender, FormClosedEventArgs e)
         {
             btn_OutputMux_Click(sender, e);
-            RegWrite(0x25);
+            //RegWrite(0x25);
         }
 
         private void cmbx_DropDownResize(object sender, EventArgs e)

@@ -153,7 +153,7 @@ namespace SGM4711_Eva.MDCommon.Filter
                 }
                 if (double.IsNegativeInfinity(x_out[ix_freqLoop]))
                 {
-                    x_out[ix_freqLoop] = -80;
+                    x_out[ix_freqLoop] = -100;
                 }
             }
         }

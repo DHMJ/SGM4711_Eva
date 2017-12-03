@@ -14,11 +14,13 @@ namespace SGM4711_Eva.GUI
     public partial class DRCForm : Form
     {
         DRCCtrl myDRC;
-        public DRCForm(List<Register> _regList, BitField _DRCEN)
+        IRegOperation myRegOp;
+
+        public DRCForm(List<Register> _regList, string _DRCEN, IRegOperation _myRegOp)
         {
             InitializeComponent();
 
-            myDRC = new DRCCtrl(_regList, _DRCEN);
+            myDRC = new DRCCtrl(_regList, _DRCEN, _myRegOp);
             this.Controls.Add(myDRC);
             myDRC.Location = new Point(0, 0);
         }
