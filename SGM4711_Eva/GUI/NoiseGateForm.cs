@@ -67,7 +67,7 @@ namespace SGM4711_Eva.GUI
                 //Console.WriteLine(Math.E);
                 //Console.WriteLine(Math.Pow(2, -(ix + 5)));
                 //Console.WriteLine(Math.Log(Math.E, 1 - Math.Pow(2, -(ix + 5))));
-                time = -2.2 * 1000 * Math.Log(Math.E, 1 - Math.Pow(2, -(ix + 5))) / FS;
+                time = -2.2 * 1000 /(Math.Log(1 - Math.Pow(2, -(ix + 5)), Math.E) * FS);
 
                 if(time >= 1000)
                     cmb_NG_RT.Items.Add(String.Format("{0} s",(time / 1000d).ToString("F2")));
@@ -91,7 +91,7 @@ namespace SGM4711_Eva.GUI
             cmb_NG_AT.Items.Clear();
             for (int ix = 0; ix <= 10; ix++)
             {
-                time = -2.2 * 1000 * Math.Log(Math.E, 1 - Math.Pow(2, -(ix + 8))) / FS;
+                time = -2.2 * 1000 / (Math.Log(1 - Math.Pow(2, -(ix + 8)), Math.E) * FS);
 
                 if (time >= 1000)
                     cmb_NG_AT.Items.Add(String.Format("{0} s", (time / 1000d).ToString("F2")));

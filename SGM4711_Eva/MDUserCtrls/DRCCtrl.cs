@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MD.MDCommon;
+using System.Threading;
 
 namespace SGM4711_Eva.MDUserCtrls
 {
@@ -50,6 +51,8 @@ namespace SGM4711_Eva.MDUserCtrls
         //Pen pen_largeGrid = new Pen(Color.Gray, 1);
         static int frameWidth = 2;
         Pen pen_Frame = new Pen(Color.Gray, frameWidth);
+        Pen pen_Line = new Pen(Color.DarkBlue, frameWidth);
+        Pen pen_circle = new Pen(Color.Red, frameWidth);
         Brush brush_string = Brushes.DarkBlue;
         List<Point> largerGrid_L = new List<Point> { };
         List<Point> largerGrid_R = new List<Point> { };
@@ -70,9 +73,9 @@ namespace SGM4711_Eva.MDUserCtrls
         List<Point> smallGrid_D1 = new List<Point> { };
         List<Point> smallGrid_D2 = new List<Point> { };
 
-        Point minPoint;
-        Point maxPoint;
-        Point centerPoint;
+        static Point minPoint;
+        static Point maxPoint;
+        static Point centerPoint;
         int circleRadius = 5;
         double maxOffset = 24;
         double maxInOut = 24;
@@ -94,9 +97,9 @@ namespace SGM4711_Eva.MDUserCtrls
 
             myRegOp = _myRegOp;
             // Update GUI setting from register value
-            //InitGUISetting();
+            InitGUISetting();
             CalcBGDrawPoints();
-            InitCurvePoints();    // should after CalcBGDrawPoints()
+            UpdateCurvePoints();    // should after CalcBGDrawPoints()
         }
 
         private void InitGUISetting()
@@ -109,12 +112,12 @@ namespace SGM4711_Eva.MDUserCtrls
 
             // Attack time
             this.numUP_AttackTime.ValueChanged -= numUP_AttackTime_ValueChanged;
-            this.numUP_AttackTime.Value = (decimal)CalcTimeConstant(regList[1]["(1-ae)[25:0]"].BFValue);
+            this.numUP_AttackTime.Value = (decimal)CalcTimeConstant(regList[1]["(1-aa)[25:0]"].BFValue);
             this.numUP_AttackTime.ValueChanged += numUP_AttackTime_ValueChanged;
             
             // Decay time
             this.numUP_DecayTime.ValueChanged -= numUP_DecayTime_ValueChanged;
-            this.numUP_DecayTime.Value = (decimal)CalcTimeConstant(regList[2]["(1-ae)[25:0]"].BFValue);
+            this.numUP_DecayTime.Value = (decimal)CalcTimeConstant(regList[2]["(1-ad)[25:0]"].BFValue);
             this.numUP_DecayTime.ValueChanged += numUP_DecayTime_ValueChanged;
 
             /* Threshold T, Address DRC1: 0X40; DRC2: 0X43 */
@@ -248,11 +251,11 @@ namespace SGM4711_Eva.MDUserCtrls
         }
 
         /// <summary>
-        /// Init the DRC curve points.All the calculation based on below TranslateTransform func. 
+        /// Update the DRC curve points based on parameters.All the calculation based on below TranslateTransform func. 
         /// work zone value range: x [0, uintLen_1dB * 164], y [-1 * uintLen_1dB * 164, 0]
         /// e.Graphics.TranslateTransform(xAxis_Shift, this.myPanel.Height - yAxis_Shift);
         /// </summary>
-        private void InitCurvePoints()
+        private void UpdateCurvePoints()
         {
             // min Point
             if (offset <= 0)
@@ -268,8 +271,49 @@ namespace SGM4711_Eva.MDUserCtrls
             centerPoint = new Point((int)((140 + threshold) * uintLen_1dB), (int)((140 + threshold + offset) * uintLen_1dB * -1));
 
             // max point: x axis is fixed to "uintLen_1dB * 164"
-            //double 
-            maxPoint = new Point((int)(164 * uintLen_1dB), (int)((140 + threshold + offset) * uintLen_1dB * -1));
+            //double tempX = 140 + threshold;
+            double tempY = 140 + threshold + offset;
+            tempY += (20 - threshold) * slope;
+            tempY = tempY > 24 ? 24 : (tempY < -140 ? -140 : tempY);
+
+            maxPoint = new Point((int)(164 * uintLen_1dB), (int)(tempY * uintLen_1dB * -1));
+        }
+
+        /// <summary>
+        /// Update the DRC slope, offset, threshold and min point.All the calculation based on below TranslateTransform func. 
+        /// work zone value range: x [0, uintLen_1dB * 164], y [-1 * uintLen_1dB * 164, 0]
+        /// </summary>
+        private void UpdateDRCParameters()
+        {
+            this.numUP_Threshold.ValueChanged -= numUP_Threshold_ValueChanged;
+            this.numUP_Slope.ValueChanged -= numUP_Slope_ValueChanged;
+            this.numUP_Offset.ValueChanged -= numUP_Offset_ValueChanged;
+
+            // offset
+            offset = (-1 * centerPoint.X - centerPoint.Y) / uintLen_1dB;
+            this.numUP_Offset.Value = (decimal)offset;
+
+            // threshold
+            threshold = (centerPoint.X / uintLen_1dB) - 164;
+            this.numUP_Threshold.Value = (decimal)threshold;
+
+            // slope
+            slope = (double)(centerPoint.Y - maxPoint.Y) / (double)(maxPoint.X - centerPoint.X);
+            this.numUP_Slope.Value = (decimal)slope;
+
+            // min Point
+            if (offset <= 0)
+            {
+                minPoint = new Point((int)(-1 * uintLen_1dB * offset), 0);
+            }
+            else  // y will be a negative value
+            {
+                minPoint = new Point(0, (int)(-1 * uintLen_1dB * offset));
+            }
+
+            this.numUP_Threshold.ValueChanged += numUP_Threshold_ValueChanged;
+            this.numUP_Slope.ValueChanged += numUP_Slope_ValueChanged;
+            this.numUP_Offset.ValueChanged += numUP_Offset_ValueChanged;
         }
 
         /// <summary>
@@ -279,8 +323,7 @@ namespace SGM4711_Eva.MDUserCtrls
         /// <returns></returns>
         private uint CalcTimeConstant(double timeVaule)
         {
-            double ax_d = 1 - Math.Exp((-1 * timeVaule / 1000d) / fs);
-            //double ta = -1 * fs / (1 * Math.Log(Math.E, 1 - ax_d));
+            double ax_d = 1 - Math.Exp(-1 /((timeVaule / 1000d) * fs));
             return ((uint)(Math.Round(ax_d * Math.Pow(2, 23))) & mask_3p23);
         }
 
@@ -291,21 +334,27 @@ namespace SGM4711_Eva.MDUserCtrls
         /// <returns></returns>
         private double CalcTimeConstant(uint _bfValue)
         {
-            uint _wx = _bfValue & mask_3p23;
-            double timeX = -1 * fs / Math.Log(Math.E, _wx / Math.Pow(2, 23));
+            int _wx = (int)(_bfValue & mask_3p23);
+            //double timeX = _wx / Math.Pow(2, 23);
+            //if(_wx == 0)
+            //    timeX = 0;
+            //else
+                //timeX = -1 /(fs * Math.Log(Math.E, _wx / Math.Pow(2, 23)));
+            double timeX = -1 / (fs * Math.Log(_wx / Math.Pow(2, 23), Math.E));
             return timeX;
         }
 
         private double CalcThreshold(uint _regValue)
         {
-            uint thresh_RegValue = _regValue & 0xFFFFFFFF;
-            double thresh_dB = 24 - 6.0206 * thresh_RegValue / Math.Pow(2, 17);
+            double thresh_RegValue = (int)(_regValue & 0xFFFFFFFF);
+            double thresh_dB = 24 - 6.0206 * (thresh_RegValue / Math.Pow(2, 23));
+            //double thresh_dB = 24 - 6.0206 * 14.62;
             return thresh_dB;
         }
 
         private double CalcSlope(uint _regValue)
         {
-            uint slope_RegValue = _regValue & mask_3p23;
+            int slope_RegValue = (int)(_regValue & mask_3p23);
             double k = slope_RegValue / Math.Pow(2, 23);
             if (k <= 0 && k > -2)
             {
@@ -325,6 +374,31 @@ namespace SGM4711_Eva.MDUserCtrls
             return offset_dB;
         }
 
+        private bool IfInsideCircle(Point targetP, int _x, int _y)
+        {
+            bool ret = false;
+            int transferedX = _x - xAxis_Shift;
+            int transferedY = _y - myPanel.Height + yAxis_Shift;
+            int deltaX = Math.Abs(targetP.X - transferedX);
+            int deltaY = Math.Abs(targetP.Y - transferedY);
+
+            if (deltaX <= circleRadius && deltaY <= circleRadius && (deltaX * deltaX + deltaY * deltaY) <= circleRadius * circleRadius)
+                ret = true;
+
+            return ret;
+        }
+
+        private Point GetMovedPoint(int _x, int _y)
+        {
+            int transferedX = _x - xAxis_Shift;
+            int transferedY = _y - myPanel.Height + yAxis_Shift;
+            if (transferedY < -1 * transferedX - 24 * uintLen_1dB)
+                transferedY = -1 * transferedX - (int)(24 * uintLen_1dB);
+            else if (transferedY > 0)
+                transferedY = 0;
+
+            return new Point(transferedX, transferedY);
+        }
         #endregion Funcs
 
         private void myPanel_Paint(object sender, PaintEventArgs e)
@@ -340,6 +414,15 @@ namespace SGM4711_Eva.MDUserCtrls
             e.Graphics.DrawLine(pen_Frame, p3, p4);
             e.Graphics.DrawLine(pen_Frame, p1, p3);
             e.Graphics.DrawLine(pen_Frame, p2, p4);
+
+            // Draw 对角线上的上限边界线
+            Point upBoundaryP1 = new Point(this.myPanel.Width - xAxis_Shift / 2 - (int)(24 * uintLen_1dB), yAxis_Shift / 2); // 上面的点
+            Point upBoundaryP2 = new Point(xAxis_Shift, this.myPanel.Height - yAxis_Shift - (int)(24 * uintLen_1dB));        // 左边的点
+            pen_smallGrid.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            e.Graphics.DrawLine(pen_smallGrid, upBoundaryP1, upBoundaryP2);
+
+            // Draw diagonal (对角线)
+            e.Graphics.DrawLine(pen_Frame, p2, p3);
             #endregion 画DRC工作区域
 
             #region Comment out
@@ -391,53 +474,70 @@ namespace SGM4711_Eva.MDUserCtrls
 
             #endregion Draw grids and labels
 
-
             e.Graphics.TranslateTransform(xAxis_Shift, this.myPanel.Height - yAxis_Shift);
+            #region Comment out
+            //// Draw Linear line
+            //int linearLen = (int)((this.Width - 2 * xAxis_Shift) * linearLenRatio);
+            //e.Graphics.DrawLine(pen_Frame, new Point(0, 0), new Point(linearLen, -linearLen));
+
+            //// Draw compression line
+            //int compressionLen = (int)((this.Width - 2 * xAxis_Shift) * (maxLenRatio - linearLenRatio));
+            
+            //// Draw dash line before compression line because once they are same, dash line will cover real line
+            //pen_Frame.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            //pen_Frame.Color = Color.LightGray;
+            //e.Graphics.DrawLine(pen_Frame, new Point(linearLen, -linearLen), 
+            //    new Point(linearLen + (int)(1.5 * compressionLen), -linearLen - (int)(1.5 * compressionLen)));
+            //e.Graphics.DrawLine(pen_Frame, new Point(linearLen - xAxis_Shift / 2, -linearLen),
+            //    new Point(linearLen + (int)(1.5 * compressionLen), -linearLen));
+
+            //if (slope <= 1)
+            //    e.Graphics.DrawLine(pen_Frame, new Point(linearLen + compressionLen, -linearLen - (int)(1.5 * compressionLen)),
+            //        new Point(linearLen + compressionLen, -linearLen + xAxis_Shift / 2));
+            //else
+            //    e.Graphics.DrawLine(pen_Frame, new Point(linearLen + (int)(compressionLen / slope), -linearLen - (int)(1.5 * compressionLen)),
+            //        new Point(linearLen + (int)(compressionLen / slope), -linearLen + xAxis_Shift / 2));
+           
+            //// Draw compression Line
+            //pen_Frame.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            ////myPen.Color = Color.Gray;
+
+            //if (slope <= 1)
+            //    e.Graphics.DrawLine(pen_Frame, new Point(linearLen, -linearLen),
+            //        new Point(linearLen + compressionLen, -linearLen - 1 * (int)(compressionLen * slope)));
+            //else
+            //    e.Graphics.DrawLine(pen_Frame, new Point(linearLen, -linearLen),
+            //        new Point(linearLen + (int)(compressionLen / slope), -linearLen - compressionLen));
+
+            //// Test Draw circle 
+            //pen_Frame.Color = Color.Blue;
+            ////if(circleCenter == null)
+            //circleCenter = new Point(linearLen - 5, -linearLen - 5);
+            ////if(circleRect_1 == null)
+            //circleRect_1 = new Rectangle(circleCenter, new Size(10, 10));
+            ////Rectangle circleRect = new Rectangle(new Point(linearLen, linearLen), new Size(10, 10));
+            ////Point circleCenter = new Point(linearLen, linearLen);
+            ////int circleRadius = 10;
+            //e.Graphics.DrawEllipse(pen_Frame, circleRect_1);
+
+            //pen_Frame.Color = Color.Gray;
+            #endregion Comment out
+
+            #region Draw lines
             // Draw Linear line
-            int linearLen = (int)((this.Width - 2 * xAxis_Shift) * linearLenRatio);
-            e.Graphics.DrawLine(pen_Frame, new Point(0, 0), new Point(linearLen, -linearLen));
+            e.Graphics.DrawLine(pen_Line, minPoint, centerPoint);
 
             // Draw compression line
-            int compressionLen = (int)((this.Width - 2 * xAxis_Shift) * (maxLenRatio - linearLenRatio));
-            
-            // Draw dash line before compression line because once they are same, dash line will cover real line
-            pen_Frame.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            pen_Frame.Color = Color.LightGray;
-            e.Graphics.DrawLine(pen_Frame, new Point(linearLen, -linearLen), 
-                new Point(linearLen + (int)(1.5 * compressionLen), -linearLen - (int)(1.5 * compressionLen)));
-            e.Graphics.DrawLine(pen_Frame, new Point(linearLen - xAxis_Shift / 2, -linearLen),
-                new Point(linearLen + (int)(1.5 * compressionLen), -linearLen));
+            e.Graphics.DrawLine(pen_Line, centerPoint, maxPoint);
 
-            if (slope <= 1)
-                e.Graphics.DrawLine(pen_Frame, new Point(linearLen + compressionLen, -linearLen - (int)(1.5 * compressionLen)),
-                    new Point(linearLen + compressionLen, -linearLen + xAxis_Shift / 2));
-            else
-                e.Graphics.DrawLine(pen_Frame, new Point(linearLen + (int)(compressionLen / slope), -linearLen - (int)(1.5 * compressionLen)),
-                    new Point(linearLen + (int)(compressionLen / slope), -linearLen + xAxis_Shift / 2));
-           
-            // Draw compression Line
-            pen_Frame.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            //myPen.Color = Color.Gray;
+            // Draw center circle
+            centerCircleRect = new Rectangle(new Point(centerPoint.X - circleRadius, centerPoint.Y - circleRadius), new Size(2 * circleRadius, 2 * circleRadius));
+            e.Graphics.DrawEllipse(pen_circle, centerCircleRect);
 
-            if (slope <= 1)
-                e.Graphics.DrawLine(pen_Frame, new Point(linearLen, -linearLen),
-                    new Point(linearLen + compressionLen, -linearLen - 1 * (int)(compressionLen * slope)));
-            else
-                e.Graphics.DrawLine(pen_Frame, new Point(linearLen, -linearLen),
-                    new Point(linearLen + (int)(compressionLen / slope), -linearLen - compressionLen));
-
-            // Test Draw circle 
-            pen_Frame.Color = Color.Blue;
-            //if(circleCenter == null)
-            circleCenter = new Point(linearLen - 5, -linearLen - 5);
-            //if(circleRect_1 == null)
-            circleRect_1 = new Rectangle(circleCenter, new Size(10, 10));
-            //Rectangle circleRect = new Rectangle(new Point(linearLen, linearLen), new Size(10, 10));
-            //Point circleCenter = new Point(linearLen, linearLen);
-            //int circleRadius = 10;
-            e.Graphics.DrawEllipse(pen_Frame, circleRect_1);
-
-            pen_Frame.Color = Color.Gray;
+            // Draw Max circle
+            maxCircleRect = new Rectangle(new Point(maxPoint.X - circleRadius, maxPoint.Y - circleRadius), new Size(2 * circleRadius, 2 * circleRadius));
+            e.Graphics.DrawEllipse(pen_circle, maxCircleRect);
+            #endregion Draw Lines
         }
 
         private void numUP_EnergyTime_ValueChanged(object sender, EventArgs e)
@@ -462,7 +562,10 @@ namespace SGM4711_Eva.MDUserCtrls
         {
             threshold = (double)this.numUP_Threshold.Value;
             double T = (threshold - 24) / -6.0206;
-            T_ThresholddB = (uint)T * mask_2p23;
+            T_ThresholddB = (uint)(T * mask_2p23);
+
+            UpdateCurvePoints();
+            this.myPanel.Refresh();
         }
 
         private void numUP_Slope_ValueChanged(object sender, EventArgs e)
@@ -473,14 +576,18 @@ namespace SGM4711_Eva.MDUserCtrls
             else
                 K_slopedB = ((uint)(1/slope - 1) * mask_2p23) * mask_2p23;
 
+            UpdateCurvePoints();
             this.myPanel.Refresh();
         }
 
         private void numUP_Offset_ValueChanged(object sender, EventArgs e)
         {
             offset = (double)this.numUP_Offset.Value;
-            double Goffset = (Math.Pow(10, offset / 20d)) / 15.5d;
+            double Goffset = Math.Pow(10, (offset / 20d))/ 15.5;
             O_offsetdB = (uint)(Goffset * mask_2p23) & mask_3p23;
+
+            UpdateCurvePoints();
+            this.myPanel.Refresh();
         }
         
         private void chb_Enable_CheckedChanged(object sender, EventArgs e)
@@ -502,7 +609,7 @@ namespace SGM4711_Eva.MDUserCtrls
         
         private void DRCCtrl_SizeChanged(object sender, EventArgs e)
         {
-
+            this.myPanel.Width = this.myPanel.Height;
         }
 
         private void btn_Update_Click(object sender, EventArgs e)
@@ -533,37 +640,65 @@ namespace SGM4711_Eva.MDUserCtrls
             }
         }
 
-        Point circleCenter;// = (int)((this.Width - 2 * xAxis_Shift) * linearLenRatio);
-        Rectangle circleRect_1;// = new Rectangle(new Point(, linearLen), new Size(10, 10));
-        bool canMoveCircle_1 = false;
+        Rectangle centerCircleRect;
+        Rectangle maxCircleRect;
+        bool canMoveCenterCircle = false;
+        bool canMoveMaxCircle = false;
         private void myPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            //e.Graphics.TranslateTransform(xAxis_Shift, this.myPanel.Height - yAxis_Shift);
             if (e.Button == MouseButtons.Left)
             {
-                Console.WriteLine("circle location: {0},{1}", circleCenter.X, circleCenter.Y);
-                Console.WriteLine("mouse location: {0},{1}", e.Location.X, e.Location.Y);
-                canMoveCircle_1 = true;
-                //e.Location 
+                if (IfInsideCircle(centerPoint, e.Location.X, e.Location.Y))
+                {
+                    //Console.WriteLine("circle location: {0},{1}", centerPoint.X, centerPoint.Y);
+                    //Console.WriteLine("mouse location: {0},{1}", e.Location.X, e.Location.Y);
+                    canMoveCenterCircle = true;
+                    this.Cursor = Cursors.NoMove2D;
+                }
+                else if (IfInsideCircle(maxPoint, e.Location.X, e.Location.Y))
+                {
+                    //Console.WriteLine("circle location: {0},{1}", maxPoint.X, maxPoint.Y);
+                    //Console.WriteLine("mouse location: {0},{1}", e.Location.X, e.Location.Y);
+                    canMoveMaxCircle = true;
+                    this.Cursor = Cursors.NoMoveVert;
+                }
             }
         }
 
         private void myPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            //Console.WriteLine("Start Moving");
-            
-            if (canMoveCircle_1)
+        {            
+            if (canMoveCenterCircle)
             {
-                Console.WriteLine("Moving: mouse location: {0},{1}", e.Location.X, e.Location.Y);                
+                //Console.WriteLine("Moving: mouse location: {0},{1}", e.Location.X, e.Location.Y);
+                centerPoint = GetMovedPoint(e.Location.X, e.Location.Y);
+                UpdateDRCParameters();
+                this.myPanel.Refresh();
+                //Thread.Sleep(5);
+            }
+            else if (canMoveMaxCircle)
+            {
+                //Console.WriteLine("Moving: mouse location: {0},{1}", e.Location.X, e.Location.Y);
+                //maxPoint = new Point(e.Location.X, e.Location.Y);
+                int transferedY = e.Location.Y - myPanel.Height + yAxis_Shift;
+                if (transferedY < -1 * (int)(uintLen_1dB * 164))
+                    transferedY = -1 * (int)(uintLen_1dB * 164);
+                else if (transferedY > 0)
+                    transferedY = 0;
+
+                maxPoint = new Point(maxPoint.X, transferedY);
+                UpdateDRCParameters();
+                this.myPanel.Refresh();
+                //Thread.Sleep(5);
             }
         }
 
         private void myPanel_MouseUp(object sender, MouseEventArgs e)
         {
-            canMoveCircle_1 = false;
+            canMoveCenterCircle = false;
+            canMoveMaxCircle = false;
+            this.Cursor = Cursors.Default;
         }
-
-
-
-
+        
     }
 }

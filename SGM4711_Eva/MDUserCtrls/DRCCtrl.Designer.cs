@@ -219,7 +219,7 @@
             // 
             this.numUP_Threshold.Location = new System.Drawing.Point(25, 75);
             this.numUP_Threshold.Maximum = new decimal(new int[] {
-            24,
+            54,
             0,
             0,
             0});
@@ -260,12 +260,12 @@
             65536});
             this.numUP_Slope.Location = new System.Drawing.Point(156, 75);
             this.numUP_Slope.Maximum = new decimal(new int[] {
-            4,
+            10000,
             0,
             0,
             0});
             this.numUP_Slope.Minimum = new decimal(new int[] {
-            4,
+            10000,
             0,
             0,
             -2147483648});
@@ -295,7 +295,7 @@
             // 
             this.numUP_Offset.Location = new System.Drawing.Point(287, 75);
             this.numUP_Offset.Maximum = new decimal(new int[] {
-            24,
+            54,
             0,
             0,
             0});
