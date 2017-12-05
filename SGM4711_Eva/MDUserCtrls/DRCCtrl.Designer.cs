@@ -67,7 +67,7 @@
             0,
             0});
             this.numUP_EnergyTime.Name = "numUP_EnergyTime";
-            this.numUP_EnergyTime.Size = new System.Drawing.Size(52, 21);
+            this.numUP_EnergyTime.Size = new System.Drawing.Size(66, 21);
             this.numUP_EnergyTime.TabIndex = 0;
             this.numUP_EnergyTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUP_EnergyTime.Value = new decimal(new int[] {
@@ -82,7 +82,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label6.Location = new System.Drawing.Point(83, 31);
+            this.label6.Location = new System.Drawing.Point(96, 31);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(17, 12);
             this.label6.TabIndex = 5;
@@ -93,7 +93,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(214, 31);
+            this.label1.Location = new System.Drawing.Point(227, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 12);
             this.label1.TabIndex = 7;
@@ -108,7 +108,7 @@
             0,
             0});
             this.numUP_AttackTime.Name = "numUP_AttackTime";
-            this.numUP_AttackTime.Size = new System.Drawing.Size(52, 21);
+            this.numUP_AttackTime.Size = new System.Drawing.Size(66, 21);
             this.numUP_AttackTime.TabIndex = 6;
             this.numUP_AttackTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUP_AttackTime.Value = new decimal(new int[] {
@@ -123,7 +123,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(345, 31);
+            this.label2.Location = new System.Drawing.Point(358, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(17, 12);
             this.label2.TabIndex = 9;
@@ -138,7 +138,7 @@
             0,
             0});
             this.numUP_DecayTime.Name = "numUP_DecayTime";
-            this.numUP_DecayTime.Size = new System.Drawing.Size(52, 21);
+            this.numUP_DecayTime.Size = new System.Drawing.Size(66, 21);
             this.numUP_DecayTime.TabIndex = 8;
             this.numUP_DecayTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUP_DecayTime.Value = new decimal(new int[] {
@@ -209,7 +209,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(83, 79);
+            this.label8.Location = new System.Drawing.Point(96, 79);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 12);
             this.label8.TabIndex = 13;
@@ -217,9 +217,10 @@
             // 
             // numUP_Threshold
             // 
+            this.numUP_Threshold.DecimalPlaces = 2;
             this.numUP_Threshold.Location = new System.Drawing.Point(25, 75);
             this.numUP_Threshold.Maximum = new decimal(new int[] {
-            54,
+            24,
             0,
             0,
             0});
@@ -229,7 +230,7 @@
             0,
             -2147483648});
             this.numUP_Threshold.Name = "numUP_Threshold";
-            this.numUP_Threshold.Size = new System.Drawing.Size(52, 21);
+            this.numUP_Threshold.Size = new System.Drawing.Size(66, 21);
             this.numUP_Threshold.TabIndex = 12;
             this.numUP_Threshold.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUP_Threshold.Value = new decimal(new int[] {
@@ -260,17 +261,17 @@
             65536});
             this.numUP_Slope.Location = new System.Drawing.Point(156, 75);
             this.numUP_Slope.Maximum = new decimal(new int[] {
-            10000,
+            1000,
             0,
             0,
             0});
             this.numUP_Slope.Minimum = new decimal(new int[] {
-            10000,
+            1000,
             0,
             0,
             -2147483648});
             this.numUP_Slope.Name = "numUP_Slope";
-            this.numUP_Slope.Size = new System.Drawing.Size(52, 21);
+            this.numUP_Slope.Size = new System.Drawing.Size(66, 21);
             this.numUP_Slope.TabIndex = 15;
             this.numUP_Slope.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUP_Slope.Value = new decimal(new int[] {
@@ -293,9 +294,10 @@
             // 
             // numUP_Offset
             // 
+            this.numUP_Offset.DecimalPlaces = 2;
             this.numUP_Offset.Location = new System.Drawing.Point(287, 75);
             this.numUP_Offset.Maximum = new decimal(new int[] {
-            54,
+            24,
             0,
             0,
             0});
@@ -305,7 +307,7 @@
             0,
             -2147483648});
             this.numUP_Offset.Name = "numUP_Offset";
-            this.numUP_Offset.Size = new System.Drawing.Size(52, 21);
+            this.numUP_Offset.Size = new System.Drawing.Size(66, 21);
             this.numUP_Offset.TabIndex = 18;
             this.numUP_Offset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUP_Offset.ValueChanged += new System.EventHandler(this.numUP_Offset_ValueChanged);
@@ -315,7 +317,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(345, 79);
+            this.label11.Location = new System.Drawing.Point(358, 79);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(17, 12);
             this.label11.TabIndex = 20;

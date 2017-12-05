@@ -171,7 +171,13 @@ namespace SGM4711_Eva.GUI
 
         private void btn_ReadAllReg_Click(object sender, EventArgs e)
         {
-
+            for (int ix = 0; ix < activedEnList.Count; ix++)
+            {
+                if (activedEnList[ix])
+                {
+                    this.dgv_regSetting.Rows[ix].Cells[1].Value = regMap[RegAddrList[ix]].RegValueString;
+                }
+            }
         }
 
         private void btn_WriteAllReg_Click(object sender, EventArgs e)

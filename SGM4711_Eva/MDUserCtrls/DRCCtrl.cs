@@ -19,7 +19,7 @@ namespace SGM4711_Eva.MDUserCtrls
         IRegOperation myRegOp;
 
         uint mask_3p23 = 0x3FFFFFF;
-        uint mask_2p23 = (uint)Math.Pow(2, 23);
+        uint pow_2p23 = (uint)Math.Pow(2, 23);
 
         int fs = 48000;
         // 3.23 formate
@@ -31,7 +31,7 @@ namespace SGM4711_Eva.MDUserCtrls
         uint wd;
 
         double threshold = -4;
-        uint T_ThresholddB;   // 9.17 formate
+        uint T_ThresholddB;   // 9.23 formate
         double slope = 1;
         uint K_slopedB;       // 3.23 formate, slope
         double offset = 0;
@@ -106,34 +106,37 @@ namespace SGM4711_Eva.MDUserCtrls
         {
             /* Address DRC1: 0X3A, 0X3B, 0x3C; DRC2: 0X3D, 0x3E and 0x3F */
             // Energy time
-            this.numUP_EnergyTime.ValueChanged -= numUP_EnergyTime_ValueChanged;
+            //this.numUP_EnergyTime.ValueChanged -= numUP_EnergyTime_ValueChanged;
             this.numUP_EnergyTime.Value = (decimal)CalcTimeConstant(regList[0]["(1-ae)[25:0]"].BFValue);
-            this.numUP_EnergyTime.ValueChanged += numUP_EnergyTime_ValueChanged;
+            //this.numUP_EnergyTime.ValueChanged += numUP_EnergyTime_ValueChanged;
 
             // Attack time
-            this.numUP_AttackTime.ValueChanged -= numUP_AttackTime_ValueChanged;
+            //this.numUP_AttackTime.ValueChanged -= numUP_AttackTime_ValueChanged;
             this.numUP_AttackTime.Value = (decimal)CalcTimeConstant(regList[1]["(1-aa)[25:0]"].BFValue);
-            this.numUP_AttackTime.ValueChanged += numUP_AttackTime_ValueChanged;
+            //this.numUP_AttackTime.ValueChanged += numUP_AttackTime_ValueChanged;
             
             // Decay time
-            this.numUP_DecayTime.ValueChanged -= numUP_DecayTime_ValueChanged;
+            //this.numUP_DecayTime.ValueChanged -= numUP_DecayTime_ValueChanged;
             this.numUP_DecayTime.Value = (decimal)CalcTimeConstant(regList[2]["(1-ad)[25:0]"].BFValue);
-            this.numUP_DecayTime.ValueChanged += numUP_DecayTime_ValueChanged;
+            //this.numUP_DecayTime.ValueChanged += numUP_DecayTime_ValueChanged;
 
             /* Threshold T, Address DRC1: 0X40; DRC2: 0X43 */
-            this.numUP_Threshold.ValueChanged -= numUP_Threshold_ValueChanged;
+            //this.numUP_Threshold.ValueChanged -= numUP_Threshold_ValueChanged;
             this.numUP_Threshold.Value = (decimal)CalcThreshold(regList[3].RegValue);
-            this.numUP_Threshold.ValueChanged += numUP_Threshold_ValueChanged;
+            this.threshold = (double)this.numUP_Threshold.Value;
+            //this.numUP_Threshold.ValueChanged += numUP_Threshold_ValueChanged;
 
             /* Slope parameter K, Address DRC1: 0X41, DRC2: 0X44 */
-            this.numUP_Slope.ValueChanged -= numUP_Slope_ValueChanged;
+            //this.numUP_Slope.ValueChanged -= numUP_Slope_ValueChanged;
             this.numUP_Slope.Value = (decimal)CalcSlope(regList[4].RegValue);
-            this.numUP_Slope.ValueChanged += numUP_Slope_ValueChanged;
+            this.slope = (double)this.numUP_Slope.Value;
+            //this.numUP_Slope.ValueChanged += numUP_Slope_ValueChanged;
 
             /* Offset, Address DRC1: 0X41, DRC2: 0X44 */
-            this.numUP_Offset.ValueChanged -= numUP_Offset_ValueChanged;
+            //this.numUP_Offset.ValueChanged -= numUP_Offset_ValueChanged;
             this.numUP_Offset.Value = (decimal)CalcOffset(regList[5].RegValue);
-            this.numUP_Offset.ValueChanged += numUP_Offset_ValueChanged;
+            this.offset = (double)this.numUP_Offset.Value;
+            //this.numUP_Offset.ValueChanged += numUP_Offset_ValueChanged;
 
             /* DRC EN, Address 0x46, DRC_EN*/
             this.chb_Enable.Checked = regList[6][bf_DRC_EN].BFValue == 0 ? false : true;
@@ -273,8 +276,8 @@ namespace SGM4711_Eva.MDUserCtrls
             // max point: x axis is fixed to "uintLen_1dB * 164"
             //double tempX = 140 + threshold;
             double tempY = 140 + threshold + offset;
-            tempY += (20 - threshold) * slope;
-            tempY = tempY > 24 ? 24 : (tempY < -140 ? -140 : tempY);
+            tempY += (24 - threshold) * slope;
+            tempY = tempY < 0 ? 0 : (tempY > 164 ? 164 : tempY);
 
             maxPoint = new Point((int)(164 * uintLen_1dB), (int)(tempY * uintLen_1dB * -1));
         }
@@ -290,11 +293,11 @@ namespace SGM4711_Eva.MDUserCtrls
             this.numUP_Offset.ValueChanged -= numUP_Offset_ValueChanged;
 
             // offset
-            offset = (-1 * centerPoint.X - centerPoint.Y) / uintLen_1dB;
+            offset = (-1 * centerPoint.X - centerPoint.Y) / uintLen_1dB;            
             this.numUP_Offset.Value = (decimal)offset;
 
             // threshold
-            threshold = (centerPoint.X / uintLen_1dB) - 164;
+            threshold = (centerPoint.X / uintLen_1dB) - 140;
             this.numUP_Threshold.Value = (decimal)threshold;
 
             // slope
@@ -310,6 +313,10 @@ namespace SGM4711_Eva.MDUserCtrls
             {
                 minPoint = new Point(0, (int)(-1 * uintLen_1dB * offset));
             }
+
+            numUP_Threshold_ValueChanged(null, null);
+            numUP_Slope_ValueChanged(null, null);
+            numUP_Offset_ValueChanged(null, null);
 
             this.numUP_Threshold.ValueChanged += numUP_Threshold_ValueChanged;
             this.numUP_Slope.ValueChanged += numUP_Slope_ValueChanged;
@@ -347,30 +354,24 @@ namespace SGM4711_Eva.MDUserCtrls
         private double CalcThreshold(uint _regValue)
         {
             double thresh_RegValue = (int)(_regValue & 0xFFFFFFFF);
-            double thresh_dB = 24 - 6.0206 * (thresh_RegValue / Math.Pow(2, 23));
+            double thresh_dB = 24 + 6.0206 * (thresh_RegValue / Math.Pow(2, 23));
             //double thresh_dB = 24 - 6.0206 * 14.62;
             return thresh_dB;
         }
 
         private double CalcSlope(uint _regValue)
         {
-            int slope_RegValue = (int)(_regValue & mask_3p23);
-            double k = slope_RegValue / Math.Pow(2, 23);
-            if (k <= 0 && k > -2)
-            {
-                slope = 1 / (1 + k);
-            }
-            else
-            {
-                slope = 1 + k;
-            }
+            int slope_RegValue = (int)(_regValue << 6);
+            double k = slope_RegValue / Math.Pow(2, 23 + 6);
+            slope = 1 + k;
+
             return slope;
         }
 
         private double CalcOffset(uint _regValue)
         {
-            uint offset_RegValue = _regValue & 0xFFFFFFFF;
-            double offset_dB = 20 * Math.Log10((offset_RegValue / Math.Pow(2, 17)) * 15.5);
+            double offset_RegValue = (int)(_regValue << 6);
+            double offset_dB = 20 * Math.Log10((offset_RegValue / Math.Pow(2, 23 + 6)) * 15.5);
             return offset_dB;
         }
 
@@ -543,51 +544,57 @@ namespace SGM4711_Eva.MDUserCtrls
         private void numUP_EnergyTime_ValueChanged(object sender, EventArgs e)
         {
             ae = CalcTimeConstant((double)this.numUP_EnergyTime.Value);
-            we = mask_2p23 - ae;
+            we = pow_2p23 - ae;
         }
 
         private void numUP_AttackTime_ValueChanged(object sender, EventArgs e)
         {
             aa = CalcTimeConstant((double)this.numUP_AttackTime.Value);
-            wa = mask_2p23 - aa;
+            wa = pow_2p23 - aa;
         }
 
         private void numUP_DecayTime_ValueChanged(object sender, EventArgs e)
         {
             ad = CalcTimeConstant((double)this.numUP_DecayTime.Value);
-            wd = mask_2p23 - ad;
+            wd = pow_2p23 - ad;
         }
 
         private void numUP_Threshold_ValueChanged(object sender, EventArgs e)
         {
             threshold = (double)this.numUP_Threshold.Value;
-            double T = (threshold - 24) / -6.0206;
-            T_ThresholddB = (uint)(T * mask_2p23);
+            double T = (threshold - 24) / 6.0206;
+            T_ThresholddB = (uint)(T * pow_2p23);
 
-            UpdateCurvePoints();
-            this.myPanel.Refresh();
+            if (sender != null)
+            {
+                UpdateCurvePoints();
+                this.myPanel.Refresh();
+            }
         }
 
         private void numUP_Slope_ValueChanged(object sender, EventArgs e)
         {
             slope = (double)this.numUP_Slope.Value;
-            if(Math.Abs(slope) >= 1)
-                K_slopedB = ((uint)(slope - 1) * mask_2p23) & mask_3p23;
-            else
-                K_slopedB = ((uint)(1/slope - 1) * mask_2p23) * mask_2p23;
+            K_slopedB = ((uint)((slope - 1) * pow_2p23)) & mask_3p23;
 
-            UpdateCurvePoints();
-            this.myPanel.Refresh();
+            if (sender != null)
+            {
+                UpdateCurvePoints();
+                this.myPanel.Refresh();
+            }
         }
 
         private void numUP_Offset_ValueChanged(object sender, EventArgs e)
         {
             offset = (double)this.numUP_Offset.Value;
             double Goffset = Math.Pow(10, (offset / 20d))/ 15.5;
-            O_offsetdB = (uint)(Goffset * mask_2p23) & mask_3p23;
+            O_offsetdB = (uint)(Goffset * pow_2p23) & mask_3p23;
 
-            UpdateCurvePoints();
-            this.myPanel.Refresh();
+            if (sender != null)
+            {
+                UpdateCurvePoints();
+                this.myPanel.Refresh();
+            }
         }
         
         private void chb_Enable_CheckedChanged(object sender, EventArgs e)

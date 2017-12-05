@@ -805,6 +805,8 @@ namespace SGM4711_Eva
                     firstWr = false;
                 }
             }
+            // update main GUI
+            UpdateMainGUI();
             //RegRead(this.freeRegCtrl.RegAddrList.ToArray());
         }
 
