@@ -2165,6 +2165,23 @@ namespace SGM4711_Eva
             }
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            string defaultProPath = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            defaultProPath += "DefaultProject.mdproj";
+            if(File.Exists(defaultProPath))
+            {
+                DeserializeMethod(defaultProPath);
+
+                regMap = DataSet.RegMap;
+                // Init tabs with created data tables
+                CreateTabs(DataSet.DS_Display);
+
+                // Transfer regmap to other child GUIs 
+                UpdateChildGUI();
+            }
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dialogRes = MessageBox.Show("Save project before quit?", "Saving project timps", MessageBoxButtons.YesNoCancel);
@@ -2354,6 +2371,7 @@ namespace SGM4711_Eva
 
             regAddrList.Clear();
             Register tempReg;
+            this.chb_Enable.Enabled = true;
             switch (this.cmb_ModeConfig.SelectedIndex)
             {
                 case 0:
@@ -2546,6 +2564,7 @@ namespace SGM4711_Eva
                     break;
 
                 default:
+                    this.chb_Enable.Enabled = false;
                     break;
             }
 
@@ -2868,10 +2887,35 @@ namespace SGM4711_Eva
             comboBox.DropDownWidth = width;
         }
 
-        private void btn_Sync_Click(object sender, EventArgs e)
+        private void btn_SyncFromChip_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
             ReadAllAndUpdateGUI();
+            this.Cursor = Cursors.Default;
+        }
+
+        private void btn_SyncToChip_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            byte[] tempRegAddrs;
+            Register tempReg;
+            bool ifFirstWr = true;
+            for (int ix_list = 0; ix_list < customerRegs.RegAddrList.Count; ix_list++)
+            {
+                tempRegAddrs = customerRegs.RegAddrList[ix_list];
+                for (int ix_reg = 0; ix_reg < tempRegAddrs.Length; ix_reg++)
+                {
+                    tempReg = regMap[tempRegAddrs[ix_reg]];
+                    if (tempReg.RWPro == RWProperty.R)
+                    {
+                        continue;
+                    }
+
+                    RegWrite(tempReg, ifFirstWr);
+                    ifFirstWr = false;
+
+                }
+            }
             this.Cursor = Cursors.Default;
         }
 
@@ -2949,6 +2993,7 @@ namespace SGM4711_Eva
         }
 
         #endregion Main GUI Tab
+
 
     }
 }

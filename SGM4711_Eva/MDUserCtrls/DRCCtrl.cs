@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using MD.MDCommon;
 using System.Threading;
+using System.IO;
 
 namespace SGM4711_Eva.MDUserCtrls
 {
@@ -348,7 +349,7 @@ namespace SGM4711_Eva.MDUserCtrls
             //else
                 //timeX = -1 /(fs * Math.Log(Math.E, _wx / Math.Pow(2, 23)));
             double timeX = -1 / (fs * Math.Log(_wx / Math.Pow(2, 23), Math.E));
-            return timeX;
+            return Math.Round(timeX * 1000);
         }
 
         private double CalcThreshold(uint _regValue)
@@ -705,6 +706,118 @@ namespace SGM4711_Eva.MDUserCtrls
             canMoveCenterCircle = false;
             canMoveMaxCircle = false;
             this.Cursor = Cursors.Default;
+        }
+
+        private void btn_ExportDRC_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportFile = new SaveFileDialog();
+            exportFile.Title = "Export all the DRC setting to local file...";
+            exportFile.Filter = "MDDRC(.mddrc)|*.mddrc|All File(*.*)|*.*";
+            //exportFile.RestoreDirectory = true;
+            if (exportFile.ShowDialog() == DialogResult.OK)
+            {
+                string filename = exportFile.FileName;
+
+                StreamWriter sw = new StreamWriter(filename);
+                sw.WriteLine("/* SGM4711 DRC Settings */");
+
+                sw.WriteLine(String.Format("Energy Time: {0}", this.numUP_EnergyTime.Value.ToString()));
+                sw.WriteLine(String.Format("Attack Time: {0}", this.numUP_AttackTime.Value.ToString()));
+                sw.WriteLine(String.Format("Decay Time: {0}", this.numUP_DecayTime.Value.ToString()));
+                sw.WriteLine(String.Format("Threshold: {0}", threshold.ToString("F2")));
+                sw.WriteLine(String.Format("Slope: {0}", slope.ToString("F3")));
+                sw.WriteLine(String.Format("Offset: {0}", offset.ToString("F2")));
+                sw.WriteLine();
+
+                sw.Close();
+            }
+        }
+
+        private void btn_ImportDRC_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog importFile = new OpenFileDialog();
+            importFile.Title = "Import DRC setting and update to GUI...";
+            importFile.Filter = "MDDRC(.mddrc)|*.mddrc|All File(*.*)|*.*";
+            //importFile.RestoreDirectory = true;
+            if (importFile.ShowDialog() == DialogResult.OK)
+            {
+                string filename = importFile.FileName;
+
+                StreamReader sr = new StreamReader(filename);
+                double tempData;
+                bool retParse = false;
+                int lineNum = 1;
+
+                string registerstate = sr.ReadLine();
+                while (registerstate != null)
+                {
+                    if (registerstate.StartsWith("/*") || registerstate.StartsWith("//") || registerstate.Trim() == "")
+                    {
+                        registerstate = sr.ReadLine(); lineNum++;
+                        continue;
+                    }
+                    try
+                    {
+                        string[] tempStr = registerstate.TrimStart(' ').TrimEnd(' ').Split(':');  //Trim blank space
+                        if (tempStr.Length != 2)
+                            throw new Exception(String.Format("Wrong data in line {0}!!", lineNum));
+
+                        switch (tempStr[0])
+                        {
+                            case "Energy Time":
+                                if (retParse = double.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.numUP_EnergyTime.Value = (decimal)tempData;
+                                }
+                                break;
+
+                            case "Attack Time":
+                                if (retParse = double.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.numUP_AttackTime.Value = (decimal)tempData;
+                                }
+                                break;
+
+                            case "Decay Time":
+                                if (retParse = double.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.numUP_DecayTime.Value = (decimal)tempData;
+                                }
+                                break;
+                            case "Threshold":
+                                if (retParse = double.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.numUP_Threshold.Value = (decimal)tempData;
+                                }
+                                break;
+                            case "Slope":                                
+                                if (retParse = double.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.numUP_Slope.Value = (decimal)tempData;
+                                }
+                                break;
+
+                            case "Offset":
+                                if (retParse = double.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.numUP_Offset.Value = (decimal)tempData;
+                                }
+                                break;
+
+                            default:
+                                retParse = false;
+                                break; 
+                        }
+
+                        if(!retParse)
+                            throw new Exception(String.Format("Wrong data in line {0}!!", lineNum));
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+                    finally { registerstate = sr.ReadLine(); lineNum++; }
+                }
+                
+                sr.Close();
+            }
         }
         
     }

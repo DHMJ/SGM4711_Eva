@@ -49,6 +49,9 @@
             this.btn_Update = new System.Windows.Forms.Button();
             this.chb_Enable = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_ImportDRC = new System.Windows.Forms.Button();
+            this.btn_ExportDRC = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_EnergyTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_AttackTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_DecayTime)).BeginInit();
@@ -56,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUP_Slope)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_Offset)).BeginInit();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // numUP_EnergyTime
@@ -93,7 +97,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(227, 31);
+            this.label1.Location = new System.Drawing.Point(204, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 12);
             this.label1.TabIndex = 7;
@@ -101,7 +105,7 @@
             // 
             // numUP_AttackTime
             // 
-            this.numUP_AttackTime.Location = new System.Drawing.Point(156, 27);
+            this.numUP_AttackTime.Location = new System.Drawing.Point(132, 27);
             this.numUP_AttackTime.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -123,7 +127,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(358, 31);
+            this.label2.Location = new System.Drawing.Point(311, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(17, 12);
             this.label2.TabIndex = 9;
@@ -131,7 +135,7 @@
             // 
             // numUP_DecayTime
             // 
-            this.numUP_DecayTime.Location = new System.Drawing.Point(287, 27);
+            this.numUP_DecayTime.Location = new System.Drawing.Point(239, 27);
             this.numUP_DecayTime.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -164,7 +168,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(156, 9);
+            this.label4.Location = new System.Drawing.Point(132, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 12);
             this.label4.TabIndex = 10;
@@ -175,11 +179,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(287, 9);
+            this.label5.Location = new System.Drawing.Point(239, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 12);
+            this.label5.Size = new System.Drawing.Size(55, 12);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Delay Time";
+            this.label5.Text = "Decay Time";
             // 
             // myPanel
             // 
@@ -245,11 +249,11 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(156, 59);
+            this.label9.Location = new System.Drawing.Point(132, 59);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 12);
+            this.label9.Size = new System.Drawing.Size(88, 12);
             this.label9.TabIndex = 17;
-            this.label9.Text = "Slope ( 1: n)";
+            this.label9.Text = "Slope ( Out : Input)";
             // 
             // numUP_Slope
             // 
@@ -259,7 +263,7 @@
             0,
             0,
             65536});
-            this.numUP_Slope.Location = new System.Drawing.Point(156, 75);
+            this.numUP_Slope.Location = new System.Drawing.Point(132, 75);
             this.numUP_Slope.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -286,7 +290,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(287, 59);
+            this.label10.Location = new System.Drawing.Point(239, 59);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(30, 12);
             this.label10.TabIndex = 19;
@@ -295,7 +299,7 @@
             // numUP_Offset
             // 
             this.numUP_Offset.DecimalPlaces = 2;
-            this.numUP_Offset.Location = new System.Drawing.Point(287, 75);
+            this.numUP_Offset.Location = new System.Drawing.Point(239, 75);
             this.numUP_Offset.Maximum = new decimal(new int[] {
             24,
             0,
@@ -317,7 +321,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Cambria", 7.5F);
             this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(358, 79);
+            this.label11.Location = new System.Drawing.Point(311, 79);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(17, 12);
             this.label11.TabIndex = 20;
@@ -326,9 +330,9 @@
             // btn_Update
             // 
             this.btn_Update.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Update.Location = new System.Drawing.Point(418, 74);
+            this.btn_Update.Location = new System.Drawing.Point(98, 65);
             this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(75, 23);
+            this.btn_Update.Size = new System.Drawing.Size(66, 22);
             this.btn_Update.TabIndex = 21;
             this.btn_Update.Text = "Update";
             this.btn_Update.UseVisualStyleBackColor = true;
@@ -339,9 +343,9 @@
             this.chb_Enable.Appearance = System.Windows.Forms.Appearance.Button;
             this.chb_Enable.BackColor = System.Drawing.Color.IndianRed;
             this.chb_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chb_Enable.Location = new System.Drawing.Point(418, 26);
+            this.chb_Enable.Location = new System.Drawing.Point(17, 65);
             this.chb_Enable.Name = "chb_Enable";
-            this.chb_Enable.Size = new System.Drawing.Size(75, 23);
+            this.chb_Enable.Size = new System.Drawing.Size(66, 22);
             this.chb_Enable.TabIndex = 42;
             this.chb_Enable.Text = "Disabled";
             this.chb_Enable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -350,8 +354,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.chb_Enable);
-            this.panel1.Controls.Add(this.btn_Update);
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.numUP_Offset);
@@ -371,8 +374,42 @@
             this.panel1.Controls.Add(this.numUP_EnergyTime);
             this.panel1.Location = new System.Drawing.Point(3, 543);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(531, 113);
+            this.panel1.Size = new System.Drawing.Size(531, 122);
             this.panel1.TabIndex = 43;
+            // 
+            // btn_ImportDRC
+            // 
+            this.btn_ImportDRC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_ImportDRC.Location = new System.Drawing.Point(17, 17);
+            this.btn_ImportDRC.Name = "btn_ImportDRC";
+            this.btn_ImportDRC.Size = new System.Drawing.Size(66, 22);
+            this.btn_ImportDRC.TabIndex = 43;
+            this.btn_ImportDRC.Text = "Import";
+            this.btn_ImportDRC.UseVisualStyleBackColor = true;
+            this.btn_ImportDRC.Click += new System.EventHandler(this.btn_ImportDRC_Click);
+            // 
+            // btn_ExportDRC
+            // 
+            this.btn_ExportDRC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_ExportDRC.Location = new System.Drawing.Point(98, 17);
+            this.btn_ExportDRC.Name = "btn_ExportDRC";
+            this.btn_ExportDRC.Size = new System.Drawing.Size(66, 22);
+            this.btn_ExportDRC.TabIndex = 44;
+            this.btn_ExportDRC.Text = "Export";
+            this.btn_ExportDRC.UseVisualStyleBackColor = true;
+            this.btn_ExportDRC.Click += new System.EventHandler(this.btn_ExportDRC_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btn_ImportDRC);
+            this.groupBox1.Controls.Add(this.btn_ExportDRC);
+            this.groupBox1.Controls.Add(this.chb_Enable);
+            this.groupBox1.Controls.Add(this.btn_Update);
+            this.groupBox1.Location = new System.Drawing.Point(338, 9);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(179, 98);
+            this.groupBox1.TabIndex = 45;
+            this.groupBox1.TabStop = false;
             // 
             // DRCCtrl
             // 
@@ -394,6 +431,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUP_Offset)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -421,5 +459,8 @@
         private System.Windows.Forms.Button btn_Update;
         private System.Windows.Forms.CheckBox chb_Enable;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_ImportDRC;
+        private System.Windows.Forms.Button btn_ExportDRC;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

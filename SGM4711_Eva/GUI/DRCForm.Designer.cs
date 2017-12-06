@@ -35,9 +35,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(656, 697);
+            this.ClientSize = new System.Drawing.Size(547, 662);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(537, 668);
+            this.MaximumSize = new System.Drawing.Size(563, 700);
+            this.MinimumSize = new System.Drawing.Size(563, 700);
             this.Name = "DRCForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DRC Form";

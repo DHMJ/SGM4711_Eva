@@ -1,0 +1,8 @@
+/* SGM4711 DRC Settings */
+Energy Time: 1000
+Attack Time: 100
+Decay Time: 500
+Threshold: -38.00
+Slope: 0.37
+Offset: -9.00
+

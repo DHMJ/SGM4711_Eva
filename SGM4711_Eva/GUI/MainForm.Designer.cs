@@ -74,7 +74,7 @@
             this.lbl_MasterVol = new System.Windows.Forms.Label();
             this.chb_Enable = new System.Windows.Forms.CheckBox();
             this.btn_backToDefault = new System.Windows.Forms.Button();
-            this.btn_Sync = new System.Windows.Forms.Button();
+            this.btn_SyncFromChip = new System.Windows.Forms.Button();
             this.btn_OutputMux_GUI = new System.Windows.Forms.Button();
             this.btn_AudioEngine_GUI = new System.Windows.Forms.Button();
             this.btn_InputMux_GUI = new System.Windows.Forms.Button();
@@ -375,6 +375,7 @@
             this.tabCtrl_Output = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.outputLogCtrl = new SGM4711_Eva.MDUserCtrls.OutputLogCtrl();
+            this.btn_SyncToChip = new System.Windows.Forms.Button();
             this.menu_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).BeginInit();
             this.statusBar.SuspendLayout();
@@ -765,7 +766,8 @@
             this.tabP_systemConfig.Controls.Add(this.lbl_MasterVol);
             this.tabP_systemConfig.Controls.Add(this.chb_Enable);
             this.tabP_systemConfig.Controls.Add(this.btn_backToDefault);
-            this.tabP_systemConfig.Controls.Add(this.btn_Sync);
+            this.tabP_systemConfig.Controls.Add(this.btn_SyncToChip);
+            this.tabP_systemConfig.Controls.Add(this.btn_SyncFromChip);
             this.tabP_systemConfig.Controls.Add(this.btn_OutputMux_GUI);
             this.tabP_systemConfig.Controls.Add(this.btn_AudioEngine_GUI);
             this.tabP_systemConfig.Controls.Add(this.btn_InputMux_GUI);
@@ -871,8 +873,9 @@
             this.chb_Enable.BackColor = System.Drawing.Color.IndianRed;
             this.chb_Enable.Checked = true;
             this.chb_Enable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chb_Enable.Enabled = false;
             this.chb_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chb_Enable.Location = new System.Drawing.Point(67, 365);
+            this.chb_Enable.Location = new System.Drawing.Point(67, 379);
             this.chb_Enable.Name = "chb_Enable";
             this.chb_Enable.Size = new System.Drawing.Size(100, 29);
             this.chb_Enable.TabIndex = 41;
@@ -886,7 +889,7 @@
             this.btn_backToDefault.AutoSize = true;
             this.btn_backToDefault.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_backToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_backToDefault.Location = new System.Drawing.Point(345, 365);
+            this.btn_backToDefault.Location = new System.Drawing.Point(484, 379);
             this.btn_backToDefault.Name = "btn_backToDefault";
             this.btn_backToDefault.Size = new System.Drawing.Size(100, 29);
             this.btn_backToDefault.TabIndex = 40;
@@ -894,18 +897,18 @@
             this.btn_backToDefault.UseVisualStyleBackColor = true;
             this.btn_backToDefault.Click += new System.EventHandler(this.btn_backToDefault_Click);
             // 
-            // btn_Sync
+            // btn_SyncFromChip
             // 
-            this.btn_Sync.AutoSize = true;
-            this.btn_Sync.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Sync.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_Sync.Location = new System.Drawing.Point(206, 365);
-            this.btn_Sync.Name = "btn_Sync";
-            this.btn_Sync.Size = new System.Drawing.Size(100, 29);
-            this.btn_Sync.TabIndex = 39;
-            this.btn_Sync.Text = "Sync";
-            this.btn_Sync.UseVisualStyleBackColor = true;
-            this.btn_Sync.Click += new System.EventHandler(this.btn_Sync_Click);
+            this.btn_SyncFromChip.AutoSize = true;
+            this.btn_SyncFromChip.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_SyncFromChip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_SyncFromChip.Location = new System.Drawing.Point(204, 379);
+            this.btn_SyncFromChip.Name = "btn_SyncFromChip";
+            this.btn_SyncFromChip.Size = new System.Drawing.Size(103, 29);
+            this.btn_SyncFromChip.TabIndex = 39;
+            this.btn_SyncFromChip.Text = "Sync From Chip";
+            this.btn_SyncFromChip.UseVisualStyleBackColor = true;
+            this.btn_SyncFromChip.Click += new System.EventHandler(this.btn_SyncFromChip_Click);
             // 
             // btn_OutputMux_GUI
             // 
@@ -4967,6 +4970,19 @@
             this.outputLogCtrl.Size = new System.Drawing.Size(585, 186);
             this.outputLogCtrl.TabIndex = 0;
             // 
+            // btn_SyncToChip
+            // 
+            this.btn_SyncToChip.AutoSize = true;
+            this.btn_SyncToChip.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_SyncToChip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_SyncToChip.Location = new System.Drawing.Point(344, 379);
+            this.btn_SyncToChip.Name = "btn_SyncToChip";
+            this.btn_SyncToChip.Size = new System.Drawing.Size(103, 29);
+            this.btn_SyncToChip.TabIndex = 39;
+            this.btn_SyncToChip.Text = "Sync To Chip";
+            this.btn_SyncToChip.UseVisualStyleBackColor = true;
+            this.btn_SyncToChip.Click += new System.EventHandler(this.btn_SyncToChip_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4978,8 +4994,9 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.62";
+            this.Text = "SGM4711 Eva_v0.63";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).EndInit();
@@ -5059,7 +5076,7 @@
         private System.Windows.Forms.Label lbl_MasterVol;
         private System.Windows.Forms.CheckBox chb_Enable;
         private System.Windows.Forms.Button btn_backToDefault;
-        private System.Windows.Forms.Button btn_Sync;
+        private System.Windows.Forms.Button btn_SyncFromChip;
         private System.Windows.Forms.Button btn_OutputMux_GUI;
         private System.Windows.Forms.Button btn_AudioEngine_GUI;
         private System.Windows.Forms.Button btn_InputMux_GUI;
@@ -5363,6 +5380,7 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Button btn_SyncToChip;
 
     }
 }
