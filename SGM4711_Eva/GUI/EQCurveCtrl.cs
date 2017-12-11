@@ -1271,16 +1271,16 @@ namespace SGM4711_Eva.GUI
                 return;
             }
 
-            // Power down chip if the chip is on
-            bool ifPoweredOn = false;
-            if (regMap[0x05]["ALL_CH_PD"].BFValue == 0)
-                ifPoweredOn = true;
+            //// Power down chip if the chip is on
+            //bool ifPoweredOn = false;
+            //if (regMap[0x05]["ALL_CH_PD"].BFValue == 0)
+            //    ifPoweredOn = true;
 
-            if (ifPoweredOn)
-            {
-                regMap[0x05]["ALL_CH_PD"].BFValue = 0x1;
-                myRegOp.RegWrite(0x05);
-            }
+            //if (ifPoweredOn)
+            //{
+            //    regMap[0x05]["ALL_CH_PD"].BFValue = 0x1;
+            //    myRegOp.RegWrite(0x05);
+            //}
 
             Register currentReg;
             for (int ix = 0; ix < regAddr.Length; ix++)
@@ -1293,19 +1293,21 @@ namespace SGM4711_Eva.GUI
                 currentReg["a2[25:0]"].BFValue = filterList[ix].RegValue_A[1];
 
                 // Only the first write needs time log
-                if (ifPoweredOn)
-                    myRegOp.RegWrite(currentReg, false);
-                else if(ix == 0)
+                //if (ifPoweredOn)
+                //    myRegOp.RegWrite(currentReg, false);
+                //else if(ix == 0)
+                if(ix == 0)
                     myRegOp.RegWrite(currentReg, true);
                 else
                     myRegOp.RegWrite(currentReg, false);
             }
 
-            if (ifPoweredOn)
-            {
-                regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
-                myRegOp.RegWrite(0x05, false);
-            }
+            myRegOp.PowerOn();
+            //if (ifPoweredOn)
+            //{
+            //    regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
+            //    myRegOp.RegWrite(0x05, false);
+            //}
 
             myRegOp.UpdateRegSettingSource();
         }

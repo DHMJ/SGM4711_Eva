@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MD.MDCommon;
+using System.IO;
 
 namespace SGM4711_Eva.GUI
 {
@@ -149,6 +150,119 @@ namespace SGM4711_Eva.GUI
 
             this.myRegOp.RegWrite(new Register[]{NGCtrl0, NGCtrl1});
             this.myRegOp.UpdateRegSettingSource();
+        }
+
+        private void btn_ImportNG_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog importFile = new OpenFileDialog();
+            importFile.Title = "Import NG setting and update to GUI...";
+            importFile.Filter = "MDNG(.mdng)|*.mdng|All File(*.*)|*.*";
+            //importFile.RestoreDirectory = true;
+            if (importFile.ShowDialog() == DialogResult.OK)
+            {
+                string filename = importFile.FileName;
+
+                StreamReader sr = new StreamReader(filename);
+                int tempData;
+                bool retParse = false;
+                int lineNum = 1;
+
+                string registerstate = sr.ReadLine();
+                while (registerstate != null)
+                {
+                    if (registerstate.StartsWith("/*") || registerstate.StartsWith("//") || registerstate.Trim() == "")
+                    {
+                        registerstate = sr.ReadLine(); lineNum++;
+                        continue;
+                    }
+                    try
+                    {
+                        string[] tempStr = registerstate.TrimStart(' ').TrimEnd(' ').Split(',');  //Trim blank space
+                        if (tempStr.Length != 2)
+                            throw new Exception(String.Format("Wrong data in line {0}!!", lineNum));
+
+                        switch (tempStr[0])
+                        {
+                            case "NG_CH0_NT[2:0]":
+                                if (retParse = Int32.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.cmb_NG_TH_CH0.SelectedIndex = tempData;
+                                }
+                                break;
+
+                            case "NG_CH1_NT[2:0]":
+                                if (retParse = Int32.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.cmb_NG_TH_CH1.SelectedIndex = tempData;
+                                }
+                                break;
+
+                            case "NG_SUB_NT[2:0]":
+                                if (retParse = Int32.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.cmb_NG_TH_SubCH.SelectedIndex = tempData;
+                                }
+                                break;
+                            case "NG_RT[3:0]":
+                                if (retParse = Int32.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.cmb_NG_RT.SelectedIndex = tempData;
+                                }
+                                break;
+                            case "NG_HT[3:0]":
+                                if (retParse = Int32.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.cmb_NG_HT.SelectedIndex = tempData;
+                                }
+                                break;
+
+                            case "NG_AT[3:0]":
+                                if (retParse = Int32.TryParse(tempStr[1].Trim(), out tempData))
+                                {
+                                    this.cmb_NG_AT.SelectedIndex = tempData;
+                                }
+                                break;
+
+                            default:
+                                retParse = false;
+                                break;
+                        }
+
+                        if (!retParse)
+                            throw new Exception(String.Format("Wrong data in line {0}!!", lineNum));
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+                    finally { registerstate = sr.ReadLine(); lineNum++; }
+                }
+
+                sr.Close();
+            }
+        }
+
+        private void btn_ExportNG_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportFile = new SaveFileDialog();
+            exportFile.Title = "Export all the NG setting to local file...";
+            exportFile.Filter = "MDNG(.mdng)|*.mdng|All File(*.*)|*.*";
+            //exportFile.RestoreDirectory = true;
+            if (exportFile.ShowDialog() == DialogResult.OK)
+            {
+                string filename = exportFile.FileName;
+
+                StreamWriter sw = new StreamWriter(filename);
+                sw.WriteLine("/* SGM4711 Noise Gate Settings */");
+
+                sw.WriteLine(String.Format("NG_CH0_NT[2:0], {0}", this.cmb_NG_TH_CH0.SelectedIndex.ToString()));
+                sw.WriteLine(String.Format("NG_CH1_NT[2:0], {0}", this.cmb_NG_TH_CH1.SelectedIndex.ToString()));
+                sw.WriteLine(String.Format("NG_SUB_NT[2:0], {0}", this.cmb_NG_TH_SubCH.SelectedIndex.ToString()));
+                sw.WriteLine(String.Format("NG_RT[3:0], {0}", this.cmb_NG_RT.SelectedIndex.ToString()));
+                sw.WriteLine(String.Format("NG_HT[3:0], {0}", this.cmb_NG_HT.SelectedIndex.ToString()));
+                sw.WriteLine(String.Format("NG_AT[3:0], {0}", this.cmb_NG_AT.SelectedIndex.ToString()));
+                sw.WriteLine();
+
+                sw.Close();
+            }
+
         }
 
 

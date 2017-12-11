@@ -49,9 +49,9 @@
             this.btn_Update = new System.Windows.Forms.Button();
             this.chb_Enable = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_ImportDRC = new System.Windows.Forms.Button();
             this.btn_ExportDRC = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_EnergyTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_AttackTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUP_DecayTime)).BeginInit();
@@ -66,7 +66,7 @@
             // 
             this.numUP_EnergyTime.Location = new System.Drawing.Point(25, 27);
             this.numUP_EnergyTime.Maximum = new decimal(new int[] {
-            5000,
+            20000,
             0,
             0,
             0});
@@ -107,7 +107,7 @@
             // 
             this.numUP_AttackTime.Location = new System.Drawing.Point(132, 27);
             this.numUP_AttackTime.Maximum = new decimal(new int[] {
-            5000,
+            20000,
             0,
             0,
             0});
@@ -137,7 +137,7 @@
             // 
             this.numUP_DecayTime.Location = new System.Drawing.Point(239, 27);
             this.numUP_DecayTime.Maximum = new decimal(new int[] {
-            5000,
+            20000,
             0,
             0,
             0});
@@ -377,6 +377,18 @@
             this.panel1.Size = new System.Drawing.Size(531, 122);
             this.panel1.TabIndex = 43;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btn_ImportDRC);
+            this.groupBox1.Controls.Add(this.btn_ExportDRC);
+            this.groupBox1.Controls.Add(this.chb_Enable);
+            this.groupBox1.Controls.Add(this.btn_Update);
+            this.groupBox1.Location = new System.Drawing.Point(338, 9);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(179, 98);
+            this.groupBox1.TabIndex = 45;
+            this.groupBox1.TabStop = false;
+            // 
             // btn_ImportDRC
             // 
             this.btn_ImportDRC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -398,18 +410,6 @@
             this.btn_ExportDRC.Text = "Export";
             this.btn_ExportDRC.UseVisualStyleBackColor = true;
             this.btn_ExportDRC.Click += new System.EventHandler(this.btn_ExportDRC_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btn_ImportDRC);
-            this.groupBox1.Controls.Add(this.btn_ExportDRC);
-            this.groupBox1.Controls.Add(this.chb_Enable);
-            this.groupBox1.Controls.Add(this.btn_Update);
-            this.groupBox1.Location = new System.Drawing.Point(338, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(179, 98);
-            this.groupBox1.TabIndex = 45;
-            this.groupBox1.TabStop = false;
             // 
             // DRCCtrl
             // 

@@ -44,5 +44,7 @@ namespace MD.MDCommon
         bool RegWrite(Register[] _reg, bool ifTimeLog);
 
         void UpdateRegSettingSource();
+
+        void PowerOn();
     }
 }

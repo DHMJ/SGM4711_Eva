@@ -148,6 +148,30 @@ namespace SGM4711_Eva
             //To DO: Add create taps on GUI with dataset
         }
 
+        bool ifRepower = false;
+        private void PowerDown()
+        {
+            // Power down chip if the chip is on
+            if (regMap[0x05]["ALL_CH_PD"].BFValue == 0)
+                ifRepower = true;
+
+            if (ifRepower)
+            {
+                regMap[0x05]["ALL_CH_PD"].BFValue = 0x1;
+                RegWrite(0x05, false);
+            }
+        }
+
+        public void PowerOn()
+        {
+            if (ifRepower)
+            {
+                regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
+                RegWrite(0x05, false);
+                ifRepower = false;
+            }
+        }
+
         public bool RegRead(byte _regAddr, byte[] data, bool ifTimeLog)
         {
             bool ret = false;
@@ -386,8 +410,11 @@ namespace SGM4711_Eva
             bool ret = false;
             string log = "";
             if (ifTimeLog)
+            {
                 log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
-
+                PowerDown();
+            }
+            
             if (myDongle.IsOpen && regMap != null)
             {
                 if (myDongle.writeRegBurst(_regAddr, data, data.Length))
@@ -411,6 +438,10 @@ namespace SGM4711_Eva
                 log += "\tFailed\t" + "Address: 0x" + _regAddr.ToString("X2");
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
             }
+
+            if (ifTimeLog)
+                PowerOn();
+
             return ret;
         }
 
@@ -424,7 +455,10 @@ namespace SGM4711_Eva
             bool ret = false;
             string log = "";
             if (ifTimeLog)
+            {
                 log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
+                PowerDown();
+            }
             //else
             //    log = String.Format("I2C Write >> \r\n");
 
@@ -454,6 +488,10 @@ namespace SGM4711_Eva
                 log += "\tFailed\t" + "Address: 0x" + _regAddr.ToString("X2");
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
             }
+
+            if (ifTimeLog)
+                PowerOn();
+
             return ret;
         }
 
@@ -467,7 +505,10 @@ namespace SGM4711_Eva
             bool ret = true;
             string log = "";
             if (ifTimeLog)
+            {
                 log = String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime());
+                PowerDown();
+            }
             //else
             //    log = String.Format("I2C Write >> ");
 
@@ -508,7 +549,10 @@ namespace SGM4711_Eva
                 this.outputLogCtrl.AppendLog(log);
             else
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
-            
+
+            if (ifTimeLog)
+                PowerOn();
+
             return ret;
         }
 
@@ -522,7 +566,10 @@ namespace SGM4711_Eva
             bool ret = false;
             string log = "";
             if (ifTimeLog)
+            {
                 log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
+                PowerDown();
+            }
             //else
             //    log = String.Format("I2C Write >> \r\n");
 
@@ -551,6 +598,9 @@ namespace SGM4711_Eva
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
             }
 
+            if (ifTimeLog)
+                PowerOn();
+
             return ret;
         }
 
@@ -564,7 +614,10 @@ namespace SGM4711_Eva
             bool ret = true;
             string log = "";
             if (ifTimeLog)
+            {
                 log = String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime());
+                PowerDown();
+            }
             //else
             //    log = String.Format("I2C Write >> ");
 
@@ -603,6 +656,9 @@ namespace SGM4711_Eva
                 this.outputLogCtrl.AppendLog(log);
             else
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
+
+            if (ifTimeLog)
+                PowerOn();
 
             return ret;
         }
@@ -684,6 +740,7 @@ namespace SGM4711_Eva
                 regMap[0x14].RegValue == 0x48)
             {
                 this.cmb_ModeConfig.SelectedIndex = 0;
+                this.chb_Enable.Enabled = true;
             }
             #endregion
 
@@ -700,6 +757,7 @@ namespace SGM4711_Eva
                 regMap[0x14].RegValue == 0x48)
             {
                 this.cmb_ModeConfig.SelectedIndex = 1;
+                this.chb_Enable.Enabled = true;
             }
             #endregion
 
@@ -716,6 +774,7 @@ namespace SGM4711_Eva
                 regMap[0x14].RegValue == 0x48)
             {
                 this.cmb_ModeConfig.SelectedIndex = 2;
+                this.chb_Enable.Enabled = true;
             }
             else
                 this.cmb_ModeConfig.SelectedIndex = 3;
@@ -791,6 +850,8 @@ namespace SGM4711_Eva
                     firstWr = false;
                 }
             }
+
+            PowerOn();
             //RegWrite(this.freeRegCtrl.RegAddrList.ToArray());
         }
 
@@ -2376,6 +2437,10 @@ namespace SGM4711_Eva
             {
                 case 0:
                     #region 2.0
+                    tempReg = regAddrList[0x0E];
+                    tempReg["AUTO_MUTE_EN"].BFValue = 0;
+                    regAddrList.Add(tempReg);
+
                     tempReg = regMap[0x03];
                     //tempReg["MODE_SEL"].BFValue = 0x0;
                     tempReg["OL_BYPASS"].BFValue = 0x1;
@@ -2421,6 +2486,9 @@ namespace SGM4711_Eva
 
                 case 1:
                     #region 2.1
+                    tempReg = regAddrList[0x0E];
+                    tempReg["AUTO_MUTE_EN"].BFValue = 0;
+                    regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x03];
                     //tempReg["MODE_SEL"].BFValue = 0x0;
@@ -2493,6 +2561,10 @@ namespace SGM4711_Eva
 
                 case 2:
                     #region PBTL
+                    tempReg = regAddrList[0x0E];
+                    tempReg["AUTO_MUTE_EN"].BFValue = 0;
+                    regAddrList.Add(tempReg);
+
                     tempReg = regMap[0x03];
                     //tempReg["MODE_SEL"].BFValue = 0x0;
                     tempReg["OL_BYPASS"].BFValue = 0x1;
@@ -2568,7 +2640,8 @@ namespace SGM4711_Eva
                     break;
             }
 
-            UpdateRegSettingSource(0x03, new string[] { "OL_BYPASS" });
+            UpdateRegSettingSource(0x0E, new string[] { "AUTO_MUTE_EN" });
+            UpdateRegSettingSource(0x03, new string[] { "OL_BYPASS" }, true);
             UpdateRegSettingSource(new byte[]{ 0x20, 0x1A, 0x25}, true);
             UpdateRegSettingSource(0x05, new string[] { "SUB_CH_MOD", "MODE_SEL" }, true);
             UpdateRegSettingSource(new byte[] { 0x11, 0x12, 0x13, 0x14 }, true);
@@ -2581,6 +2654,7 @@ namespace SGM4711_Eva
                     RegWrite(regAddrList[ix], ifFirstWr);
                     ifFirstWr = false;
                 }
+                PowerOn();
             }
         }
 
@@ -2916,6 +2990,9 @@ namespace SGM4711_Eva
 
                 }
             }
+
+            PowerOn();
+
             this.Cursor = Cursors.Default;
         }
 
@@ -2964,6 +3041,8 @@ namespace SGM4711_Eva
                     //Console.WriteLine(tempLog);
                 }
             }
+
+            PowerOn();
 
             UpdateMainGUI();
             this.Cursor = Cursors.Default;

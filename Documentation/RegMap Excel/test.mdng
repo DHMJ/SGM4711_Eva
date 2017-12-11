@@ -1,0 +1,8 @@
+/* SGM4711 Noise Gate Settings */
+NG_CH0_NT[2:0], 1
+NG_CH1_NT[2:0], 2
+NG_SUB_NT[2:0], 3
+NG_RT[3:0], 10
+NG_HT[3:0], 9
+NG_AT[3:0], 8
+
