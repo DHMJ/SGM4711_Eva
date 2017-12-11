@@ -2437,7 +2437,7 @@ namespace SGM4711_Eva
             {
                 case 0:
                     #region 2.0
-                    tempReg = regAddrList[0x0E];
+                    tempReg = regMap[0x0E];
                     tempReg["AUTO_MUTE_EN"].BFValue = 0;
                     regAddrList.Add(tempReg);
 
@@ -2486,7 +2486,7 @@ namespace SGM4711_Eva
 
                 case 1:
                     #region 2.1
-                    tempReg = regAddrList[0x0E];
+                    tempReg = regMap[0x0E];
                     tempReg["AUTO_MUTE_EN"].BFValue = 0;
                     regAddrList.Add(tempReg);
 
@@ -2561,7 +2561,7 @@ namespace SGM4711_Eva
 
                 case 2:
                     #region PBTL
-                    tempReg = regAddrList[0x0E];
+                    tempReg = regMap[0x0E];
                     tempReg["AUTO_MUTE_EN"].BFValue = 0;
                     regAddrList.Add(tempReg);
 
@@ -3072,6 +3072,16 @@ namespace SGM4711_Eva
         }
 
         #endregion Main GUI Tab
+
+        private void chb_Enable_MouseEnter(object sender, EventArgs e)
+        {
+            //myTips.Show("Please select \"Mode\" before power on!", this.chb_Enable);
+        }
+
+        private void chb_Enable_MouseLeave(object sender, EventArgs e)
+        {
+            //myTips.Show("", this.chb_Enable);
+        }
 
 
     }

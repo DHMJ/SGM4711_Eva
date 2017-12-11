@@ -884,6 +884,8 @@
             this.chb_Enable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chb_Enable.UseVisualStyleBackColor = false;
             this.chb_Enable.CheckedChanged += new System.EventHandler(this.chb_Enable_CheckedChanged);
+            this.chb_Enable.MouseEnter += new System.EventHandler(this.chb_Enable_MouseEnter);
+            this.chb_Enable.MouseLeave += new System.EventHandler(this.chb_Enable_MouseLeave);
             // 
             // btn_backToDefault
             // 
@@ -4995,7 +4997,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.64";
+            this.Text = "SGM4711 Eva_v0.65";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menu_main.ResumeLayout(false);
