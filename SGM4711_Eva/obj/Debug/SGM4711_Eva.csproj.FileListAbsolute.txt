@@ -75,3 +75,8 @@ C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM471
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.exe
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.pdb
+C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.FormScriptCtrl.resources
+C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.Mixer_1In.resources
+C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.Mixer_2In.resources
+C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.Mixer_3In.resources
+C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.NoiseGateForm.resources

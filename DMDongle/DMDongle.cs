@@ -5,6 +5,7 @@ using System.Text;
 using System.IO.Ports;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using System.Threading;
 
 namespace DMCommunication
 {
@@ -217,6 +218,67 @@ namespace DMCommunication
             return true;
         }
 
+        //********************************************************
+        //new for inprove IIC operation speed
+        //ack = True, handshake with dongle
+        //ack = False, NO handshake with dongle
+        //********************************************************
+        public bool writeRegBlockSingle(byte[] data, int count, bool ack)
+        {
+            byte[] buf = new byte[count * 2 + 5];
+            buf[0] = 0x5A;
+            buf[1] = Convert.ToByte(count * 2 + 5);
+            buf[2] = commMode;
+            buf[3] = 0x01;         //writesingle
+            buf[4] = (byte)count;      //reg addr
+            int returnCount = 5;
+
+            for (byte i = 0; i < count; i++)
+            {
+                buf[5 + i * 2] = data[i * 2 + 0];         //length = 1
+                buf[6 + i * 2] = data[i * 2 + 1];      //reg value
+            }
+
+            uart.DiscardInBuffer();
+
+            uart.Write(buf, 0, count * 2 + 5);
+
+            //System.Threading.Thread.Sleep(300);
+
+            uint timeOutCounter = 2000;
+            //while (uart.BytesToRead == 0 && timeOutCounter > 0)
+            //while (uart.BytesToRead < 5 && timeOutCounter > 0)
+            //{
+            //    timeOutCounter--;
+            //    System.Threading.Thread.Sleep(10);
+            if (ack)
+            {
+
+                //while (uart.BytesToRead < returnCount)
+                //{ ; }
+
+                while (uart.BytesToRead < returnCount && timeOutCounter > 0)
+                {
+                    timeOutCounter--;
+                    Thread.Sleep(1);
+                }
+
+                if (timeOutCounter != 0)
+                {
+                    byte[] readBuf = new byte[returnCount];
+                    uart.Read(readBuf, 0, returnCount);
+
+                    if (readBuf[0] != 0xA5 || readBuf[1] != Convert.ToByte(count * 2 + 5) || readBuf[2] != (byte)commMode || readBuf[3] != 0x01 || readBuf[4] != 0xCC)
+                        return false;
+                }
+                else
+                    return false;
+            }
+            
+
+            return true;
+        }
+
         public bool readRegSingle(byte regAddr, out byte regData)
         {
             byte[] boockData = new byte[1];
@@ -271,6 +333,54 @@ namespace DMCommunication
             }
             //else
             //    return false;
+        }
+
+        //********************************************************
+        //new for inprove IIC operation speed
+        //ack = True, handshake with dongle
+        //ack = False, NO handshake with dongle
+        //********************************************************
+        public bool writeRegBurst(byte startregaddr, byte[] data, int count, bool ack)
+        {
+            byte[] buf = new byte[6 + count];
+            buf[0] = 0x5A;
+            buf[1] = Convert.ToByte(6 + count);
+            buf[2] = commMode;
+            buf[3] = 0x03;
+            buf[4] = (byte)count;
+            buf[5] = startregaddr;
+
+            int returnCount = 5;
+
+            for (int i = 0; i < count; i++)
+                buf[6 + i] = data[i];
+
+            uart.DiscardInBuffer();
+            uart.Write(buf, 0, 6 + count);
+
+            uint timeOutCounter = 2000;
+
+            if (ack)
+            {
+
+                while (uart.BytesToRead < returnCount && timeOutCounter > 0)
+                {
+                    timeOutCounter--;
+                    Thread.Sleep(1); 
+                }
+
+                if (timeOutCounter != 0)
+                {
+                    byte[] readBuf = new byte[returnCount];
+                    uart.Read(readBuf, 0, returnCount);
+                    if (readBuf[0] != 0xA5 || readBuf[1] != Convert.ToByte(6 + count) || readBuf[2] != (byte)commMode || readBuf[3] != 0x03 || readBuf[4] != 0xCC)
+                        return false;
+                }
+                else
+                    return false;
+            }
+
+            return true;
         }
 
         public bool writeRegBurst(byte startregaddr, byte[] data, int count)
