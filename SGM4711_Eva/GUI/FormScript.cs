@@ -168,7 +168,7 @@ namespace GeneralRegConfigPlatform.MDGUI
                             case SCRIPT_COMMAND.TI_WRITE:
                                 if (myRegOp != null)
                                 {
-                                    myRegOp.RegWrite(addr, data, firstRW);
+                                    myRegOp.RegWrite(addr, data, firstRW, firstRW, false);
                                     firstRW = false;
                                 }
                                 else
@@ -267,6 +267,8 @@ namespace GeneralRegConfigPlatform.MDGUI
 
 
                 }
+                
+                myRegOp.PowerOn();
 
             }
             catch

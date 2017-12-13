@@ -79,6 +79,11 @@
             this.numUP_Input0.Size = new System.Drawing.Size(59, 21);
             this.numUP_Input0.TabIndex = 99;
             this.numUP_Input0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numUP_Input0.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numUP_Input0.ValueChanged += new System.EventHandler(this.numUP_Input0_ValueChanged);
             // 
             // line20
@@ -218,12 +223,17 @@
             // numUP_Input1
             // 
             this.numUP_Input1.DecimalPlaces = 3;
+            this.numUP_Input1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numUP_Input1.Location = new System.Drawing.Point(94, 126);
             this.numUP_Input1.Maximum = new decimal(new int[] {
-            39999999,
+            3999,
             0,
             0,
-            458752});
+            196608});
             this.numUP_Input1.Minimum = new decimal(new int[] {
             4,
             0,

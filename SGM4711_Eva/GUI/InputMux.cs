@@ -102,10 +102,13 @@ namespace SGM4711_Eva.GUI
             uint bfValue = 0;
             bfValue = rdbtn_CHL_SourceL.Checked ? 0u : (rdbtn_CHL_SourceR.Checked ? 1u : 2u);
 
-            regMap[0x20]["SDIN_TO_CH1"].BFValue = bfValue;
+            if (regMap[0x20]["SDIN_TO_CH1"].BFValue != bfValue)
+            {
+                regMap[0x20]["SDIN_TO_CH1"].BFValue = bfValue;
 
-            myRegOp.RegWrite(regMap[0x20]);
-            myRegOp.UpdateRegSettingSource();
+                myRegOp.RegWrite(regMap[0x20]);
+                myRegOp.UpdateRegSettingSource();
+            }
         }
 
         private void rdbtn_CHR_Source_CheckedChanged(object sender, EventArgs e)
@@ -116,10 +119,13 @@ namespace SGM4711_Eva.GUI
             uint bfValue = 0;
             bfValue = rdbtn_CHR_SourceL.Checked ? 0u : (rdbtn_CHR_SourceR.Checked ? 1u : 2u);
 
-            regMap[0x20]["SDIN_TO_CH2"].BFValue = bfValue;
+            if (regMap[0x20]["SDIN_TO_CH2"].BFValue != bfValue)
+            {
+                regMap[0x20]["SDIN_TO_CH2"].BFValue = bfValue;
 
-            myRegOp.RegWrite(regMap[0x20]);
-            myRegOp.UpdateRegSettingSource();
+                myRegOp.RegWrite(regMap[0x20]);
+                myRegOp.UpdateRegSettingSource();
+            }
         }
 
         private void rdbtn_SubCH_Source_CheckedChanged(object sender, EventArgs e)
@@ -130,10 +136,13 @@ namespace SGM4711_Eva.GUI
             uint bfValue = 0;
             bfValue = rdbtn_SubCH_SourceL.Checked ? 0u : (rdbtn_SubCH_SourceR.Checked ? 1u : 2u);
 
-            regMap[0x21]["CH4_SOURCE_SEL"].BFValue = bfValue;
+            if (regMap[0x21]["CH4_SOURCE_SEL"].BFValue != bfValue)
+            {
+                regMap[0x21]["CH4_SOURCE_SEL"].BFValue = bfValue;
 
-            myRegOp.RegWrite(regMap[0x21]);
-            myRegOp.UpdateRegSettingSource();
+                myRegOp.RegWrite(regMap[0x21]);
+                myRegOp.UpdateRegSettingSource();
+            }
         }
 
 

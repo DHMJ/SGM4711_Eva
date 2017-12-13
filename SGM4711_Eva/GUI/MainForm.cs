@@ -77,7 +77,7 @@ namespace SGM4711_Eva
 
             // init Mian GUI commbox
             this.cmb_ModeConfig.SelectedIndex = 3;
-            //this.cmb_InterfaceConfig.SelectedIndex = 5;
+            this.cmb_InterfaceConfig.SelectedIndex = 5;
             this.cmb_SampleRate.SelectedIndex = 3;
 
             // Init double click events for my button
@@ -158,7 +158,7 @@ namespace SGM4711_Eva
             if (ifRepower)
             {
                 regMap[0x05]["ALL_CH_PD"].BFValue = 0x1;
-                RegWrite(0x05, false);
+                RegWrite(0x05, false, false, false);
             }
         }
 
@@ -167,7 +167,7 @@ namespace SGM4711_Eva
             if (ifRepower)
             {
                 regMap[0x05]["ALL_CH_PD"].BFValue = 0x0;
-                RegWrite(0x05, false);
+                RegWrite(0x05, false, false, false);
                 ifRepower = false;
             }
         }
@@ -405,15 +405,18 @@ namespace SGM4711_Eva
             return ret;
         }
 
-        public bool RegWrite(byte _regAddr, byte[] data, bool ifTimeLog)
+        public bool RegWrite(byte _regAddr, byte[] data, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn)
         {
             bool ret = false;
             string log = "";
             if (ifTimeLog)
             {
-                log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
-                PowerDown();
+                //log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
+                this.outputLogCtrl.AppendLog(String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime()));                
             }
+
+            if (ifPowerDown)
+                PowerDown();
             
             if (myDongle.IsOpen && regMap != null)
             {
@@ -439,7 +442,7 @@ namespace SGM4711_Eva
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
             }
 
-            if (ifTimeLog)
+            if (ifPowerOn)
                 PowerOn();
 
             return ret;
@@ -447,20 +450,20 @@ namespace SGM4711_Eva
 
         public bool RegWrite(byte _regAddr)
         {
-            return RegWrite(_regAddr, true);
+            return RegWrite(_regAddr, true, true, true);
         }
 
-        public bool RegWrite(byte _regAddr, bool ifTimeLog)
+        public bool RegWrite(byte _regAddr, bool ifTimeLog,bool ifPowerDown, bool ifPowerOn)
         {
             bool ret = false;
             string log = "";
             if (ifTimeLog)
             {
-                log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
-                PowerDown();
+                this.outputLogCtrl.AppendLog(String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime()));                
             }
-            //else
-            //    log = String.Format("I2C Write >> \r\n");
+
+            if (ifPowerDown)
+                PowerDown();
 
             if (myDongle.IsOpen && regMap != null)
             {
@@ -489,7 +492,7 @@ namespace SGM4711_Eva
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
             }
 
-            if (ifTimeLog)
+            if (ifPowerOn)
                 PowerOn();
 
             return ret;
@@ -497,20 +500,20 @@ namespace SGM4711_Eva
 
         public bool RegWrite(byte[] _regAddr)
         {
-            return RegWrite(_regAddr, true);
+            return RegWrite(_regAddr, true, true, true);
         }
 
-        public bool RegWrite(byte[] _regAddr, bool ifTimeLog)
+        public bool RegWrite(byte[] _regAddr, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn)
         {
             bool ret = true;
             string log = "";
             if (ifTimeLog)
             {
-                log = String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime());
-                PowerDown();
+                this.outputLogCtrl.AppendLog(String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime()));
             }
-            //else
-            //    log = String.Format("I2C Write >> ");
+
+            if (ifPowerDown)
+                PowerDown();
 
             if (myDongle.IsOpen && regMap != null)
             {
@@ -522,17 +525,18 @@ namespace SGM4711_Eva
                     if (myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount))
                     {
                         tempData = tempReg.ByteValue;
-                        log += "\r\n\tOK\t" + "Address: 0x" + tempReg.RegAddress.ToString("X2") + "\tData(Hex):";
+                        log = "\tOK\t" + "Address: 0x" + tempReg.RegAddress.ToString("X2") + "\tData(Hex):";
                         for (int ix_byte = 0; ix_byte < tempReg.ByteCount; ix_byte++)
                         {
                             log += " " + tempData[ix_byte].ToString("X2");
                         }
+                        this.outputLogCtrl.AppendLog(log);
                     }
                     else
                     {
-                        // if failed during writting, output succeeded log first and reset log.
-                        this.outputLogCtrl.AppendLog(log);
+                        // if failed during writting, output succeeded log first and reset log.                        
                         log = "\tFailed\t" + "Address: 0x" + tempReg.RegAddress.ToString("X2");
+                        this.outputLogCtrl.AppendLog(log, failedLogColor);
                         ret = false;
                         break;
                     }
@@ -542,15 +546,17 @@ namespace SGM4711_Eva
             else
             {
                 ret = false;
-                log += "\r\n\tFailed\t" + "Address: 0x" + _regAddr[0].ToString("X2");
+                log = "";
+                for (int ix = 0; ix < _regAddr.Length; ix++)
+                {
+                    log += "\r\n\tFailed\t" + "Address: 0x" + _regAddr[ix].ToString("X2");
+                    if (ix < _regAddr.Length - 1)
+                        log += "\r\n";
+                }
+                this.outputLogCtrl.AppendLog(log, failedLogColor);                
             }
 
-            if (ret)
-                this.outputLogCtrl.AppendLog(log);
-            else
-                this.outputLogCtrl.AppendLog(log, failedLogColor);
-
-            if (ifTimeLog)
+            if (ifPowerOn)
                 PowerOn();
 
             return ret;
@@ -558,20 +564,21 @@ namespace SGM4711_Eva
 
         public bool RegWrite(Register _reg)
         {
-            return RegWrite(_reg, true);
+            return RegWrite(_reg, true, true, true);
         }
 
-        public bool RegWrite(Register _reg, bool ifTimeLog)
+        public bool RegWrite(Register _reg, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn)
         {
             bool ret = false;
             string log = "";
             if (ifTimeLog)
             {
-                log = String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime());
-                PowerDown();
+                this.outputLogCtrl.AppendLog(String.Format("\r\nI2C Write >> {0} \r\n", DateTime.Now.ToLocalTime()));
+                //PowerDown();
             }
-            //else
-            //    log = String.Format("I2C Write >> \r\n");
+
+            if (ifPowerDown)
+                PowerDown();
 
             if (myDongle.IsOpen)
             {
@@ -598,7 +605,7 @@ namespace SGM4711_Eva
                 this.outputLogCtrl.AppendLog(log, failedLogColor);
             }
 
-            if (ifTimeLog)
+            if (ifPowerOn)
                 PowerOn();
 
             return ret;
@@ -606,20 +613,20 @@ namespace SGM4711_Eva
 
         public bool RegWrite(Register[] _reg)
         {
-            return RegWrite(_reg, true); 
+            return RegWrite(_reg, true, true, true); 
         }
 
-        public bool RegWrite(Register[] _reg, bool ifTimeLog)
+        public bool RegWrite(Register[] _reg, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn)
         {
             bool ret = true;
             string log = "";
             if (ifTimeLog)
             {
-                log = String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime());
-                PowerDown();
+                this.outputLogCtrl.AppendLog(String.Format("\r\nI2C Write >> {0}", DateTime.Now.ToLocalTime()));
             }
-            //else
-            //    log = String.Format("I2C Write >> ");
+
+            if (ifPowerDown)
+                PowerDown();
 
             if (myDongle.IsOpen)
             {
@@ -629,19 +636,20 @@ namespace SGM4711_Eva
                     if (myDongle.writeRegBurst(_reg[ix].RegAddress, _reg[ix].ByteValue, _reg[ix].ByteCount))
                     {
                         tempData = _reg[ix].ByteValue;
-                        log += "\r\n\tOK\t" + "Address: 0x" + _reg[ix].RegAddress.ToString("X2") + "\tData(Hex):";
+                        log = "\tOK\t" + "Address: 0x" + _reg[ix].RegAddress.ToString("X2") + "\tData(Hex):";
                         for (int ix_byte = 0; ix_byte < _reg[ix].ByteCount; ix_byte++)
                         {
                             log += " " + tempData[ix_byte].ToString("X2");
                         }
+                        this.outputLogCtrl.AppendLog(log);
                     }
                     else
                     {
-                        // if failed during writting, output succeeded log first and reset log.
-                        this.outputLogCtrl.AppendLog(log);
+                        // if failed during writting, output succeeded log first and reset log.                        
                         log = "\tFailed\t" + "Address: 0x" + _reg[ix].RegAddress.ToString("X2");
+                        this.outputLogCtrl.AppendLog(log, failedLogColor);
                         ret = false;
-                        break;
+                        //break;
                     }
                 }
                //ret = true;
@@ -649,15 +657,17 @@ namespace SGM4711_Eva
             else
             {
                 ret = false;
-                log += "\r\n\tFailed\t" + "Address: 0x" + _reg[0].RegAddress.ToString("X2");
+                log = "";
+                for (int ix = 0; ix < _reg.Length; ix++)
+                {
+                    log += "\tFailed\t" + "Address: 0x" + _reg[ix].RegAddress.ToString("X2");
+                    if (ix < _reg.Length - 1)
+                        log += "\r\n";
+                }
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
             }
 
-            if (ret)
-                this.outputLogCtrl.AppendLog(log);
-            else
-                this.outputLogCtrl.AppendLog(log, failedLogColor);
-
-            if (ifTimeLog)
+            if (ifPowerOn)
                 PowerOn();
 
             return ret;
@@ -846,7 +856,7 @@ namespace SGM4711_Eva
             {
                 if (freeRegCtrl.ActivedEnList[ix])
                 {
-                    RegWrite(freeRegCtrl.RegAddrList[ix], firstWr);
+                    RegWrite(freeRegCtrl.RegAddrList[ix], firstWr, firstWr, false);
                     firstWr = false;
                 }
             }
@@ -1568,7 +1578,7 @@ namespace SGM4711_Eva
                         // 0x08
                         regMap[0x08].RegValue = (uint)((24 - gain) * 2);
                         UpdateRegSettingSource(0x08);
-                        RegWrite(0x08);
+                        RegWrite(0x08, true, false, false);
 
                         // if not checked, from 0x08
                         if (!chb_v3Source.Checked)
@@ -1582,7 +1592,7 @@ namespace SGM4711_Eva
                         // 0x09
                         regMap[0x09].RegValue = (uint)((24 - gain) * 2);
                         UpdateRegSettingSource(0x09);
-                        RegWrite(0x09);
+                        RegWrite(0x09, true, false, false);
 
                         // if not checked, from 0x08
                         if (!chb_v4Source.Checked)
@@ -1598,7 +1608,7 @@ namespace SGM4711_Eva
                         {
                             regMap[0x08].RegValue = (uint)((24 - gain) * 2);
                             UpdateRegSettingSource(0x08);
-                            RegWrite(0x08);
+                            RegWrite(0x08, true, false, false);
                             this.txt_VOL1.Text = this.txt_VOL3.Text;
                             this.txt_VOL1.ForeColor = this.txt_VOL3.ForeColor;
                         }
@@ -1606,7 +1616,7 @@ namespace SGM4711_Eva
                         {
                             regMap[0x0A].RegValue = (uint)((24 - gain) * 2);
                             UpdateRegSettingSource(0x0A);
-                            RegWrite(0x0A);
+                            RegWrite(0x0A, true, false, false);
 
                             if (chb_v4Source.Checked)
                             {
@@ -1622,7 +1632,7 @@ namespace SGM4711_Eva
                         {
                             regMap[0x09].RegValue = (uint)((24 - gain) * 2);
                             UpdateRegSettingSource(0x09);
-                            RegWrite(0x09);
+                            RegWrite(0x09, true, false, false);
                             this.txt_VOL2.Text = this.txt_VOL4.Text;
                             this.txt_VOL2.ForeColor = this.txt_VOL4.ForeColor;
                         }
@@ -1630,7 +1640,7 @@ namespace SGM4711_Eva
                         {
                             regMap[0x0A].RegValue = (uint)((24 - gain) * 2);
                             UpdateRegSettingSource(0x0A);
-                            RegWrite(0x0A);
+                            RegWrite(0x0A, true, false, false);
 
                             if (chb_v3Source.Checked)
                             {
@@ -2432,7 +2442,7 @@ namespace SGM4711_Eva
 
             regAddrList.Clear();
             Register tempReg;
-            this.chb_Enable.Enabled = true;
+            //this.chb_Enable.Enabled = true;
             switch (this.cmb_ModeConfig.SelectedIndex)
             {
                 case 0:
@@ -2636,7 +2646,7 @@ namespace SGM4711_Eva
                     break;
 
                 default:
-                    this.chb_Enable.Enabled = false;
+                    //this.chb_Enable.Enabled = false;
                     break;
             }
 
@@ -2651,7 +2661,7 @@ namespace SGM4711_Eva
                 bool ifFirstWr = true;
                 for (int ix = 0; ix < regAddrList.Count; ix++)
                 {
-                    RegWrite(regAddrList[ix], ifFirstWr);
+                    RegWrite(regAddrList[ix], ifFirstWr, ifFirstWr, false);
                     ifFirstWr = false;
                 }
                 PowerOn();
@@ -2796,7 +2806,7 @@ namespace SGM4711_Eva
             {
                 regMap[0x07].RegValue = tempVlaue;
                 UpdateRegSettingSource(0x07);
-                RegWrite(0x07);
+                RegWrite(0x07, true, false, false);
             }
         }
 
@@ -2872,7 +2882,7 @@ namespace SGM4711_Eva
                 {
                     regMap[0x07].RegValue = 0xFF - (uint)this.trb_MasterVolume.Value;
                     UpdateRegSettingSource(0x07);
-                    RegWrite(0x07);
+                    RegWrite(0x07,true, false, false);
                 }
 
                 this.txt_MasterVol.TextChanged += txt_MasterVol_TextChanged;
@@ -2904,7 +2914,7 @@ namespace SGM4711_Eva
                     regMap[0x07].RegValue = 0xFF;
                     UpdateRegSettingSource(0x07);
 
-                    RegWrite(0x07);
+                    RegWrite(0x07, true, false, false);
                 }
                 else
                 {
@@ -2985,7 +2995,7 @@ namespace SGM4711_Eva
                         continue;
                     }
 
-                    RegWrite(tempReg, ifFirstWr);
+                    RegWrite(tempReg, ifFirstWr, ifFirstWr, false);
                     ifFirstWr = false;
 
                 }
@@ -3031,7 +3041,7 @@ namespace SGM4711_Eva
                     Array.Copy(tempRegDatas, copiedCount, tempData, 0, tempReg.ByteCount);
                     copiedCount += tempReg.ByteCount;
                     tempReg.ByteValue = tempData;
-                    RegWrite(tempReg, ifFirstWr);
+                    RegWrite(tempReg, ifFirstWr, ifFirstWr, false);
                     ifFirstWr = false;
 
                     //string tempLog = "";
@@ -3054,6 +3064,15 @@ namespace SGM4711_Eva
             if (regMap == null)
                 return;
 
+            if (cmb_ModeConfig.SelectedIndex == 3)
+            {
+                MessageBox.Show("Please select \"Mode\" first!");
+                chb_Enable.CheckedChanged -= chb_Enable_CheckedChanged;
+                chb_Enable.Checked = true;
+                chb_Enable.CheckedChanged += chb_Enable_CheckedChanged;
+                return;
+            }
+
             if (chb_Enable.Checked)
             {
                 regMap[0x05]["ALL_CH_PD"].BFValue = 0x1;
@@ -3068,7 +3087,7 @@ namespace SGM4711_Eva
             }
 
             UpdateRegSettingSource(0x05, new string[] { "ALL_CH_PD" });
-            RegWrite(0x05);
+            RegWrite(0x05, true, false, false);
         }
 
         #endregion Main GUI Tab

@@ -52,30 +52,39 @@ namespace SGM4711_Eva.GUI
         {
             if (reg == null) return;
 
-            reg[inputBF[0]].BFValue = (uint)Math.Round((double)this.numUP_Input0.Value * Math.Pow(2, 23));
+            if (reg[inputBF[0]].BFValue != (uint)Math.Round((double)this.numUP_Input0.Value * Math.Pow(2, 23)))
+            {
+                reg[inputBF[0]].BFValue = (uint)Math.Round((double)this.numUP_Input0.Value * Math.Pow(2, 23));
 
-            myRegOp.RegWrite(reg);
-            myRegOp.UpdateRegSettingSource();
+                myRegOp.RegWrite(reg);
+                myRegOp.UpdateRegSettingSource();
+            }
         }
 
         private void numUP_Input1_ValueChanged(object sender, EventArgs e)
         {
             if (reg == null) return;
 
-            reg[inputBF[1]].BFValue = (uint)Math.Round((double)this.numUP_Input1.Value * Math.Pow(2, 23));
+            if (reg[inputBF[1]].BFValue != (uint)Math.Round((double)this.numUP_Input1.Value * Math.Pow(2, 23)))
+            {
+                reg[inputBF[1]].BFValue = (uint)Math.Round((double)this.numUP_Input1.Value * Math.Pow(2, 23));
 
-            myRegOp.RegWrite(reg);
-            myRegOp.UpdateRegSettingSource();
+                myRegOp.RegWrite(reg);
+                myRegOp.UpdateRegSettingSource();
+            }
         }
 
         private void numUP_Input2_ValueChanged(object sender, EventArgs e)
         {
             if (reg == null) return;
 
-            reg[inputBF[2]].BFValue = (uint)Math.Round((double)this.numUP_Input2.Value * Math.Pow(2, 23));
+            if (reg[inputBF[2]].BFValue != (uint)Math.Round((double)this.numUP_Input2.Value * Math.Pow(2, 23)))
+            {
+                reg[inputBF[2]].BFValue = (uint)Math.Round((double)this.numUP_Input2.Value * Math.Pow(2, 23));
 
-            myRegOp.RegWrite(reg);
-            myRegOp.UpdateRegSettingSource();
+                myRegOp.RegWrite(reg);
+                myRegOp.UpdateRegSettingSource();
+            }
         }
 
     }

@@ -158,6 +158,7 @@
             this.tabP_IICMemTool = new System.Windows.Forms.TabPage();
             this.tabCtrl_Output = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label44 = new System.Windows.Forms.Label();
             this.line14 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line13 = new SGM4711_Eva.MDUserCtrls.Line();
@@ -761,6 +762,7 @@
             // 
             this.tabP_systemConfig.AutoScroll = true;
             this.tabP_systemConfig.BackColor = System.Drawing.Color.White;
+            this.tabP_systemConfig.Controls.Add(this.label44);
             this.tabP_systemConfig.Controls.Add(this.label37);
             this.tabP_systemConfig.Controls.Add(this.label36);
             this.tabP_systemConfig.Controls.Add(this.txt_MasterVol);
@@ -874,7 +876,6 @@
             this.chb_Enable.BackColor = System.Drawing.Color.IndianRed;
             this.chb_Enable.Checked = true;
             this.chb_Enable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chb_Enable.Enabled = false;
             this.chb_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.chb_Enable.Location = new System.Drawing.Point(67, 379);
             this.chb_Enable.Name = "chb_Enable";
@@ -2136,6 +2137,17 @@
             this.tabPage1.Size = new System.Drawing.Size(591, 192);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label44.Location = new System.Drawing.Point(49, 364);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(136, 12);
+            this.label44.TabIndex = 50;
+            this.label44.Text = "Select \"Mode\" before power on";
             // 
             // line14
             // 
@@ -4997,7 +5009,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.65";
+            this.Text = "SGM4711 Eva_v0.67";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menu_main.ResumeLayout(false);
@@ -5384,6 +5396,7 @@
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Button btn_SyncToChip;
+        private System.Windows.Forms.Label label44;
 
     }
 }

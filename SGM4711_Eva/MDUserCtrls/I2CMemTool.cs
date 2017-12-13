@@ -242,7 +242,7 @@ namespace SGM4711_Eva.MDUserCtrls
                     Array.Copy(wrValuesList.ToArray(), 0, wrValues, 0, wrValues.Length);
                 }
 
-                if (myRegOp.RegWrite(startAddr, wrValues, true))
+                if (myRegOp.RegWrite(startAddr, wrValues, true, true, true))
                 {
                     //MessageBox.Show(String.Format("{0} bytes have been written.", realCount));
                 }

@@ -25,23 +25,23 @@ namespace MD.MDCommon
 
         bool RegRead(Register[] _reg, bool ifTimeLog);
 
-        bool RegWrite(byte _regAddr, byte[] data, bool ifTimeLog);
+        bool RegWrite(byte _regAddr, byte[] data, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn);
 
         bool RegWrite(byte _regAddr);
 
-        bool RegWrite(byte _regAddr, bool ifTimeLog);
+        bool RegWrite(byte _regAddr, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn);
 
         bool RegWrite(byte[] _regAddr);
 
-        bool RegWrite(byte[] _regAddr, bool ifTimeLog);
+        bool RegWrite(byte[] _regAddr, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn);
 
         bool RegWrite(Register _reg);
 
-        bool RegWrite(Register _reg, bool ifTimeLog);
+        bool RegWrite(Register _reg, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn);
 
         bool RegWrite(Register[] _reg);
 
-        bool RegWrite(Register[] _reg, bool ifTimeLog);
+        bool RegWrite(Register[] _reg, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn);
 
         void UpdateRegSettingSource();
 

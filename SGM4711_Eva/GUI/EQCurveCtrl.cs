@@ -1297,9 +1297,9 @@ namespace SGM4711_Eva.GUI
                 //    myRegOp.RegWrite(currentReg, false);
                 //else if(ix == 0)
                 if(ix == 0)
-                    myRegOp.RegWrite(currentReg, true);
+                    myRegOp.RegWrite(currentReg, true, true, false);
                 else
-                    myRegOp.RegWrite(currentReg, false);
+                    myRegOp.RegWrite(currentReg, false, false, false);
             }
 
             myRegOp.PowerOn();
