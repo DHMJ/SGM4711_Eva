@@ -334,7 +334,7 @@
             this.btn_Update.Name = "btn_Update";
             this.btn_Update.Size = new System.Drawing.Size(66, 22);
             this.btn_Update.TabIndex = 21;
-            this.btn_Update.Text = "Update";
+            this.btn_Update.Text = "Download";
             this.btn_Update.UseVisualStyleBackColor = true;
             this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 

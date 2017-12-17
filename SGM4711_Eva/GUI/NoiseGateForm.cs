@@ -131,25 +131,25 @@ namespace SGM4711_Eva.GUI
 
         private void cmb_NG_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox currentCmb = (sender as ComboBox);
+            //ComboBox currentCmb = (sender as ComboBox);
             
-            Register NGCtrl0 = regMap[0x63];
-            Register NGCtrl1 = regMap[0x64];
-            if(currentCmb == cmb_NG_TH_CH0)
-                NGCtrl0["NG_CH0_NT[2:0]"].BFValue = (uint)currentCmb.SelectedIndex;
-            else if(currentCmb == cmb_NG_TH_CH1)
-                NGCtrl0["NG_CH1_NT[2:0]"].BFValue = (uint)currentCmb.SelectedIndex;
-            else if(currentCmb == cmb_NG_TH_SubCH)
-                NGCtrl0["NG_SUB_NT[2:0]"].BFValue = (uint)currentCmb.SelectedIndex;
-            else if(currentCmb == cmb_NG_RT)
-                NGCtrl1["NG_RT[3:0]"].BFValue = (uint)currentCmb.SelectedIndex;
-            else if(currentCmb == cmb_NG_HT)
-                NGCtrl1["NG_HT[3:0]"].BFValue = (uint)currentCmb.SelectedIndex;
-            else if(currentCmb == cmb_NG_AT)
-                NGCtrl1["NG_AT[3:0]"].BFValue = (uint)currentCmb.SelectedIndex;
+            //Register NGCtrl0 = regMap[0x63];
+            //Register NGCtrl1 = regMap[0x64];
+            //if(currentCmb == cmb_NG_TH_CH0)
+            //    NGCtrl0["NG_CH0_NT[2:0]"].BFValue = (uint)currentCmb.SelectedIndex;
+            //else if(currentCmb == cmb_NG_TH_CH1)
+            //    NGCtrl0["NG_CH1_NT[2:0]"].BFValue = (uint)currentCmb.SelectedIndex;
+            //else if(currentCmb == cmb_NG_TH_SubCH)
+            //    NGCtrl0["NG_SUB_NT[2:0]"].BFValue = (uint)currentCmb.SelectedIndex;
+            //else if(currentCmb == cmb_NG_RT)
+            //    NGCtrl1["NG_RT[3:0]"].BFValue = (uint)currentCmb.SelectedIndex;
+            //else if(currentCmb == cmb_NG_HT)
+            //    NGCtrl1["NG_HT[3:0]"].BFValue = (uint)currentCmb.SelectedIndex;
+            //else if(currentCmb == cmb_NG_AT)
+            //    NGCtrl1["NG_AT[3:0]"].BFValue = (uint)currentCmb.SelectedIndex;
 
-            this.myRegOp.RegWrite(new Register[]{NGCtrl0, NGCtrl1});
-            this.myRegOp.UpdateRegSettingSource();
+            //this.myRegOp.RegWrite(new Register[]{NGCtrl0, NGCtrl1});
+            //this.myRegOp.UpdateRegSettingSource();
         }
 
         private void btn_ImportNG_Click(object sender, EventArgs e)
@@ -263,6 +263,23 @@ namespace SGM4711_Eva.GUI
                 sw.Close();
             }
 
+        }
+
+        private void btn_Download_Click(object sender, EventArgs e)
+        {
+            Register NGCtrl0 = regMap[0x63];
+            Register NGCtrl1 = regMap[0x64];
+
+            NGCtrl0["NG_CH0_NT[2:0]"].BFValue = (uint)cmb_NG_TH_CH0.SelectedIndex;
+            NGCtrl0["NG_CH1_NT[2:0]"].BFValue = (uint)cmb_NG_TH_CH1.SelectedIndex;
+            NGCtrl0["NG_SUB_NT[2:0]"].BFValue = (uint)cmb_NG_TH_SubCH.SelectedIndex;
+
+            NGCtrl1["NG_RT[3:0]"].BFValue = (uint)cmb_NG_RT.SelectedIndex;
+            NGCtrl1["NG_HT[3:0]"].BFValue = (uint)cmb_NG_HT.SelectedIndex;
+            NGCtrl1["NG_AT[3:0]"].BFValue = (uint)cmb_NG_AT.SelectedIndex;
+
+            this.myRegOp.RegWrite(new Register[] { NGCtrl0, NGCtrl1 });
+            this.myRegOp.UpdateRegSettingSource();
         }
 
 

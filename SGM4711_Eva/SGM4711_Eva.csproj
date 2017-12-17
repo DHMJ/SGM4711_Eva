@@ -102,6 +102,12 @@
     <Compile Include="GUI\NoiseGateForm.Designer.cs">
       <DependentUpon>NoiseGateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\OutputMuxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\OutputMuxForm.Designer.cs">
+      <DependentUpon>OutputMuxForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDCommon\CustomerRegList.cs" />
     <Compile Include="MDCommon\IRegOperation.cs" />
     <Compile Include="MDUserCtrls\Dot.cs">
@@ -158,11 +164,11 @@
     <Compile Include="GUI\InputMux.Designer.cs">
       <DependentUpon>InputMux.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\OutputMux.cs">
+    <Compile Include="GUI\OutputMux_backup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\OutputMux.Designer.cs">
-      <DependentUpon>OutputMux.cs</DependentUpon>
+    <Compile Include="GUI\OutputMux_backup.Designer.cs">
+      <DependentUpon>OutputMux_backup.cs</DependentUpon>
     </Compile>
     <Compile Include="MDUserCtrls\Add.cs">
       <SubType>UserControl</SubType>
@@ -308,8 +314,11 @@
     <EmbeddedResource Include="GUI\NoiseGateForm.resx">
       <DependentUpon>NoiseGateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\OutputMux.resx">
-      <DependentUpon>OutputMux.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\OutputMuxForm.resx">
+      <DependentUpon>OutputMuxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\OutputMux_backup.resx">
+      <DependentUpon>OutputMux_backup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDUserCtrls\Add.resx">
       <DependentUpon>Add.cs</DependentUpon>

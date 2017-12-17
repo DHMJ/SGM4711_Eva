@@ -58,7 +58,6 @@
             this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemHelp_About = new System.Windows.Forms.ToolStripMenuItem();
             this.myTips = new System.Windows.Forms.ToolTip(this.components);
-            this.numUP_OpVoltage = new System.Windows.Forms.NumericUpDown();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBar_DeviceConnected = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar_FWVersion = new System.Windows.Forms.ToolStripStatusLabel();
@@ -68,6 +67,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabCtrl_MainGUI = new System.Windows.Forms.TabControl();
             this.tabP_systemConfig = new System.Windows.Forms.TabPage();
+            this.label44 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.txt_MasterVol = new System.Windows.Forms.TextBox();
@@ -109,11 +109,11 @@
             this.btn_ClearStatus = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cmb_InterfaceConfig = new System.Windows.Forms.ComboBox();
+            this.cmb_OpVoltage = new System.Windows.Forms.ComboBox();
             this.cmb_ModeConfig = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.btn_MasterVolume = new System.Windows.Forms.Button();
             this.tabP_AudioEngine = new System.Windows.Forms.TabPage();
@@ -158,7 +158,6 @@
             this.tabP_IICMemTool = new System.Windows.Forms.TabPage();
             this.tabCtrl_Output = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label44 = new System.Windows.Forms.Label();
             this.line14 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line13 = new SGM4711_Eva.MDUserCtrls.Line();
@@ -378,7 +377,6 @@
             this.line16 = new SGM4711_Eva.MDUserCtrls.Line();
             this.outputLogCtrl = new SGM4711_Eva.MDUserCtrls.OutputLogCtrl();
             this.menu_main.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).BeginInit();
             this.statusBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -639,33 +637,6 @@
             this.MenuItemHelp_About.Text = "&About";
             this.MenuItemHelp_About.ToolTipText = "About";
             // 
-            // numUP_OpVoltage
-            // 
-            this.numUP_OpVoltage.DecimalPlaces = 1;
-            this.numUP_OpVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.numUP_OpVoltage.Location = new System.Drawing.Point(18, 64);
-            this.numUP_OpVoltage.Maximum = new decimal(new int[] {
-            26,
-            0,
-            0,
-            0});
-            this.numUP_OpVoltage.Minimum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.numUP_OpVoltage.Name = "numUP_OpVoltage";
-            this.numUP_OpVoltage.Size = new System.Drawing.Size(80, 29);
-            this.numUP_OpVoltage.TabIndex = 0;
-            this.numUP_OpVoltage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.myTips.SetToolTip(this.numUP_OpVoltage, "b00: 24V(default)\r\nb01: 18V\r\nb10: 12V\r\nb11: 8V");
-            this.numUP_OpVoltage.Value = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
-            this.numUP_OpVoltage.ValueChanged += new System.EventHandler(this.numUP_OpVoltage_ValueChanged);
-            // 
             // statusBar
             // 
             this.statusBar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -807,12 +778,11 @@
             this.tabP_systemConfig.Controls.Add(this.line1);
             this.tabP_systemConfig.Controls.Add(this.grb_OpeStatus);
             this.tabP_systemConfig.Controls.Add(this.cmb_InterfaceConfig);
+            this.tabP_systemConfig.Controls.Add(this.cmb_OpVoltage);
             this.tabP_systemConfig.Controls.Add(this.cmb_ModeConfig);
             this.tabP_systemConfig.Controls.Add(this.label4);
             this.tabP_systemConfig.Controls.Add(this.label3);
             this.tabP_systemConfig.Controls.Add(this.label2);
-            this.tabP_systemConfig.Controls.Add(this.label1);
-            this.tabP_systemConfig.Controls.Add(this.numUP_OpVoltage);
             this.tabP_systemConfig.Controls.Add(this.label24);
             this.tabP_systemConfig.Controls.Add(this.btn_MasterVolume);
             this.tabP_systemConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
@@ -822,6 +792,17 @@
             this.tabP_systemConfig.Size = new System.Drawing.Size(1116, 456);
             this.tabP_systemConfig.TabIndex = 0;
             this.tabP_systemConfig.Text = "System Configuration";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label44.Location = new System.Drawing.Point(49, 364);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(136, 12);
+            this.label44.TabIndex = 50;
+            this.label44.Text = "Select \"Mode\" before power on";
             // 
             // label37
             // 
@@ -1181,6 +1162,7 @@
             // 
             // cmb_SampleRate
             // 
+            this.cmb_SampleRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.cmb_SampleRate.Enabled = false;
             this.cmb_SampleRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cmb_SampleRate.FormattingEnabled = true;
@@ -1193,11 +1175,10 @@
             "22.05k/24k",
             "8k",
             "11.025k/12k"});
-            this.cmb_SampleRate.Location = new System.Drawing.Point(10, 62);
+            this.cmb_SampleRate.Location = new System.Drawing.Point(19, 62);
             this.cmb_SampleRate.Name = "cmb_SampleRate";
-            this.cmb_SampleRate.Size = new System.Drawing.Size(93, 23);
+            this.cmb_SampleRate.Size = new System.Drawing.Size(75, 23);
             this.cmb_SampleRate.TabIndex = 44;
-            this.cmb_SampleRate.Text = "11.025k/12k";
             // 
             // label15
             // 
@@ -1326,7 +1307,10 @@
             // 
             // cmb_InterfaceConfig
             // 
-            this.cmb_InterfaceConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_InterfaceConfig.BackColor = System.Drawing.SystemColors.Window;
+            this.cmb_InterfaceConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_InterfaceConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmb_InterfaceConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.cmb_InterfaceConfig.FormattingEnabled = true;
             this.cmb_InterfaceConfig.Items.AddRange(new object[] {
             "Right-Justified 16bit",
@@ -1338,25 +1322,50 @@
             "Left-Justified 16bit",
             "Left-Justified 20bit",
             "Left-Justified 24bit"});
-            this.cmb_InterfaceConfig.Location = new System.Drawing.Point(274, 64);
+            this.cmb_InterfaceConfig.Location = new System.Drawing.Point(292, 64);
             this.cmb_InterfaceConfig.Name = "cmb_InterfaceConfig";
-            this.cmb_InterfaceConfig.Size = new System.Drawing.Size(195, 32);
+            this.cmb_InterfaceConfig.Size = new System.Drawing.Size(185, 28);
             this.cmb_InterfaceConfig.TabIndex = 6;
             this.cmb_InterfaceConfig.SelectedIndexChanged += new System.EventHandler(this.cmb_InterfaceConfig_SelectedIndexChanged);
             // 
+            // cmb_OpVoltage
+            // 
+            this.cmb_OpVoltage.BackColor = System.Drawing.SystemColors.Window;
+            this.cmb_OpVoltage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmb_OpVoltage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_OpVoltage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmb_OpVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.cmb_OpVoltage.FormattingEnabled = true;
+            this.cmb_OpVoltage.Items.AddRange(new object[] {
+            "00: 22~26V",
+            "01/10: 15~22V",
+            "11: 8~15V",
+            "NONE (default)"});
+            this.cmb_OpVoltage.Location = new System.Drawing.Point(18, 64);
+            this.cmb_OpVoltage.Name = "cmb_OpVoltage";
+            this.cmb_OpVoltage.Size = new System.Drawing.Size(152, 28);
+            this.cmb_OpVoltage.TabIndex = 5;
+            this.cmb_OpVoltage.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmb_OpVoltage_DrawItem);
+            this.cmb_OpVoltage.SelectedIndexChanged += new System.EventHandler(this.cmb_OpVoltage_SelectedIndexChanged);
+            // 
             // cmb_ModeConfig
             // 
-            this.cmb_ModeConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_ModeConfig.BackColor = System.Drawing.SystemColors.Window;
+            this.cmb_ModeConfig.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmb_ModeConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_ModeConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmb_ModeConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.cmb_ModeConfig.FormattingEnabled = true;
             this.cmb_ModeConfig.Items.AddRange(new object[] {
             "2.0 CH",
             "2.1 CH",
             "PBTL",
             "None"});
-            this.cmb_ModeConfig.Location = new System.Drawing.Point(146, 64);
+            this.cmb_ModeConfig.Location = new System.Drawing.Point(190, 64);
             this.cmb_ModeConfig.Name = "cmb_ModeConfig";
-            this.cmb_ModeConfig.Size = new System.Drawing.Size(82, 32);
+            this.cmb_ModeConfig.Size = new System.Drawing.Size(82, 28);
             this.cmb_ModeConfig.TabIndex = 5;
+            this.cmb_ModeConfig.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmb_ModeConfig_DrawItem);
             this.cmb_ModeConfig.SelectedIndexChanged += new System.EventHandler(this.cmb_ModeConfig_SelectedIndexChanged);
             // 
             // label4
@@ -1364,7 +1373,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(274, 36);
+            this.label4.Location = new System.Drawing.Point(292, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 16);
             this.label4.TabIndex = 4;
@@ -1375,7 +1384,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(146, 36);
+            this.label3.Location = new System.Drawing.Point(190, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 16);
             this.label3.TabIndex = 3;
@@ -1391,17 +1400,6 @@
             this.label2.Size = new System.Drawing.Size(116, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Operation Voltage";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(104, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 22);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "V";
             // 
             // label24
             // 
@@ -2137,17 +2135,6 @@
             this.tabPage1.Size = new System.Drawing.Size(591, 192);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Cambria", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label44.Location = new System.Drawing.Point(49, 364);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(136, 12);
-            this.label44.TabIndex = 50;
-            this.label44.Text = "Select \"Mode\" before power on";
             // 
             // line14
             // 
@@ -5009,12 +4996,11 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.67";
+            this.Text = "SGM4711 Eva_v0.68";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUP_OpVoltage)).EndInit();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -5152,8 +5138,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numUP_OpVoltage;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btn_MasterVolume;
         private System.Windows.Forms.TabPage tabP_AudioEngine;
@@ -5397,6 +5381,7 @@
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Button btn_SyncToChip;
         private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.ComboBox cmb_OpVoltage;
 
     }
 }

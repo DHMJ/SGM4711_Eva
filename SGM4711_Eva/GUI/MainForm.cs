@@ -76,6 +76,8 @@ namespace SGM4711_Eva
             this.tabP_IICMemTool.Controls.Add(memoryTool);
 
             // init Mian GUI commbox
+            this.cmb_OpVoltage.SelectedIndex = 3;
+            //this.cmb_OpVoltage.ForeColor = Color.Red;
             this.cmb_ModeConfig.SelectedIndex = 3;
             this.cmb_InterfaceConfig.SelectedIndex = 5;
             this.cmb_SampleRate.SelectedIndex = 3;
@@ -729,11 +731,16 @@ namespace SGM4711_Eva
             this.chb_Enable.CheckedChanged += chb_Enable_CheckedChanged;
 
             // Operation Voltage; reg 0x0C
-            this.numUP_OpVoltage.ValueChanged -= numUP_OpVoltage_ValueChanged;
+            //this.numUP_OpVoltage.ValueChanged -= numUP_OpVoltage_ValueChanged;
+            //tempReg = regMap[0x0C];
+            //uint tempBFValue = tempReg["Operation_Voltage[1:0]"].BFValue;
+            //this.numUP_OpVoltage.Value = tempBFValue == 0 ? 24 : (tempBFValue == 1 ? 18 : (tempBFValue == 2 ? 12 : 8));
+            //this.numUP_OpVoltage.ValueChanged += numUP_OpVoltage_ValueChanged;
+            this.cmb_OpVoltage.SelectedIndexChanged -= cmb_OpVoltage_SelectedIndexChanged;
             tempReg = regMap[0x0C];
             uint tempBFValue = tempReg["Operation_Voltage[1:0]"].BFValue;
-            this.numUP_OpVoltage.Value = tempBFValue == 0 ? 24 : (tempBFValue == 1 ? 18 : (tempBFValue == 2 ? 12 : 8));
-            this.numUP_OpVoltage.ValueChanged += numUP_OpVoltage_ValueChanged;
+            this.cmb_OpVoltage.SelectedIndex = (int)(tempBFValue >= 2 ? tempBFValue - 1 : tempBFValue);
+            this.cmb_OpVoltage.SelectedIndexChanged += cmb_OpVoltage_SelectedIndexChanged;
 
             // Mode Config
             this.cmb_ModeConfig.SelectedIndexChanged -= cmb_ModeConfig_SelectedIndexChanged;
@@ -2401,30 +2408,84 @@ namespace SGM4711_Eva
 
         #region Main GUI Tab
         List<Register> regAddrList = new List<Register> { };
-        private void numUP_OpVoltage_ValueChanged(object sender, EventArgs e)
+        //private void numUP_OpVoltage_ValueChanged(object sender, EventArgs e)
+        //{
+        //    /* *****************************************
+        //     * Reg0x0C bit[3:2] Operation_Voltage[1:0] 
+        //     * operation voltage
+        //     * 00:24V(default)
+        //     * 01:18V
+        //     * 10:12V
+        //     * 11:8V
+        //     * *****************************************/
+        //    byte tempAddr = 0x0C;
+        //    byte tempData = 0;
+        //    if(regMap != null)
+        //    {
+        //        tempData = (byte)this.numUP_OpVoltage.Value;
+        //        tempData = (byte)((tempData >= 22) ? 0x0 : ((tempData >= 15) ? 0x01 : 0x03));
+        //        regMap[tempAddr]["Operation_Voltage[1:0]"].BFValue = tempData;
+
+        //        RegWrite(tempAddr);
+        //    }
+
+        //    UpdateRegSettingSource(0x0C, new string[] { "Operation_Voltage[1:0]" });
+        //}
+
+        private void cmb_OpVoltage_SelectedIndexChanged(object sender, EventArgs e)
         {
             /* *****************************************
              * Reg0x0C bit[3:2] Operation_Voltage[1:0] 
-             * operation voltage
-             * 00:24V(default)
-             * 01:18V
-             * 10:12V
-             * 11:8V
+             * operation voltage:
+             * 00: 22~26V
+             * 01/10: 15~22V
+             * 11: 8~15V
+             * NONE（default）
              * *****************************************/
             byte tempAddr = 0x0C;
             byte tempData = 0;
-            if(regMap != null)
+            if (regMap != null)
             {
-                tempData = (byte)this.numUP_OpVoltage.Value;
-                tempData = (byte)((tempData >= 22) ? 0x0 : ((tempData >= 15) ? 0x01 : 0x03));
+                //if (this.cmb_OpVoltage.SelectedIndex == 3)
+                //    this.cmb_OpVoltage.ForeColor = Color.Red;
+                //else
+                //    this.cmb_OpVoltage.ForeColor = Color.Black;
+
+                tempData =(byte)(this.cmb_OpVoltage.SelectedIndex >= 2 ? this.cmb_OpVoltage.SelectedIndex - 1 : this.cmb_OpVoltage.SelectedIndex);
                 regMap[tempAddr]["Operation_Voltage[1:0]"].BFValue = tempData;
 
                 RegWrite(tempAddr);
+                UpdateRegSettingSource(0x0C, new string[] { "Operation_Voltage[1:0]" });
             }
-
-            UpdateRegSettingSource(0x0C, new string[] { "Operation_Voltage[1:0]" });
+            //this.cmb_OpVoltage.Enabled = false;
+            //this.cmb_OpVoltage.Enabled = true;
         }
 
+        private void cmb_OpVoltage_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            Font cmbFont = this.cmb_OpVoltage.Font;
+            if (e.Index >= 0)
+            {
+                switch (e.Index)
+                {
+                    //case 0:
+                    //case 1:
+                    //case 2:
+                    //    e.Graphics.DrawString(this.cmb_OpVoltage.Items[e.Index].ToString(), cmbFont, Brushes.Black, e.Bounds);
+                    //    break;
+
+                    case 3:
+                        e.Graphics.DrawString(this.cmb_OpVoltage.Items[3].ToString(), cmbFont, Brushes.Red, e.Bounds);
+                        break;
+
+                    default:
+                        e.Graphics.DrawString(this.cmb_OpVoltage.Items[e.Index].ToString(), cmbFont, Brushes.Black, e.Bounds);
+                        break;
+                }
+            }
+        }
+        
         private void cmb_ModeConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             /* **********************************************************************************
@@ -2666,6 +2727,28 @@ namespace SGM4711_Eva
                 }
                 PowerOn();
             }
+
+            //this.cmb_ModeConfig.Enabled = false;
+            //this.cmb_ModeConfig.Enabled = true;
+        }
+
+        private void cmb_ModeConfig_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            Font cmbFont = this.cmb_ModeConfig.Font;
+            if (e.Index >= 0)
+            {
+                switch (e.Index)
+                {
+                    case 3:
+                        e.Graphics.DrawString(this.cmb_ModeConfig.Items[3].ToString(), cmbFont, Brushes.Red, e.Bounds);
+                        break;
+
+                    default:
+                        e.Graphics.DrawString(this.cmb_ModeConfig.Items[e.Index].ToString(), cmbFont, Brushes.Black, e.Bounds);
+                        break;
+                }
+            }
         }
 
         private void cmb_InterfaceConfig_SelectedIndexChanged(object sender, EventArgs e)
@@ -2680,6 +2763,9 @@ namespace SGM4711_Eva
             tempReg["AIF_FORMAT[3:0]"].BFValue = (uint)this.cmb_InterfaceConfig.SelectedIndex;
             UpdateRegSettingSource(0x04, new string[] { "AIF_FORMAT[3:0]" });
             RegWrite(tempReg);
+
+            //this.cmb_InterfaceConfig.Enabled = false;
+            //this.cmb_InterfaceConfig.Enabled = true;
         }
 
         private void btn_ClearStatus_Click(object sender, EventArgs e)
@@ -2689,23 +2775,23 @@ namespace SGM4711_Eva
             {
                 Register tempReg = regMap[0x02];
                 tempReg.RegValue = 0x00;
-                RegWrite(tempReg);
+                RegWrite(tempReg, true, false, false);
             }
         }
 
         private void btn_RefreshStatus_Click(object sender, EventArgs e)
         {
-            /* Read Reg0x02 */
-            if (RegRead(0x02))
+            /* Read Reg0x02 and Reg00 */
+            if (RegRead(new byte[]{0x02, 0x00}))
             {
                 // Update indicators
                 UpdateIndicator((byte)regMap[0x02].RegValue);
-            }
-            if (RegRead(0x00))
-            {
                 this.cmb_SampleRate.SelectedIndex = (int)regMap[0x00]["FS_SEL[2:0]"].BFValue;
             }
-
+            //if (RegRead(0x00, false))
+            //{
+            //    this.cmb_SampleRate.SelectedIndex = (int)regMap[0x00]["FS_SEL[2:0]"].BFValue;
+            //}
         }
 
         private void UpdateIndicator(byte regValue)
@@ -2936,8 +3022,14 @@ namespace SGM4711_Eva
                 return;
 
             btn_OutputMux_Click(sender, e);
-            Output_Mux outputMux = new Output_Mux(this.regMap, this.cmb_ModeConfig.SelectedIndex);
-            outputMux.FormClosed += new FormClosedEventHandler(outputMux_FormClosed);
+            if (cmb_ModeConfig.SelectedText == "None")
+            {
+                MessageBox.Show("Please choose mode first!");
+                return;
+            }
+
+            OutputMuxForm outputMux = new OutputMuxForm(this.regMap, this, this.cmb_ModeConfig.SelectedIndex);
+            //outputMux.FormClosed += new FormClosedEventHandler(outputMux_FormClosed);
             outputMux.ShowDialog();
         }
 
@@ -3064,9 +3156,9 @@ namespace SGM4711_Eva
             if (regMap == null)
                 return;
 
-            if (cmb_ModeConfig.SelectedIndex == 3)
+            if (cmb_ModeConfig.SelectedIndex == 3 || cmb_OpVoltage.SelectedIndex == 3)
             {
-                MessageBox.Show("Please select \"Mode\" first!");
+                MessageBox.Show("Please set \"Operation Voltage\" and \"Mode\" first!");
                 chb_Enable.CheckedChanged -= chb_Enable_CheckedChanged;
                 chb_Enable.Checked = true;
                 chb_Enable.CheckedChanged += chb_Enable_CheckedChanged;
@@ -3101,7 +3193,6 @@ namespace SGM4711_Eva
         {
             //myTips.Show("", this.chb_Enable);
         }
-
 
     }
 }

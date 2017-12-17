@@ -68,7 +68,7 @@ namespace SGM4711_Eva.GUI
         double MaxGaindB = 30;
         double MinGaindB = -100;
 
-        double MaxBW = 1000;
+        double MaxBW = 20000;
         double MinBW = 10;
 
         double MaxQFactor = 20;
@@ -590,8 +590,8 @@ namespace SGM4711_Eva.GUI
                     currentRow.Cells[(int)paramIx.Freq].Value = settings[_ixFilter].Freq;
                     
                     currentRow.Cells[(int)paramIx.Gain].ReadOnly = false;
-                    currentRow.Cells[(int)paramIx.Gain].Style.BackColor = Color.Gray;
-                    currentRow.Cells[(int)paramIx.Gain].Style.SelectionBackColor = Color.Gray;
+                    currentRow.Cells[(int)paramIx.Gain].Style.BackColor = Color.White;
+                    currentRow.Cells[(int)paramIx.Gain].Style.SelectionBackColor = SystemColors.Highlight;
                     currentRow.Cells[(int)paramIx.Gain].Value = settings[_ixFilter].Gain;
                     
                     currentRow.Cells[(int)paramIx.QFatcor].ReadOnly = true;
@@ -1100,21 +1100,37 @@ namespace SGM4711_Eva.GUI
             double tempData;
             bool parseRet = false;
             DataGridViewRow tempRow = dgv_filterSetting.Rows[e.RowIndex];
-            if (e.ColumnIndex <= (int)paramIx.No || e.ColumnIndex >= (int)paramIx.Color)
+            if (e.ColumnIndex <= (int)paramIx.Freq || e.ColumnIndex >= (int)paramIx.QFatcor)
                 return;
 
             if (e.FormattedValue.ToString() == "NA")
                 return;
 
             //parseRet = double.TryParse(tempRow.Cells[e.ColumnIndex].FormattedValue.ToString(), out tempData);
+            FilterSetting currentSet = settings[e.RowIndex];
+            FilterSetting tempSet = new FilterSetting(currentSet.Type, currentSet.SubType, currentSet.Freq, currentSet.Gain,
+                currentSet.BandWidth,currentSet.QFactor, Color.White);
+
             parseRet = double.TryParse(e.FormattedValue.ToString(), out tempData);
+            if (!parseRet)
+            {
+                e.Cancel = true;
+                return;
+            }
+            
             switch (e.ColumnIndex)
             {
                 case (int)paramIx.Freq:
                     if (parseRet && (tempData <= MaxFreq) && (tempData >= MinFreq))
                     {
-                        e.Cancel = false;
-                        //settings[e.RowIndex].Freq = tempData;
+                        tempSet.Freq = tempData;
+                        if (filterList[e.RowIndex].ValidatingCoefficents(tempSet))
+                            e.Cancel = false;
+                        else
+                        {
+                            MessageBox.Show("All coefficents of EQ is 2.23 format, overflow happened!");
+                            e.Cancel = true;
+                        }
                     }
                     else
                         e.Cancel = true;
@@ -1124,8 +1140,14 @@ namespace SGM4711_Eva.GUI
                 case (int)paramIx.Gain:
                     if (parseRet && (tempData <= MaxGaindB) && (tempData >= MinGaindB))
                     {
-                        e.Cancel = false;
-                        //settings[e.RowIndex].Gain = tempData;
+                        tempSet.Gain = tempData;
+                        if (filterList[e.RowIndex].ValidatingCoefficents(tempSet))
+                            e.Cancel = false;
+                        else
+                        {
+                            MessageBox.Show("All coefficents of EQ is 2.23 format, overflow happened!");
+                            e.Cancel = true;
+                        }
                     }
                     else
                         e.Cancel = true;
@@ -1135,8 +1157,14 @@ namespace SGM4711_Eva.GUI
                 case (int)paramIx.BW:
                     if (parseRet && (tempData <= MaxBW) && (tempData >= MinBW))
                     {
-                        e.Cancel = false;
-                        //settings[e.RowIndex].BandWidth = tempData;
+                        tempSet.BandWidth = tempData;
+                        if (filterList[e.RowIndex].ValidatingCoefficents(tempSet))
+                            e.Cancel = false;
+                        else
+                        {
+                            MessageBox.Show("All coefficents of EQ is 2.23 format, overflow happened!");
+                            e.Cancel = true;
+                        }
                     }
                     else
                         e.Cancel = true;
@@ -1146,8 +1174,14 @@ namespace SGM4711_Eva.GUI
                 case (int)paramIx.QFatcor:
                     if (parseRet && (tempData <= MaxQFactor) && (tempData >= MinQFactor))
                     {
-                        e.Cancel = false;
-                        //settings[e.RowIndex].QFactor = tempData;
+                        tempSet.QFactor = tempData;
+                        if (filterList[e.RowIndex].ValidatingCoefficents(tempSet))
+                            e.Cancel = false;
+                        else
+                        {
+                            MessageBox.Show("All coefficents of EQ is 2.23 format, overflow happened!");
+                            e.Cancel = true;
+                        }
                     }
                     else
                         e.Cancel = true;
@@ -1286,12 +1320,22 @@ namespace SGM4711_Eva.GUI
             for (int ix = 0; ix < regAddr.Length; ix++)
             {
                 currentReg = regMap[regAddr[ix]];
-                currentReg["b0[25:0]"].BFValue = filterList[ix].RegValue_B[0];
-                currentReg["b1[25:0]"].BFValue = filterList[ix].RegValue_B[1];
-                currentReg["b2[25:0]"].BFValue = filterList[ix].RegValue_B[2];
-                currentReg["a1[25:0]"].BFValue = filterList[ix].RegValue_A[0];
-                currentReg["a2[25:0]"].BFValue = filterList[ix].RegValue_A[1];
-
+                if (settings[ix].Bypass)
+                {
+                    currentReg["b0[25:0]"].BFValue = 0x800000;
+                    currentReg["b1[25:0]"].BFValue = 0;
+                    currentReg["b2[25:0]"].BFValue = 0;
+                    currentReg["a1[25:0]"].BFValue = 0;
+                    currentReg["a2[25:0]"].BFValue = 0;
+                }
+                else
+                {
+                    currentReg["b0[25:0]"].BFValue = filterList[ix].RegValue_B[0];
+                    currentReg["b1[25:0]"].BFValue = filterList[ix].RegValue_B[1];
+                    currentReg["b2[25:0]"].BFValue = filterList[ix].RegValue_B[2];
+                    currentReg["a1[25:0]"].BFValue = filterList[ix].RegValue_A[0];
+                    currentReg["a2[25:0]"].BFValue = filterList[ix].RegValue_A[1];
+                }
                 // Only the first write needs time log
                 //if (ifPoweredOn)
                 //    myRegOp.RegWrite(currentReg, false);

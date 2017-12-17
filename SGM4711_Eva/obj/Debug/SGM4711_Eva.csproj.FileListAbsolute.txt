@@ -80,3 +80,4 @@ C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI
 C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.Mixer_2In.resources
 C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.Mixer_3In.resources
 C:\Users\Work\Documents\Github\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.NoiseGateForm.resources
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\SGM4711_Eva\obj\Debug\SGM4711_Eva.GUI.OutputMuxForm.resources

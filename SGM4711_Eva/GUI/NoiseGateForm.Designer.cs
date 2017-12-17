@@ -46,6 +46,7 @@
             this.btn_ImportNG = new System.Windows.Forms.Button();
             this.btn_ExportNG = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_Download = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -248,7 +249,7 @@
             // btn_ExportNG
             // 
             this.btn_ExportNG.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_ExportNG.Location = new System.Drawing.Point(20, 60);
+            this.btn_ExportNG.Location = new System.Drawing.Point(20, 66);
             this.btn_ExportNG.Name = "btn_ExportNG";
             this.btn_ExportNG.Size = new System.Drawing.Size(66, 22);
             this.btn_ExportNG.TabIndex = 46;
@@ -258,13 +259,25 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_Download);
             this.groupBox1.Controls.Add(this.btn_ImportNG);
             this.groupBox1.Controls.Add(this.btn_ExportNG);
-            this.groupBox1.Location = new System.Drawing.Point(516, 315);
+            this.groupBox1.Location = new System.Drawing.Point(516, 305);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(104, 102);
+            this.groupBox1.Size = new System.Drawing.Size(104, 154);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
+            // 
+            // btn_Download
+            // 
+            this.btn_Download.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Download.Location = new System.Drawing.Point(20, 111);
+            this.btn_Download.Name = "btn_Download";
+            this.btn_Download.Size = new System.Drawing.Size(66, 22);
+            this.btn_Download.TabIndex = 48;
+            this.btn_Download.Text = "Download";
+            this.btn_Download.UseVisualStyleBackColor = true;
+            this.btn_Download.Click += new System.EventHandler(this.btn_Download_Click);
             // 
             // NoiseGateForm
             // 
@@ -317,5 +330,6 @@
         private System.Windows.Forms.Button btn_ImportNG;
         private System.Windows.Forms.Button btn_ExportNG;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btn_Download;
     }
 }
