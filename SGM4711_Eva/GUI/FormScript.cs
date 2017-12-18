@@ -125,6 +125,7 @@ namespace GeneralRegConfigPlatform.MDGUI
                 string[] parameters;
                 SCRIPT_COMMAND cmdType;
                 bool firstRW = true;
+                int wrCount = 0;
                 for (int i = 0; i < AllCommands.Length; i++)
                 {
                     cmdType = SCRIPT_COMMAND.None;
@@ -166,14 +167,20 @@ namespace GeneralRegConfigPlatform.MDGUI
                         switch (cmdType)
                         {
                             case SCRIPT_COMMAND.TI_WRITE:
-                                if (myRegOp != null)
+                                if (wrCount++ % 10 == 0)
                                 {
-                                    myRegOp.RegWrite(addr, data, firstRW, firstRW, false);
-                                    firstRW = false;
+                                    if (myRegOp != null)
+                                    {
+                                        myRegOp.RegWrite(addr, data, firstRW, firstRW, false);
+                                        firstRW = false;
+                                    }
+                                    else
+                                        dg.writeRegBurst(addr, data, data.Length);
                                 }
                                 else
-                                    dg.writeRegBurst(addr, data, data.Length);
-                                Thread.Sleep(200);
+                                    myRegOp.RegWrite_NoAck(addr, data);
+                                    
+                                //Thread.Sleep(200);
                                 break;
 
                             #region Old Commands

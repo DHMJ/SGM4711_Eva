@@ -971,7 +971,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 14);
             this.label6.TabIndex = 49;
-            this.label6.Text = "PWM3";
+            this.label6.Text = "PWM2";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // line11
@@ -1041,7 +1041,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 14);
             this.label3.TabIndex = 43;
-            this.label3.Text = "PWM2";
+            this.label3.Text = "PWM3";
             // 
             // circle1
             // 
@@ -1270,7 +1270,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(418, 828);
+            this.ClientSize = new System.Drawing.Size(418, 782);
             this.Controls.Add(this.grb_PBTL);
             this.Controls.Add(this.grb_2p1);
             this.Controls.Add(this.grb_2p0);

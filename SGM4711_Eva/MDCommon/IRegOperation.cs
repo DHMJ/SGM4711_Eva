@@ -43,6 +43,12 @@ namespace MD.MDCommon
 
         bool RegWrite(Register[] _reg, bool ifTimeLog, bool ifPowerDown, bool ifPowerOn);
 
+        bool RegWrite_NoAck(Register _reg);
+
+        bool RegWrite_NoAck(byte _regAddr);
+
+        bool RegWrite_NoAck(byte _regAddr, byte[] data);
+
         void UpdateRegSettingSource();
 
         void PowerOn();

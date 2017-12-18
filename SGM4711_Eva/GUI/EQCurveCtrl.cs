@@ -1128,7 +1128,7 @@ namespace SGM4711_Eva.GUI
                             e.Cancel = false;
                         else
                         {
-                            MessageBox.Show("All coefficents of EQ is 2.23 format, overflow happened!");
+                            MessageBox.Show("All coefficents of EQ is 3.23 format, overflow happened!");
                             e.Cancel = true;
                         }
                     }
@@ -1145,7 +1145,7 @@ namespace SGM4711_Eva.GUI
                             e.Cancel = false;
                         else
                         {
-                            MessageBox.Show("All coefficents of EQ is 2.23 format, overflow happened!");
+                            MessageBox.Show("All coefficents of EQ is 3.23 format, overflow happened!");
                             e.Cancel = true;
                         }
                     }
@@ -1162,7 +1162,7 @@ namespace SGM4711_Eva.GUI
                             e.Cancel = false;
                         else
                         {
-                            MessageBox.Show("All coefficents of EQ is 2.23 format, overflow happened!");
+                            MessageBox.Show("All coefficents of EQ is 3.23 format, overflow happened!");
                             e.Cancel = true;
                         }
                     }
@@ -1179,7 +1179,7 @@ namespace SGM4711_Eva.GUI
                             e.Cancel = false;
                         else
                         {
-                            MessageBox.Show("All coefficents of EQ is 2.23 format, overflow happened!");
+                            MessageBox.Show("All coefficents of EQ is 3.23 format, overflow happened!");
                             e.Cancel = true;
                         }
                     }

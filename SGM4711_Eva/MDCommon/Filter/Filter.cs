@@ -796,7 +796,7 @@ namespace SGM4711_Eva.MDCommon.Filter
         #endregion Coefficents Calculation
 
         #region Coefficents validating
-        double max_2p23 = 3.999999;
+        double max_2p23 = 3.9999999;
         double min_2p23 = -4;
         /// <summary>
         /// Validating if p[0], p[1], p[2], d[1], d[2] over flow. Formate is 2p23
@@ -826,7 +826,7 @@ namespace SGM4711_Eva.MDCommon.Filter
         public bool ValidatingCoefficents(FilterSetting _set)
         {
             bool ret = false;
-            switch (myFilterSet.Type)
+            switch (_set.Type)
             {
                 case FilterType.AllPass:
                     ret = CoeffValidating_AllPass();
@@ -837,15 +837,15 @@ namespace SGM4711_Eva.MDCommon.Filter
                     break;
 
                 case FilterType.Shelving:
-                    ret = CoeffValidating_Shelving((FilterSubType_Shelving)Enum.Parse(typeof(FilterSubType_Shelving), myFilterSet.SubType.ToString()), _set);
+                    ret = CoeffValidating_Shelving((FilterSubType_Shelving)Enum.Parse(typeof(FilterSubType_Shelving), _set.SubType.ToString()), _set);
                     break;
 
                 case FilterType.LowPass:
-                    ret = CoeffValidating_LowPass((FilterSubType_LoHiPass)Enum.Parse(typeof(FilterSubType_LoHiPass), myFilterSet.SubType.ToString()), _set);
+                    ret = CoeffValidating_LowPass((FilterSubType_LoHiPass)Enum.Parse(typeof(FilterSubType_LoHiPass), _set.SubType.ToString()), _set);
 
                     break;
                 case FilterType.HighPass:
-                    ret = CoeffValidating_HighPass((FilterSubType_LoHiPass)Enum.Parse(typeof(FilterSubType_LoHiPass), myFilterSet.SubType.ToString()), _set);
+                    ret = CoeffValidating_HighPass((FilterSubType_LoHiPass)Enum.Parse(typeof(FilterSubType_LoHiPass), _set.SubType.ToString()), _set);
 
                     break;
 
@@ -916,8 +916,8 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * d1 = -a1/a0
                  * d2 = -a2/a0
                 ********************************************/
-                double A = Math.Sqrt(Math.Pow(10, myFilterSet.Gain / 20));
-                wc = myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS;
+                double A = Math.Sqrt(Math.Pow(10, _set.Gain / 20));
+                wc = _set.Freq * 2 * Math.PI / _set.FS;
                 k = Math.Sin(wc) / Math.Sqrt(2);
                 double a0 = (A + 1) + (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k;
                 p[0] = (A * ((A + 1) - (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k)) / a0;
@@ -950,8 +950,8 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * d1 = -a1/a0
                  * d2 = -a2/a0
                 ********************************************/
-                double A = Math.Sqrt(Math.Pow(10, myFilterSet.Gain / 20d));
-                wc = myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS;
+                double A = Math.Sqrt(Math.Pow(10, _set.Gain / 20d));
+                wc = _set.Freq * 2 * Math.PI / _set.FS;
                 k = Math.Sin(wc) / Math.Sqrt(2);
                 double a0 = (A + 1) - (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k;
                 p[0] = (A * ((A + 1) + (A - 1) * Math.Cos(wc) + 2 * Math.Sqrt(A) * k)) / a0;
@@ -983,9 +983,9 @@ namespace SGM4711_Eva.MDCommon.Filter
              * d1 = (1+alpha)*beta
              * d2 = -alpha
             ********************************************/
-            alpha = (1 - Math.Sin(myFilterSet.BandWidth * 2 * Math.PI / myFilterSet.FS)) /
-                Math.Cos(myFilterSet.BandWidth * 2 * Math.PI / myFilterSet.FS);
-            beta = Math.Cos(myFilterSet.Freq * 2 * Math.PI / myFilterSet.FS);
+            alpha = (1 - Math.Sin(_set.BandWidth * 2 * Math.PI / _set.FS)) /
+                Math.Cos(_set.BandWidth * 2 * Math.PI / _set.FS);
+            beta = Math.Cos(_set.Freq * 2 * Math.PI / _set.FS);
             p[0] = (1 + alpha) / 2;
             p[1] = -(1 + alpha) * beta;
             p[2] = (1 + alpha) / 2;
@@ -1018,7 +1018,7 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * d1 = -a1/a0
                  * d2 = -a2/a0
                 ********************************************/
-                wc = (myFilterSet.Freq * 2 * Math.PI) / myFilterSet.FS;
+                wc = (_set.Freq * 2 * Math.PI) / _set.FS;
                 k = Math.Sin(wc) / Math.Sqrt(2);
                 double a0 = 1 + k;
                 p[0] = (1 - Math.Cos(wc)) / (2 * a0);
@@ -1054,7 +1054,7 @@ namespace SGM4711_Eva.MDCommon.Filter
                  * d1 = -a1/a0
                  * d2 = -a2/a0
                 ********************************************/
-                wc = (myFilterSet.Freq * 2 * Math.PI) / myFilterSet.FS;
+                wc = (_set.Freq * 2 * Math.PI) / _set.FS;
                 k = Math.Sin(wc) / Math.Sqrt(2);
                 double a0 = 1 + k;
                 p[0] = (1 + Math.Cos(wc)) / (2 * a0);

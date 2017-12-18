@@ -450,6 +450,38 @@ namespace SGM4711_Eva
             return ret;
         }
 
+        public bool RegWrite_NoAck(byte _regAddr, byte[] data)
+        {
+            bool ret = false;
+            string log = "";
+
+            if (myDongle.IsOpen && regMap != null)
+            {
+                if (myDongle.writeRegBurst(_regAddr, data, data.Length, false))
+                {
+                    log += "\tOK\t" + "Address: 0x" + _regAddr.ToString("X2") + "\tData(Hex):";
+                    for (int ix = 0; ix < data.Length; ix++)
+                    {
+                        log += " " + data[ix].ToString("X2");
+                    }
+
+                    ret = true;
+                }
+            }
+
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + _regAddr.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }
+
+            return ret;
+        }        
+
         public bool RegWrite(byte _regAddr)
         {
             return RegWrite(_regAddr, true, true, true);
@@ -675,6 +707,73 @@ namespace SGM4711_Eva
             return ret;
         }
 
+        public bool RegWrite_NoAck(Register _reg)
+        {
+            bool ret = false;
+            string log = "";
+
+            if (myDongle.IsOpen)
+            {
+                byte[] tempData;
+                if (myDongle.writeRegBurst(_reg.RegAddress, _reg.ByteValue, _reg.ByteCount))
+                {
+                    tempData = _reg.ByteValue;
+                    log += "\tOK\t" + "Address: 0x" + _reg.RegAddress.ToString("X2") + "\tData(Hex):";
+                    for (int ix = 0; ix < _reg.ByteCount; ix++)
+                    {
+                        log += " " + tempData[ix].ToString("X2");
+                    }
+                    ret = true;
+                }
+            }
+
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + _reg.RegAddress.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }
+
+            return ret;
+        }
+
+        public bool RegWrite_NoAck(byte _regAddr)
+        {
+            bool ret = false;
+            string log = "";
+            Register tempReg = regMap[_regAddr];
+
+            if (myDongle.IsOpen)
+            {
+                byte[] tempData;                
+                if (myDongle.writeRegBurst(tempReg.RegAddress, tempReg.ByteValue, tempReg.ByteCount, false))
+                {
+                    tempData = tempReg.ByteValue;
+                    log += "\tOK\t" + "Address: 0x" + tempReg.RegAddress.ToString("X2") + "\tData(Hex):";
+                    for (int ix = 0; ix < tempReg.ByteCount; ix++)
+                    {
+                        log += " " + tempData[ix].ToString("X2");
+                    }
+                    ret = true;
+                }
+            }
+
+            if (ret)
+            {
+                this.outputLogCtrl.AppendLog(log);
+            }
+            else
+            {
+                log += "\tFailed\t" + "Address: 0x" + tempReg.RegAddress.ToString("X2");
+                this.outputLogCtrl.AppendLog(log, failedLogColor);
+            }
+
+            return ret;
+        }
+
         private void UpdateChildGUI()
         {
             //Transfer regmap to other classes
@@ -739,7 +838,13 @@ namespace SGM4711_Eva
             this.cmb_OpVoltage.SelectedIndexChanged -= cmb_OpVoltage_SelectedIndexChanged;
             tempReg = regMap[0x0C];
             uint tempBFValue = tempReg["Operation_Voltage[1:0]"].BFValue;
-            this.cmb_OpVoltage.SelectedIndex = (int)(tempBFValue >= 2 ? tempBFValue - 1 : tempBFValue);
+            if (tempBFValue < 2)
+                this.cmb_OpVoltage.SelectedIndex = (int)tempBFValue;
+            else if (tempBFValue == 2)
+                this.cmb_OpVoltage.SelectedIndex = 1;
+            else if (tempBFValue == 3)
+                this.cmb_OpVoltage.SelectedIndex = 2;
+            //this.cmb_OpVoltage.SelectedIndex = (int)(tempBFValue >= 2 ? tempBFValue - 1 : tempBFValue);
             this.cmb_OpVoltage.SelectedIndexChanged += cmb_OpVoltage_SelectedIndexChanged;
 
             // Mode Config
@@ -2446,19 +2551,18 @@ namespace SGM4711_Eva
             byte tempData = 0;
             if (regMap != null)
             {
-                //if (this.cmb_OpVoltage.SelectedIndex == 3)
-                //    this.cmb_OpVoltage.ForeColor = Color.Red;
-                //else
-                //    this.cmb_OpVoltage.ForeColor = Color.Black;
-
-                tempData =(byte)(this.cmb_OpVoltage.SelectedIndex >= 2 ? this.cmb_OpVoltage.SelectedIndex - 1 : this.cmb_OpVoltage.SelectedIndex);
+                if (cmb_OpVoltage.SelectedIndex < 2)
+                    tempData = (byte)cmb_OpVoltage.SelectedIndex;
+                else if (cmb_OpVoltage.SelectedIndex == 2)
+                    tempData = 3;
+                else if (cmb_OpVoltage.SelectedIndex == 3)
+                    tempData = 0;
+                //tempData =(byte)(this.cmb_OpVoltage.SelectedIndex >= 2 ? this.cmb_OpVoltage.SelectedIndex - 1 : this.cmb_OpVoltage.SelectedIndex);
                 regMap[tempAddr]["Operation_Voltage[1:0]"].BFValue = tempData;
 
                 RegWrite(tempAddr);
                 UpdateRegSettingSource(0x0C, new string[] { "Operation_Voltage[1:0]" });
             }
-            //this.cmb_OpVoltage.Enabled = false;
-            //this.cmb_OpVoltage.Enabled = true;
         }
 
         private void cmb_OpVoltage_DrawItem(object sender, DrawItemEventArgs e)
@@ -2529,7 +2633,7 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x25];
-                    tempReg.RegValue = 0x01021345;
+                    tempReg.RegValue = 0x01012345;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x05];
@@ -2651,7 +2755,7 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x25];
-                    tempReg.RegValue = 0x01002245;
+                    tempReg.RegValue = 0x01012345;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x05];
@@ -3022,7 +3126,7 @@ namespace SGM4711_Eva
                 return;
 
             btn_OutputMux_Click(sender, e);
-            if (cmb_ModeConfig.SelectedText == "None")
+            if (cmb_ModeConfig.SelectedIndex == 3)
             {
                 MessageBox.Show("Please choose mode first!");
                 return;
@@ -3087,9 +3191,15 @@ namespace SGM4711_Eva
                         continue;
                     }
 
-                    RegWrite(tempReg, ifFirstWr, ifFirstWr, false);
-                    ifFirstWr = false;
-
+                    if (ix_list == 0 && ix_reg == 0)
+                    {
+                        RegWrite(tempReg, ifFirstWr, ifFirstWr, false);
+                        ifFirstWr = false;
+                    }
+                    else if ((ix_list == customerRegs.RegAddrList.Count - 1) && (ix_reg == tempRegAddrs.Length - 1))
+                        RegWrite(tempReg, false, false, false);
+                    else
+                        RegWrite_NoAck(tempReg);
                 }
             }
 
@@ -3133,14 +3243,18 @@ namespace SGM4711_Eva
                     Array.Copy(tempRegDatas, copiedCount, tempData, 0, tempReg.ByteCount);
                     copiedCount += tempReg.ByteCount;
                     tempReg.ByteValue = tempData;
-                    RegWrite(tempReg, ifFirstWr, ifFirstWr, false);
-                    ifFirstWr = false;
+                    //RegWrite(tempReg, ifFirstWr, ifFirstWr, false);
+                    //ifFirstWr = false;
 
-                    //string tempLog = "";
-                    //tempLog += tempReg.RegAddress.ToString("X2") + " ";
-                    //for(int ix = 0; ix < tempReg.ByteCount; ix++)
-                    //    tempLog += tempData[ix].ToString("X2") + " ";
-                    //Console.WriteLine(tempLog);
+                    if (ix_list == 0 && ix_reg == 0)
+                    {
+                        RegWrite(tempReg, ifFirstWr, ifFirstWr, false);
+                        ifFirstWr = false;
+                    }
+                    else if ((ix_list == customerRegs.RegAddrList.Count - 1) && (ix_reg == tempRegAddrs.Length - 1))
+                        RegWrite(tempReg, false, false, false);
+                    else
+                        RegWrite_NoAck(tempReg);
                 }
             }
 
@@ -3184,15 +3298,6 @@ namespace SGM4711_Eva
 
         #endregion Main GUI Tab
 
-        private void chb_Enable_MouseEnter(object sender, EventArgs e)
-        {
-            //myTips.Show("Please select \"Mode\" before power on!", this.chb_Enable);
-        }
-
-        private void chb_Enable_MouseLeave(object sender, EventArgs e)
-        {
-            //myTips.Show("", this.chb_Enable);
-        }
 
     }
 }
