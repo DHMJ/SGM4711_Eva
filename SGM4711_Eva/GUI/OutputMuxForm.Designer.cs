@@ -38,13 +38,13 @@
             this.label30 = new System.Windows.Forms.Label();
             this.line25 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line26 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.cmb_PBTL_OutD = new System.Windows.Forms.ComboBox();
-            this.cmb_PBTL_OutC = new System.Windows.Forms.ComboBox();
+            this.cmb_PBTL_Out4 = new System.Windows.Forms.ComboBox();
+            this.cmb_PBTL_Out3 = new System.Windows.Forms.ComboBox();
             this.circle5 = new SGM4711_Eva.MDUserCtrls.Circle();
             this.line27 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line28 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.cmb_PBTL_OutB = new System.Windows.Forms.ComboBox();
-            this.cmb_PBTL_OutA = new System.Windows.Forms.ComboBox();
+            this.cmb_PBTL_Out2 = new System.Windows.Forms.ComboBox();
+            this.cmb_PBTL_Out1 = new System.Windows.Forms.ComboBox();
             this.line29 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line30 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line31 = new SGM4711_Eva.MDUserCtrls.Line();
@@ -70,12 +70,12 @@
             this.circle3 = new SGM4711_Eva.MDUserCtrls.Circle();
             this.line13 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line14 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.cmb_2p1_OutD = new System.Windows.Forms.ComboBox();
-            this.cmb_2p1_OutC = new System.Windows.Forms.ComboBox();
+            this.cmb_2p1_Out4 = new System.Windows.Forms.ComboBox();
+            this.cmb_2p1_Out3 = new System.Windows.Forms.ComboBox();
             this.line15 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line16 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.cmb_2p1_OutB = new System.Windows.Forms.ComboBox();
-            this.cmb_2p1_OutA = new System.Windows.Forms.ComboBox();
+            this.cmb_2p1_Out2 = new System.Windows.Forms.ComboBox();
+            this.cmb_2p1_Out1 = new System.Windows.Forms.ComboBox();
             this.line17 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line18 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line21 = new SGM4711_Eva.MDUserCtrls.Line();
@@ -91,15 +91,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.line11 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line12 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.cmb_2p0_OutD = new System.Windows.Forms.ComboBox();
-            this.cmb_2p0_OutC = new System.Windows.Forms.ComboBox();
+            this.cmb_2p0_Out4 = new System.Windows.Forms.ComboBox();
+            this.cmb_2p0_Out3 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.circle1 = new SGM4711_Eva.MDUserCtrls.Circle();
             this.label2 = new System.Windows.Forms.Label();
             this.line10 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line9 = new SGM4711_Eva.MDUserCtrls.Line();
-            this.cmb_2p0_OutB = new System.Windows.Forms.ComboBox();
-            this.cmb_2p0_OutA = new System.Windows.Forms.ComboBox();
+            this.cmb_2p0_Out2 = new System.Windows.Forms.ComboBox();
+            this.cmb_2p0_Out1 = new System.Windows.Forms.ComboBox();
             this.line7 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line8 = new SGM4711_Eva.MDUserCtrls.Line();
             this.line6 = new SGM4711_Eva.MDUserCtrls.Line();
@@ -126,13 +126,13 @@
             this.grb_PBTL.Controls.Add(this.label30);
             this.grb_PBTL.Controls.Add(this.line25);
             this.grb_PBTL.Controls.Add(this.line26);
-            this.grb_PBTL.Controls.Add(this.cmb_PBTL_OutD);
-            this.grb_PBTL.Controls.Add(this.cmb_PBTL_OutC);
+            this.grb_PBTL.Controls.Add(this.cmb_PBTL_Out4);
+            this.grb_PBTL.Controls.Add(this.cmb_PBTL_Out3);
             this.grb_PBTL.Controls.Add(this.circle5);
             this.grb_PBTL.Controls.Add(this.line27);
             this.grb_PBTL.Controls.Add(this.line28);
-            this.grb_PBTL.Controls.Add(this.cmb_PBTL_OutB);
-            this.grb_PBTL.Controls.Add(this.cmb_PBTL_OutA);
+            this.grb_PBTL.Controls.Add(this.cmb_PBTL_Out2);
+            this.grb_PBTL.Controls.Add(this.cmb_PBTL_Out1);
             this.grb_PBTL.Controls.Add(this.line29);
             this.grb_PBTL.Controls.Add(this.line30);
             this.grb_PBTL.Controls.Add(this.line31);
@@ -255,33 +255,33 @@
             this.line26.Size = new System.Drawing.Size(53, 10);
             this.line26.TabIndex = 47;
             // 
-            // cmb_PBTL_OutD
+            // cmb_PBTL_Out4
             // 
-            this.cmb_PBTL_OutD.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_PBTL_OutD.FormattingEnabled = true;
-            this.cmb_PBTL_OutD.Items.AddRange(new object[] {
+            this.cmb_PBTL_Out4.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_PBTL_Out4.FormattingEnabled = true;
+            this.cmb_PBTL_Out4.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_PBTL_OutD.Location = new System.Drawing.Point(275, 150);
-            this.cmb_PBTL_OutD.Name = "cmb_PBTL_OutD";
-            this.cmb_PBTL_OutD.Size = new System.Drawing.Size(71, 24);
-            this.cmb_PBTL_OutD.TabIndex = 45;
+            this.cmb_PBTL_Out4.Location = new System.Drawing.Point(275, 150);
+            this.cmb_PBTL_Out4.Name = "cmb_PBTL_Out4";
+            this.cmb_PBTL_Out4.Size = new System.Drawing.Size(71, 24);
+            this.cmb_PBTL_Out4.TabIndex = 45;
             // 
-            // cmb_PBTL_OutC
+            // cmb_PBTL_Out3
             // 
-            this.cmb_PBTL_OutC.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_PBTL_OutC.FormattingEnabled = true;
-            this.cmb_PBTL_OutC.Items.AddRange(new object[] {
+            this.cmb_PBTL_Out3.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_PBTL_Out3.FormattingEnabled = true;
+            this.cmb_PBTL_Out3.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_PBTL_OutC.Location = new System.Drawing.Point(275, 106);
-            this.cmb_PBTL_OutC.Name = "cmb_PBTL_OutC";
-            this.cmb_PBTL_OutC.Size = new System.Drawing.Size(71, 24);
-            this.cmb_PBTL_OutC.TabIndex = 46;
+            this.cmb_PBTL_Out3.Location = new System.Drawing.Point(275, 106);
+            this.cmb_PBTL_Out3.Name = "cmb_PBTL_Out3";
+            this.cmb_PBTL_Out3.Size = new System.Drawing.Size(71, 24);
+            this.cmb_PBTL_Out3.TabIndex = 46;
             // 
             // circle5
             // 
@@ -324,33 +324,33 @@
             this.line28.Size = new System.Drawing.Size(53, 10);
             this.line28.TabIndex = 40;
             // 
-            // cmb_PBTL_OutB
+            // cmb_PBTL_Out2
             // 
-            this.cmb_PBTL_OutB.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_PBTL_OutB.FormattingEnabled = true;
-            this.cmb_PBTL_OutB.Items.AddRange(new object[] {
+            this.cmb_PBTL_Out2.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_PBTL_Out2.FormattingEnabled = true;
+            this.cmb_PBTL_Out2.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_PBTL_OutB.Location = new System.Drawing.Point(275, 62);
-            this.cmb_PBTL_OutB.Name = "cmb_PBTL_OutB";
-            this.cmb_PBTL_OutB.Size = new System.Drawing.Size(71, 24);
-            this.cmb_PBTL_OutB.TabIndex = 39;
+            this.cmb_PBTL_Out2.Location = new System.Drawing.Point(275, 62);
+            this.cmb_PBTL_Out2.Name = "cmb_PBTL_Out2";
+            this.cmb_PBTL_Out2.Size = new System.Drawing.Size(71, 24);
+            this.cmb_PBTL_Out2.TabIndex = 39;
             // 
-            // cmb_PBTL_OutA
+            // cmb_PBTL_Out1
             // 
-            this.cmb_PBTL_OutA.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_PBTL_OutA.FormattingEnabled = true;
-            this.cmb_PBTL_OutA.Items.AddRange(new object[] {
+            this.cmb_PBTL_Out1.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_PBTL_Out1.FormattingEnabled = true;
+            this.cmb_PBTL_Out1.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_PBTL_OutA.Location = new System.Drawing.Point(275, 18);
-            this.cmb_PBTL_OutA.Name = "cmb_PBTL_OutA";
-            this.cmb_PBTL_OutA.Size = new System.Drawing.Size(71, 24);
-            this.cmb_PBTL_OutA.TabIndex = 39;
+            this.cmb_PBTL_Out1.Location = new System.Drawing.Point(275, 18);
+            this.cmb_PBTL_Out1.Name = "cmb_PBTL_Out1";
+            this.cmb_PBTL_Out1.Size = new System.Drawing.Size(71, 24);
+            this.cmb_PBTL_Out1.TabIndex = 39;
             // 
             // line29
             // 
@@ -472,12 +472,12 @@
             this.grb_2p1.Controls.Add(this.circle3);
             this.grb_2p1.Controls.Add(this.line13);
             this.grb_2p1.Controls.Add(this.line14);
-            this.grb_2p1.Controls.Add(this.cmb_2p1_OutD);
-            this.grb_2p1.Controls.Add(this.cmb_2p1_OutC);
+            this.grb_2p1.Controls.Add(this.cmb_2p1_Out4);
+            this.grb_2p1.Controls.Add(this.cmb_2p1_Out3);
             this.grb_2p1.Controls.Add(this.line15);
             this.grb_2p1.Controls.Add(this.line16);
-            this.grb_2p1.Controls.Add(this.cmb_2p1_OutB);
-            this.grb_2p1.Controls.Add(this.cmb_2p1_OutA);
+            this.grb_2p1.Controls.Add(this.cmb_2p1_Out2);
+            this.grb_2p1.Controls.Add(this.cmb_2p1_Out1);
             this.grb_2p1.Controls.Add(this.line17);
             this.grb_2p1.Controls.Add(this.line18);
             this.grb_2p1.Controls.Add(this.line21);
@@ -700,33 +700,33 @@
             this.line14.Size = new System.Drawing.Size(53, 10);
             this.line14.TabIndex = 47;
             // 
-            // cmb_2p1_OutD
+            // cmb_2p1_Out4
             // 
-            this.cmb_2p1_OutD.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p1_OutD.FormattingEnabled = true;
-            this.cmb_2p1_OutD.Items.AddRange(new object[] {
+            this.cmb_2p1_Out4.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p1_Out4.FormattingEnabled = true;
+            this.cmb_2p1_Out4.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_2p1_OutD.Location = new System.Drawing.Point(275, 203);
-            this.cmb_2p1_OutD.Name = "cmb_2p1_OutD";
-            this.cmb_2p1_OutD.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p1_OutD.TabIndex = 45;
+            this.cmb_2p1_Out4.Location = new System.Drawing.Point(275, 203);
+            this.cmb_2p1_Out4.Name = "cmb_2p1_Out4";
+            this.cmb_2p1_Out4.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p1_Out4.TabIndex = 45;
             // 
-            // cmb_2p1_OutC
+            // cmb_2p1_Out3
             // 
-            this.cmb_2p1_OutC.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p1_OutC.FormattingEnabled = true;
-            this.cmb_2p1_OutC.Items.AddRange(new object[] {
+            this.cmb_2p1_Out3.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p1_Out3.FormattingEnabled = true;
+            this.cmb_2p1_Out3.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_2p1_OutC.Location = new System.Drawing.Point(275, 157);
-            this.cmb_2p1_OutC.Name = "cmb_2p1_OutC";
-            this.cmb_2p1_OutC.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p1_OutC.TabIndex = 46;
+            this.cmb_2p1_Out3.Location = new System.Drawing.Point(275, 157);
+            this.cmb_2p1_Out3.Name = "cmb_2p1_Out3";
+            this.cmb_2p1_Out3.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p1_Out3.TabIndex = 46;
             // 
             // line15
             // 
@@ -758,33 +758,33 @@
             this.line16.Size = new System.Drawing.Size(53, 10);
             this.line16.TabIndex = 40;
             // 
-            // cmb_2p1_OutB
+            // cmb_2p1_Out2
             // 
-            this.cmb_2p1_OutB.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p1_OutB.FormattingEnabled = true;
-            this.cmb_2p1_OutB.Items.AddRange(new object[] {
+            this.cmb_2p1_Out2.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p1_Out2.FormattingEnabled = true;
+            this.cmb_2p1_Out2.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_2p1_OutB.Location = new System.Drawing.Point(275, 82);
-            this.cmb_2p1_OutB.Name = "cmb_2p1_OutB";
-            this.cmb_2p1_OutB.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p1_OutB.TabIndex = 39;
+            this.cmb_2p1_Out2.Location = new System.Drawing.Point(275, 82);
+            this.cmb_2p1_Out2.Name = "cmb_2p1_Out2";
+            this.cmb_2p1_Out2.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p1_Out2.TabIndex = 39;
             // 
-            // cmb_2p1_OutA
+            // cmb_2p1_Out1
             // 
-            this.cmb_2p1_OutA.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p1_OutA.FormattingEnabled = true;
-            this.cmb_2p1_OutA.Items.AddRange(new object[] {
+            this.cmb_2p1_Out1.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p1_Out1.FormattingEnabled = true;
+            this.cmb_2p1_Out1.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_2p1_OutA.Location = new System.Drawing.Point(275, 18);
-            this.cmb_2p1_OutA.Name = "cmb_2p1_OutA";
-            this.cmb_2p1_OutA.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p1_OutA.TabIndex = 39;
+            this.cmb_2p1_Out1.Location = new System.Drawing.Point(275, 18);
+            this.cmb_2p1_Out1.Name = "cmb_2p1_Out1";
+            this.cmb_2p1_Out1.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p1_Out1.TabIndex = 39;
             // 
             // line17
             // 
@@ -892,15 +892,15 @@
             this.grb_2p0.Controls.Add(this.label6);
             this.grb_2p0.Controls.Add(this.line11);
             this.grb_2p0.Controls.Add(this.line12);
-            this.grb_2p0.Controls.Add(this.cmb_2p0_OutD);
-            this.grb_2p0.Controls.Add(this.cmb_2p0_OutC);
+            this.grb_2p0.Controls.Add(this.cmb_2p0_Out4);
+            this.grb_2p0.Controls.Add(this.cmb_2p0_Out3);
             this.grb_2p0.Controls.Add(this.label3);
             this.grb_2p0.Controls.Add(this.circle1);
             this.grb_2p0.Controls.Add(this.label2);
             this.grb_2p0.Controls.Add(this.line10);
             this.grb_2p0.Controls.Add(this.line9);
-            this.grb_2p0.Controls.Add(this.cmb_2p0_OutB);
-            this.grb_2p0.Controls.Add(this.cmb_2p0_OutA);
+            this.grb_2p0.Controls.Add(this.cmb_2p0_Out2);
+            this.grb_2p0.Controls.Add(this.cmb_2p0_Out1);
             this.grb_2p0.Controls.Add(this.line7);
             this.grb_2p0.Controls.Add(this.line8);
             this.grb_2p0.Controls.Add(this.line6);
@@ -1004,33 +1004,33 @@
             this.line12.Size = new System.Drawing.Size(53, 10);
             this.line12.TabIndex = 47;
             // 
-            // cmb_2p0_OutD
+            // cmb_2p0_Out4
             // 
-            this.cmb_2p0_OutD.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p0_OutD.FormattingEnabled = true;
-            this.cmb_2p0_OutD.Items.AddRange(new object[] {
+            this.cmb_2p0_Out4.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p0_Out4.FormattingEnabled = true;
+            this.cmb_2p0_Out4.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_2p0_OutD.Location = new System.Drawing.Point(275, 152);
-            this.cmb_2p0_OutD.Name = "cmb_2p0_OutD";
-            this.cmb_2p0_OutD.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p0_OutD.TabIndex = 45;
+            this.cmb_2p0_Out4.Location = new System.Drawing.Point(275, 152);
+            this.cmb_2p0_Out4.Name = "cmb_2p0_Out4";
+            this.cmb_2p0_Out4.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p0_Out4.TabIndex = 45;
             // 
-            // cmb_2p0_OutC
+            // cmb_2p0_Out3
             // 
-            this.cmb_2p0_OutC.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p0_OutC.FormattingEnabled = true;
-            this.cmb_2p0_OutC.Items.AddRange(new object[] {
+            this.cmb_2p0_Out3.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p0_Out3.FormattingEnabled = true;
+            this.cmb_2p0_Out3.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_2p0_OutC.Location = new System.Drawing.Point(275, 106);
-            this.cmb_2p0_OutC.Name = "cmb_2p0_OutC";
-            this.cmb_2p0_OutC.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p0_OutC.TabIndex = 46;
+            this.cmb_2p0_Out3.Location = new System.Drawing.Point(275, 106);
+            this.cmb_2p0_Out3.Name = "cmb_2p0_Out3";
+            this.cmb_2p0_Out3.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p0_Out3.TabIndex = 46;
             // 
             // label3
             // 
@@ -1095,33 +1095,33 @@
             this.line9.Size = new System.Drawing.Size(53, 10);
             this.line9.TabIndex = 40;
             // 
-            // cmb_2p0_OutB
+            // cmb_2p0_Out2
             // 
-            this.cmb_2p0_OutB.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p0_OutB.FormattingEnabled = true;
-            this.cmb_2p0_OutB.Items.AddRange(new object[] {
+            this.cmb_2p0_Out2.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p0_Out2.FormattingEnabled = true;
+            this.cmb_2p0_Out2.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_2p0_OutB.Location = new System.Drawing.Point(275, 64);
-            this.cmb_2p0_OutB.Name = "cmb_2p0_OutB";
-            this.cmb_2p0_OutB.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p0_OutB.TabIndex = 39;
+            this.cmb_2p0_Out2.Location = new System.Drawing.Point(275, 64);
+            this.cmb_2p0_Out2.Name = "cmb_2p0_Out2";
+            this.cmb_2p0_Out2.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p0_Out2.TabIndex = 39;
             // 
-            // cmb_2p0_OutA
+            // cmb_2p0_Out1
             // 
-            this.cmb_2p0_OutA.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
-            this.cmb_2p0_OutA.FormattingEnabled = true;
-            this.cmb_2p0_OutA.Items.AddRange(new object[] {
+            this.cmb_2p0_Out1.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.cmb_2p0_Out1.FormattingEnabled = true;
+            this.cmb_2p0_Out1.Items.AddRange(new object[] {
             "OUT A",
             "OUT B",
             "OUT C",
             "OUT D"});
-            this.cmb_2p0_OutA.Location = new System.Drawing.Point(275, 18);
-            this.cmb_2p0_OutA.Name = "cmb_2p0_OutA";
-            this.cmb_2p0_OutA.Size = new System.Drawing.Size(71, 24);
-            this.cmb_2p0_OutA.TabIndex = 39;
+            this.cmb_2p0_Out1.Location = new System.Drawing.Point(275, 18);
+            this.cmb_2p0_Out1.Name = "cmb_2p0_Out1";
+            this.cmb_2p0_Out1.Size = new System.Drawing.Size(71, 24);
+            this.cmb_2p0_Out1.TabIndex = 39;
             // 
             // line7
             // 
@@ -1293,13 +1293,13 @@
         private MDUserCtrls.Circle circle4;
         private MDUserCtrls.Line line25;
         private MDUserCtrls.Line line26;
-        private System.Windows.Forms.ComboBox cmb_PBTL_OutD;
-        private System.Windows.Forms.ComboBox cmb_PBTL_OutC;
+        private System.Windows.Forms.ComboBox cmb_PBTL_Out4;
+        private System.Windows.Forms.ComboBox cmb_PBTL_Out3;
         private MDUserCtrls.Circle circle5;
         private MDUserCtrls.Line line27;
         private MDUserCtrls.Line line28;
-        private System.Windows.Forms.ComboBox cmb_PBTL_OutB;
-        private System.Windows.Forms.ComboBox cmb_PBTL_OutA;
+        private System.Windows.Forms.ComboBox cmb_PBTL_Out2;
+        private System.Windows.Forms.ComboBox cmb_PBTL_Out1;
         private MDUserCtrls.Line line29;
         private MDUserCtrls.Line line30;
         private MDUserCtrls.Line line31;
@@ -1319,12 +1319,12 @@
         private MDUserCtrls.Circle circle3;
         private MDUserCtrls.Line line13;
         private MDUserCtrls.Line line14;
-        private System.Windows.Forms.ComboBox cmb_2p1_OutD;
-        private System.Windows.Forms.ComboBox cmb_2p1_OutC;
+        private System.Windows.Forms.ComboBox cmb_2p1_Out4;
+        private System.Windows.Forms.ComboBox cmb_2p1_Out3;
         private MDUserCtrls.Line line15;
         private MDUserCtrls.Line line16;
-        private System.Windows.Forms.ComboBox cmb_2p1_OutB;
-        private System.Windows.Forms.ComboBox cmb_2p1_OutA;
+        private System.Windows.Forms.ComboBox cmb_2p1_Out2;
+        private System.Windows.Forms.ComboBox cmb_2p1_Out1;
         private MDUserCtrls.Line line17;
         private MDUserCtrls.Line line18;
         private MDUserCtrls.Line line21;
@@ -1338,15 +1338,15 @@
         private System.Windows.Forms.Label label6;
         private MDUserCtrls.Line line11;
         private MDUserCtrls.Line line12;
-        private System.Windows.Forms.ComboBox cmb_2p0_OutD;
-        private System.Windows.Forms.ComboBox cmb_2p0_OutC;
+        private System.Windows.Forms.ComboBox cmb_2p0_Out4;
+        private System.Windows.Forms.ComboBox cmb_2p0_Out3;
         private System.Windows.Forms.Label label3;
         private MDUserCtrls.Circle circle1;
         private System.Windows.Forms.Label label2;
         private MDUserCtrls.Line line10;
         private MDUserCtrls.Line line9;
-        private System.Windows.Forms.ComboBox cmb_2p0_OutB;
-        private System.Windows.Forms.ComboBox cmb_2p0_OutA;
+        private System.Windows.Forms.ComboBox cmb_2p0_Out2;
+        private System.Windows.Forms.ComboBox cmb_2p0_Out1;
         private MDUserCtrls.Line line7;
         private MDUserCtrls.Line line8;
         private MDUserCtrls.Line line6;

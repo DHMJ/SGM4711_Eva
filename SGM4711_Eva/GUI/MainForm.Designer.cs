@@ -1656,13 +1656,13 @@
             this.cmb_OpVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.cmb_OpVoltage.FormattingEnabled = true;
             this.cmb_OpVoltage.Items.AddRange(new object[] {
-            "00: 22~26V",
-            "01/10: 15~22V",
-            "11: 8~15V",
+            "22~26V",
+            "15~22V",
+            "8~15V",
             "NONE"});
             this.cmb_OpVoltage.Location = new System.Drawing.Point(18, 64);
             this.cmb_OpVoltage.Name = "cmb_OpVoltage";
-            this.cmb_OpVoltage.Size = new System.Drawing.Size(152, 28);
+            this.cmb_OpVoltage.Size = new System.Drawing.Size(116, 28);
             this.cmb_OpVoltage.TabIndex = 5;
             this.cmb_OpVoltage.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmb_OpVoltage_DrawItem);
             this.cmb_OpVoltage.SelectedIndexChanged += new System.EventHandler(this.cmb_OpVoltage_SelectedIndexChanged);
@@ -1676,11 +1676,11 @@
             this.cmb_ModeConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.cmb_ModeConfig.FormattingEnabled = true;
             this.cmb_ModeConfig.Items.AddRange(new object[] {
-            "2.0 CH",
-            "2.1 CH",
+            "2.0",
+            "2.1",
             "PBTL",
             "None"});
-            this.cmb_ModeConfig.Location = new System.Drawing.Point(190, 64);
+            this.cmb_ModeConfig.Location = new System.Drawing.Point(172, 64);
             this.cmb_ModeConfig.Name = "cmb_ModeConfig";
             this.cmb_ModeConfig.Size = new System.Drawing.Size(82, 28);
             this.cmb_ModeConfig.TabIndex = 5;
@@ -1703,7 +1703,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(190, 36);
+            this.label3.Location = new System.Drawing.Point(172, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 16);
             this.label3.TabIndex = 3;
@@ -1756,6 +1756,7 @@
             // 
             // pnl_Main
             // 
+            this.pnl_Main.AutoScroll = true;
             this.pnl_Main.BackColor = System.Drawing.Color.White;
             this.pnl_Main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pnl_Main.Controls.Add(this.txt_VOL4);
@@ -4927,6 +4928,7 @@
             // 
             // tabP_SingleCtrl
             // 
+            this.tabP_SingleCtrl.AutoScroll = true;
             this.tabP_SingleCtrl.BackColor = System.Drawing.Color.White;
             this.tabP_SingleCtrl.Location = new System.Drawing.Point(4, 25);
             this.tabP_SingleCtrl.Name = "tabP_SingleCtrl";
@@ -4937,6 +4939,7 @@
             // 
             // tabP_RegRW
             // 
+            this.tabP_RegRW.AutoScroll = true;
             this.tabP_RegRW.BackColor = System.Drawing.Color.White;
             this.tabP_RegRW.Location = new System.Drawing.Point(4, 25);
             this.tabP_RegRW.Name = "tabP_RegRW";
@@ -4946,6 +4949,7 @@
             // 
             // tabP_IICMemTool
             // 
+            this.tabP_IICMemTool.AutoScroll = true;
             this.tabP_IICMemTool.BackColor = System.Drawing.Color.White;
             this.tabP_IICMemTool.Location = new System.Drawing.Point(4, 25);
             this.tabP_IICMemTool.Name = "tabP_IICMemTool";
@@ -4977,6 +4981,7 @@
             // 
             // outputLogCtrl
             // 
+            this.outputLogCtrl.AutoScroll = true;
             this.outputLogCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputLogCtrl.Location = new System.Drawing.Point(3, 3);
             this.outputLogCtrl.Name = "outputLogCtrl";
@@ -4994,7 +4999,7 @@
             this.Controls.Add(this.menu_main);
             this.MinimumSize = new System.Drawing.Size(1010, 630);
             this.Name = "MainForm";
-            this.Text = "SGM4711 Eva_v0.69";
+            this.Text = "SGM4711 Eva_v0.71";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menu_main.ResumeLayout(false);

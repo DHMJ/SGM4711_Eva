@@ -6,3 +6,4 @@ C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\MDImportExcel\bin\Debug\MDRe
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\MDImportExcel\bin\Debug\MDRegisterTool.pdb
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\MDImportExcel\obj\Debug\MDRegisterTool.dll
 C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\MDImportExcel\obj\Debug\MDRegisterTool.pdb
+C:\Users\Administrator\Documents\GitHub\SGM4711_Eva\MDImportExcel\obj\Debug\MDRegisterTool.csprojResolveAssemblyReference.cache

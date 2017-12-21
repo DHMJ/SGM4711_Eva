@@ -251,6 +251,7 @@ namespace DMCommunication
             //{
             //    timeOutCounter--;
             //    System.Threading.Thread.Sleep(10);
+            ack = true;     // Force to for checking reading due to doesn't work.
             if (ack)
             {
 
@@ -357,6 +358,10 @@ namespace DMCommunication
 
             uart.DiscardInBuffer();
             uart.Write(buf, 0, 6 + count);
+
+            // Test: add 5 msec delay to see if still lost 
+            //Thread.Sleep(5);
+            ack = true;     // Force to read back after writing. 
 
             uint timeOutCounter = 2000;
 

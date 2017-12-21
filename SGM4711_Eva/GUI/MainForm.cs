@@ -715,7 +715,7 @@ namespace SGM4711_Eva
             if (myDongle.IsOpen)
             {
                 byte[] tempData;
-                if (myDongle.writeRegBurst(_reg.RegAddress, _reg.ByteValue, _reg.ByteCount))
+                if (myDongle.writeRegBurst(_reg.RegAddress, _reg.ByteValue, _reg.ByteCount, false))
                 {
                     tempData = _reg.ByteValue;
                     log += "\tOK\t" + "Address: 0x" + _reg.RegAddress.ToString("X2") + "\tData(Hex):";
@@ -949,10 +949,10 @@ namespace SGM4711_Eva
             this.splitContainer2.Panel2Collapsed = blockDiagramMode;
         }
 
-        #region Other Child Controls Evnet
+        #region Other Children Controls Evnet
         void btn_WriteReg_RegSetCtrl_Click(object sender, EventArgs e)
         {
-            RegWrite(this.regCtrl_AddrList.ToArray());
+            RegWrite(this.regCtrl_AddrList.ToArray(), true, false, false);
         }
 
         void btn_ReadReg_RegSetCtrl_Click(object sender, EventArgs e)
@@ -968,12 +968,12 @@ namespace SGM4711_Eva
             {
                 if (freeRegCtrl.ActivedEnList[ix])
                 {
-                    RegWrite(freeRegCtrl.RegAddrList[ix], firstWr, firstWr, false);
+                    RegWrite(freeRegCtrl.RegAddrList[ix], firstWr, false, false);
                     firstWr = false;
                 }
             }
 
-            PowerOn();
+            //PowerOn();
             //RegWrite(this.freeRegCtrl.RegAddrList.ToArray());
         }
 
@@ -2633,7 +2633,7 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x25];
-                    tempReg.RegValue = 0x01012345;
+                    tempReg.RegValue = 0x01021345;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x05];
@@ -2755,7 +2755,7 @@ namespace SGM4711_Eva
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x25];
-                    tempReg.RegValue = 0x01012345;
+                    tempReg.RegValue = 0x01002245;
                     regAddrList.Add(tempReg);
 
                     tempReg = regMap[0x05];
@@ -2974,14 +2974,18 @@ namespace SGM4711_Eva
                 trb_MasterVolume.Scroll += trb_MasterVolume_Scroll;
             }
 
-            uint tempVlaue = 0xFF - (uint)this.trb_MasterVolume.Value;            
+            uint tempVlaue = 0xFF - (uint)this.trb_MasterVolume.Value;
 
+            this.chb_MuteMasterVolume.CheckedChanged -= chb_MuteMasterVolume_CheckedChanged;
+            this.chb_MuteMasterVolume_1.CheckedChanged -= chb_MuteMasterVolume_CheckedChanged;
             if (tempVlaue == 0xFF)
             {
                 this.txt_MasterVol.Text = string.Format("Muted");
                 this.txt_MasterVol.ForeColor = Color.Red;
                 this.txt_MasterVol_1.Text = string.Format("Muted");
                 this.txt_MasterVol_1.ForeColor = Color.Red;
+                this.chb_MuteMasterVolume.Checked = true;
+                this.chb_MuteMasterVolume_1.Checked = true;
             }
             else
             {
@@ -2990,8 +2994,13 @@ namespace SGM4711_Eva
                 this.txt_MasterVol.ForeColor = Color.Black;
                 this.txt_MasterVol_1.Text = string.Format("{0}", tempdBValue.ToString("F1"));
                 this.txt_MasterVol_1.ForeColor = Color.Black;
+                this.chb_MuteMasterVolume.Checked = false;
+                this.chb_MuteMasterVolume_1.Checked = false;
 
             }
+            this.chb_MuteMasterVolume.CheckedChanged += chb_MuteMasterVolume_CheckedChanged;
+            this.chb_MuteMasterVolume_1.CheckedChanged += chb_MuteMasterVolume_CheckedChanged;
+
             if (regMap != null)
             {
                 regMap[0x07].RegValue = tempVlaue;
@@ -3046,16 +3055,24 @@ namespace SGM4711_Eva
                     this.txt_MasterVol.Text = (gain == -103.5) ? "Muted" : gain.ToString();
                     this.txt_MasterVol_1.Text = (gain == -103.5) ? "Muted" : gain.ToString();
 
+                    this.chb_MuteMasterVolume.CheckedChanged -= chb_MuteMasterVolume_CheckedChanged;
+                    this.chb_MuteMasterVolume_1.CheckedChanged -= chb_MuteMasterVolume_CheckedChanged;
                     if (gain == -103.5)
                     {
                         this.txt_MasterVol.ForeColor = Color.Red;
                         this.txt_MasterVol_1.ForeColor = Color.Red;
+                        this.chb_MuteMasterVolume.Checked = true;
+                        this.chb_MuteMasterVolume_1.Checked = true;
                     }
                     else
                     {
                         this.txt_MasterVol.ForeColor = Color.Black;
                         this.txt_MasterVol_1.ForeColor = Color.Black;
+                        this.chb_MuteMasterVolume.Checked = false;
+                        this.chb_MuteMasterVolume_1.Checked = false;
                     }
+                    this.chb_MuteMasterVolume.CheckedChanged += chb_MuteMasterVolume_CheckedChanged;
+                    this.chb_MuteMasterVolume_1.CheckedChanged += chb_MuteMasterVolume_CheckedChanged;
 
                     this.trb_MasterVolume.Value = (int)((gain + 103) * 2) + 1;
                     this.trb_MasterVolume_1.Value = (int)((gain + 103) * 2) + 1;

@@ -150,7 +150,7 @@ namespace SGM4711_Eva.GUI
 
         private void btn_WriteReg_Click(object sender, EventArgs e)
         {
-            myRegOp.RegWrite(this.regAddrList);
+            myRegOp.RegWrite(this.regAddrList, true, false, false);
         }
 
         /// <summary>

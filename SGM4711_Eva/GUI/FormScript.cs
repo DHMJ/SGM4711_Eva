@@ -171,7 +171,7 @@ namespace GeneralRegConfigPlatform.MDGUI
                                 {
                                     if (myRegOp != null)
                                     {
-                                        myRegOp.RegWrite(addr, data, firstRW, firstRW, false);
+                                        myRegOp.RegWrite(addr, data, firstRW, false, false);
                                         firstRW = false;
                                     }
                                     else
@@ -275,7 +275,7 @@ namespace GeneralRegConfigPlatform.MDGUI
 
                 }
                 
-                myRegOp.PowerOn();
+                //myRegOp.PowerOn();
 
             }
             catch
