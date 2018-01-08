@@ -77,6 +77,7 @@ namespace SGM4711_Eva.MDUserCtrls
         static Point minPoint;
         static Point maxPoint;
         static Point centerPoint;
+        static Point centerPoint_His;
         int circleRadius = 5;
         double maxOffset = 24;
         double maxInOut = 24;
